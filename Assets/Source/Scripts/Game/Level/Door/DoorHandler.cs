@@ -3,30 +3,31 @@ using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class DoorHandler : ChargeConsumer
+	[RequireComponent(typeof(ChargeConsumer))]
+	public class DoorHandler : MonoBehaviour
 	{
 		[SerializeField] private Door[] _doors;
 		[SerializeField] private float _animationTime;
 
 		private Coroutine _doorCoroutine;
 		private bool _previousCharged;
+		private ChargeConsumer _chargeConsumer;
 
-		protected override void OnEnable()
+		private void Awake() =>
+			gameObject.GetComponentElseThrow(out _chargeConsumer);
+
+		private void OnEnable()
 		{
-			base.OnEnable();
-			ChargeChanged += OnChargeChanged;
+			_chargeConsumer.ChargeChanged += OnChargeChanged;
 			OnChargeChanged();
 		}
 
-		protected override void OnDisable()
-		{
-			base.OnDisable();
-			ChargeChanged -= OnChargeChanged;
-		}
+		private void OnDisable() =>
+			_chargeConsumer.ChargeChanged -= OnChargeChanged;
 
 		private void OnChargeChanged()
 		{
-			var currentCharged = IsCharged;
+			var currentCharged = _chargeConsumer.IsCharged;
 
 			if (_previousCharged == currentCharged)
 			{

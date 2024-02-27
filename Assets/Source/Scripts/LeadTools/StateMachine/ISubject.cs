@@ -2,8 +2,8 @@
 
 namespace LeadTools.StateMachine
 {
-    public interface ISubject
-    {
-        public event Action ActionEnded;
-    }
+	public interface ISubject
+	{
+		public event Action ActionEnded;
+	}
 }

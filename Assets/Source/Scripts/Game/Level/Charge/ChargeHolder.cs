@@ -10,30 +10,35 @@ namespace CubeProject.Game
 		
 		public event Action ChargeChanged;
 
-		public bool IsCharged { get; private set; }
+		public bool IsCharged => SelfPower != null;
+
+		public Power SelfPower { get; private set; }
 
 		private void Start()
 		{
 			if (_isStartCharged || _isAlwaysCharged)
 			{
-				Charge();
+				SelfPower = new GameObject(nameof(Power)).AddComponent<Power>();
+				SelfPower.Init(this);
+				
+				Charge(SelfPower);
 			}
 		}
 
-		public void Charge() =>
-			ChangeCharge(true);
+		public void Charge(Power power) =>
+			ChangeCharge(power);
 
 		public void Defuse()
 		{
 			if (_isAlwaysCharged is false)
 			{
-				ChangeCharge(false);
+				ChangeCharge();
 			}
 		}
 
-		private void ChangeCharge(bool value)
+		private void ChangeCharge(Power power = null)
 		{
-			IsCharged = value;
+			SelfPower = power;
 			ChargeChanged?.Invoke();
 		}
 	}

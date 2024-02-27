@@ -5,11 +5,13 @@ using UnityEngine;
 namespace CubeProject.Game
 {
 	[RequireComponent(typeof(AudioSource))]
-	public class Barrier : ChargeConsumer
+	public class Barrier : MonoBehaviour
 	{
+		[SerializeField] private ChargeConsumer _chargeConsumer;
+
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube cube) && IsCharged)
+			if (other.TryGetComponent(out Cube cube) && _chargeConsumer.IsCharged)
 			{
 				if (cube.ComponentsHolder.ChargeHolder.IsCharged is false)
 				{

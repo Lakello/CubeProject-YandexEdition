@@ -6,13 +6,14 @@ using CubeProject.Player;
 using CubeProject.Tips;
 using LeadTools.Extensions;
 using Reflex.Core;
+using Source.Scripts.Game;
 using UnityEngine;
 
 namespace CubeProject
 {
 	public class GameSceneInstaller : MonoBehaviour, IInstaller
 	{
-		[SerializeField] private UseTipKeyHandler _useTipKeyHandler;
+		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private CheckPointHolder _checkPointHolder;
 		[SerializeField] private Cube _cube;
@@ -32,9 +33,9 @@ namespace CubeProject
 
 			descriptor.AddSingleton(_virtualCamera);
 
-			descriptor.AddSingleton(_useTipKeyHandler);
-
 			descriptor.AddSingleton(new PusherStateHandler(_cube.ComponentsHolder.StateHandler));
+
+			descriptor.AddSingleton(_maskHolder);
 			
 			return;
 
@@ -44,21 +45,21 @@ namespace CubeProject
 
 				playerInput.Enable();
 				_disabling += () => playerInput.Disable();
-				IInputHandler inputHandler;
+				IInputService inputService;
 
                 if (Application.isMobilePlatform || _isMobileTest)
 				{
-					inputHandler = gameObject.AddComponent<MobileInputHandler>();					
+					inputService = gameObject.AddComponent<MobileInputService>();					
 				}
 				else
 				{
-                    inputHandler = gameObject.AddComponent<DesktopInputHandler>();
+                    inputService = gameObject.AddComponent<DesktopInputService>();
                 }
 				
 				_cube.gameObject.GetComponentElseThrow(out CubeStateHandler cubeStateHandler);
-				inputHandler.Init(playerInput, cubeStateHandler);				
+				inputService.Init(playerInput, cubeStateHandler);				
 
-				descriptor.AddSingleton(inputHandler, typeof(IInputHandler));
+				descriptor.AddSingleton(inputService, typeof(IInputService));
 			}
 		}
 	}

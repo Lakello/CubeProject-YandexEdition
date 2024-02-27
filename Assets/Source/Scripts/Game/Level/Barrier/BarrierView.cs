@@ -7,19 +7,17 @@ using Random = UnityEngine.Random;
 
 namespace CubeProject.Game
 {
+	[RequireComponent(typeof(ChargeConsumer))]
 	public class BarrierView : MonoBehaviour
 	{
 		private const string MaskPower = "_MaskPower";
 		private const string DotsColor = "_DotsColor";
-		private const string BaseColor = "_BaseColor";
+		private const string LightColor = "_LightColor";
 		private const string BorderColor = "_BorderColor";
-		private const string IntersectionColor = "_IntersectionColor";
 
 		[SerializeField] private FloatRange _rangeMaskPower;
 		[SerializeField] private Color _onColor;
 		[SerializeField] private Color _offColor;
-		[SerializeField] [Range(-10f, 10f)] private float _intersectionOnIntensity = 0;
-		[SerializeField] [Range(-10f, 10f)] private float _intersectionOffIntensity = -5;
 		[SerializeField] [Range(-10f, 10f)] private float _intensityOnColor = 4;
 		[SerializeField] [Range(-10f, 10f)] private float _intensityOffColor = 1;
 		[SerializeField] [Range(0f, 20f)] private float _onMaskPower;
@@ -27,28 +25,30 @@ namespace CubeProject.Game
 		[SerializeField] private float _timeChangeMaskPowerOnIdle;
 		[SerializeField] private float _timeChangeMaskPower;
 		[SerializeField] private MeshRenderer _meshRendererWall;
-		[SerializeField] private MeshRenderer[] _meshRenderersBase;
-		[SerializeField] private Barrier _barrier;
+		[SerializeField] private MeshRenderer[] _meshRendererBases;
 
 		private Coroutine _maskStateCoroutine;
 		private Coroutine _changeMaskCoroutine;
 		private Coroutine _changeStateCoroutine;
+		private ChargeConsumer _chargeConsumer;
 
 		private void Awake()
 		{
-			var (color, intensity, intersectionIntensity, maskPower) = GetStateData(_barrier.IsCharged);
+			gameObject.GetComponentElseThrow(out _chargeConsumer);
+			
+			var (color, intensity, maskPower) = GetStateData(_chargeConsumer.IsCharged);
 
-			SetColor(color.CalculateIntensityColor(intensity), color.CalculateIntensityColor(intersectionIntensity));
+			SetColor(color.CalculateIntensityColor(intensity));
 			SetMask(maskPower);
 
 			_maskStateCoroutine = StartCoroutine(Idle());
 		}
 
 		private void OnEnable() =>
-			_barrier.ChargeChanged += OnChargeChanged;
+			_chargeConsumer.ChargeChanged += OnChargeChanged;
 
 		private void OnDisable() =>
-			_barrier.ChargeChanged -= OnChargeChanged;
+			_chargeConsumer.ChargeChanged -= OnChargeChanged;
 
 		private void OnChargeChanged()
 		{
@@ -56,25 +56,24 @@ namespace CubeProject.Game
 			this.StopRoutine(_maskStateCoroutine);
 			this.StopRoutine(_changeStateCoroutine);
 
-			var isCharged = _barrier.IsCharged;
+			var isCharged = _chargeConsumer.IsCharged;
 
 			_changeStateCoroutine = StartCoroutine(ChangeState(isCharged, () => _maskStateCoroutine = StartCoroutine(Idle())));
 		}
 
-		private (Color, float, float, float) GetStateData(bool condition) =>
+		private (Color, float, float) GetStateData(bool condition) =>
 			condition is false
-				? (_onColor, _intensityOnColor, _intersectionOnIntensity, _onMaskPower)
-				: (_offColor, _intensityOffColor, _intersectionOffIntensity, _offMaskPower);
+				? (_onColor, _intensityOnColor, _onMaskPower)
+				: (_offColor, _intensityOffColor, _offMaskPower);
 
-		private void SetColor(Color color, Color intersectionColor)
+		private void SetColor(Color color)
 		{
 			_meshRendererWall.material.SetColor(BorderColor, color);
 			_meshRendererWall.material.SetColor(DotsColor, color);
-			_meshRendererWall.material.SetColor(IntersectionColor, intersectionColor);
 
-			foreach (var meshRenderer in _meshRenderersBase)
+			foreach (var meshRenderer in _meshRendererBases)
 			{
-				meshRenderer.material.SetColor(BaseColor, color);
+				meshRenderer.material.SetColor(LightColor, color);
 			}
 		}
 
@@ -108,7 +107,7 @@ namespace CubeProject.Game
 
 		private IEnumerator ChangeState(bool isCharged, Action endCallback)
 		{
-			var (color, intensity, intersectionIntensity, maskPower) = GetStateData(isCharged);
+			var (color, intensity, maskPower) = GetStateData(isCharged);
 
 			_maskStateCoroutine = this.PlaySmoothChangeValue(
 				(currentTime) =>
@@ -116,7 +115,6 @@ namespace CubeProject.Game
 					LerpColor(
 						GetColor(),
 						color.CalculateIntensityColor(intensity),
-						color.CalculateIntensityColor(intersectionIntensity),
 						currentTime);
 
 					LerpMask(GetMask(), maskPower, currentTime);
@@ -135,13 +133,11 @@ namespace CubeProject.Game
 			SetMask(resultMaskPower);
 		}
 
-		private void LerpColor(Color currentColor, Color targetColor, Color intersectionColor, float currentTime)
+		private void LerpColor(Color currentColor, Color targetColor, float currentTime)
 		{
 			var resultMaskColor = Color.Lerp(currentColor, targetColor, currentTime);
 
-			var resultIntersectionColor = Color.Lerp(currentColor, intersectionColor, currentTime);
-
-			SetColor(resultMaskColor, resultIntersectionColor);
+			SetColor(resultMaskColor);
 		}
 	}
 }

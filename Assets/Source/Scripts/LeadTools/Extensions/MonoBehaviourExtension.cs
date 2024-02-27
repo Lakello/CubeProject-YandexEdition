@@ -1,13 +1,60 @@
 using System;
 using System.Collections;
+using CubeProject.Game;
 using UnityEngine;
 
 namespace LeadTools.Extensions
 {
 	public static class MonoBehaviourExtension
 	{
+		public static bool IsThereFreeSeat(
+			this MonoBehaviour context,
+			ref Vector3 direction,
+			Action successCallback,
+			LayerMask layerMask,
+			int distance = 1)
+		{
+			if (distance < 1)
+			{
+				distance = 1;
+			}
+
+			var directions = new Directions();
+
+			return Find(ref direction);
+
+			bool Find(ref Vector3 direction)
+			{
+				var origin = context.transform.position + direction * distance;
+			
+				if (Physics.Raycast(origin, Vector3.down,Mathf.Infinity, layerMask))
+				{
+					successCallback();
+					return true;
+				}
+				else
+				{
+					directions.SetValue(direction, false);
+
+					direction = directions.GetAnyDirection();
+
+					if (direction == Vector3.zero)
+					{
+						return false;
+					}
+
+					return Find(ref direction);
+				}
+			}
+		}
+		
 		public static void StopRoutine(this MonoBehaviour context, Coroutine routine)
 		{
+			if (context == null)
+			{
+				return;
+			}
+
 			if (routine != null)
 			{
 				context.StopCoroutine(routine);
@@ -20,11 +67,18 @@ namespace LeadTools.Extensions
 		public static void WaitRoutine(this MonoBehaviour context, Coroutine routine, Action endCallback) =>
 			context.StartCoroutine(Wait(routine, endCallback));
 
-		public static Coroutine PlaySmoothChangeValue(this MonoBehaviour context, Action<float> lerp, float totalTime, Action endCallback = null) =>
-			context.StartCoroutine(SmoothChangeValue(lerp, totalTime, endCallback));
+		public static Coroutine PlaySmoothChangeValue(
+			this MonoBehaviour context,
+			Action<float> lerp,
+			float totalTime,
+			Action endCallback = null,
+			Action startCallback = null) =>
+			context.StartCoroutine(SmoothChangeValue(lerp, totalTime, endCallback, startCallback));
 
-		private static IEnumerator SmoothChangeValue(Action<float> lerp, float totalTime, Action endCallback)
+		private static IEnumerator SmoothChangeValue(Action<float> lerp, float totalTime, Action endCallback, Action startCallback)
 		{
+			startCallback?.Invoke();
+
 			var currentTime = 0f;
 
 			while (currentTime <= totalTime)
