@@ -31,6 +31,7 @@ namespace CubeProject.Tips
 
 		private void OnStepStarted(Vector3 direction)
 		{
+			Debug.LogError($"TipKey = {TipKey != null}", gameObject);
 			var tipKeyDirection = default(Vector3).GetDirectionFromEnum((int)TipKey.Data.Type);
 
 			if (direction == Vector3.zero || (direction.x != 0 && direction.z != 0) || direction != tipKeyDirection)
