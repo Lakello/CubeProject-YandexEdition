@@ -15,7 +15,7 @@ namespace CubeProject.Game
 
 		protected IChargeable Chargeable => _chargeable;
 
-		protected IColorChanger ColorChanger => _hdrColorChanger;
+		protected HDRColorChanger ColorChanger => _hdrColorChanger;
 
 		private void Awake()
 		{

@@ -1,5 +1,5 @@
 ﻿using System;
-using LeadTools.Emulator;
+using LeadTools.SaveSystem.Services;
 using UnityEngine;
 
 namespace LeadTools.SaveSystem
@@ -8,7 +8,7 @@ namespace LeadTools.SaveSystem
 	{
 		public static ISaver Instance { get; private set; }
 
-		private readonly SavesEmulator _savesEmulator = new SavesEmulator();
+		private ISaveService _saveService;
 
 		private GameSaves _gameSaves = new GameSaves();
 
@@ -34,9 +34,10 @@ namespace LeadTools.SaveSystem
 		public void Init()
 		{
 #if !UNITY_EDITOR
-            PlayerAccount.GetCloudSaveData(OnSuccessCallback);
+			_saveService = new YandexSaveService();
+			_saveService.GetData(OnSuccessCallback);
 #else
-			_savesEmulator.Init(OnSuccessCallback);
+			//_savesEmulator.Init(OnSuccessCallback);
 #endif
 
 			return;
@@ -55,7 +56,7 @@ namespace LeadTools.SaveSystem
 #if !UNITY_EDITOR
             PlayerAccount.SetCloudSaveData(save);
 #else
-			_savesEmulator.Save(save);
+			//_savesEmulator.Save(save);
 #endif
 		}
 	}

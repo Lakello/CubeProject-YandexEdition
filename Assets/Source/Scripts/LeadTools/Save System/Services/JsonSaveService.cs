@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace LeadTools.Emulator
+namespace LeadTools.SaveSystem.Services
 {
-	public class SavesEmulator
+	public class JsonSaveService : ISaveService
 	{
 		private readonly string _saveSimPath = "Assets/Source/Scripts/LeadTools/Emulator/SaveSim.json";
 
-		public void Init(Action<string> action)
+		public void GetData(Action<string> callback)
 		{
 			string data = File.ReadAllText(_saveSimPath);
 
-			action?.Invoke(data);
+			callback?.Invoke(data);
 		}
 
-		public void Save(string save)
+		public void SetData(string save)
 		{
 			File.WriteAllText(_saveSimPath, save);
 		}
