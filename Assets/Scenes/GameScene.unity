@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.016020566, g: 0.018823247, b: 0.021874571, a: 1}
+  m_IndirectSpecularColor: {r: 0.016028728, g: 0.018921442, b: 0.021957407, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1636,6 +1636,7 @@ GameObject:
   - component: {fileID: 1265708208}
   - component: {fileID: 1265708207}
   - component: {fileID: 1265708205}
+  - component: {fileID: 1265708210}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -1751,6 +1752,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265708210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265708204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 0daaecfb7533cce4781d4935f579f87b, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &1364596947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,9 +2883,6 @@ MonoBehaviour:
     _wallMask:
       serializedVersion: 2
       m_Bits: 512
-    _overlapMask:
-      serializedVersion: 2
-      m_Bits: 1024
   _virtualCamera: {fileID: 445921951}
   _checkPointHolder: {fileID: 0}
   _cube: {fileID: 662694674}
