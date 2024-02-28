@@ -29,6 +29,22 @@ namespace CubeProject.InputSystem
 			}
 		}
 
+		public void Init(PlayerInput playerInput, CubeStateHandler stateHandler)
+		{
+			_playerInput = playerInput;
+
+			_stateHandler = stateHandler;
+
+			_stateHandler.StateChanged += OnStateChanged;
+
+			_playerInput.Desktop.UsePress.performed += _ => OnUsePressPerformed();
+			_playerInput.Desktop.UseRelease.performed += _ => OnUseReleasePerformed();
+
+			_playerInput.Desktop.Menu.performed += _ => OnMenuPerformed();
+
+			OnStateChanged(_stateHandler.CurrentState);
+		}
+
 		private void OnStateChanged(CubeState state)
 		{
 			if (state == CubeState.Normal)
@@ -41,28 +57,12 @@ namespace CubeProject.InputSystem
 			}
 		}
 
-		public void Init(PlayerInput playerInput, CubeStateHandler stateHandler)
-		{
-			_playerInput = playerInput;
-
-			_stateHandler = stateHandler;
-
-			_stateHandler.StateChanged += OnStateChanged;
-			
-			_playerInput.Desktop.UsePress.performed += _ => OnUsePressPerformed();
-			_playerInput.Desktop.UseRelease.performed += _ => OnUseReleasePerformed();
-			
-			_playerInput.Desktop.Menu.performed += _ => OnMenuPerformed();
-
-			OnStateChanged(_stateHandler.CurrentState);
-		}
-
 		private void OnMenuPerformed() =>
 			MenuKeyChanged?.Invoke();
 
 		private void OnUsePressPerformed() =>
 			UsePressed?.Invoke();
-		
+
 		private void OnUseReleasePerformed() =>
 			UseReleased?.Invoke();
 

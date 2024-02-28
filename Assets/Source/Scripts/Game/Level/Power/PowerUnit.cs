@@ -1,36 +1,35 @@
+using System;
 using CubeProject.Player;
 using LeadTools.Extensions;
 using UnityEngine;
 
 namespace CubeProject.Game
 {
-	[RequireComponent(typeof(UseObject))]
 	[RequireComponent(typeof(ChargeHolder))]
 	public class PowerUnit : MonoBehaviour
 	{
 		[SerializeField] private bool _canGiveCharge;
 		[SerializeField] private bool _canGetCharge;
 
-		private UseObject _useObject;
 		private ChargeHolder _selfChargeHolder;
 
 		public ChargeHolder ChargeHolder => _selfChargeHolder ??= GetChargeHolder();
 
 		private void Awake()
 		{
-			gameObject.GetComponentElseThrow(out _useObject);
-
 			if (_selfChargeHolder is null)
 			{
 				gameObject.GetComponentElseThrow(out _selfChargeHolder);
 			}
 		}
 
-		private void OnEnable() =>
-			_useObject.TryUsing += OnTryUsing;
-
-		private void OnDisable() =>
-			_useObject.TryUsing -= OnTryUsing;
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.TryGetComponent(out Cube cube))
+			{
+				OnTryUsing(cube);
+			}
+		}
 
 		private ChargeHolder GetChargeHolder()
 		{

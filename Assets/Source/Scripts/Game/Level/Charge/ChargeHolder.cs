@@ -7,7 +7,7 @@ namespace CubeProject.Game
 	{
 		[SerializeField] private bool _isAlwaysCharged;
 		[SerializeField] private bool _isStartCharged;
-		
+
 		public event Action ChargeChanged;
 
 		public bool IsCharged => SelfPower != null;
@@ -20,7 +20,7 @@ namespace CubeProject.Game
 			{
 				SelfPower = new GameObject(nameof(Power)).AddComponent<Power>();
 				SelfPower.Init(this);
-				
+
 				Charge(SelfPower);
 			}
 		}

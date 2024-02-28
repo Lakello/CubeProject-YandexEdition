@@ -6,11 +6,8 @@ namespace CubeProject.Tips
 	[Serializable]
 	public struct TipKeyData
 	{
-		[SerializeField] private TipKeyType _tipKeyType;
+		[SerializeField] private DirectionType _direction;
 
-		public TipKeyType Type => _tipKeyType;
-
-		public bool IsUsableKeyType(TipKeyType tipKeyType) =>
-			_tipKeyType == tipKeyType;
+		public Vector3 Direction => _direction.Value;
 	}
 }

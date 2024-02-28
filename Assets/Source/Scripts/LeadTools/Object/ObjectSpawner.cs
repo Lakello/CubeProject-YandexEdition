@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LeadTools.Object
 {
@@ -14,7 +15,7 @@ namespace LeadTools.Object
 			_pool = new ObjectPool<TInstance, TInit>();
 		}
 
-		public IPoolingObject<TInstance, TInit> Spawn(IPoolingObject<TInstance, TInit> poolingObject, TInit init, System.Func<Vector3> getSpawnPosition = null)
+		public IPoolingObject<TInstance, TInit> Spawn(IPoolingObject<TInstance, TInit> poolingObject, TInit init, Func<Vector3> getSpawnPosition = null)
 		{
 			IPoolingObject<TInstance, TInit> spawningObject = GetObject(poolingObject);
 
@@ -23,7 +24,7 @@ namespace LeadTools.Object
 				Vector3 position = getSpawnPosition();
 				spawningObject.Instance.transform.position = position;
 			}
-            
+
 			spawningObject.Disabled += _pool.Return;
 
 			spawningObject.Init(init);

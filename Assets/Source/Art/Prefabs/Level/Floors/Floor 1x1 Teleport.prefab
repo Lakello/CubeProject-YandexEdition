@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f3a14d9ec48f0fd4ea6685371bf7c2e4, type: 2}
+      objectReference: {fileID: 2100000, guid: 04b6252bcdd0dc247826f4e5a5236f66, type: 2}
     - target: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
       propertyPath: m_Name
       value: Floor 1x1 Teleport
@@ -70,45 +70,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8862688788814116652}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7526928441599191315}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1119929057247420190}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1219975121931191169}
   m_SourcePrefab: {fileID: 100100000, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
 --- !u!1 &7925176843430611001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8837685b760891541ac1aa95f00943ce, type: 3}
   m_PrefabInstance: {fileID: 7006065588218393960}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8862688788814116652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7925176843430611001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ae48bbfcce640dbb1af8328e53f43de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorCubeControl: {r: 1, g: 1, b: 1, a: 1}
-  _colorTeleportControl: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &7526928441599191315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7925176843430611001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d89043bca27e49dc92a6e1e53b590529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1119929057247420190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -130,3 +101,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1219975121931191169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925176843430611001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852211f299924c068c36774a5b828f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -8,14 +8,14 @@ namespace CubeProject.PlayableCube
 	public class GroundChecker
 	{
 		private readonly RaycastHit[] _results = new RaycastHit[1];
-		
+
 		[SerializeField] private BoxCollider _collider;
 
 		private LayerMask _groundMask;
 
 		public void Init(MaskHolder maskHolder) =>
 			_groundMask = maskHolder.GroundMask;
-		
+
 		public bool IsGround(float checkDistance, out float groundPositionY)
 		{
 			groundPositionY = 0f;

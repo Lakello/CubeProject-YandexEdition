@@ -35,7 +35,7 @@ namespace CubeProject.Game
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
-			
+
 			var (color, intensity, maskPower) = GetStateData(_chargeConsumer.IsCharged);
 
 			SetColor(color.CalculateIntensityColor(intensity));

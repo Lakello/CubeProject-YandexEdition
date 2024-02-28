@@ -8,7 +8,7 @@ namespace LeadTools.SaveSystem
 	{
 		public static ISaver Instance { get; private set; }
 
-		private readonly YandexEmulator _yandexEmulator = new YandexEmulator();
+		private readonly SavesEmulator _savesEmulator = new SavesEmulator();
 
 		private GameSaves _gameSaves = new GameSaves();
 
@@ -36,7 +36,7 @@ namespace LeadTools.SaveSystem
 #if !UNITY_EDITOR
             PlayerAccount.GetCloudSaveData(OnSuccessCallback);
 #else
-			_yandexEmulator.Init(OnSuccessCallback);
+			_savesEmulator.Init(OnSuccessCallback);
 #endif
 
 			return;
@@ -55,7 +55,7 @@ namespace LeadTools.SaveSystem
 #if !UNITY_EDITOR
             PlayerAccount.SetCloudSaveData(save);
 #else
-			_yandexEmulator.Save(save);
+			_savesEmulator.Save(save);
 #endif
 		}
 	}

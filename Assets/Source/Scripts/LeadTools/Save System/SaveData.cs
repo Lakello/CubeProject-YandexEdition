@@ -2,29 +2,29 @@
 
 namespace LeadTools.SaveSystem
 {
-    [Serializable]
-    public abstract class SaveData<TData>
-        where TData : SaveData<TData>
-    {
-        public event Action<TData> ValueUpdated;
+	[Serializable]
+	public abstract class SaveData<TData>
+		where TData : SaveData<TData>
+	{
+		public event Action<TData> ValueUpdated;
 
-        public void TryUpdateValue(TData value, Action successCallback)
-        {
-            if (Equals(value))
-            {
-                return;
-            }
+		public void TryUpdateValue(TData value, Action successCallback)
+		{
+			if (Equals(value))
+			{
+				return;
+			}
 
-            UpdateValue(value);
-            
-            successCallback();
-            ValueUpdated?.Invoke(Clone());
-        }
+			UpdateValue(value);
 
-        public abstract TData Clone();
+			successCallback();
+			ValueUpdated?.Invoke(Clone());
+		}
 
-        protected abstract void UpdateValue(TData data);
+		public abstract TData Clone();
 
-        protected abstract bool Equals(TData data);
-    }
+		protected abstract void UpdateValue(TData data);
+
+		protected abstract bool Equals(TData data);
+	}
 }

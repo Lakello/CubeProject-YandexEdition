@@ -39,7 +39,7 @@ namespace LeadTools.Extensions
 
 			return component;
 		}
-		
+
 		public static T[] GetComponentsInChildrenElseThrow<T>(this GameObject origin) =>
 			GetComponentInChildrenElseThrow(origin, out T[] _);
 

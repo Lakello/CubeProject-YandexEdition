@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace LeadTools.Object
 {
-    public interface IPoolingObject<TInstance, TInit>
-        where TInstance : MonoBehaviour
-    {
-        public event Action<IPoolingObject<TInstance, TInit>> Disabled;
-        
-        public Type SelfType { get; }
+	public interface IPoolingObject<TInstance, TInit>
+		where TInstance : MonoBehaviour
+	{
+		public event Action<IPoolingObject<TInstance, TInit>> Disabled;
 
-        public TInstance Instance { get; }
+		public Type SelfType { get; }
 
-        public void Init(TInit init);
-    }
+		public TInstance Instance { get; }
+
+		public void Init(TInit init);
+	}
 }

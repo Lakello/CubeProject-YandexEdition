@@ -13,7 +13,7 @@ namespace LeadTools.Other
 			{
 				return;
 			}
-			
+
 			transform.position = _target.position + _offset;
 		}
 

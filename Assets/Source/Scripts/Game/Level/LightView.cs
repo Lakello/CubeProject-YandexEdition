@@ -38,7 +38,7 @@ namespace CubeProject.Game
 			ChargeViewChanged?.Invoke(_chargeable.IsCharged);
 
 		protected abstract void ColorChangerInit(HDRColorChanger hdrColorChanger);
-		
+
 		protected abstract void OnChargeChanged();
 	}
 }

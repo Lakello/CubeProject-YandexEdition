@@ -1,7 +1,5 @@
 using CubeProject.PlayableCube.Movement;
 using CubeProject.Player;
-using CubeProject.Player.Movement;
-using LeadTools.Extensions;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -31,7 +29,7 @@ namespace CubeProject.Tips
 
 		private void OnStepStarted(Vector3 direction)
 		{
-			var tipKeyDirection = default(Vector3).GetDirectionFromEnum((int)TipKey.Data.Type);
+			var tipKeyDirection = TipKey.Data.Direction;
 
 			if (direction == Vector3.zero || (direction.x != 0 && direction.z != 0) || direction != tipKeyDirection)
 			{

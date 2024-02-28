@@ -16,7 +16,7 @@ namespace CubeProject.Tips
 
 		protected TipKey TipKey => _tipKey;
 
-		protected virtual void Awake() =>
+		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _tipKey);
 
 		protected void TryRelease()

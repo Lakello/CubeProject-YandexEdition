@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LeadTools.Other
 {
 	[Serializable]
-	public class HDRColorChanger : IColorChanger
+	public class HDRColorChanger
 	{
 		private const string BaseColor = "_BaseColor";
 

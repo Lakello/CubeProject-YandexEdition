@@ -8,10 +8,10 @@ namespace CubeProject.Tips
 		private readonly CubeStateHandler _stateHandler;
 
 		private TipKeyPusher _currentPusher;
-		
+
 		public PusherStateHandler(CubeStateHandler stateHandler) =>
 			_stateHandler = stateHandler;
-		
+
 		public void Pushing(TipKeyPusher pusher)
 		{
 			if (_currentPusher is not null)
@@ -21,7 +21,7 @@ namespace CubeProject.Tips
 
 			_currentPusher = pusher;
 			_currentPusher.Pushed += OnPushed;
-			
+
 			_stateHandler.EnterIn(CubeState.Pushing);
 		}
 
@@ -29,7 +29,7 @@ namespace CubeProject.Tips
 		{
 			_currentPusher.Pushed -= OnPushed;
 			_currentPusher = null;
-			
+
 			_stateHandler.EnterIn(CubeState.Normal);
 		}
 	}

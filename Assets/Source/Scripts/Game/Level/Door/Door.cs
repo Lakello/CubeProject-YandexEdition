@@ -12,13 +12,13 @@ namespace CubeProject.Game
 		public float OpenPositionZ => _openPositionZ;
 
 		public float OpenScaleZ => _openScaleZ;
-		
+
 		public float ClosePositionZ => _closePositionZ;
 
 		public float CloseScaleZ => _closeScaleZ;
 
 		public float StartPositionZ { get; set; }
-		
+
 		public float StartScaleZ { get; set; }
 	}
 }

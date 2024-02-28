@@ -1,4 +1,5 @@
 using LeadTools.Extensions;
+using Source.Scripts.LeadTools.Other;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -6,6 +7,7 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class DoorHandler : MonoBehaviour
 	{
+		[SerializeField] private AxisType _useAxis;
 		[SerializeField] private Door[] _doors;
 		[SerializeField] private float _animationTime;
 
@@ -49,6 +51,8 @@ namespace CubeProject.Game
 				door.StartPositionZ = door.transform.localPosition.z;
 			}
 
+			var axis = _useAxis.Value;
+
 			_doorCoroutine = this.PlaySmoothChangeValue(
 				(currentTime) =>
 				{
@@ -56,16 +60,10 @@ namespace CubeProject.Game
 					{
 						var doorTransform = door.transform;
 
-						var (positionZ, scaleZ) = CalculateDoorData(door, currentTime);
+						var (position, scale) = CalculateDoorData(door, currentTime);
 
-						var position = doorTransform.localPosition;
-						var scale = doorTransform.localScale;
-
-						position.z = positionZ;
-						scale.z = scaleZ;
-
-						doorTransform.localPosition = position;
-						doorTransform.localScale = scale;
+						doorTransform.localPosition = axis * position;
+						doorTransform.localScale = axis * scale;
 					}
 				},
 				_animationTime);

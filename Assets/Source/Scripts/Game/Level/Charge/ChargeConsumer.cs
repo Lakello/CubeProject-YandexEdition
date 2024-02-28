@@ -42,7 +42,7 @@ namespace CubeProject.Game
 				{
 					continue;
 				}
-				
+
 				if (_gameObjectsOnChargeable[i].TryGetComponent(out IChargeable chargeable))
 				{
 					_chargeables[i] = chargeable;

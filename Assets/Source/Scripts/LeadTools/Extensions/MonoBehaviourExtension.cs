@@ -26,10 +26,11 @@ namespace LeadTools.Extensions
 			bool Find(ref Vector3 direction)
 			{
 				var origin = context.transform.position + direction * distance;
-			
-				if (Physics.Raycast(origin, Vector3.down,Mathf.Infinity, layerMask))
+
+				if (Physics.Raycast(origin, Vector3.down, Mathf.Infinity, layerMask))
 				{
 					successCallback();
+
 					return true;
 				}
 				else
@@ -47,7 +48,7 @@ namespace LeadTools.Extensions
 				}
 			}
 		}
-		
+
 		public static void StopRoutine(this MonoBehaviour context, Coroutine routine)
 		{
 			if (context == null)

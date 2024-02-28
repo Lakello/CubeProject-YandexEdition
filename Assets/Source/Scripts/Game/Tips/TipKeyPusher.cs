@@ -1,7 +1,6 @@
 using System;
 using CubeProject.PlayableCube.Movement;
 using CubeProject.Player;
-using LeadTools.Extensions;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace CubeProject.Tips
 {
 	public class TipKeyPusher : MonoBehaviour
 	{
-		[SerializeField] private PushDirection _direction;
+		[SerializeField] private DirectionType _direction;
 
 		private PusherStateHandler _stateHandler;
 		private CubeMoveService _moveService;
@@ -38,7 +37,7 @@ namespace CubeProject.Tips
 			{
 				_moveService.StepEnded += OnPushed;
 
-				_moveService.Push(default(Vector3).GetDirectionFromEnum((int)_direction));
+				_moveService.Push(_direction.Value);
 			});
 		}
 
