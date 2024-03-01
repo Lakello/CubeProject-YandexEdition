@@ -23,14 +23,14 @@ namespace CubeProject
 
 		private IEnumerator InitSDK()
 		{
-// #if UNITY_WEBGL || !UNITY_EDITOR
-//             yield return YandexGamesSdk.Initialize(() => _callBack?.Invoke());
-//
-//             if (PlayerAccount.IsAuthorized == false)
-//                 PlayerAccount.StartAuthorizationPolling(1500);
-// #else
+#if UNITY_WEBGL || !UNITY_EDITOR
+            yield return YandexGamesSdk.Initialize(() => _callBack?.Invoke());
+
+            if (PlayerAccount.IsAuthorized == false)
+                PlayerAccount.StartAuthorizationPolling(1500);
+#else
 			_callBack?.Invoke();
-// #endif
+#endif
 
 			MenuScene.Load<MenuState>(_gameStateMachine);
 

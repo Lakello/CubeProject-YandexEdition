@@ -7,16 +7,14 @@ namespace LeadTools.SaveSystem.Services
 	{
 		private readonly string _saveSimPath = "Assets/Source/Scripts/LeadTools/Emulator/SaveSim.json";
 
-		public void GetData(Action<string> callback)
+		public void GetData(Action<string> successCallback)
 		{
 			string data = File.ReadAllText(_saveSimPath);
 
-			callback?.Invoke(data);
+			successCallback?.Invoke(data);
 		}
 
-		public void SetData(string save)
-		{
+		public void SetData(string save) =>
 			File.WriteAllText(_saveSimPath, save);
-		}
 	}
 }

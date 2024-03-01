@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using LeadTools.Other;
+using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
@@ -64,7 +65,13 @@ namespace CubeProject
 			{
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
 
-				projectInitializer.Init(gameStateMachine);
+				projectInitializer.Init(
+					gameStateMachine,
+					() =>
+					{
+						var saver = new GameDataSaver();
+						saver.Init();
+					});
 			}
 
 			#endregion

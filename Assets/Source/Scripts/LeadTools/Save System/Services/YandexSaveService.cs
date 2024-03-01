@@ -1,14 +1,14 @@
 using System;
+using Agava.YandexGames;
 
 namespace LeadTools.SaveSystem.Services
 {
 	public class YandexSaveService : ISaveService
 	{
-		public void GetData(Action<string> callback) =>
-			throw new Exception();
-			//PlayerAccount.GetCloudSaveData(OnSuccessCallback);;
+		public void GetData(Action<string> successCallback) =>
+			PlayerAccount.GetCloudSaveData(successCallback);
 
 		public void SetData(string save) =>
-			throw new NotImplementedException();
+			PlayerAccount.SetCloudSaveData(save);
 	}
 }

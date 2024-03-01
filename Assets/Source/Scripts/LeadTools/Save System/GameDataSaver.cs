@@ -35,10 +35,10 @@ namespace LeadTools.SaveSystem
 		{
 #if !UNITY_EDITOR
 			_saveService = new YandexSaveService();
-			_saveService.GetData(OnSuccessCallback);
 #else
-			//_savesEmulator.Init(OnSuccessCallback);
+			_saveService = new JsonSaveService();
 #endif
+			_saveService.GetData(OnSuccessCallback);
 
 			return;
 
@@ -51,13 +51,9 @@ namespace LeadTools.SaveSystem
 
 		private void Save()
 		{
-			string save = JsonUtility.ToJson(_gameSaves);
+			string gameSaves = JsonUtility.ToJson(_gameSaves);
 
-#if !UNITY_EDITOR
-            PlayerAccount.SetCloudSaveData(save);
-#else
-			//_savesEmulator.Save(save);
-#endif
+			_saveService.SetData(gameSaves);
 		}
 	}
 }
