@@ -11,9 +11,8 @@ namespace LeadTools.Extensions
 				return;
 			}
 
-			var power = originHolder.SelfPower;
 			originHolder.Defuse();
-			targetHolder.Charge(power);
+			targetHolder.Charge();
 		}
 	}
 }

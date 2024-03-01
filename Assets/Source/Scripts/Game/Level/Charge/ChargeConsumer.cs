@@ -15,12 +15,19 @@ namespace CubeProject.Game
 
 		public event Action ChargeChanged;
 
-		public bool IsCharged => _isAlwaysCharged || _needAllCharge ? CheckAllCharge() : CheckAnyCharge();
+		public bool IsCharged => _isAlwaysCharged || _needAllCharge
+			? CheckAllCharge()
+			: CheckAnyCharge();
 
 		private bool IsShowNeedAllCharge => _isAlwaysCharged is false;
 
 		private void OnValidate()
 		{
+			if (_gameObjectsOnChargeable is { Length: < 1 })
+			{
+				return;
+			}
+
 			for (int i = 0; i < _gameObjectsOnChargeable.Length; i++)
 			{
 				if (_gameObjectsOnChargeable[i].TryGetComponent(out IChargeable _) is false)

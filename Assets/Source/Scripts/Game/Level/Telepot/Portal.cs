@@ -2,26 +2,28 @@ using System;
 using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
 using CubeProject.Player;
+using LeadTools.Extensions;
+using LeadTools.NaughtyAttributes;
 using Reflex.Attributes;
 using Source.Scripts.Game;
 using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public sealed class Portal : MonoBehaviour, IChargeable
+	[RequireComponent(typeof(ChargeConsumer))]
+	public sealed class Portal : MonoBehaviour
 	{
 		[SerializeField] private Transform _targetPoint;
 		[SerializeField] private Portal _linkedPortal;
 		[SerializeField] private Teleporter _teleporter;
 
+		[ShowNonSerializedField] private bool _isActive;
+
 		private bool _isBlocked;
 		private Cube _cube;
 		private CubeStateHandler _cubeStateHandler;
 		private CubeMoveService _cubeMoveService;
-
-		public event Action ChargeChanged;
-
-		public bool IsCharged { get; private set; }
+		private ChargeConsumer _chargeConsumer;
 		
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
@@ -32,6 +34,15 @@ namespace CubeProject.Game
 
 			_teleporter.Init(this, cube, transform, _targetPoint, maskHolder);
 		}
+
+		private void Awake() =>
+			gameObject.GetComponentElseThrow(out _chargeConsumer);
+
+		private void OnEnable() =>
+			_chargeConsumer.ChargeChanged += OnChargeChanged;
+
+		private void OnDisable() =>
+			_chargeConsumer.ChargeChanged -= OnChargeChanged;
 
 		private void OnTriggerEnter(Collider other)
 		{
@@ -50,7 +61,7 @@ namespace CubeProject.Game
 				return;
 			}
 
-			if (IsCharged is false || _linkedPortal.IsCharged is false)
+			if (_isActive is false || _linkedPortal._isActive is false)
 			{
 				return;
 			}
@@ -63,7 +74,7 @@ namespace CubeProject.Game
 				() => _teleporter.Absorb(
 					() => _linkedPortal._teleporter.Return()));
 		}
-		
+
 		private void OnTriggerExit(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
@@ -71,31 +82,10 @@ namespace CubeProject.Game
 				_isBlocked = false;
 			}
 		}
-		
-		public void SetLinkedPortal(Portal portal)
-		{
-			if (portal == this
-				|| portal == null
-				|| portal == _linkedPortal)
-			{
-				return;
-			}
-			
-			_linkedPortal = portal;
-		}
-		
-		public void Active()
-		{
-			IsCharged = true;
-			ChargeChanged?.Invoke();
-		}
 
-		public void DeActive()
-		{
-			IsCharged = false;
-			ChargeChanged?.Invoke();
-		}
-        
+		private void OnChargeChanged() =>
+			_isActive = _chargeConsumer.IsCharged;
+
 		private void Block() =>
 			_isBlocked = true;
 	}

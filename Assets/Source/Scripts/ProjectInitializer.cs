@@ -12,16 +12,7 @@ namespace CubeProject
 		private Action _callBack;
 		private GameStateMachine _gameStateMachine;
 
-		private void Start() =>
-			StartCoroutine(InitSDK());
-
-		public void Init(GameStateMachine gameStateMachine, Action sdkInitSuccessCallBack = null)
-		{
-			_gameStateMachine = gameStateMachine;
-			_callBack = sdkInitSuccessCallBack;
-		}
-
-		private IEnumerator InitSDK()
+		private IEnumerator Start()
 		{
 #if UNITY_WEBGL || !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(() => _callBack?.Invoke());
@@ -35,6 +26,12 @@ namespace CubeProject
 			MenuScene.Load<MenuState>(_gameStateMachine);
 
 			yield return null;
+		}
+
+		public void Init(GameStateMachine gameStateMachine, Action sdkInitSuccessCallBack = null)
+		{
+			_gameStateMachine = gameStateMachine;
+			_callBack = sdkInitSuccessCallBack;
 		}
 	}
 }

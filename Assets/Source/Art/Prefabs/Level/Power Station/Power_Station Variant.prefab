@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3107452039460604162, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3107452039460604162, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 04d69a425882aa9448294178bfb0720c, type: 2}
     - target: {fileID: 4349220491175788859, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4349220491175788859, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -116,12 +116,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1993196281504525940}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1864881394055522072}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1375439413597374705}
   m_SourcePrefab: {fileID: 100100000, guid: 8f41b18787170154b8c1395bd056a455, type: 3}
 --- !u!1 &1118356911012443339 stripped
 GameObject:
@@ -195,33 +189,6 @@ MonoBehaviour:
     _chargedColor: {r: 0, g: 0.940083, b: 1, a: 1}
     _dischargedColor: {r: 0, g: 0, b: 0, a: 1}
     _bloomMeshRenderer: {fileID: 3956799460559765180}
---- !u!114 &1864881394055522072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118356911012443339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c3edd39f1647c081d6f465bded6ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1375439413597374705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118356911012443339}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6cad3da689b4be9a9c1b59cedb3b636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visualEffects:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!23 &3956799460559765180 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3867811820700825382, guid: 8f41b18787170154b8c1395bd056a455, type: 3}

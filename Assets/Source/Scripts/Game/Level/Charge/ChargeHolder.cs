@@ -1,4 +1,5 @@
 using System;
+using LeadTools.NaughtyAttributes;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -10,35 +11,30 @@ namespace CubeProject.Game
 
 		public event Action ChargeChanged;
 
-		public bool IsCharged => SelfPower != null;
-
-		public Power SelfPower { get; private set; }
+		[ShowNativeProperty] public bool IsCharged { get; private set; }
 
 		private void Start()
 		{
 			if (_isStartCharged || _isAlwaysCharged)
 			{
-				SelfPower = new GameObject(nameof(Power)).AddComponent<Power>();
-				SelfPower.Init(this);
-
-				Charge(SelfPower);
+				Charge();
 			}
 		}
 
-		public void Charge(Power power) =>
-			ChangeCharge(power);
+		public void Charge() =>
+			ChangeCharge(true);
 
 		public void Defuse()
 		{
 			if (_isAlwaysCharged is false)
 			{
-				ChangeCharge();
+				ChangeCharge(false);
 			}
 		}
 
-		private void ChangeCharge(Power power = null)
+		private void ChangeCharge(bool newCharge)
 		{
-			SelfPower = power;
+			IsCharged = newCharge;
 			ChargeChanged?.Invoke();
 		}
 	}

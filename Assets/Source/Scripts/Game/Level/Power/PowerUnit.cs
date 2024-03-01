@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using CubeProject.Player;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -13,14 +13,9 @@ namespace CubeProject.Game
 
 		private ChargeHolder _selfChargeHolder;
 
-		public ChargeHolder ChargeHolder => _selfChargeHolder ??= GetChargeHolder();
-
 		private void Awake()
 		{
-			if (_selfChargeHolder is null)
-			{
-				gameObject.GetComponentElseThrow(out _selfChargeHolder);
-			}
+			gameObject.GetComponentElseThrow(out _selfChargeHolder);
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -31,20 +26,25 @@ namespace CubeProject.Game
 			}
 		}
 
-		private ChargeHolder GetChargeHolder()
-		{
-			gameObject.GetComponentElseThrow(out _selfChargeHolder);
-
-			return _selfChargeHolder;
-		}
-
 		private void OnTryUsing(Cube cube)
 		{
-			if (_selfChargeHolder.IsCharged && _canGiveCharge)
+			var cubeIsCharged = cube.ComponentsHolder.ChargeHolder.IsCharged;
+			var selfIsCharged = _selfChargeHolder.IsCharged;
+			
+			Debug.Log($"TryUsing");
+			
+			if (selfIsCharged && cubeIsCharged)
+			{
+				return;
+			}
+			
+			Debug.Log("Power");
+			
+			if (selfIsCharged && _canGiveCharge)
 			{
 				_selfChargeHolder.GivePowerTo(cube.ComponentsHolder.ChargeHolder);
 			}
-			else if (_canGetCharge)
+			else if (cubeIsCharged && _canGetCharge)
 			{
 				cube.ComponentsHolder.ChargeHolder.GivePowerTo(_selfChargeHolder);
 			}
