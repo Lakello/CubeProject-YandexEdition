@@ -1,24 +1,25 @@
+using System;
 using UnityEngine;
 
 namespace CubeProject.Game
 {
 	public class Door : MonoBehaviour
 	{
-		[SerializeField] private float _openPositionZ;
-		[SerializeField] private float _openScaleZ;
-		[SerializeField] private float _closePositionZ;
-		[SerializeField] private float _closeScaleZ;
+		[SerializeField] private Vector3 _openPosition;
+		[SerializeField] private Vector3 _openScale;
+		[SerializeField] private Vector3 _closePosition;
+		[SerializeField] private Vector3 _closeScale;
 
-		public float OpenPositionZ => _openPositionZ;
+		public Vector3 OpenPosition => _openPosition;
 
-		public float OpenScaleZ => _openScaleZ;
+		public Vector3 OpenScale => _openScale;
 
-		public float ClosePositionZ => _closePositionZ;
+		public Vector3 ClosePosition => _closePosition;
 
-		public float CloseScaleZ => _closeScaleZ;
+		public Vector3 CloseScale => _closeScale;
 
-		public float StartPositionZ { get; set; }
+		public Vector3 StartPosition { get; set; }
 
-		public float StartScaleZ { get; set; }
+		public Vector3 StartScale { get; set; }
 	}
 }

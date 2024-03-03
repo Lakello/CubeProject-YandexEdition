@@ -12,12 +12,24 @@ namespace CubeProject.Game
 		[SerializeField] [ShowIf(nameof(IsShowNeedAllCharge))] private GameObject[] _gameObjectsOnChargeable;
 
 		private IChargeable[] _chargeables;
+		private bool _isInitialized;
 
 		public event Action ChargeChanged;
 
-		public bool IsCharged => _isAlwaysCharged || _needAllCharge
-			? CheckAllCharge()
-			: CheckAnyCharge();
+		public bool IsCharged
+		{
+			get
+			{
+				if (_isInitialized is false)
+				{
+					Init();
+				}
+			
+				return _isAlwaysCharged || _needAllCharge
+					? CheckAllCharge()
+					: CheckAnyCharge();
+			}
+		}
 
 		private bool IsShowNeedAllCharge => _isAlwaysCharged is false;
 
@@ -41,19 +53,9 @@ namespace CubeProject.Game
 
 		private void Awake()
 		{
-			_chargeables = new IChargeable[_gameObjectsOnChargeable.Length];
-
-			for (int i = 0; i < _gameObjectsOnChargeable.Length; i++)
+			if (_isInitialized is false)
 			{
-				if (_gameObjectsOnChargeable[i] == null)
-				{
-					continue;
-				}
-
-				if (_gameObjectsOnChargeable[i].TryGetComponent(out IChargeable chargeable))
-				{
-					_chargeables[i] = chargeable;
-				}
+				Init();
 			}
 		}
 
@@ -81,6 +83,26 @@ namespace CubeProject.Game
 			}
 		}
 
+		private void Init()
+		{
+			_chargeables = new IChargeable[_gameObjectsOnChargeable.Length];
+			
+			for (int i = 0; i < _gameObjectsOnChargeable.Length; i++)
+			{
+				if (_gameObjectsOnChargeable[i] == null)
+				{
+					continue;
+				}
+
+				if (_gameObjectsOnChargeable[i].TryGetComponent(out IChargeable chargeable))
+				{
+					_chargeables[i] = chargeable;
+				}
+			}
+
+			_isInitialized = true;
+		}
+		
 		private bool CheckAnyCharge() =>
 			_chargeables.Any(holder => holder.IsCharged);
 
@@ -92,6 +114,11 @@ namespace CubeProject.Game
 
 		private void Subscribe()
 		{
+			if (_isInitialized is false)
+			{
+				Init();
+			}
+			
 			foreach (var holder in _chargeables)
 			{
 				holder.ChargeChanged += OnChargeChanged;

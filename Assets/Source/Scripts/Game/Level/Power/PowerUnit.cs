@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 using CubeProject.Player;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -28,17 +28,17 @@ namespace CubeProject.Game
 
 		private void OnTryUsing(Cube cube)
 		{
+			Debug.Log($"TRY USING");
+			
 			var cubeIsCharged = cube.ComponentsHolder.ChargeHolder.IsCharged;
 			var selfIsCharged = _selfChargeHolder.IsCharged;
-			
-			Debug.Log($"TryUsing");
-			
+
 			if (selfIsCharged && cubeIsCharged)
 			{
 				return;
 			}
-			
-			Debug.Log("Power");
+
+			Debug.Log($"1");
 			
 			if (selfIsCharged && _canGiveCharge)
 			{

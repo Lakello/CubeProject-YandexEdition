@@ -1,5 +1,4 @@
 using LeadTools.Extensions;
-using Source.Scripts.LeadTools.Other;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -7,7 +6,6 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class DoorHandler : MonoBehaviour
 	{
-		[SerializeField] private AxisType _useAxis;
 		[SerializeField] private Door[] _doors;
 		[SerializeField] private float _animationTime;
 
@@ -15,8 +13,10 @@ namespace CubeProject.Game
 		private bool _previousCharged;
 		private ChargeConsumer _chargeConsumer;
 
-		private void Awake() =>
+		private void Awake()
+		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
+		}
 
 		private void OnEnable()
 		{
@@ -47,11 +47,9 @@ namespace CubeProject.Game
 		{
 			foreach (var door in _doors)
 			{
-				door.StartScaleZ = door.transform.localScale.z;
-				door.StartPositionZ = door.transform.localPosition.z;
+				door.StartScale = door.transform.localScale;
+				door.StartPosition = door.transform.localPosition;
 			}
-
-			var axis = _useAxis.Value;
 
 			_doorCoroutine = this.PlaySmoothChangeValue(
 				(currentTime) =>
@@ -62,22 +60,22 @@ namespace CubeProject.Game
 
 						var (position, scale) = CalculateDoorData(door, currentTime);
 
-						doorTransform.localPosition = axis * position;
-						doorTransform.localScale = axis * scale;
+						doorTransform.localPosition = position;
+						doorTransform.localScale = scale;
 					}
 				},
 				_animationTime);
 
 			return;
 
-			(float, float) CalculateDoorData(Door door, float currentTime)
+			(Vector3, Vector3) CalculateDoorData(Door door, float currentTime)
 			{
 				var (targetPosition, targetScale) = isCharged
-					? (door.OpenPositionZ, door.OpenScaleZ)
-					: (door.ClosePositionZ, door.CloseScaleZ);
+					? (door.OpenPosition, door.OpenScale)
+					: (door.ClosePosition, door.CloseScale);
 
-				var position = Mathf.Lerp(door.StartPositionZ, targetPosition, currentTime);
-				var scale = Mathf.Lerp(door.StartScaleZ, targetScale, currentTime);
+				var position = Vector3.Lerp(door.StartPosition, targetPosition, currentTime);
+				var scale = Vector3.Lerp(door.StartScale, targetScale, currentTime);
 
 				return (position, scale);
 			}
