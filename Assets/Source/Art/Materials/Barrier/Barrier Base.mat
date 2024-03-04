@@ -61,6 +61,8 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _GLOSSYREFLECTIONS_OFF
+  - _METALLICGLOSSMAP
+  - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -94,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4b8731a9dde7eb049a482c03df5c2a9d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -122,7 +124,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9b9b945fc3acbb74c853e420ab3a9ab7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
@@ -130,7 +132,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e5c40c1d87c5e3d41a3c11371d30f5d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -276,7 +278,7 @@ Material:
     - Fresnel_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
     - Wind_Direction: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.4247953, g: 0.8113208, b: 0.80128115, a: 1}
-    - _Color: {r: 0, g: 1, b: 0.97905755, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorBottom: {r: 0.1607843, g: 0.1607843, b: 0.1607843, a: 1}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorTop: {r: 0.6423998, g: 0.735849, b: 0.3089177, a: 1}

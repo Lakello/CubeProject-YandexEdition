@@ -15,7 +15,7 @@ TagManager:
   - Ground
   - Post Processing
   - Wall
-  - 
+  - Switch
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Switch
+    uniqueID: 2349849727
     locked: 0
