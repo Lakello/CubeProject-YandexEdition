@@ -89,9 +89,9 @@ Shader "Marc Sureda/Mobile/StylizedWaterMobile" {
 ////// Lighting:
 ////// Emissive:
                 float4 node_2892 = _Time;
-                float2 node_2122 = ((i.uv0*_MainFoamScale)+node_2892.g*float2(0.02,0.02));
+                float2 node_2122 = ((i.uv0*_MainFoamScale)+node_2892.g*float2(0.05,0.05));
                 float4 node_2913 = tex2D(_WaterTexture,TRANSFORM_TEX(node_2122, _WaterTexture));
-                float2 node_6407 = ((i.uv0*_SecondaryFoamScale)+node_2892.g*float2(-0.01,-0.01));
+                float2 node_6407 = ((i.uv0*_SecondaryFoamScale)+node_2892.g*float2(-0.05,-0.05));
                 float4 node_5766 = tex2D(_WaterTexture,TRANSFORM_TEX(node_6407, _WaterTexture));
                 float3 emissive = (((_MainFoamOpacity*(1.0 - saturate((sceneZ-partZ)/((0.2*_MainFoamIntensity)+pow((_MainFoamIntensity*node_2913.r),2.0)))))+lerp((_SecondaryFoamOpacity*pow(node_5766.r,2.0)),0.0,saturate((sceneZ-partZ)/_SecondaryFoamIntensity)))+lerp(lerp(lerp(_Color0.rgb,_Color1.rgb,saturate((sceneZ-partZ)/_Gradient1)),_Color2.rgb,saturate((sceneZ-partZ)/_Gradient2)),_FresnelColor.rgb,pow(1.0-max(0,dot(normalDirection, viewDirection)),_FresnelExp)));
                 float3 finalColor = emissive;

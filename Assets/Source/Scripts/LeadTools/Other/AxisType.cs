@@ -2,10 +2,10 @@ using System;
 using LeadTools.NaughtyAttributes;
 using UnityEngine;
 
-namespace CubeProject.Tips
+namespace Source.Scripts.LeadTools.Other
 {
 	[Serializable]
-	public class DirectionType
+	public class AxisType
 	{
 		[SerializeField] [Dropdown(nameof(GetDirection))] private Vector3 _value;
 
@@ -15,17 +15,14 @@ namespace CubeProject.Tips
 			new DropdownList<Vector3>
 			{
 				{
-					"Right", Vector3.right
+					"X", Vector3.right
 				},
 				{
-					"Left", Vector3.left
+					"Y", Vector3.up
 				},
 				{
-					"Forward", Vector3.forward
-				},
-				{
-					"Back", Vector3.back
-				},
+					"Z", Vector3.forward
+				}
 			};
 	}
 }
