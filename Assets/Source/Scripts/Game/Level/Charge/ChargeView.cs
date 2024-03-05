@@ -1,17 +1,36 @@
+using LeadTools.Extensions;
 using LeadTools.Other;
+using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public sealed class ChargeView : LightView
+	public sealed class ChargeView : MonoBehaviour
 	{
-		protected override void ColorChangerInit(HDRColorChanger colorChanger) =>
-			colorChanger.Init(() => Chargeable.IsCharged);
+		private const string EmissionColor = "_EmissionColor";
+		
+		[SerializeField] private HDRColorChanger _hdrColorChanger;
 
-		protected override void OnChargeChanged()
+		private IChargeable _chargeable;
+
+		private void Awake()
 		{
-			ColorChanger.ChangeColor();
+			gameObject.GetComponentElseThrow(out _chargeable);
 
-			CallChanged();
+			_hdrColorChanger.Init(() => _chargeable.IsCharged);
+			_hdrColorChanger.Init(EmissionColor);
 		}
+
+		private void OnEnable()
+		{
+			_chargeable.ChargeChanged += OnChargeChanged;
+
+			OnChargeChanged();
+		}
+
+		private void OnDisable() =>
+			_chargeable.ChargeChanged -= OnChargeChanged;
+
+		private void OnChargeChanged() =>
+			_hdrColorChanger.ChangeColor();
 	}
 }

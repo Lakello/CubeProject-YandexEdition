@@ -28,8 +28,6 @@ namespace CubeProject.Game
 
 		private void OnTryUsing(Cube cube)
 		{
-			Debug.Log($"TRY USING");
-			
 			var cubeIsCharged = cube.ComponentsHolder.ChargeHolder.IsCharged;
 			var selfIsCharged = _selfChargeHolder.IsCharged;
 
@@ -37,8 +35,6 @@ namespace CubeProject.Game
 			{
 				return;
 			}
-
-			Debug.Log($"1");
 			
 			if (selfIsCharged && _canGiveCharge)
 			{

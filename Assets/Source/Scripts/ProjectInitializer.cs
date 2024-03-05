@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Agava.YandexGames;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
@@ -14,7 +15,7 @@ namespace CubeProject
 
 		private IEnumerator Start()
 		{
-#if UNITY_WEBGL || !UNITY_EDITOR
+#if !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(() => _callBack?.Invoke());
 
             if (PlayerAccount.IsAuthorized == false)
