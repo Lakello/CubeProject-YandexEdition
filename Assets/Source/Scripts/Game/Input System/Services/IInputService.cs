@@ -10,6 +10,6 @@ namespace CubeProject.InputSystem
 
 		public event Action MenuKeyChanged;
 
-		public void Init(PlayerInput playerInput, CubeStateHandler stateHandler);
+		public void Init(PlayerInput playerInput, CubeStateService stateService);
 	}
 }

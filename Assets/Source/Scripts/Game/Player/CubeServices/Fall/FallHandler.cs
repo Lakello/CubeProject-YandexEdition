@@ -8,7 +8,7 @@ namespace CubeProject.PlayableCube
 	public class FallHandler
 	{
 		private readonly MonoBehaviour _mono;
-		private readonly CubeStateHandler _stateHandler;
+		private readonly CubeStateService _stateService;
 		private readonly Transform _origin;
 		private readonly GroundChecker _groundChecker;
 		private readonly Cube _cube;
@@ -27,7 +27,7 @@ namespace CubeProject.PlayableCube
 			_mono = mono;
 			_cube = cube;
 			_became = _cube.ServiceHolder.BecameVisible;
-			_stateHandler = _cube.ServiceHolder.StateHandler;
+			_stateService = _cube.ServiceHolder.StateService;
 			_origin = origin;
 			_groundChecker = groundChecker;
 
@@ -42,7 +42,7 @@ namespace CubeProject.PlayableCube
 		
 		public void Play()
 		{
-			_stateHandler.EnterIn(CubeState.Falling);
+			_stateService.EnterIn(CubeState.Falling);
 
 			_mono.StopRoutine(_fallCoroutine);
 
@@ -95,7 +95,7 @@ namespace CubeProject.PlayableCube
 				},
 				() => _isGrounded() is false && groundPositionY < Position.y));
 
-			_mono.WaitRoutine(_fallCoroutine, () => _stateHandler.EnterIn(CubeState.Normal));
+			_mono.WaitRoutine(_fallCoroutine, () => _stateService.EnterIn(CubeState.Normal));
 		}
 
 		private IEnumerator Execute(Func<float, Vector3> calculatePosition, Func<bool> whileCondition, Action endCallback = null)

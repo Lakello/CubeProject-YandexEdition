@@ -12,11 +12,14 @@ namespace Source.Scripts.Game.Level.Camera
 		private readonly CinemachineVirtualCamera _virtualCamera;
 		private readonly Cube _cube;
 		
-		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Cube cube)
+		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Cube cube, Transform follow)
 		{
 			_mono = mono;
 			_virtualCamera = virtualCamera;
 			_cube = cube;
+
+			virtualCamera.Follow = follow;
+			virtualCamera.LookAt = cube.transform;
 		}
 		
 		public void ResetLookAt() =>

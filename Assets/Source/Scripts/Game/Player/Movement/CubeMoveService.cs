@@ -17,7 +17,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		private RollMover _roll;
 		private BoxCollider _cubeCollider;
-		private CubeStateHandler _stateHandler;
+		private CubeStateService _stateService;
 		private Coroutine _moveCoroutine;
 		private bool _isBrake;
 		private IInputService _inputService;
@@ -34,7 +34,7 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			_wallMask = maskHolder.WallMask;
 			
-			_stateHandler = cube.ServiceHolder.StateHandler;
+			_stateService = cube.ServiceHolder.StateService;
 			_cubeCollider = cube.ServiceHolder.SelfCollider;
 
 			_inputService = inputService;
@@ -50,7 +50,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		public void Push(Vector3 direction)
 		{
-			if (_stateHandler.CurrentState != CubeState.Pushing)
+			if (_stateService.CurrentState != CubeState.Pushing)
 			{
 				return;
 			}
@@ -72,7 +72,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		private void OnMoving(Vector3 direction)
 		{
-			if (_stateHandler.CurrentState != CubeState.Normal)
+			if (_stateService.CurrentState != CubeState.Normal)
 			{
 				return;
 			}

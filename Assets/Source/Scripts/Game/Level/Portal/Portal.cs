@@ -15,14 +15,14 @@ namespace CubeProject.Game
 	{
 		[SerializeField] private Transform _targetPoint;
 		[SerializeField] private Portal _linkedPortal;
-		[SerializeField] private Teleporter _teleporter;
+		[SerializeField] private TeleporterData _teleporterData;
 
 		[ShowNonSerializedField] private bool _isActive;
 
 		private bool _isBlocked;
 		private Cube _cube;
-		private CubeStateHandler _cubeStateHandler;
-
+		private CubeStateService _cubeStateService;
+		private Teleporter _teleporter;
 		private CubeMoveService _cubeMoveService;
 
 		private ChargeConsumer _chargeConsumer;
@@ -33,10 +33,10 @@ namespace CubeProject.Game
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
 			_cube = cube;
-			_cubeStateHandler = _cube.ServiceHolder.StateHandler;
+			_cubeStateService = _cube.ServiceHolder.StateService;
 			_cubeMoveService = _cube.ServiceHolder.MoveService;
 
-			_teleporter.Init(this, cube, transform, _targetPoint, () => Pushing?.Invoke());
+			_teleporter = new Teleporter(this, cube, transform, _targetPoint, () => Pushing?.Invoke(), _teleporterData);
 		}
 
 		private void Awake() =>
@@ -72,7 +72,7 @@ namespace CubeProject.Game
 
 			_linkedPortal.Block();
 
-			_cubeStateHandler.EnterIn(CubeState.Teleporting);
+			_cubeStateService.EnterIn(CubeState.Teleporting);
 
 			_cubeMoveService.DoAfterMove(
 				() => _teleporter.Absorb(

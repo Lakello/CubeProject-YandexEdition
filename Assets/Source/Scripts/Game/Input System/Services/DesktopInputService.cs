@@ -10,7 +10,7 @@ namespace CubeProject.InputSystem
 	{
 		private PlayerInput _playerInput;
 		private Coroutine _updateInputCoroutine;
-		private CubeStateHandler _stateHandler;
+		private CubeStateService _stateService;
 
 		public event Action<Vector3> Moving;
 
@@ -22,26 +22,26 @@ namespace CubeProject.InputSystem
 
 		private void OnDisable()
 		{
-			if (_stateHandler != null)
+			if (_stateService != null)
 			{
-				_stateHandler.StateChanged -= OnStateChanged;
+				_stateService.StateChanged -= OnStateChanged;
 			}
 		}
 
-		public void Init(PlayerInput playerInput, CubeStateHandler stateHandler)
+		public void Init(PlayerInput playerInput, CubeStateService stateService)
 		{
 			_playerInput = playerInput;
 
-			_stateHandler = stateHandler;
+			_stateService = stateService;
 
-			_stateHandler.StateChanged += OnStateChanged;
+			_stateService.StateChanged += OnStateChanged;
 
 			_playerInput.Desktop.UsePress.performed += _ => OnUsePressPerformed();
 			_playerInput.Desktop.UseRelease.performed += _ => OnUseReleasePerformed();
 
 			_playerInput.Desktop.Menu.performed += _ => OnMenuPerformed();
 
-			OnStateChanged(_stateHandler.CurrentState);
+			OnStateChanged(_stateService.CurrentState);
 		}
 
 		private void OnStateChanged(CubeState state)

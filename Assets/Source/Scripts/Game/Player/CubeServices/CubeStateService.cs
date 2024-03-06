@@ -1,10 +1,9 @@
 using System;
-using CubeProject.PlayableCube;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	public class CubeStateHandler : MonoBehaviour
+	public class CubeStateService : MonoBehaviour
 	{
 		[SerializeField] private CubeState _currentState = CubeState.Normal;
 

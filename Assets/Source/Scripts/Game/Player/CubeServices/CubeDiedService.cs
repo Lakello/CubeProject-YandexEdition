@@ -1,21 +1,19 @@
-using Cinemachine;
 using CubeProject.Game;
-using CubeProject.PlayableCube;
 using Reflex.Attributes;
 using Source.Scripts.Game.Level.Camera;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	public class CubeDiedHandler : MonoBehaviour
+	public class CubeDiedService : MonoBehaviour
 	{
 		[SerializeField] private Transform _cameraFollow;
 		[SerializeField] private Vector3 _offset = new Vector3(0, 0.5f, 0);
 
 		private Cube _cube;
 		private CheckPointHolder _checkPointHolder;
-		private CubeDissolveAnimation _cubeDissolveAnimation;
-		private CubeStateHandler _cubeStateHandler;
+		private CubeDiedView _cubeDiedView;
+		private CubeStateService _cubeStateService;
 		private TargetCameraHolder _targetCameraHolder;
 
 		[Inject]
@@ -25,8 +23,8 @@ namespace CubeProject.PlayableCube
 			_checkPointHolder = checkPointHolder;
 
 			_cube = cube;
-			_cubeDissolveAnimation = _cube.ServiceHolder.DissolveAnimation;
-			_cubeStateHandler = _cube.ServiceHolder.StateHandler;
+			_cubeDiedView = _cube.ServiceHolder.DiedView;
+			_cubeStateService = _cube.ServiceHolder.StateService;
 
 			_cube.Died += OnDied;
 		}
@@ -36,7 +34,7 @@ namespace CubeProject.PlayableCube
 
 		private void OnDied()
 		{
-			if (_cubeStateHandler.CurrentState == CubeState.Falling)
+			if (_cubeStateService.CurrentState == CubeState.Falling)
 			{
 				DissolveVisible();
 			}
@@ -47,7 +45,7 @@ namespace CubeProject.PlayableCube
 		}
 
 		private void DissolveInvisible() =>
-			_cubeDissolveAnimation.Play(false, DissolveVisible);
+			_cubeDiedView.Play(false, DissolveVisible);
 
 		private void DissolveVisible()
 		{
@@ -55,9 +53,9 @@ namespace CubeProject.PlayableCube
 
 			_targetCameraHolder.SetLookAt();
 
-			_cubeDissolveAnimation.Play(true, () =>
+			_cubeDiedView.Play(true, () =>
 			{
-				_cubeStateHandler.EnterIn(CubeState.Normal);
+				_cubeStateService.EnterIn(CubeState.Normal);
 			});
 		}
 	}

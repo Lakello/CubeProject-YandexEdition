@@ -19,7 +19,7 @@ namespace CubeProject.PlayableCube
 		public void Kill()
 		{
 			Died?.Invoke();
-			_serviceHolder.StateHandler.EnterIn(CubeState.Dying);
+			_serviceHolder.StateService.EnterIn(CubeState.Dying);
 		}
 	}
 }

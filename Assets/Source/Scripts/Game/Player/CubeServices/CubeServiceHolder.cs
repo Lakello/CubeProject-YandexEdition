@@ -1,13 +1,12 @@
 using CubeProject.Game;
 using CubeProject.PlayableCube.Movement;
-using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[RequireComponent(typeof(CubeDissolveAnimation))]
-	[RequireComponent(typeof(CubeStateHandler))]
+	[RequireComponent(typeof(CubeDiedView))]
+	[RequireComponent(typeof(CubeStateService))]
 	[RequireComponent(typeof(CubeMoveService))]
 	[RequireComponent(typeof(ChargeHolder))]
 	[RequireComponent(typeof(BoxCollider))]
@@ -16,9 +15,9 @@ namespace CubeProject.PlayableCube
 	{
 		public CubeBecameVisible BecameVisible { get; private set; }
 
-		public CubeDissolveAnimation DissolveAnimation { get; private set; }
+		public CubeDiedView DiedView { get; private set; }
 
-		public CubeStateHandler StateHandler { get; private set; }
+		public CubeStateService StateService { get; private set; }
 
 		public CubeMoveService MoveService { get; private set; }
 
@@ -31,8 +30,8 @@ namespace CubeProject.PlayableCube
 		private void Awake()
 		{
 			BecameVisible = gameObject.GetComponentInChildrenElseThrow<CubeBecameVisible>();
-			DissolveAnimation = gameObject.GetComponentElseThrow<CubeDissolveAnimation>();
-			StateHandler = gameObject.GetComponentElseThrow<CubeStateHandler>();
+			DiedView = gameObject.GetComponentElseThrow<CubeDiedView>();
+			StateService = gameObject.GetComponentElseThrow<CubeStateService>();
 			MoveService = gameObject.GetComponentElseThrow<CubeMoveService>();
 			ChargeHolder = gameObject.GetComponentElseThrow<ChargeHolder>();
 			SelfCollider = gameObject.GetComponentElseThrow<BoxCollider>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	public class CubeDissolveAnimation : MonoBehaviour
+	public class CubeDiedView : MonoBehaviour
 	{
 		private const float Visible = 0;
 		private const float UnVisible = 1;

@@ -43,8 +43,8 @@ namespace CubeProject
 			descriptor.AddSingleton(new PushStateHandler(cube));
 
 			descriptor.AddSingleton(_maskHolder);
-
-			descriptor.AddSingleton(new TargetCameraHolder(this, _virtualCamera, cube));
+			
+			descriptor.AddSingleton(new TargetCameraHolder(this, _virtualCamera, cube, playerInstance.Follow));
 			
 			return;
 
@@ -76,7 +76,7 @@ namespace CubeProject
                     inputService = gameObject.AddComponent<DesktopInputService>();
                 }
 				
-				cube.gameObject.GetComponentElseThrow(out CubeStateHandler cubeStateHandler);
+				cube.gameObject.GetComponentElseThrow(out CubeStateService cubeStateHandler);
 				inputService.Init(playerInput, cubeStateHandler);				
 
 				descriptor.AddSingleton(inputService, typeof(IInputService));
