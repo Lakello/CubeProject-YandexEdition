@@ -65,7 +65,6 @@ GameObject:
   - component: {fileID: 3009528567594011987}
   - component: {fileID: 7698218621502499657}
   - component: {fileID: 169226487549009863}
-  - component: {fileID: 617682690330324423}
   - component: {fileID: 9169597038207546759}
   - component: {fileID: 1685948700190409386}
   m_Layer: 6
@@ -314,13 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0b9e9710a74199bbffec992f0a5eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayStopCameraFollow: 0.3
-  _groundChecker:
-    _collider: {fileID: 8187578591020481753}
-  _checkDistance: 0.1
-  _speedFall: 5
-  _speedFallMultiplier: 1.1
-  _offset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &169226487549009863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,18 +331,6 @@ MonoBehaviour:
     _chargedColor: {r: 0.06674972, g: 0.9433962, b: 0.91764677, a: 1}
     _dischargedColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     _bloomMeshRenderers: []
---- !u!114 &617682690330324423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2348316050753323191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abacb07b618549429ed69335e15fafe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9169597038207546759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cube: {fileID: 2855505055584217692}
+  _follow: {fileID: 2559993266569072274}
 --- !u!1001 &8638702740436216438
 PrefabInstance:
   m_ObjectHideFlags: 0

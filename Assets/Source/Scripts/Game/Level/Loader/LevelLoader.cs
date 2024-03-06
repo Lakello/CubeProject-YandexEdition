@@ -40,6 +40,11 @@ namespace Source.Scripts.Game.Level
 				return;
 			}
 
+			if (index > _levels.Length - 1)
+			{
+				index = 0;
+			}
+			
 			_currentSceneIndex = index;
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
 
