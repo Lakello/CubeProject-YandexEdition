@@ -2,7 +2,7 @@ using System;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Player
+namespace CubeProject.PlayableCube
 {
 	public class CubeDissolveAnimation : MonoBehaviour
 	{

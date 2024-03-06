@@ -5,27 +5,39 @@ using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
+using Source.Scripts.Game.Level;
 using Source.Scripts.UI.Buttons;
 using UnityEngine;
 
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnState<GameStateMachine>
+	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private MenuButton _menuButton;
 		[SerializeField] private PlayAgainButton _playAgainButton;
 		[SerializeField] private BackToMenu _backToMenu;
-		[SerializeField] private EndLevel _endLevel;
+		[SerializeField] private EndPoint _endPoint;
 
 		private Action _unsubscribe;
+		private LevelLoader _levelLoader;
 
-		private void OnDisable() =>
+		private void OnEnable()
+		{
+			_endPoint.LevelEnded += OnLevelEnded;
+		}
+
+		private void OnDisable()
+		{
+			_endPoint.LevelEnded -= OnLevelEnded;
 			_unsubscribe?.Invoke();
+		}
 
-		public void OnSceneLoaded<TState>(GameStateMachine machine)
+		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
+			_levelLoader = levelLoader;
+			
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(machine.Window);
 			machine.EnterIn<TState>();
@@ -35,7 +47,6 @@ namespace CubeProject
 			transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
 			transitionInitializer.InitTransition(_menuButton, LoadMenu);
 			transitionInitializer.InitTransition(_backToMenu, LoadMenu);
-			transitionInitializer.InitTransition<EndLevelState>(_endLevel);
 
 			subscribe?.Invoke();
 
@@ -46,6 +57,11 @@ namespace CubeProject
 			
 			void ReloadGame() =>
 				GameScene.Load<PlayLevelState>(machine);
+		}
+		
+		private void OnLevelEnded()
+		{
+			_levelLoader.LoadNextLevel();
 		}
 	}
 }

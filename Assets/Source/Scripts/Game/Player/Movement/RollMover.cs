@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace CubeProject.Player.Movement
+namespace CubeProject.PlayableCube.Movement
 {
 	public class RollMover
 	{

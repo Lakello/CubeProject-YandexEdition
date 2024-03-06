@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CubeProject.Player
+namespace CubeProject.PlayableCube
 {
 	public class CubeBecameVisible : MonoBehaviour
 	{

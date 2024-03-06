@@ -1,5 +1,5 @@
 using CubeProject.PlayableCube.Movement;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using Reflex.Attributes;
 using UnityEngine;
 

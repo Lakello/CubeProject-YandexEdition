@@ -1,12 +1,12 @@
 using System;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class EndLevel : MonoBehaviour, ISubject
+	public class EndGame : MonoBehaviour, ISubject
 	{
 		[SerializeField] private float _time;
 

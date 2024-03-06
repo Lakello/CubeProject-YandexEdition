@@ -2,7 +2,7 @@ using System;
 using CubeProject.PlayableCube;
 using UnityEngine;
 
-namespace CubeProject.Player
+namespace CubeProject.PlayableCube
 {
 	public class CubeStateHandler : MonoBehaviour
 	{

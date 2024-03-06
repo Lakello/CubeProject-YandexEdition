@@ -1,9 +1,8 @@
 using System;
-using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Player
+namespace CubeProject.PlayableCube
 {
 	[RequireComponent(typeof(CubeComponentsHolder))]
 	public class Cube : MonoBehaviour

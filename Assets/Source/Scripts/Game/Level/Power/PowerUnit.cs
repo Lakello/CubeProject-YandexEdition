@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 

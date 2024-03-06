@@ -1,6 +1,6 @@
 using CubeProject.Game;
 using CubeProject.PlayableCube.Movement;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 

@@ -3,7 +3,7 @@ using LeadTools.Extensions;
 using LeadTools.Other;
 using UnityEngine;
 
-namespace CubeProject.Player
+namespace CubeProject.PlayableCube
 {
 	public class CubeView : MonoBehaviour
 	{

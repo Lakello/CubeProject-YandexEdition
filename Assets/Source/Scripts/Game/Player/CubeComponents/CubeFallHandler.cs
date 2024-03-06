@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using CubeProject.PlayableCube.Movement;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Source.Scripts.Game;

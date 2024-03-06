@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using LeadTools.Extensions;
 using LeadTools.Other;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
+using Source.Scripts.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -63,14 +65,18 @@ namespace CubeProject
 
 			void ProjectInit()
 			{
+				var levelLoader = gameObject.GetComponentElseThrow<LevelLoader>();
+				
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
 
 				projectInitializer.Init(
 					gameStateMachine,
+					levelLoader,
 					() =>
 					{
 						var saver = new GameDataSaver();
 						saver.Init();
+						levelLoader.Init(gameStateMachine);
 					});
 			}
 

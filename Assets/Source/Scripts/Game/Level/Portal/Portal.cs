@@ -1,7 +1,6 @@
 using System;
 using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
-using CubeProject.Player;
 using CubeProject.Tips;
 using LeadTools.Extensions;
 using LeadTools.NaughtyAttributes;

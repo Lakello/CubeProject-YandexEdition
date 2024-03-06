@@ -1,5 +1,4 @@
 using CubeProject.PlayableCube;
-using CubeProject.Player;
 
 namespace CubeProject.Tips
 {

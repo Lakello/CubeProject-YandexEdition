@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using Agava.YandexGames;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
+using Source.Scripts.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -11,6 +11,7 @@ namespace CubeProject
 	public class ProjectInitializer : MonoBehaviour
 	{
 		private Action _callBack;
+		private LevelLoader _levelLoader;
 		private GameStateMachine _gameStateMachine;
 
 		private IEnumerator Start()
@@ -24,14 +25,18 @@ namespace CubeProject
 			_callBack?.Invoke();
 #endif
 
-			MenuScene.Load<MenuState>(_gameStateMachine);
+			MenuScene.Load<MenuState, LevelLoader>(_gameStateMachine, _levelLoader);
 
 			yield return null;
 		}
 
-		public void Init(GameStateMachine gameStateMachine, Action sdkInitSuccessCallBack = null)
+		public void Init(
+			GameStateMachine gameStateMachine,
+			LevelLoader levelLoader,
+			Action sdkInitSuccessCallBack = null)
 		{
 			_gameStateMachine = gameStateMachine;
+			_levelLoader = levelLoader;
 			_callBack = sdkInitSuccessCallBack;
 		}
 	}

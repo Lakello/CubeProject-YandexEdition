@@ -2,11 +2,12 @@ using System;
 using Cinemachine;
 using CubeProject.Game;
 using CubeProject.InputSystem;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using CubeProject.Tips;
 using LeadTools.Extensions;
 using Reflex.Core;
 using Source.Scripts.Game;
+using Source.Scripts.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -16,7 +17,8 @@ namespace CubeProject
 		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private CheckPointHolder _checkPointHolder;
-		[SerializeField] private Cube _cube;
+		[SerializeField] private SpawnPoint _spawnPoint;
+		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private bool _isMobileTest;
 
 		private Action _disabling;
@@ -26,25 +28,40 @@ namespace CubeProject
 
 		public void InstallBindings(ContainerDescriptor descriptor)
 		{
+			Player playerInstance;
+			Cube cube;
+			InitCube();
+			
 			InitInput();
 			
-			descriptor.AddSingleton(_cube);
+			descriptor.AddSingleton(cube);
 			descriptor.AddSingleton(_checkPointHolder);
 
 			descriptor.AddSingleton(_virtualCamera);
 
-			descriptor.AddSingleton(new PushStateHandler(_cube));
+			descriptor.AddSingleton(new PushStateHandler(cube));
 
 			descriptor.AddSingleton(_maskHolder);
 			
 			return;
 
+			void InitCube()
+			{
+				playerInstance = Instantiate(
+					_playerPrefab,
+					_spawnPoint.transform.position,
+					Quaternion.identity);
+				
+				cube = playerInstance.Cube;
+			}
+			
 			void InitInput()
 			{
 				var playerInput = new PlayerInput();
 
 				playerInput.Enable();
 				_disabling += () => playerInput.Disable();
+				
 				IInputService inputService;
 
                 if (Application.isMobilePlatform || _isMobileTest)
@@ -56,7 +73,7 @@ namespace CubeProject
                     inputService = gameObject.AddComponent<DesktopInputService>();
                 }
 				
-				_cube.gameObject.GetComponentElseThrow(out CubeStateHandler cubeStateHandler);
+				cube.gameObject.GetComponentElseThrow(out CubeStateHandler cubeStateHandler);
 				inputService.Init(playerInput, cubeStateHandler);				
 
 				descriptor.AddSingleton(inputService, typeof(IInputService));

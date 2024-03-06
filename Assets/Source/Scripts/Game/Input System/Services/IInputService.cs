@@ -1,5 +1,5 @@
 using System;
-using CubeProject.Player;
+using CubeProject.PlayableCube;
 using UnityEngine;
 
 namespace CubeProject.InputSystem

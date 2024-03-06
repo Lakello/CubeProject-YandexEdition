@@ -2,17 +2,18 @@ using System;
 using CubeProject.PlayableCube;
 using UnityEngine;
 
-namespace CubeProject.Tips
+namespace CubeProject.Game
 {
-	public class TipKeyPushHandler : MonoBehaviour, IPushHandler
+	[RequireComponent(typeof(Collider))]
+	public class EndPoint : MonoBehaviour
 	{
-		public event Action Pushing;
+		public event Action LevelEnded;
 
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
 			{
-				Pushing?.Invoke();
+				LevelEnded?.Invoke();
 			}
 		}
 	}
