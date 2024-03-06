@@ -3,16 +3,20 @@ using CubeProject.Player;
 
 namespace CubeProject.Tips
 {
-	public class PusherStateHandler
+	public class PushStateHandler
 	{
 		private readonly CubeStateHandler _stateHandler;
+		private readonly Cube _cube;
 
-		private TipKeyPusher _currentPusher;
+		private Pusher _currentPusher;
 
-		public PusherStateHandler(CubeStateHandler stateHandler) =>
-			_stateHandler = stateHandler;
+		public PushStateHandler(Cube cube)
+		{
+			_cube = cube;
+			_stateHandler = _cube.ComponentsHolder.StateHandler;
+		}
 
-		public void Pushing(TipKeyPusher pusher)
+		public void Pushing(Pusher pusher)
 		{
 			if (_currentPusher is not null)
 			{
@@ -30,7 +34,10 @@ namespace CubeProject.Tips
 			_currentPusher.Pushed -= OnPushed;
 			_currentPusher = null;
 
-			_stateHandler.EnterIn(CubeState.Normal);
+			if (_cube.ComponentsHolder.FallHandler.TryFall() is false)
+			{
+				_stateHandler.EnterIn(CubeState.Normal);
+			}
 		}
 	}
 }

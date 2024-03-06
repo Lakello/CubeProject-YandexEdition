@@ -33,7 +33,7 @@ namespace CubeProject
 
 			descriptor.AddSingleton(_virtualCamera);
 
-			descriptor.AddSingleton(new PusherStateHandler(_cube.ComponentsHolder.StateHandler));
+			descriptor.AddSingleton(new PushStateHandler(_cube));
 
 			descriptor.AddSingleton(_maskHolder);
 			

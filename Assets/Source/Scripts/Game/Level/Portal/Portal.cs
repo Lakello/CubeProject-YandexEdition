@@ -2,6 +2,7 @@ using System;
 using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
 using CubeProject.Player;
+using CubeProject.Tips;
 using LeadTools.Extensions;
 using LeadTools.NaughtyAttributes;
 using Reflex.Attributes;
@@ -11,7 +12,7 @@ using UnityEngine;
 namespace CubeProject.Game
 {
 	[RequireComponent(typeof(ChargeConsumer))]
-	public sealed class Portal : MonoBehaviour
+	public sealed class Portal : MonoBehaviour, IPushHandler
 	{
 		[SerializeField] private Transform _targetPoint;
 		[SerializeField] private Portal _linkedPortal;
@@ -22,9 +23,13 @@ namespace CubeProject.Game
 		private bool _isBlocked;
 		private Cube _cube;
 		private CubeStateHandler _cubeStateHandler;
+
 		private CubeMoveService _cubeMoveService;
+
 		private ChargeConsumer _chargeConsumer;
-		
+
+		public event Action Pushing;
+
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
@@ -32,7 +37,7 @@ namespace CubeProject.Game
 			_cubeStateHandler = _cube.ComponentsHolder.StateHandler;
 			_cubeMoveService = _cube.ComponentsHolder.MoveService;
 
-			_teleporter.Init(this, cube, transform, _targetPoint, maskHolder);
+			_teleporter.Init(this, cube, transform, _targetPoint, () => Pushing?.Invoke());
 		}
 
 		private void Awake() =>

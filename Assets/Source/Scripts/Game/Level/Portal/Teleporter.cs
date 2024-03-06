@@ -1,9 +1,6 @@
 using System;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
 using CubeProject.Player;
 using LeadTools.Extensions;
-using Source.Scripts.Game;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -16,28 +13,28 @@ namespace CubeProject.Game
 		[SerializeField] private float _animationTime;
 
 		private Cube _cube;
-		private CubeStateHandler _cubeStateHandler;
-		private CubeMoveService _cubeMoveService;
 		private Transform _origin;
 		private Transform _targetPoint;
 		private MonoBehaviour _mono;
-		private LayerMask _groundMask;
-		
+		private Action _callPushing;
+
 		private Vector3 OriginPosition => _origin.position;
 
 		private Vector3 TargetPosition => _targetPoint.position;
-		
-		public void Init(MonoBehaviour mono, Cube cube, Transform origin, Transform targetPoint, MaskHolder maskHolder)
+
+		public void Init(
+			MonoBehaviour mono,
+			Cube cube,
+			Transform origin,
+			Transform targetPoint,
+			Action callPushing)
 		{
-			_groundMask = maskHolder.GroundMask;
-			
 			_mono = mono;
 			_cube = cube;
-			_cubeStateHandler = cube.ComponentsHolder.StateHandler;
-			_cubeMoveService = cube.ComponentsHolder.MoveService;
 
 			_origin = origin;
 			_targetPoint = targetPoint;
+			_callPushing = callPushing;
 		}
 
 		public void Absorb(Action endCallback)
@@ -55,38 +52,9 @@ namespace CubeProject.Game
 			Animation(
 				(time) => 1 - _scaleAnimation.Evaluate(time),
 				(time) => 1 - _heightAnimation.Evaluate(time),
-				TryPushCube);
-
-			return;
-
-			void TryPushCube()
-			{
-				var direction = _cubeMoveService.CurrentDirection;
-				
-				if (_cube.IsThereFreeSeat(ref direction, Push, _groundMask) is false)
-				{
-					Debug.LogError($"Invalid direction", _cube.gameObject);
-				}
-				
-				return;
-
-				void Push()
-				{
-					_cubeStateHandler.EnterIn(CubeState.Pushing);
-
-					_cubeMoveService.Push(direction);
-
-					_cubeMoveService.DoAfterMove(() =>
-					{
-						if (_cube.ComponentsHolder.FallHandler.TryFall() is false)
-						{
-							_cubeStateHandler.EnterIn(CubeState.Normal);
-						}
-					});
-				}
-			}
+				_callPushing);
 		}
-		
+
 		private void Animation(Func<float, float> getScaleValue, Func<float, float> getHeightValue, Action endCallback)
 		{
 			_mono.PlaySmoothChangeValue(

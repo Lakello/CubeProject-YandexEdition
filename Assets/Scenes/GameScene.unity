@@ -10793,17 +10793,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5730958510896232081, guid: 91084c04c489f484ab279b3d7d93d1ea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6296750468675590082, guid: 91084c04c489f484ab279b3d7d93d1ea, type: 3}
       propertyPath: m_Name
       value: Key_Arrow_Left
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900456611901820414, guid: 91084c04c489f484ab279b3d7d93d1ea, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.14296424
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900456611901820414, guid: 91084c04c489f484ab279b3d7d93d1ea, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.09394646
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11846,6 +11842,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 863219212850919821, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 682836229}
+    - targetCorrespondingSourceObject: {fileID: 7555420899019721995, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1691034253}
     - targetCorrespondingSourceObject: {fileID: 3846572047348319679, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 397831886}
@@ -11872,6 +11871,11 @@ PrefabInstance:
 --- !u!4 &1547523949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 708575615293266721, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
+  m_PrefabInstance: {fileID: 1547523948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1547523950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7555420899019721995, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
   m_PrefabInstance: {fileID: 1547523948}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1547523951 stripped
@@ -12337,6 +12341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1691034253}
+  - component: {fileID: 1691034254}
   m_Layer: 0
   m_Name: EndLevelPoint
   m_TagString: Untagged
@@ -12358,8 +12363,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 539344119}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1547523950}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1691034254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691034252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8e1339dc1540a4a623314b14a120bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time: 0
 --- !u!1001 &1694010493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13626,7 +13644,7 @@ MonoBehaviour:
   _menuButton: {fileID: 1937306637}
   _playAgainButton: {fileID: 1742373600}
   _backToMenu: {fileID: 1848309017}
-  _endLevel: {fileID: 0}
+  _endLevel: {fileID: 1691034254}
 --- !u!114 &1848309013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15671,4 +15689,3 @@ SceneRoots:
   - {fileID: 1848309014}
   - {fileID: 768608255}
   - {fileID: 1547523948}
-  - {fileID: 1691034253}
