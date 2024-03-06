@@ -6,15 +6,20 @@ namespace LeadTools.Extensions
 	{
 		public static Color CalculateIntensityColor(this Color origin, float intensity)
 		{
-			const float powF = 2f;
-
-			var factor = Mathf.Pow(powF, intensity);
+			var factor = GetFactor(intensity);
 
 			origin.r *= factor;
 			origin.g *= factor;
 			origin.b *= factor;
 
 			return origin;
+		}
+
+		private static float GetFactor(float intensity)
+		{
+			const float powF = 2f;
+
+			return Mathf.Pow(powF, intensity);
 		}
 	}
 }

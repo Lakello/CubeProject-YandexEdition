@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace CubeProject.Game
 	{
 		private const string PowerValue = "_PowerValue";
 		private const string BaseColor = "_BaseColor";
+		private const string Clip = "_Clip";
 
 		[SerializeField] private BarrierViewData _openData;
 		[SerializeField] private BarrierViewData _closeData;
@@ -23,10 +25,7 @@ namespace CubeProject.Game
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
 
-			var data = GetStateData();
-
-			SetColor(data.Color.CalculateIntensityColor(data.Intensity));
-			SetMask(data.MaskPower);
+			OnChargeChanged();
 		}
 
 		private void OnEnable() =>
@@ -46,45 +45,45 @@ namespace CubeProject.Game
 
 		private IEnumerator ChangeState()
 		{
-			var data = GetStateData();
-
+			var data = GetStateData(_chargeConsumer.IsCharged);
+			
 			_maskChangeCoroutine = this.PlaySmoothChangeValue(
 				(currentTime) =>
 				{
 					LerpColor(
-						GetColor(),
-						data.Color.CalculateIntensityColor(data.Intensity),
+						data.Gradient,
 						currentTime);
 
-					LerpMask(data.AnimationMaskPower, currentTime);
+					LerpCurve(data.MaskPowerCurve, currentTime, SetMask);
+					LerpCurve(data.ClipCurve, currentTime, SetClip);
 				},
 				data.ChangingStateDuration);
 
 			yield return _maskChangeCoroutine;
 		}
 
-		private void LerpMask(AnimationCurve curve, float currentTime)
+		private void LerpCurve(AnimationCurve curve, float currentTime, Action<float> set)
 		{
-			var resultMaskPower = curve.Evaluate(currentTime);
+			var result = curve.Evaluate(currentTime);
 
-			SetMask(resultMaskPower);
+			set(result);
 		}
 
-		private void LerpColor(Color currentColor, Color targetColor, float currentTime)
+		private void LerpColor(Gradient gradient, float currentTime)
 		{
-			var resultMaskColor = Color.Lerp(currentColor, targetColor, currentTime);
-
+			var resultMaskColor = gradient.Evaluate(currentTime);
+			
 			SetColor(resultMaskColor);
 		}
 
-		private BarrierViewData GetStateData() =>
-			_chargeConsumer.IsCharged is false ? _openData : _closeData;
+		private BarrierViewData GetStateData(bool isCharged) =>
+			isCharged is false ? _openData : _closeData;
 
 		private void SetColor(Color color) =>
 			_meshRendererWall.material.SetColor(BaseColor, color);
 
-		private Color GetColor() =>
-			_meshRendererWall.material.GetColor(BaseColor);
+		private void SetClip(float clip) =>
+			_meshRendererWall.material.SetFloat(Clip, clip);
 
 		private void SetMask(float maskPower) =>
 			_meshRendererWall.material.SetFloat(PowerValue, maskPower);

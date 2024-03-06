@@ -6,19 +6,16 @@ namespace CubeProject.Game
 	[Serializable]
 	public struct BarrierViewData
 	{
-		[SerializeField] private Color _color;
-		[SerializeField] [Range(-10f, 10f)] private float _intensity;
-		[SerializeField] [Range(0f, 1f)] private float _maskPower;
-		[SerializeField] private AnimationCurve _animationMaskPower;
-		[SerializeField] private float _changingStateDuration;
+		[SerializeField] private Gradient _gradient;
+		[SerializeField] private AnimationCurve _maskPowerCurve;
+		[SerializeField] private AnimationCurve _clipCurve;
+ 		[SerializeField] private float _changingStateDuration;
 
-		public Color Color => _color;
+		public Gradient Gradient => _gradient;
 
-		public float Intensity => _intensity;
+		public AnimationCurve MaskPowerCurve => _maskPowerCurve;
 
-		public float MaskPower => _maskPower;
-
-		public AnimationCurve AnimationMaskPower => _animationMaskPower;
+		public AnimationCurve ClipCurve => _clipCurve;
 
 		public float ChangingStateDuration => _changingStateDuration;
 	}
