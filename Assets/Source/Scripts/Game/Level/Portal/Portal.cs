@@ -33,8 +33,8 @@ namespace CubeProject.Game
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
 			_cube = cube;
-			_cubeStateHandler = _cube.ComponentsHolder.StateHandler;
-			_cubeMoveService = _cube.ComponentsHolder.MoveService;
+			_cubeStateHandler = _cube.ServiceHolder.StateHandler;
+			_cubeMoveService = _cube.ServiceHolder.MoveService;
 
 			_teleporter.Init(this, cube, transform, _targetPoint, () => Pushing?.Invoke());
 		}

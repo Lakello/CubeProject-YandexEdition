@@ -8,6 +8,7 @@ using LeadTools.Extensions;
 using Reflex.Core;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
+using Source.Scripts.Game.Level.Camera;
 using UnityEngine;
 
 namespace CubeProject
@@ -42,6 +43,8 @@ namespace CubeProject
 			descriptor.AddSingleton(new PushStateHandler(cube));
 
 			descriptor.AddSingleton(_maskHolder);
+
+			descriptor.AddSingleton(new TargetCameraHolder(this, _virtualCamera, cube));
 			
 			return;
 

@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[RequireComponent(typeof(CubeComponentsHolder))]
+	[RequireComponent(typeof(CubeServiceHolder))]
 	public class Cube : MonoBehaviour
 	{
-		private CubeComponentsHolder _componentsHolder;
+		private CubeServiceHolder _serviceHolder;
 
 		public event Action Died;
 
-		public CubeComponentsHolder ComponentsHolder => _componentsHolder;
+		public CubeServiceHolder ServiceHolder => _serviceHolder;
 
 		private void Awake() =>
-			gameObject.GetComponentElseThrow(out _componentsHolder);
+			gameObject.GetComponentElseThrow(out _serviceHolder);
 
 		public void Kill()
 		{
 			Died?.Invoke();
-			_componentsHolder.StateHandler.EnterIn(CubeState.Dying);
+			_serviceHolder.StateHandler.EnterIn(CubeState.Dying);
 		}
 	}
 }

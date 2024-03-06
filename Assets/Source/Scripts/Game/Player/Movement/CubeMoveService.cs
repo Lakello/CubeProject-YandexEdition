@@ -34,8 +34,8 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			_wallMask = maskHolder.WallMask;
 			
-			_stateHandler = cube.ComponentsHolder.StateHandler;
-			_cubeCollider = cube.ComponentsHolder.SelfCollider;
+			_stateHandler = cube.ServiceHolder.StateHandler;
+			_cubeCollider = cube.ServiceHolder.SelfCollider;
 
 			_inputService = inputService;
 

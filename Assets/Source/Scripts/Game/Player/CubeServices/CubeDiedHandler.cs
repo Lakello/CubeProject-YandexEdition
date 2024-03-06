@@ -2,6 +2,7 @@ using Cinemachine;
 using CubeProject.Game;
 using CubeProject.PlayableCube;
 using Reflex.Attributes;
+using Source.Scripts.Game.Level.Camera;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -15,17 +16,17 @@ namespace CubeProject.PlayableCube
 		private CheckPointHolder _checkPointHolder;
 		private CubeDissolveAnimation _cubeDissolveAnimation;
 		private CubeStateHandler _cubeStateHandler;
-		private CinemachineVirtualCamera _virtualCamera;
+		private TargetCameraHolder _targetCameraHolder;
 
 		[Inject]
-		private void Inject(CheckPointHolder checkPointHolder, CinemachineVirtualCamera virtualCamera, Cube cube)
+		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder, Cube cube)
 		{
+			_targetCameraHolder = targetCameraHolder;
 			_checkPointHolder = checkPointHolder;
-			_virtualCamera = virtualCamera;
 
 			_cube = cube;
-			_cubeDissolveAnimation = _cube.ComponentsHolder.DissolveAnimation;
-			_cubeStateHandler = _cube.ComponentsHolder.StateHandler;
+			_cubeDissolveAnimation = _cube.ServiceHolder.DissolveAnimation;
+			_cubeStateHandler = _cube.ServiceHolder.StateHandler;
 
 			_cube.Died += OnDied;
 		}
@@ -52,8 +53,7 @@ namespace CubeProject.PlayableCube
 		{
 			_cube.transform.position = _checkPointHolder.CurrentCheckPoint.transform.position + _offset;
 
-			_virtualCamera.Follow = _cameraFollow;
-			_virtualCamera.LookAt = transform;
+			_targetCameraHolder.SetLookAt();
 
 			_cubeDissolveAnimation.Play(true, () =>
 			{
