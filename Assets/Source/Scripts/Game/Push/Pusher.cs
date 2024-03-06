@@ -72,7 +72,7 @@ namespace CubeProject.Tips
 			{
 				direction = _moveService.CurrentDirection;
 				
-				if (_cube.IsThereFreeSeat(ref direction, Push, _groundMask) is false)
+				if (_cube.IsThereFreeSeat(ref direction, _groundMask) is false)
 				{
 					Debug.LogError($"Invalid direction", _cube.gameObject);
 				}

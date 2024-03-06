@@ -10,8 +10,8 @@ namespace LeadTools.Extensions
 		public static bool IsThereFreeSeat(
 			this MonoBehaviour context,
 			ref Vector3 direction,
-			Action successCallback,
 			LayerMask layerMask,
+			Action successCallback = null,
 			int distance = 1)
 		{
 			if (distance < 1)
@@ -29,8 +29,8 @@ namespace LeadTools.Extensions
 
 				if (Physics.Raycast(origin, Vector3.down, Mathf.Infinity, layerMask))
 				{
-					successCallback();
-
+					successCallback?.Invoke();
+					
 					return true;
 				}
 				else
@@ -38,7 +38,7 @@ namespace LeadTools.Extensions
 					directions.SetValue(direction, false);
 
 					direction = directions.GetAnyDirection();
-
+					
 					if (direction == Vector3.zero)
 					{
 						return false;
