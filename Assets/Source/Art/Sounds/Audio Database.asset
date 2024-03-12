@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4645132edefd4c74968a0c941a98fb89, type: 3}
   m_Name: Audio Database
   m_EditorClassIdentifier: 
-  _items: []
+  _items:
+  - Clip: {fileID: 8300000, guid: 626fd8181d508874594b43fef3dc2ab0, type: 3}
+    Key: BackgroundSound
+    FolderPath: Source\Art\Sounds\
+    Name: BackgroundSound.wav
+    Preload: 1
+    _id: 5281749d-fe1b-4a41-98fd-c960ecc3eb8e

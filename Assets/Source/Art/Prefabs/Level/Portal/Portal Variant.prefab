@@ -199,56 +199,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPoint: {fileID: 5925658294115900399}
   _linkedPortal: {fileID: 0}
-  _teleporter:
-    _scaleAnimation:
+  _teleporterData:
+    _scaleCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0.47626463
-        outSlope: 0.47626463
+        inSlope: 1.9907659
+        outSlope: 1.9907659
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.35625
+        outWeight: 0.11416838
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -2.9471588
-        outSlope: -2.9471588
+        inSlope: -0.22104794
+        outSlope: -0.22104794
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.24837965
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    _heightAnimation:
+    _heightCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0.47626463
-        outSlope: 0.47626463
+        inSlope: 1.9907659
+        outSlope: 1.9907659
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.35625
+        outWeight: 0.11416838
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -2.9471588
-        outSlope: -2.9471588
+        inSlope: -0.22104794
+        outSlope: -0.22104794
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.24837965
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    _animationTime: 0.2
+    _animationTime: 0.3
 --- !u!114 &6704633533463405040
 MonoBehaviour:
   m_ObjectHideFlags: 0
