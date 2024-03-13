@@ -36,6 +36,8 @@ namespace CubeProject
 			InitInput();
 			
 			descriptor.AddSingleton(cube);
+			
+			_checkPointHolder.Init(_spawnPoint);
 			descriptor.AddSingleton(_checkPointHolder);
 
 			descriptor.AddSingleton(_virtualCamera);

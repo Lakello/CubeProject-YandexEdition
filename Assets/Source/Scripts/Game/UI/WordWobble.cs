@@ -47,9 +47,6 @@ namespace CubeProject.UI
 			vertices = mesh.vertices;
 
 			Color[] colors = mesh.colors;
-
-			Debug.Log($"Vertices = {vertices.Length}");
-			Debug.Log($"colors = {colors.Length}");
 			
 			for (int w = 0; w < wordIndexes.Count; w++)
 			{

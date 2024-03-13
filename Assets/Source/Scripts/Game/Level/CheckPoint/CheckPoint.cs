@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class CheckPoint : MonoBehaviour, IChargeable
+	public class CheckPoint : MonoBehaviour, IChargeable, ICheckPoint
 	{
 		[SerializeField] private bool _isStartActive;
 

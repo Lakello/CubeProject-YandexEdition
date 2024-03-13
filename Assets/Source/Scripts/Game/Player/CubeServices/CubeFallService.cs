@@ -24,7 +24,7 @@ namespace CubeProject.PlayableCube
 			_groundChecker = new GroundChecker(maskHolder.GroundMask);
 			_fallHandler = new FallHandler(this, cube, transform, _groundChecker, () => IsGrounded);
 			_targetCameraHolder = targetCameraHolder;
-			_fallHandler.AbyssFalling += _targetCameraHolder.ResetLookAt;
+			_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
 			
 			_moveService = cube.ServiceHolder.MoveService;
 			
@@ -37,7 +37,7 @@ namespace CubeProject.PlayableCube
 		private void OnDisable()
 		{
 			_moveService.StepEnded -= OnStepEnded;
-			_fallHandler.AbyssFalling -= _targetCameraHolder.ResetLookAt;
+			_fallHandler.AbyssFalling -= _targetCameraHolder.ResetTarget;
 		}
 
 		public bool TryFall()

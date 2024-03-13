@@ -15,6 +15,7 @@ namespace CubeProject.PlayableCube
 		private CubeDiedView _cubeDiedView;
 		private CubeStateService _cubeStateService;
 		private TargetCameraHolder _targetCameraHolder;
+		private CubeFallService _cubeFallService;
 
 		[Inject]
 		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder, Cube cube)
@@ -25,6 +26,7 @@ namespace CubeProject.PlayableCube
 			_cube = cube;
 			_cubeDiedView = _cube.ServiceHolder.DiedView;
 			_cubeStateService = _cube.ServiceHolder.StateService;
+			_cubeFallService = _cube.ServiceHolder.FallService;
 
 			_cube.Died += OnDied;
 		}
@@ -49,13 +51,16 @@ namespace CubeProject.PlayableCube
 
 		private void DissolveVisible()
 		{
-			_cube.transform.position = _checkPointHolder.CurrentCheckPoint.transform.position + _offset;
+			_cube.transform.position = ((MonoBehaviour)_checkPointHolder.CurrentCheckPoint).transform.position + _offset;
 
-			_targetCameraHolder.SetLookAt();
+			_targetCameraHolder.SetTarget();
 
 			_cubeDiedView.Play(true, () =>
 			{
-				_cubeStateService.EnterIn(CubeState.Normal);
+				if (_cubeFallService.TryFall() is false)
+				{
+					_cubeStateService.EnterIn(CubeState.Normal);
+				}
 			});
 		}
 	}

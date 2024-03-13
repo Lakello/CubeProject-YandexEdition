@@ -12,8 +12,9 @@ namespace Source.Scripts.Game.Level
 	public class LevelLoader : MonoBehaviour
 	{
 		[SerializeField] [Scene] private string[] _levels;
+		[SerializeField] private bool _isDebug;
 
-		private int _currentSceneIndex = -1;
+		private int _currentSceneIndex = 0;
 		private GameStateMachine _gameStateMachine;
 
 		public void Init(GameStateMachine gameStateMachine)
@@ -24,7 +25,11 @@ namespace Source.Scripts.Game.Level
 			}
 
 			_gameStateMachine = gameStateMachine;
-			_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
+			
+			if (_isDebug is false)
+			{
+				_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
+			}
 		}
 
 		public void LoadNextLevel() =>

@@ -11,21 +11,32 @@ namespace Source.Scripts.Game.Level.Camera
 		private readonly MonoBehaviour _mono;
 		private readonly CinemachineVirtualCamera _virtualCamera;
 		private readonly Cube _cube;
+		private readonly Transform _follow;
 		
 		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Cube cube, Transform follow)
 		{
 			_mono = mono;
 			_virtualCamera = virtualCamera;
 			_cube = cube;
-
-			virtualCamera.Follow = follow;
+			_follow = follow;
+			
+			virtualCamera.Follow = _follow;
 			virtualCamera.LookAt = cube.transform;
 		}
 		
-		public void ResetLookAt() =>
-			_mono.WaitTime(_delayStopCameraFollow, () => _virtualCamera.LookAt = null);
+		public void ResetTarget() =>
+			_mono.WaitTime(
+				_delayStopCameraFollow,
+				() =>
+				{
+					_virtualCamera.LookAt = null;
+					_virtualCamera.Follow = null;
+				});
 
-		public void SetLookAt() =>
+		public void SetTarget()
+		{
 			_virtualCamera.LookAt = _cube.transform;
+			_virtualCamera.Follow = _follow;
+		}
 	}
 }
