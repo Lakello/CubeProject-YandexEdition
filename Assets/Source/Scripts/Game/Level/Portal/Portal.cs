@@ -13,11 +13,11 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(ChargeConsumer))]
 	public sealed class Portal : MonoBehaviour, IPushHandler
 	{
-		[SerializeField] private Transform _targetPoint;
-		[SerializeField] private Portal _linkedPortal;
-		[SerializeField] private TeleporterData _teleporterData;
-
 		[ShowNonSerializedField] private bool _isActive;
+		
+		[SerializeField] private Transform _targetPoint;
+		[SerializeField] private TeleporterData _teleporterData;
+		[SerializeField] private Portal _linkedPortal;
 
 		private bool _isBlocked;
 		private Cube _cube;
@@ -26,8 +26,24 @@ namespace CubeProject.Game
 		private CubeMoveService _cubeMoveService;
 
 		private ChargeConsumer _chargeConsumer;
-
+		
 		public event Action Pushing;
+
+		private bool CanLinkPortal =>
+			_linkedPortal is not null
+			&& _linkedPortal._linkedPortal is null;
+
+		private void OnValidate()
+		{
+			if (_linkedPortal == this)
+			{
+				_linkedPortal = null;
+			}
+		}
+
+		[Button] [ShowIf(nameof(CanLinkPortal))]
+		private void LinkPortal() =>
+			_linkedPortal._linkedPortal = this;
 
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
