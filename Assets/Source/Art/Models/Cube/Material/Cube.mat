@@ -44,6 +44,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: a96f6c6b255dfbd488cbccfd8a37b535, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: eda7df695d39d5d4391cc6bd2db0096d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,6 +68,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EnergyMask:
+        m_Texture: {fileID: 2800000, guid: e3b2f6d60acf81c4f8887fddff6c0b46, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeartMask:
+        m_Texture: {fileID: 2800000, guid: 0eb9b6be65359014a8f9dad56982de30, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _LightMask:
         m_Texture: {fileID: 2800000, guid: a96f6c6b255dfbd488cbccfd8a37b535, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -74,6 +86,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 2800000, guid: 30d001339b1be394e9ab09e6a3057d4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 4a9f3714fa11d0c429b11fb1fa79df7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -126,6 +146,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 17.94
+    - _NormalStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -145,6 +166,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 766.9961, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EnergyColor: {r: 8.574187, g: 7.9061522, b: 0, a: 1}
+    - _HeartColor: {r: 1024, g: 0, b: 599.96436, a: 1}
     - _LightColor: {r: 0, g: 116.35761, b: 274.37415, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
