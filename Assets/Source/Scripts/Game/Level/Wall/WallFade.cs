@@ -22,6 +22,8 @@ namespace Source.Scripts.Game.Level.Wall
 
 			color.a = HideAlpha;
 			_materialColor = color;
+			
+			Hide();
 		}
 
 		public void Show() =>
@@ -29,7 +31,7 @@ namespace Source.Scripts.Game.Level.Wall
 
 		public void Hide() =>
 			ChangeAlpha(false);
-
+		
 		private void ChangeAlpha(bool isShow)
 		{
 			this.StopRoutine(_alphaCoroutine);
