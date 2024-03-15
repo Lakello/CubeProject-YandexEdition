@@ -24,8 +24,13 @@ namespace CubeProject.Game
 				{
 					Init();
 				}
-			
-				return _isAlwaysCharged || _needAllCharge
+
+				if (_isAlwaysCharged)
+				{
+					return true;
+				}
+				
+				return _needAllCharge
 					? CheckAllCharge()
 					: CheckAnyCharge();
 			}
