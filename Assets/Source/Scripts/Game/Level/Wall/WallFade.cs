@@ -11,13 +11,18 @@ namespace Source.Scripts.Game.Level.Wall
 		private const float ShowAlpha = 0.5f;
 		private const float Duration = 0.2f;
 
-		private MeshRenderer _renderer;
+		[SerializeField] private MeshRenderer _renderer;
+		
 		private Color _materialColor;
 		private Coroutine _alphaCoroutine;
 
 		private void Awake()
 		{
-			gameObject.GetComponentElseThrow(out _renderer);
+			if (_renderer is null)
+			{
+				gameObject.GetComponentElseThrow(out _renderer);
+			}
+			
 			var color = _renderer.material.GetColor(ColorProperty);
 
 			color.a = HideAlpha;
