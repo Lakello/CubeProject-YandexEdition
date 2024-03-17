@@ -17,6 +17,8 @@ namespace Source.Scripts.Game.Level
 		private int _currentSceneIndex = 0;
 		private GameStateMachine _gameStateMachine;
 
+		public int LevelsCount => _levels.Length;
+
 		public void Init(GameStateMachine gameStateMachine)
 		{
 			if (_gameStateMachine != null)
@@ -25,7 +27,7 @@ namespace Source.Scripts.Game.Level
 			}
 
 			_gameStateMachine = gameStateMachine;
-			
+
 			if (_isDebug is false)
 			{
 				_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
@@ -49,7 +51,7 @@ namespace Source.Scripts.Game.Level
 			{
 				index = 0;
 			}
-			
+
 			_currentSceneIndex = index;
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
 

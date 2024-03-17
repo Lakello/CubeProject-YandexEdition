@@ -15,10 +15,10 @@ namespace LeadTools.TypedScenes
     using LeadTools.StateMachine;
     
     
-    public class Level_Template : TypedScene<GameStateMachine>
+    public class Level_6 : TypedScene<GameStateMachine>
     {
         
-        private const string _sceneName = "Level_Template";
+        private const string _sceneName = "Level_6";
         
         public static void Load<T>(T argument, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         
