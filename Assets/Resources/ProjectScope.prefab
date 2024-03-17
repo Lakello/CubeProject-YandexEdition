@@ -72,9 +72,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
+  - Level_1
   - Level_2
   - Level_3
   - Level_4
   - Level_5
-  - Level_1
+  - Level_50
+  - Level_51
+  - Level_52
+  - Level_55
+  - Level_56
+  - Level_57
+  - Level_60
+  - Level_61
+  - Level_65
+  - Level_66
+  - Level_70
   _isDebug: 1
