@@ -60,7 +60,7 @@ namespace CubeProject
 						[typeof(EndLevelState)] = new EndLevelState(() => windowStateMachine.EnterIn<EndLevelWindowState>()),
 					});
 
-				descriptor.AddSingleton(gameStateMachine, typeof(IStateChangeable));
+				descriptor.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));
 			}
 
 			void ProjectInit()

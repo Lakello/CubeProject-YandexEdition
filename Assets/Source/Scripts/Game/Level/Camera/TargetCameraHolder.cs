@@ -10,18 +10,18 @@ namespace Source.Scripts.Game.Level.Camera
 		private readonly float _delayStopCameraFollow = 0.3f;
 		private readonly MonoBehaviour _mono;
 		private readonly CinemachineVirtualCamera _virtualCamera;
-		private readonly Cube _cube;
-		private readonly Transform _follow;
+		private readonly Transform _lookAtPoint;
+		private readonly Transform _followPoint;
 		
-		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Cube cube, Transform follow)
+		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Transform lookAtPoint, Transform followPoint)
 		{
 			_mono = mono;
 			_virtualCamera = virtualCamera;
-			_cube = cube;
-			_follow = follow;
+			_lookAtPoint = lookAtPoint;
+			_followPoint = followPoint;
 			
-			virtualCamera.Follow = _follow;
-			virtualCamera.LookAt = cube.transform;
+			virtualCamera.Follow = _followPoint;
+			virtualCamera.LookAt = _lookAtPoint;
 		}
 		
 		public void ResetTarget() =>
@@ -35,8 +35,8 @@ namespace Source.Scripts.Game.Level.Camera
 
 		public void SetTarget()
 		{
-			_virtualCamera.LookAt = _cube.transform;
-			_virtualCamera.Follow = _follow;
+			_virtualCamera.LookAt = _lookAtPoint;
+			_virtualCamera.Follow = _followPoint;
 		}
 	}
 }

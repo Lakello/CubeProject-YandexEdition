@@ -46,8 +46,13 @@ namespace CubeProject
 
 			descriptor.AddSingleton(_maskHolder);
 			
-			descriptor.AddSingleton(new TargetCameraHolder(this, _virtualCamera, cube, playerInstance.Follow));
-			
+			// TODO
+			// descriptor.AddSingleton(new TargetCameraHolder(
+			// 	this,
+			// 	_virtualCamera,
+			// 	playerInstance.Follower.LookAtPoint,
+			// 	playerInstance.Follower.FollowPoint));
+			//
 			return;
 
 			void InitCube()

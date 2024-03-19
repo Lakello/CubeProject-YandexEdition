@@ -1,6 +1,8 @@
 using CubeProject.Game;
 using CubeProject.PlayableCube.Movement;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
+using Source.Scripts.Game.tateMachine;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -17,8 +19,6 @@ namespace CubeProject.PlayableCube
 
 		public CubeDiedView DiedView { get; private set; }
 
-		public CubeStateService StateService { get; private set; }
-
 		public CubeMoveService MoveService { get; private set; }
 
 		public ChargeHolder ChargeHolder { get; private set; }
@@ -27,15 +27,21 @@ namespace CubeProject.PlayableCube
 
 		public CubeFallService FallService { get; private set; }
 
+		public IStateChangeable<CubeStateMachine> StateMachine { get; private set; }
+
 		private void Awake()
 		{
 			BecameVisible = gameObject.GetComponentInChildrenElseThrow<CubeBecameVisible>();
 			DiedView = gameObject.GetComponentElseThrow<CubeDiedView>();
-			StateService = gameObject.GetComponentElseThrow<CubeStateService>();
 			MoveService = gameObject.GetComponentElseThrow<CubeMoveService>();
 			ChargeHolder = gameObject.GetComponentElseThrow<ChargeHolder>();
 			SelfCollider = gameObject.GetComponentElseThrow<BoxCollider>();
 			FallService = gameObject.GetComponentElseThrow<CubeFallService>();
+		}
+
+		public void Init(IStateChangeable<CubeStateMachine> stateMachine)
+		{
+			if (StateMachine)
 		}
 	}
 }
