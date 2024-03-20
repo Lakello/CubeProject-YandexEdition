@@ -14,18 +14,10 @@ namespace LeadTools.TypedScenes
     using UnityEngine.SceneManagement;
     using LeadTools.StateMachine;
     
-    
-<<<<<<<< HEAD:Assets/Source/Scripts/LeadTools/TypedScenes/Scenes/Level_6.cs
-    public class Level_6 : TypedScene<GameStateMachine>
-    {
-        
-        private const string _sceneName = "Level_6";
-========
     public class Level_100 : TypedScene<GameStateMachine>
     {
         
         private const string _sceneName = "Level_100";
->>>>>>>> Alexey:Assets/Source/Scripts/LeadTools/TypedScenes/Scenes/Level_100.cs
         
         public static void Load<T>(T argument, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         
