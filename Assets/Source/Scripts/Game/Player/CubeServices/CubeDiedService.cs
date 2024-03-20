@@ -19,16 +19,16 @@ namespace CubeProject.PlayableCube
 		private Cube _cube;
 		private CheckPointHolder _checkPointHolder;
 		private CubeDiedView _cubeDiedView;
-		//private TargetCameraHolder _targetCameraHolder;
+		private TargetCameraHolder _targetCameraHolder;
 
 		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.ServiceHolder.StateMachine;
 
 		private CubeFallService CubeFallService => _cube.ServiceHolder.FallService;
 
 		[Inject]
-		private void Inject(CheckPointHolder checkPointHolder)
+		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder)
 		{
-			//_targetCameraHolder = targetCameraHolder;
+			_targetCameraHolder = targetCameraHolder;
 			_checkPointHolder = checkPointHolder;
 		}
 
@@ -59,7 +59,7 @@ namespace CubeProject.PlayableCube
 		{
 			_cube.transform.position = ((MonoBehaviour)_checkPointHolder.CurrentCheckPoint).transform.position + _offset;
 
-			//_targetCameraHolder.SetTarget();
+			_targetCameraHolder.SetTarget();
 
 			_cubeDiedView.Play(true, () =>
 			{

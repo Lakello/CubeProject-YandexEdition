@@ -52,11 +52,11 @@ namespace CubeProject
 
 			descriptor.AddSingleton(_maskHolder);
 			
-			// descriptor.AddSingleton(new TargetCameraHolder(
-			// 	this,
-			// 	_virtualCamera,
-			// 	playerInstance.Follower.LookAtPoint,
-			// 	playerInstance.Follower.FollowPoint));
+			descriptor.AddSingleton(new TargetCameraHolder(
+				this,
+				_virtualCamera,
+				playerInstance.Cube.transform,
+				playerInstance.Follower));
 			
 			return;
 

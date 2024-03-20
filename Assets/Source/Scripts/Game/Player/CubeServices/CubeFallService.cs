@@ -14,17 +14,17 @@ namespace CubeProject.PlayableCube
 		private GroundChecker _groundChecker;
 		private CubeMoveService _moveService;
 		private FallHandler _fallHandler;
-		//private TargetCameraHolder _targetCameraHolder;
+		private TargetCameraHolder _targetCameraHolder;
 
 		private bool IsGrounded => _groundChecker.IsGround(transform.position, _checkDistance, out _);
 
 		[Inject]
-		private void Inject(CinemachineVirtualCamera virtualCamera, Cube cube, MaskHolder maskHolder)
+		private void Inject(CinemachineVirtualCamera virtualCamera, Cube cube, MaskHolder maskHolder, TargetCameraHolder targetCameraHolder)
 		{
 			_groundChecker = new GroundChecker(maskHolder.GroundMask);
 			_fallHandler = new FallHandler(this, cube, transform, _groundChecker, () => IsGrounded);
-			//_targetCameraHolder = targetCameraHolder;
-			//_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
+			_targetCameraHolder = targetCameraHolder;
+			_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
 			
 			_moveService = cube.ServiceHolder.MoveService;
 			
@@ -37,7 +37,7 @@ namespace CubeProject.PlayableCube
 		private void OnDisable()
 		{
 			_moveService.StepEnded -= OnStepEnded;
-			//_fallHandler.AbyssFalling -= _targetCameraHolder.ResetTarget;
+			_fallHandler.AbyssFalling -= _targetCameraHolder.ResetTarget;
 		}
 
 		public bool TryFall()

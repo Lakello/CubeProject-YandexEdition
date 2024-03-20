@@ -53,7 +53,11 @@ namespace Source.Scripts.Game.Level
 			}
 
 			_currentSceneIndex = index;
-			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
+
+			if (_isDebug is false)
+			{
+				GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
+			}
 
 			TypedScene<GameStateMachine>.LoadScene<PlayLevelState, LevelLoader>(
 				_levels[index],
