@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13515016, g: 0.14922872, b: 0.16216788, a: 1}
+  m_IndirectSpecularColor: {r: 0.13471615, g: 0.14837316, b: 0.16128165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,6 +303,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317817651380146802, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423857585956929222, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
+      propertyPath: _isAlwaysCharged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2423857585956929222, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
@@ -970,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100349048613361465, guid: 459ac4878e8bd3f4c82f5038831c76ac, type: 3}
       propertyPath: m_Name
-      value: Power_Station_Barrier_&_Portal_2
+      value: Power_Station_Portal_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3226,6 +3230,18 @@ PrefabInstance:
       propertyPath: _linkedPortal
       value: 
       objectReference: {fileID: 1153857034}
+    - target: {fileID: 5059963882290789981, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _isAnyDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059963882290789981, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _direction._value.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059963882290789981, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _direction._value.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7723300667801088164, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
