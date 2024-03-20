@@ -20,7 +20,10 @@ namespace CubeProject.Tips.FSM
 			_animation.Play(_settings);
 		}
 
-		public override void Exit() =>
+		public override void Exit()
+		{
+			base.Exit();
 			_animation.Stop();
+		}
 	}
 }

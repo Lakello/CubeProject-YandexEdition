@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
-using CubeProject.PlayableCube;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.InputSystem
@@ -10,43 +12,36 @@ namespace CubeProject.InputSystem
 	{
 		private PlayerInput _playerInput;
 		private Coroutine _updateInputCoroutine;
-		private CubeStateService _stateService;
+		private IStateChangeable<CubeStateMachine> _cubeStateMachine;
 
 		public event Action<Vector3> Moving;
-
-		public event Action UsePressed;
-
-		public event Action UseReleased;
 
 		public event Action MenuKeyChanged;
 
 		private void OnDisable()
 		{
-			if (_stateService != null)
+			if (_cubeStateMachine != null)
 			{
-				_stateService.StateChanged -= OnStateChanged;
+				_cubeStateMachine.UnSubscribeTo<ControlState>(OnControlStateChanged);
 			}
 		}
 
-		public void Init(PlayerInput playerInput, CubeStateService stateService)
+		public void Init(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)
 		{
 			_playerInput = playerInput;
 
-			_stateService = stateService;
+			_cubeStateMachine = cubeStateMachine;
 
-			_stateService.StateChanged += OnStateChanged;
-
-			_playerInput.Desktop.UsePress.performed += _ => OnUsePressPerformed();
-			_playerInput.Desktop.UseRelease.performed += _ => OnUseReleasePerformed();
+			_cubeStateMachine.SubscribeTo<ControlState>(OnControlStateChanged);
 
 			_playerInput.Desktop.Menu.performed += _ => OnMenuPerformed();
-
-			OnStateChanged(_stateService.CurrentState);
+			
+			OnControlStateChanged(_cubeStateMachine.CurrentState == typeof(ControlState));
 		}
 
-		private void OnStateChanged(CubeState state)
+		private void OnControlStateChanged(bool isEntered)
 		{
-			if (state == CubeState.Normal)
+			if (isEntered)
 			{
 				_updateInputCoroutine = StartCoroutine(UpdateInput());
 			}
@@ -58,13 +53,7 @@ namespace CubeProject.InputSystem
 
 		private void OnMenuPerformed() =>
 			MenuKeyChanged?.Invoke();
-
-		private void OnUsePressPerformed() =>
-			UsePressed?.Invoke();
-
-		private void OnUseReleasePerformed() =>
-			UseReleased?.Invoke();
-
+		
 		private IEnumerator UpdateInput()
 		{
 			var wait = new WaitForFixedUpdate();

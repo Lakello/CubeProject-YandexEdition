@@ -4,8 +4,11 @@ using CubeProject.PlayableCube.Movement;
 using CubeProject.Tips;
 using LeadTools.Extensions;
 using LeadTools.NaughtyAttributes;
+using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Source.Scripts.Game;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -21,10 +24,9 @@ namespace CubeProject.Game
 
 		private bool _isBlocked;
 		private Cube _cube;
-		private CubeStateService _cubeStateService;
+		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Teleporter _teleporter;
 		private CubeMoveService _cubeMoveService;
-
 		private ChargeConsumer _chargeConsumer;
 		
 		public event Action Pushing;
@@ -49,8 +51,8 @@ namespace CubeProject.Game
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
 			_cube = cube;
-			_cubeStateService = _cube.ServiceHolder.StateService;
 			_cubeMoveService = _cube.ServiceHolder.MoveService;
+			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
 
 			_teleporter = new Teleporter(this, cube, transform, _targetPoint, () => Pushing?.Invoke(), _teleporterData);
 		}
@@ -88,7 +90,7 @@ namespace CubeProject.Game
 
 			_linkedPortal.Block();
 
-			_cubeStateService.EnterIn(CubeState.Teleporting);
+			_cubeStateMachine.EnterIn<TeleportState>();
 
 			_cubeMoveService.DoAfterMove(
 				() => _teleporter.Absorb(

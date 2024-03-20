@@ -1,10 +1,13 @@
 using CubeProject.PlayableCube;
+using LeadTools.StateMachine;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 
 namespace CubeProject.Tips
 {
 	public class PushStateHandler
 	{
-		private readonly CubeStateService _stateService;
+		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private readonly Cube _cube;
 
 		private Pusher _currentPusher;
@@ -12,7 +15,7 @@ namespace CubeProject.Tips
 		public PushStateHandler(Cube cube)
 		{
 			_cube = cube;
-			_stateService = _cube.ServiceHolder.StateService;
+			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
 		}
 
 		public void Pushing(Pusher pusher)
@@ -25,7 +28,7 @@ namespace CubeProject.Tips
 			_currentPusher = pusher;
 			_currentPusher.Pushed += OnPushed;
 
-			_stateService.EnterIn(CubeState.Pushing);
+			_cubeStateMachine.EnterIn<PushState>();
 		}
 
 		private void OnPushed()
@@ -35,7 +38,7 @@ namespace CubeProject.Tips
 
 			if (_cube.ServiceHolder.FallService.TryFall() is false)
 			{
-				_stateService.EnterIn(CubeState.Normal);
+				_cubeStateMachine.EnterIn<ControlState>();
 			}
 		}
 	}

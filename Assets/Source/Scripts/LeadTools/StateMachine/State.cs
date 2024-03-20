@@ -5,11 +5,12 @@ namespace LeadTools.StateMachine
 	public abstract class State<TMachine>
 		where TMachine : StateMachine<TMachine>
 	{
-		public event Action Entered;
+		public event Action<bool> StateChanged;
 
 		public virtual void Enter() =>
-			Entered?.Invoke();
+			StateChanged?.Invoke(true);
 
-		public abstract void Exit();
+		public virtual void Exit() =>
+			StateChanged?.Invoke(true);
 	}
 }

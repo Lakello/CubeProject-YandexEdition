@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	public class CubeBecameVisible : MonoBehaviour
+	public class BecameVisibleService : MonoBehaviour
 	{
 		public bool IsVisible { get; private set; }
 

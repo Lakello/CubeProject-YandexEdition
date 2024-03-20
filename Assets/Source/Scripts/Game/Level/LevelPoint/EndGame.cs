@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class EndGame : MonoBehaviour, ISubject
+	public class EndGame : MonoBehaviour, ITransitSubject
 	{
 		[SerializeField] private float _time;
 
-		public event Action ActionEnded;
+		public event Action StateTransiting;
 
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
 			{
-				this.WaitTime(_time, () => ActionEnded?.Invoke());
+				this.WaitTime(_time, () => StateTransiting?.Invoke());
 			}
 		}
 	}

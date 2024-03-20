@@ -1,5 +1,6 @@
 using System;
 using LeadTools.Extensions;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -18,8 +19,8 @@ namespace CubeProject.PlayableCube
 
 		public void Kill()
 		{
+			_serviceHolder.StateMachine.EnterIn<DieState>();
 			Died?.Invoke();
-			_serviceHolder.StateService.EnterIn(CubeState.Dying);
 		}
 	}
 }

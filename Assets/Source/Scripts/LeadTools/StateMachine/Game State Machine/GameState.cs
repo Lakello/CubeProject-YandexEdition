@@ -14,9 +14,5 @@ namespace LeadTools.StateMachine
 			base.Enter();
 			_enterInWindowState();
 		}
-
-		public override void Exit()
-		{
-		}
 	}
 }

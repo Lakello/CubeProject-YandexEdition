@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13515016, g: 0.14922872, b: 0.16216788, a: 1}
+  m_IndirectSpecularColor: {r: 0.13463727, g: 0.14872244, b: 0.16162485, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -198,10 +198,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _isAlwaysCharged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 2094562056319578446, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_Name
       value: Portal (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 527013550}
     - target: {fileID: 7723300667801088164, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -780,10 +796,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _isAlwaysCharged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1059794533}
     - target: {fileID: 2094562056319578446, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_Name
       value: Portal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 2064343544}
     - target: {fileID: 7723300667801088164, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -1157,6 +1189,17 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &527013550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+  m_PrefabInstance: {fileID: 705446428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd0e4c3008547e9adb8cf595e25e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &589322209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,10 +1355,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _isAlwaysCharged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 2094562056319578446, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 1889010235}
     - target: {fileID: 7723300667801088164, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -1594,10 +1653,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _isAlwaysCharged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819061190551165236, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1059794533}
     - target: {fileID: 2094562056319578446, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_Name
       value: Portal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 1854438973}
     - target: {fileID: 7723300667801088164, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -1782,6 +1857,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8515236481554310214, guid: 5ced038a8e9e8924181700d832dde47c, type: 3}
   m_PrefabInstance: {fileID: 953867473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1059794533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9100349048613361465, guid: 459ac4878e8bd3f4c82f5038831c76ac, type: 3}
+  m_PrefabInstance: {fileID: 1970078276}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1070131101
 PrefabInstance:
@@ -3391,6 +3471,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6faa7ced464c45b8a79876f1bfda68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1854438973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+  m_PrefabInstance: {fileID: 396812768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd0e4c3008547e9adb8cf595e25e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1882026360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3453,6 +3544,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8515236481554310214, guid: 5ced038a8e9e8924181700d832dde47c, type: 3}
   m_PrefabInstance: {fileID: 1882026360}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1889010235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+  m_PrefabInstance: {fileID: 89732978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd0e4c3008547e9adb8cf595e25e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932235593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,6 +3949,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042024115}
   m_CullTransparentMesh: 1
+--- !u!114 &2064343544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
+  m_PrefabInstance: {fileID: 886720245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd0e4c3008547e9adb8cf595e25e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3856,6 +3969,6 @@ SceneRoots:
   - {fileID: 1848309014}
   - {fileID: 1653056655}
   - {fileID: 705446428}
+  - {fileID: 89732978}
   - {fileID: 886720245}
   - {fileID: 396812768}
-  - {fileID: 89732978}

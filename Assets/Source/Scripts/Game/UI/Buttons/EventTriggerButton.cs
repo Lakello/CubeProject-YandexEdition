@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace CubeProject.UI
 {
-	public abstract class EventTriggerButton : MonoBehaviour, ISubject
+	public abstract class EventTriggerButton : MonoBehaviour, ITransitSubject
 	{
-		public event Action ActionEnded;
+		public event Action StateTransiting;
 
 		public virtual void OnClick() =>
-			ActionEnded?.Invoke();
+			StateTransiting?.Invoke();
 	}
 }

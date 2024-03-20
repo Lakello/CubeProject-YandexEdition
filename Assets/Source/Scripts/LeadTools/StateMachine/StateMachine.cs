@@ -3,37 +3,39 @@ using System.Collections.Generic;
 
 namespace LeadTools.StateMachine
 {
-	public abstract class StateMachine<TMachine> : IDisposable, IStateChangeable<TMachine>
+	public abstract class StateMachine<TMachine> : IDisposable, IStateMachine<TMachine>
 		where TMachine : StateMachine<TMachine>
 	{
 		private readonly Dictionary<Type, State<TMachine>> _states;
 
+		private State<TMachine> _currentState;
+
 		protected StateMachine(Func<Dictionary<Type, State<TMachine>>> getStates) =>
 			_states = getStates();
 
-		public State<TMachine> CurrentState { get; private set; }
+		public Type CurrentState => _currentState.GetType();
 
 		public void Dispose() =>
-			CurrentState?.Exit();
+			_currentState?.Exit();
 
 		public void EnterIn<TState>()
 			where TState : State<TMachine>
 		{
 			DoWith<TState>((state) =>
 			{
-				CurrentState?.Exit();
-				CurrentState = state;
-				CurrentState.Enter();
+				_currentState?.Exit();
+				_currentState = state;
+				_currentState.Enter();
 			});
 		}
 
-		public void SubscribeTo<TState>(Action observer)
+		public void SubscribeTo<TState>(Action<bool> observer)
 			where TState : State<TMachine> =>
-			DoWith<TState>((state) => state.Entered += observer);
+			DoWith<TState>((state) => state.StateChanged += observer);
 
-		public void UnSubscribeTo<TState>(Action observer)
+		public void UnSubscribeTo<TState>(Action<bool> observer)
 			where TState : State<TMachine> =>
-			DoWith<TState>((state) => state.Entered -= observer);
+			DoWith<TState>((state) => state.StateChanged -= observer);
 
 		protected State<TMachine> TryGetState(Type stateType) =>
 			_states.TryGetValue(stateType, out var state) ? state : null;
