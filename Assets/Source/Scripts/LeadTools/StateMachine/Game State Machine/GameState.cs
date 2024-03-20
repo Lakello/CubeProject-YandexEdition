@@ -9,11 +9,10 @@ namespace LeadTools.StateMachine
 		protected GameState(Action enterInWindowState) =>
 			_enterInWindowState = enterInWindowState;
 
-		public override void Enter() =>
-			_enterInWindowState();
-
-		public override void Exit()
+		public override void Enter()
 		{
+			base.Enter();
+			_enterInWindowState();
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace CubeProject
 	public class MenuSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private StartButton _startButton;
+		[SerializeField] private LevelButtonSpawner _levelButtonSpawner;
 
 		private Action _unsubscribe;
 
@@ -21,6 +22,8 @@ namespace CubeProject
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
+			_levelButtonSpawner.Init(levelLoader);
+			
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(machine.Window);
 

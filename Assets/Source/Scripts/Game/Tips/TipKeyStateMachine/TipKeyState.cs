@@ -1,3 +1,4 @@
+using System;
 using LeadTools.StateMachine;
 
 namespace CubeProject.Tips.FSM
@@ -13,10 +14,16 @@ namespace CubeProject.Tips.FSM
 			_settings = settings;
 		}
 
-		public override void Enter() =>
+		public override void Enter()
+		{
+			base.Enter();
 			_animation.Play(_settings);
+		}
 
-		public override void Exit() =>
+		public override void Exit()
+		{
+			base.Exit();
 			_animation.Stop();
+		}
 	}
 }

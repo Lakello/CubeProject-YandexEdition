@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using CubeProject.InputSystem;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Source.Scripts.Game;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube.Movement
@@ -17,7 +18,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		private RollMover _roll;
 		private BoxCollider _cubeCollider;
-		private CubeStateService _stateService;
+		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Coroutine _moveCoroutine;
 		private bool _isBrake;
 		private IInputService _inputService;
@@ -34,23 +35,25 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			_wallMask = maskHolder.WallMask;
 			
-			_stateService = cube.ServiceHolder.StateService;
-			_cubeCollider = cube.ServiceHolder.SelfCollider;
-
+			_cubeStateMachine = cube.ServiceHolder.StateMachine;
+			
 			_inputService = inputService;
 
 			_inputService.Moving += OnMoving;
 		}
 
-		private void Awake() =>
+		private void Awake()
+		{
+			gameObject.GetComponentElseThrow(out _cubeCollider);
 			_roll = new RollMover(_audioSourceMove);
+		}
 
 		private void OnDisable() =>
 			_inputService.Moving -= OnMoving;
 
 		public void Push(Vector3 direction)
 		{
-			if (_stateService.CurrentState != CubeState.Pushing)
+			if (_cubeStateMachine.CurrentState != typeof(PushState))
 			{
 				return;
 			}
@@ -72,7 +75,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		private void OnMoving(Vector3 direction)
 		{
-			if (_stateService.CurrentState != CubeState.Normal)
+			if (_cubeStateMachine.CurrentState != typeof(ControlState))
 			{
 				return;
 			}

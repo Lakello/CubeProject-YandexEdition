@@ -1,14 +1,18 @@
 using System;
+using System.Collections.Generic;
 using Cinemachine;
 using CubeProject.Game;
 using CubeProject.InputSystem;
 using CubeProject.PlayableCube;
 using CubeProject.Tips;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
 using Reflex.Core;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject
@@ -22,15 +26,17 @@ namespace CubeProject
 		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private bool _isMobileTest;
 
-		private Action _disabling;
+		private Action _disable;
 		
 		private void OnDisable() =>
-			_disabling?.Invoke();
+			_disable?.Invoke();
 
 		public void InstallBindings(ContainerDescriptor descriptor)
 		{
 			Player playerInstance;
 			Cube cube;
+			CubeStateMachine cubeStateMachine;
+			
 			InitCube();
 			
 			InitInput();
@@ -46,7 +52,11 @@ namespace CubeProject
 
 			descriptor.AddSingleton(_maskHolder);
 			
-			descriptor.AddSingleton(new TargetCameraHolder(this, _virtualCamera, cube, playerInstance.Follow));
+			descriptor.AddSingleton(new TargetCameraHolder(
+				this,
+				_virtualCamera,
+				playerInstance.Cube.transform,
+				playerInstance.Follower));
 			
 			return;
 
@@ -56,8 +66,22 @@ namespace CubeProject
 					_playerPrefab,
 					_spawnPoint.transform.position,
 					Quaternion.identity);
+
+				cubeStateMachine = new CubeStateMachine(
+					() => new Dictionary<Type, State<CubeStateMachine>>
+					{
+						[typeof(ControlState)] = new ControlState(),
+						[typeof(DieState)] = new DieState(),
+						[typeof(FallingToAbyssState)] = new FallingToAbyssState(),
+						[typeof(FallingToGroundState)] = new FallingToGroundState(),
+						[typeof(PushState)] = new PushState(),
+						[typeof(TeleportState)] = new TeleportState(),
+					});
 				
 				cube = playerInstance.Cube;
+				cube.ServiceHolder.Init(cubeStateMachine);
+				
+				cubeStateMachine.EnterIn<ControlState>();
 			}
 			
 			void InitInput()
@@ -65,7 +89,7 @@ namespace CubeProject
 				var playerInput = new PlayerInput();
 
 				playerInput.Enable();
-				_disabling += () => playerInput.Disable();
+				_disable += () => playerInput.Disable();
 				
 				IInputService inputService;
 
@@ -78,8 +102,7 @@ namespace CubeProject
                     inputService = gameObject.AddComponent<DesktopInputService>();
                 }
 				
-				cube.gameObject.GetComponentElseThrow(out CubeStateService cubeStateHandler);
-				inputService.Init(playerInput, cubeStateHandler);				
+				inputService.Init(playerInput, cubeStateMachine);				
 
 				descriptor.AddSingleton(inputService, typeof(IInputService));
 			}

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace LeadTools.StateMachine
 {
-    public class TransitionInitializer<TMachine> where TMachine : StateMachine<TMachine>
+    public class TransitionInitializer<TMachine>
+        where TMachine : StateMachine<TMachine>
     {
         private readonly TMachine _stateMachine;
         private readonly List<Subscription> _subscriptions = new List<Subscription>();
@@ -15,21 +16,21 @@ namespace LeadTools.StateMachine
             
             _stateMachine = stateMachine;
         }
-
-        public void InitTransition<TTargetState>(ISubject subject, Action observer = null)
+        
+        public void InitTransition<TTargetState>(ITransitSubject transitSubject, Action observer = null)
             where TTargetState : State<TMachine>
         {
             var transition = new Transition<TMachine, TTargetState>(_stateMachine);
             
-            InitTransition(subject, () =>
+            InitTransition(transitSubject, () =>
             {
                 transition.Transit();
                 observer?.Invoke();
             });
         }
 
-        public void InitTransition(ISubject subject, Action observer) =>
-            _subscriptions.Add(new Subscription(subject, observer));
+        public void InitTransition(ITransitSubject transitSubject, Action observer) =>
+            _subscriptions.Add(new Subscription(transitSubject, observer));
 
         private void Subscribe()
         {
@@ -40,7 +41,7 @@ namespace LeadTools.StateMachine
 
             foreach (var action in _subscriptions)
             {
-                action.Subject.ActionEnded += action.Observer;
+                action.TransitSubject.StateTransiting += action.Observer;
             }
         }
 
@@ -53,7 +54,7 @@ namespace LeadTools.StateMachine
 
             foreach (var subscription in _subscriptions)
             {
-                subscription.Subject.ActionEnded -= subscription.Observer;
+                subscription.TransitSubject.StateTransiting -= subscription.Observer;
             }
         }
     }

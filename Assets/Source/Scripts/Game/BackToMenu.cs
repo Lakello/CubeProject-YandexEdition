@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace CubeProject.InputSystem
 {
-	public class BackToMenu : MonoBehaviour, ISubject
+	public class BackToMenu : MonoBehaviour, ITransitSubject
 	{
-		public event Action ActionEnded;
+		public event Action StateTransiting;
 
 		[Inject]
 		private void Inject(IInputService input) =>
-			input.MenuKeyChanged += () => ActionEnded?.Invoke();
+			input.MenuKeyChanged += () => StateTransiting?.Invoke();
 	}
 }

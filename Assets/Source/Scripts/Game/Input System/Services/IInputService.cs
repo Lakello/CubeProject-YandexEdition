@@ -1,5 +1,6 @@
 using System;
-using CubeProject.PlayableCube;
+using LeadTools.StateMachine;
+using Source.Scripts.Game.tateMachine;
 using UnityEngine;
 
 namespace CubeProject.InputSystem
@@ -10,6 +11,6 @@ namespace CubeProject.InputSystem
 
 		public event Action MenuKeyChanged;
 
-		public void Init(PlayerInput playerInput, CubeStateService stateService);
+		public void Init(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine);
 	}
 }

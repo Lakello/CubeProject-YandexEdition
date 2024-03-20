@@ -1,10 +1,16 @@
 using CubeProject.Game;
+using LeadTools.Extensions;
+using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
+	[RequireComponent(typeof(CubeDiedView))]
+	[RequireComponent(typeof(Cube))]
 	public class CubeDiedService : MonoBehaviour
 	{
 		[SerializeField] private Transform _cameraFollow;
@@ -13,39 +19,39 @@ namespace CubeProject.PlayableCube
 		private Cube _cube;
 		private CheckPointHolder _checkPointHolder;
 		private CubeDiedView _cubeDiedView;
-		private CubeStateService _cubeStateService;
 		private TargetCameraHolder _targetCameraHolder;
-		private CubeFallService _cubeFallService;
+
+		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.ServiceHolder.StateMachine;
+
+		private CubeFallService CubeFallService => _cube.ServiceHolder.FallService;
 
 		[Inject]
-		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder, Cube cube)
+		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder)
 		{
 			_targetCameraHolder = targetCameraHolder;
 			_checkPointHolder = checkPointHolder;
-
-			_cube = cube;
-			_cubeDiedView = _cube.ServiceHolder.DiedView;
-			_cubeStateService = _cube.ServiceHolder.StateService;
-			_cubeFallService = _cube.ServiceHolder.FallService;
-
-			_cube.Died += OnDied;
 		}
+
+		private void Awake()
+		{
+			gameObject.GetComponentElseThrow(out _cubeDiedView);
+			gameObject.GetComponentElseThrow(out _cube);
+		}
+
+		private void OnEnable() =>
+			_cube.Died += OnDied;
 
 		private void OnDisable() =>
 			_cube.Died -= OnDied;
 
 		private void OnDied()
 		{
-			if (_cubeStateService.CurrentState == CubeState.Falling)
-			{
-				DissolveVisible();
-			}
-			else
+			if (CubeStateMachine.CurrentState == typeof(DieState))
 			{
 				DissolveInvisible();
 			}
 		}
-
+		
 		private void DissolveInvisible() =>
 			_cubeDiedView.Play(false, DissolveVisible);
 
@@ -57,9 +63,9 @@ namespace CubeProject.PlayableCube
 
 			_cubeDiedView.Play(true, () =>
 			{
-				if (_cubeFallService.TryFall() is false)
+				if (CubeFallService.TryFall() is false)
 				{
-					_cubeStateService.EnterIn(CubeState.Normal);
+					CubeStateMachine.EnterIn<ControlState>();
 				}
 			});
 		}

@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
+using Source.Scripts.Game.tateMachine;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -8,11 +11,11 @@ namespace CubeProject.PlayableCube
 	public class FallHandler
 	{
 		private readonly MonoBehaviour _mono;
-		private readonly CubeStateService _stateService;
+		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private readonly Transform _origin;
 		private readonly GroundChecker _groundChecker;
 		private readonly Cube _cube;
-		private readonly CubeBecameVisible _became;
+		private readonly BecameVisibleService _became;
 		private readonly float _speedFall = 3;
 		private readonly float _speedFallMultiplier = 1.1f;
 		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
@@ -26,8 +29,8 @@ namespace CubeProject.PlayableCube
 		{
 			_mono = mono;
 			_cube = cube;
-			_became = _cube.ServiceHolder.BecameVisible;
-			_stateService = _cube.ServiceHolder.StateService;
+			_became = _cube.ServiceHolder.BecameVisibleService;
+			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
 			_origin = origin;
 			_groundChecker = groundChecker;
 
@@ -42,16 +45,18 @@ namespace CubeProject.PlayableCube
 		
 		public void Play()
 		{
-			_stateService.EnterIn(CubeState.Falling);
-
 			_mono.StopRoutine(_fallCoroutine);
 
 			if (CanFallToGround(out var groundPositionY))
 			{
+				_cubeStateMachine.EnterIn<FallingToGroundState>();
+				
 				FallIntoGround(groundPositionY);
 			}
 			else
 			{
+				_cubeStateMachine.EnterIn<FallingToAbyssState>();
+				
 				FallIntoAbyss();
 			}
 		}
@@ -95,7 +100,7 @@ namespace CubeProject.PlayableCube
 				},
 				() => _isGrounded() is false && groundPositionY < Position.y));
 
-			_mono.WaitRoutine(_fallCoroutine, () => _stateService.EnterIn(CubeState.Normal));
+			_mono.WaitRoutine(_fallCoroutine, () => _cubeStateMachine.EnterIn<ControlState>());
 		}
 
 		private IEnumerator Execute(Func<float, Vector3> calculatePosition, Func<bool> whileCondition, Action endCallback = null)

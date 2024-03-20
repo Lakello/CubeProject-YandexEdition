@@ -6,10 +6,10 @@ namespace Source.Scripts.Game
 	public class Player : MonoBehaviour
 	{
 		[SerializeField] private Cube _cube;
-		[SerializeField] private Transform _follow;
+		[SerializeField] private Transform _follower;
 
 		public Cube Cube => _cube;
 
-		public Transform Follow => _follow;
+		public Transform Follower => _follower;
 	}
 }
