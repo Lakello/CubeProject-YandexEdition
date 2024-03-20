@@ -39,19 +39,16 @@ EditorBuildSettings:
     path: Assets/Demigiant/DOTweenPro Examples/DOTweenAnimation_Advanced.unity
     guid: a5f7a56d339da84449899ecf95fbe33d
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_60.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_56.unity
     guid: 7034671aaece6cf4dbe7366cb76bc606
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_70.unity
-    guid: 6c24d099475b94b4d80e5d2d7bbe2b95
-  - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_61.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_57.unity
     guid: f73eb320618c3db4aa9bc8a9ff690eb7
   - enabled: 1
     path: Assets/Demigiant/DOTweenPro Examples/DOTweenAnimation_Basics.unity
     guid: 6a2ad353325ffe64983c28d69a8738f5
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_66.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_59.unity
     guid: 76b0ab51f81975d49b5f97d5a6d071e7
   - enabled: 1
     path: Assets/Scenes/Levels/Levels_Aleksey/Level_52.unity
@@ -60,25 +57,34 @@ EditorBuildSettings:
     path: Assets/Demigiant/DOTweenPro Examples/DOTweenPath.unity
     guid: a351b59ca54a0bc4083c35844da13a61
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_56.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_54.unity
     guid: b95dfb4f17d4046498861fcd5f0edccb
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_65.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_58.unity
     guid: 92de8b155131a6c4cb2c857ba651fd99
   - enabled: 1
     path: Assets/Scenes/Levels/Levels_Aleksey/Level_51.unity
     guid: 9b44e57d51fa6ab4c9add9d1a8a7e0db
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_55.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_53.unity
     guid: 1c8f57f36ed39f546b3355aff40c17f6
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_50.unity
+    path: Assets/Scenes/Levels/Levels_Dima/Level_100.unity
     guid: 32a2f8574b747044b96b8672932d5af2
   - enabled: 1
-    path: Assets/Scenes/Levels/Levels_Aleksey/Level_57.unity
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_55.unity
     guid: 26ed8d159dff8fc45818bde65c36a284
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_6.unity
-    guid: 8a3f1d7c07b86674dbd9e73b6a84193b
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_60.unity
+    guid: c5596a4a7b39e0c4b9a2661c395d651d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_61.unity
+    guid: c6a606407800b9742a7fbb75a476582d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Levels_Dima/Level_101.unity
+    guid: 77216ed13c47035489a308e47a3b2c38
+  - enabled: 1
+    path: Assets/Scenes/Levels/Levels_Aleksey/Level_50.unity
+    guid: d42eeb0dfab8f9349bc65745f7491edd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2caa60e61f044dc498353a3469fa881c, type: 2}

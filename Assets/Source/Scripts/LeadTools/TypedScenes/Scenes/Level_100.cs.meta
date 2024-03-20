@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Source/Scripts/LeadTools/TypedScenes/Scenes/Level_6.cs.meta
 guid: 2ff97282862ac954993cacef4bce852b
+========
+guid: 08528da0f7485e741ad8dab6de1cfc8b
+>>>>>>>> Alexey:Assets/Source/Scripts/LeadTools/TypedScenes/Scenes/Level_100.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
