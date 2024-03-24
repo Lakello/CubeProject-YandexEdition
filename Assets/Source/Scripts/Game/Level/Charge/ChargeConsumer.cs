@@ -40,7 +40,7 @@ namespace CubeProject.Game
 
 		private void OnValidate()
 		{
-			if (_gameObjectsOnChargeable is { Length: < 1 })
+			if (_gameObjectsOnChargeable is { Length: < 1})
 			{
 				return;
 			}
