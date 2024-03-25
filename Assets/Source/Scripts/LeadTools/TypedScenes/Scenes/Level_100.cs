@@ -14,6 +14,7 @@ namespace LeadTools.TypedScenes
     using UnityEngine.SceneManagement;
     using LeadTools.StateMachine;
     
+    
     public class Level_100 : TypedScene<GameStateMachine>
     {
         

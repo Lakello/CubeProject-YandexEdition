@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using LeadTools.Extensions;
 using UnityEngine;
 
@@ -8,10 +10,16 @@ namespace CubeProject.Game
 	{
 		[SerializeField] private Door[] _doors;
 		[SerializeField] private float _animationTime;
+		[SerializeField] private bool _change;
 
 		private Coroutine _doorCoroutine;
 		private bool _previousCharged;
 		private ChargeConsumer _chargeConsumer;
+
+		private void OnValidate()
+		{
+			ChangeState(_change);
+		}
 
 		private void Awake()
 		{
@@ -47,38 +55,55 @@ namespace CubeProject.Game
 		{
 			foreach (var door in _doors)
 			{
-				door.StartScale = door.transform.localScale;
-				door.StartPosition = door.transform.localPosition;
-			}
-
-			_doorCoroutine = this.PlaySmoothChangeValue(
-				(currentTime) =>
-				{
-					foreach (var door in _doors)
+				var (targetPosition, targetScale, targetRotation) = isCharged
+					? (door.OpenPosition, door.OpenScale, door.OpenRotation)
+					: (door.ClosePosition, door.CloseScale, door.CloseRotation);
+				
+				door.Center.DOLocalRotate(targetRotation, _animationTime)
+					.OnKill(() =>
 					{
-						var doorTransform = door.transform;
-
-						var (position, scale) = CalculateDoorData(door, currentTime);
-
-						doorTransform.localPosition = position;
-						doorTransform.localScale = scale;
-					}
-				},
-				_animationTime);
-
-			return;
-
-			(Vector3, Vector3) CalculateDoorData(Door door, float currentTime)
-			{
-				var (targetPosition, targetScale) = isCharged
-					? (door.OpenPosition, door.OpenScale)
-					: (door.ClosePosition, door.CloseScale);
-
-				var position = Vector3.Lerp(door.StartPosition, targetPosition, currentTime);
-				var scale = Vector3.Lerp(door.StartScale, targetScale, currentTime);
-
-				return (position, scale);
+						door.transform.DOLocalMove(targetPosition, _animationTime);
+						door.transform.DOScale(targetScale, _animationTime);
+					});
 			}
 		}
+
+	// private void ChangeState(bool isCharged)
+		// {
+		// 	foreach (var door in _doors)
+		// 	{
+		// 		door.StartScale = door.transform.localScale;
+		// 		door.StartPosition = door.transform.localPosition;
+		// 	}
+		//
+		// 	_doorCoroutine = this.PlaySmoothChangeValue(
+		// 		(currentTime) =>
+		// 		{
+		// 			foreach (var door in _doors)
+		// 			{
+		// 				var doorTransform = door.transform;
+		//
+		// 				var (position, scale) = CalculateDoorData(door, currentTime);
+		//
+		// 				doorTransform.localPosition = position;
+		// 				doorTransform.localScale = scale;
+		// 			}
+		// 		},
+		// 		_animationTime);
+		//
+		// 	return;
+		//
+		// 	(Vector3, Vector3) CalculateDoorData(Door door, float currentTime)
+		// 	{
+		// 		var (targetPosition, targetScale) = isCharged
+		// 			? (door.OpenPosition, door.OpenScale)
+		// 			: (door.ClosePosition, door.CloseScale);
+		//
+		// 		var position = Vector3.Lerp(door.StartPosition, targetPosition, currentTime);
+		// 		var scale = Vector3.Lerp(door.StartScale, targetScale, currentTime);
+		//
+		// 		return (position, scale);
+		// 	}
+		// }
 	}
 }
