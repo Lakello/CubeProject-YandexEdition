@@ -53,57 +53,32 @@ namespace CubeProject.Game
 
 		private void ChangeState(bool isCharged)
 		{
+			Action<Door> execute = isCharged ? Open : Close;
+			
 			foreach (var door in _doors)
 			{
-				var (targetPosition, targetScale, targetRotation) = isCharged
-					? (door.OpenPosition, door.OpenScale, door.OpenRotation)
-					: (door.ClosePosition, door.CloseScale, door.CloseRotation);
-				
-				door.Center.DOLocalRotate(targetRotation, _animationTime)
+				execute(door);
+			}
+			
+			return;
+
+			void Open(Door door)
+			{
+				door.Center.DOLocalRotate(door.OpenRotation, _animationTime)
 					.OnKill(() =>
 					{
-						door.transform.DOLocalMove(targetPosition, _animationTime);
-						door.transform.DOScale(targetScale, _animationTime);
+						door.transform.DOLocalMove(door.OpenPosition, _animationTime);
+						door.transform.DOScale(door.OpenScale, _animationTime);
 					});
 			}
-		}
 
-	// private void ChangeState(bool isCharged)
-		// {
-		// 	foreach (var door in _doors)
-		// 	{
-		// 		door.StartScale = door.transform.localScale;
-		// 		door.StartPosition = door.transform.localPosition;
-		// 	}
-		//
-		// 	_doorCoroutine = this.PlaySmoothChangeValue(
-		// 		(currentTime) =>
-		// 		{
-		// 			foreach (var door in _doors)
-		// 			{
-		// 				var doorTransform = door.transform;
-		//
-		// 				var (position, scale) = CalculateDoorData(door, currentTime);
-		//
-		// 				doorTransform.localPosition = position;
-		// 				doorTransform.localScale = scale;
-		// 			}
-		// 		},
-		// 		_animationTime);
-		//
-		// 	return;
-		//
-		// 	(Vector3, Vector3) CalculateDoorData(Door door, float currentTime)
-		// 	{
-		// 		var (targetPosition, targetScale) = isCharged
-		// 			? (door.OpenPosition, door.OpenScale)
-		// 			: (door.ClosePosition, door.CloseScale);
-		//
-		// 		var position = Vector3.Lerp(door.StartPosition, targetPosition, currentTime);
-		// 		var scale = Vector3.Lerp(door.StartScale, targetScale, currentTime);
-		//
-		// 		return (position, scale);
-		// 	}
-		// }
+			void Close(Door door)
+			{
+				DOTween.Sequence()
+					.Append(door.transform.DOLocalMove(door.ClosePosition, _animationTime))
+					.Join(door.transform.DOScale(door.CloseScale, _animationTime))
+					.OnKill(() => door.Center.DOLocalRotate(door.CloseRotation, _animationTime));
+			}
+		}
 	}
 }
