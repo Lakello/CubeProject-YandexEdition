@@ -15,6 +15,9 @@ namespace CubeProject.Game
 		private Coroutine _doorCoroutine;
 		private bool _previousCharged;
 		private ChargeConsumer _chargeConsumer;
+		private Tweener _scaleTweener;
+		private Tweener _rotateTweener;
+		private Tweener _moveTweener;
 
 		private void OnValidate()
 		{
@@ -32,8 +35,11 @@ namespace CubeProject.Game
 			OnChargeChanged();
 		}
 
-		private void OnDisable() =>
+		private void OnDisable()
+		{
 			_chargeConsumer.ChargeChanged -= OnChargeChanged;
+			StopTweeners();
+		}
 
 		private void OnChargeChanged()
 		{
@@ -53,6 +59,8 @@ namespace CubeProject.Game
 
 		private void ChangeState(bool isCharged)
 		{
+			StopTweeners();
+			
 			Action<Door> execute = isCharged ? Open : Close;
 			
 			foreach (var door in _doors)
@@ -64,21 +72,28 @@ namespace CubeProject.Game
 
 			void Open(Door door)
 			{
-				door.Center.DOLocalRotate(door.OpenRotation, _animationTime)
+				_rotateTweener = door.Center.DOLocalRotate(door.OpenRotation, _animationTime)
 					.OnKill(() =>
 					{
-						door.transform.DOLocalMove(door.OpenPosition, _animationTime);
-						door.transform.DOScale(door.OpenScale, _animationTime);
+						_moveTweener = door.transform.DOLocalMove(door.OpenPosition, _animationTime);
+						_scaleTweener = door.transform.DOScale(door.OpenScale, _animationTime);
 					});
 			}
 
 			void Close(Door door)
 			{
 				DOTween.Sequence()
-					.Append(door.transform.DOLocalMove(door.ClosePosition, _animationTime))
-					.Join(door.transform.DOScale(door.CloseScale, _animationTime))
-					.OnKill(() => door.Center.DOLocalRotate(door.CloseRotation, _animationTime));
+					.Append(_moveTweener = door.transform.DOLocalMove(door.ClosePosition, _animationTime))
+					.Join(_scaleTweener = door.transform.DOScale(door.CloseScale, _animationTime))
+					.OnKill(() => _rotateTweener = door.Center.DOLocalRotate(door.CloseRotation, _animationTime));
 			}
+		}
+
+		private void StopTweeners()
+		{
+			_moveTweener.Kill();
+			_rotateTweener.Kill();
+			_scaleTweener.Kill();
 		}
 	}
 }

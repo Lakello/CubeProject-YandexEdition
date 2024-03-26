@@ -1,28 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using LeadTools.Extensions;
-using LeadTools.NaughtyAttributes;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace CubeProject.Game
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class PortalView : MonoBehaviour
 	{
-		private const string ColorProperty = "_EmissionColor";
+		private readonly Dictionary<MeshRenderer, PortalAnimation> _animations = new Dictionary<MeshRenderer, PortalAnimation>();
 
-		private readonly Dictionary<MeshRenderer, PortalViewData> _viewDataDictionary = new Dictionary<MeshRenderer, PortalViewData>();
-		
-		[SerializeField] private AnimationCurve _lightIntensityCurve;
-		[SerializeField] private AnimationCurve _scaleCurve;
-		[SerializeField] [MinMaxSlider(-5f, 5f)] private Vector2 _scaleSpeedRange;
-		[SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 _rotateSpeedRange;
-		[SerializeField] [MinMaxSlider(-5f, 5f)] private Vector2 _lightPulseSpeedRange;
 		[SerializeField] private MeshRenderer[] _meshRenderers;
-
+		
 		private ChargeConsumer _chargeConsumer;
 		private Coroutine _updateViewCoroutine;
 
@@ -32,9 +20,9 @@ namespace CubeProject.Game
 
 			foreach (var renderer in _meshRenderers)
 			{
-				_viewDataDictionary.Add(
-					renderer, 
-					new PortalViewData(renderer.material.GetColor(ColorProperty)));
+				_animations.Add(
+					renderer,
+					renderer.gameObject.GetComponentElseThrow<PortalAnimation>());
 			}
 		}
 
@@ -49,82 +37,20 @@ namespace CubeProject.Game
 
 		private void OnChargeChanged()
 		{
-			if (_chargeConsumer.IsCharged is false)
+			if (_chargeConsumer.IsCharged)
 			{
-				return;
-			}
-
-			this.StopRoutine(_updateViewCoroutine);
-
-			UpdateSpeeds();
-			
-			_updateViewCoroutine = StartCoroutine(UpdateView());
-		}
-
-		private void UpdateSpeeds()
-		{
-			foreach (var renderer in _meshRenderers)
-			{
-				var scaleSpeed = Random.Range(_scaleSpeedRange.x, _scaleSpeedRange.y);
-				var rotateSpeed = Random.Range(_rotateSpeedRange.x, _rotateSpeedRange.y);
-				var lightPulseSpeed = Random.Range(_lightPulseSpeedRange.x, _lightPulseSpeedRange.y);
-				
-				_viewDataDictionary[renderer].UpdateSpeeds(rotateSpeed, scaleSpeed, lightPulseSpeed);
-			}
-		}
-		
-		private IEnumerator UpdateView()
-		{
-			while (_chargeConsumer.IsCharged)
-			{
-				foreach (var renderer in _meshRenderers)
+				foreach (var meshRenderer in _meshRenderers)
 				{
-					_viewDataDictionary[renderer].UpdateProgress();
+					_animations[meshRenderer].Play();
 				}
-				
-				SetRotate();
-				SetScale();
-				SetLight();
-
-				yield return null;
 			}
-		}
-
-		private void SetRotate()
-		{
-			foreach (var meshRenderer in _meshRenderers)
+			else
 			{
-				meshRenderer.transform.Rotate(Vector3.up, _viewDataDictionary[meshRenderer].RotateSpeed * Time.deltaTime);
+				foreach (var meshRenderer in _meshRenderers)
+				{
+					_animations[meshRenderer].Stop();
+				}
 			}
 		}
-
-		private void SetScale()
-		{
-			foreach (var meshRenderer in _meshRenderers)
-			{
-				var scaleValue = GetCurveValue(
-					_viewDataDictionary[meshRenderer].ScaleProgress,
-					_scaleCurve);
-				
-				meshRenderer.transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
-			}
-		}
-
-		private void SetLight()
-		{
-			foreach (var meshRenderer in _meshRenderers)
-			{
-				var intensity = GetCurveValue(
-					_viewDataDictionary[meshRenderer].LightPulseProgress,
-					_lightIntensityCurve);
-				
-				var color = _viewDataDictionary[meshRenderer].Color;
-
-				meshRenderer.material.SetColor(ColorProperty, color.CalculateIntensityColor(intensity));
-			}
-		}
-
-		private float GetCurveValue(float progress, AnimationCurve curve) =>
-			curve.Evaluate(progress);
 	}
 }
