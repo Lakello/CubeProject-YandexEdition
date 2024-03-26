@@ -14,56 +14,21 @@ namespace CubeProject.Game
 	{
 		private const string ColorProperty = "_EmissionColor";
 
+		private readonly Dictionary<MeshRenderer, PortalViewData> _viewDataDictionary = new Dictionary<MeshRenderer, PortalViewData>();
+		
 		[SerializeField] private AnimationCurve _lightIntensityCurve;
 		[SerializeField] private AnimationCurve _scaleCurve;
 		[SerializeField] [MinMaxSlider(-5f, 5f)] private Vector2 _scaleSpeedRange;
 		[SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 _rotateSpeedRange;
 		[SerializeField] [MinMaxSlider(-5f, 5f)] private Vector2 _lightPulseSpeedRange;
-		[SerializeField] private GameObject[] _viewObjects;
+		[SerializeField] private MeshRenderer[] _meshRenderers;
 
-		private MeshRenderer[] _meshRenderers;
-		private Dictionary<MeshRenderer, PortalViewData> _viewDataDictionary;
 		private ChargeConsumer _chargeConsumer;
 		private Coroutine _updateViewCoroutine;
-
-		private void OnValidate()
-		{
-			if (_viewObjects is null)
-			{
-				return;
-			}
-
-			if (_viewObjects.Length == 0)
-			{
-				return;
-			}
-
-			for (int i = 0; i < _viewObjects.Length; i++)
-			{
-				if (_viewObjects[i].TryGetComponent(out MeshRenderer _) is false)
-				{
-					_viewObjects[i] = null;
-
-					Debug.LogError($"Required {nameof(MeshRenderer)}", gameObject);
-				}
-			}
-		}
 
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
-
-			_meshRenderers =
-				(from view in _viewObjects
-				select new
-				{
-					renderer = view.GetComponent<MeshRenderer>(),
-				})
-				.ToArray()
-				.Select(view => view.renderer)
-				.ToArray();
-
-			_viewDataDictionary = new Dictionary<MeshRenderer, PortalViewData>();
 
 			foreach (var renderer in _meshRenderers)
 			{
