@@ -5,10 +5,9 @@ namespace CubeProject.Game
 {
 	public class PortalAnimation : MonoBehaviour
 	{
-		[SerializeField] private AnimationCurve _scalePlayingCurve;
-		[SerializeField] private AnimationCurve _scaleStoppingCurve;
+		[SerializeField] private Vector3 _playingScale;
+		[SerializeField] private Vector3 _stoppingScale;
 		[SerializeField] private AnimationCurve _scaleCurve;
-		[SerializeField] private AnimationCurve _rotateCurve;
 		[SerializeField] private float _scalePlayingDuration;
 		[SerializeField] private float _scaleStoppingDuration;
 		[SerializeField] private float _scaleSpeed;
@@ -22,16 +21,32 @@ namespace CubeProject.Game
 		{
 			ResetAnimation();
 			
-			var endValueScalePlaying = Vector3.one * _scalePlayingCurve.Evaluate(1);
 			var endValueRotate = Vector3.up * 360;
 			var endValueScale = Vector3.one * _scaleCurve.Evaluate(1);
 
 			_stateChangedScaleTweener = transform
-				.DOScale(endValueScalePlaying, _scalePlayingDuration)
-				.SetEase(_scalePlayingCurve)
-				.OnKill(() => _scaleTweener = transform.DOScale(endValueScale, _scaleSpeed).SetEase(_scaleCurve).SetLoops(-1, LoopType.Restart));
+				.DOScale(_playingScale, _scalePlayingDuration)
+				.SetEase(Ease.InOutFlash)
+				.OnKill(() =>
+				{
+					if (_scaleTweener == null)
+					{
+						_scaleTweener = transform.DOScale(endValueScale, _scaleSpeed).SetEase(_scaleCurve).SetLoops(-1, LoopType.Restart);
+					}
+					else
+					{
+						_scaleTweener.Play();
+					}
+				});
 			
-			_rotateTweener = transform.DORotate(endValueRotate, _rotateSpeed).SetEase(_rotateCurve).SetLoops(-1, LoopType.Incremental);
+			if (_rotateTweener == null)
+			{
+				_rotateTweener = transform.DORotate(endValueRotate, _rotateSpeed).SetLoops(-1, LoopType.Incremental);
+			}
+			else
+			{
+				_rotateTweener.Play();
+			}
 		}
 
 		public void Stop()
@@ -39,17 +54,16 @@ namespace CubeProject.Game
 			ResetAnimation();
 
 			_stateChangedScaleTweener = transform
-				.DOScale(Vector3.zero, _scaleStoppingDuration)
-				.SetEase(_scaleStoppingCurve);
+				.DOScale(_stoppingScale, _scaleStoppingDuration);
 		}
 
 		private void ResetAnimation()
 		{
 			_stateChangedScaleTweener.Kill();
-			_scaleTweener.Kill();
-			_rotateTweener.Kill();
-
-			//transform.rotation = Quaternion.Euler(Vector3.zero);
+			_stateChangedScaleTweener = null;
+			
+			_scaleTweener.Pause();
+			_rotateTweener.Pause();
 		}
 	}
 }
