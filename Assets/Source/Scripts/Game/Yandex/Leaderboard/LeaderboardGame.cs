@@ -50,7 +50,7 @@ namespace CubeProject.UI
                      {
                          if (_leanLocalization.CurrentLanguage == "Russian")
                          {
-                             name = "Аноним";
+                             name = "РђРЅРѕРЅРёРј";
                          }
                          else if (_leanLocalization.CurrentLanguage == "English")
                          {

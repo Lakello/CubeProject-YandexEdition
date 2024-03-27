@@ -26,9 +26,6 @@ namespace CubeProject.Game
 			}
 		}
 
-		private void Start() =>
-			OnChargeChanged();
-
 		private void OnEnable() =>
 			_chargeConsumer.ChargeChanged += OnChargeChanged;
 
