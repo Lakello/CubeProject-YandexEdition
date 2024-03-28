@@ -9,6 +9,7 @@ using Reflex.Attributes;
 using Source.Scripts.Game;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UnityEditor;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -44,8 +45,12 @@ namespace CubeProject.Game
 		}
 
 		[Button] [ShowIf(nameof(CanLinkPortal))]
-		private void LinkPortal() =>
+		private void LinkPortal()
+		{
 			_linkedPortal._linkedPortal = this;
+			EditorUtility.SetDirty(this);
+			EditorUtility.SetDirty(_linkedPortal);
+		}
 
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
