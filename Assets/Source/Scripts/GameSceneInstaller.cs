@@ -22,10 +22,10 @@ namespace CubeProject
 		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private CheckPointHolder _checkPointHolder;
-		[SerializeField] private SpawnPoint _spawnPoint;
 		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private bool _isMobileTest;
 
+		private SpawnPoint _spawnPoint;
 		private Action _disable;
 		
 		private void OnDisable() =>
@@ -36,6 +36,8 @@ namespace CubeProject
 			Player playerInstance;
 			Cube cube;
 			CubeStateMachine cubeStateMachine;
+
+			_spawnPoint = FindObjectOfType<SpawnPoint>();
 			
 			InitCube();
 			

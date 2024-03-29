@@ -17,10 +17,13 @@ namespace CubeProject
 		[SerializeField] private MenuButton _menuButton;
 		[SerializeField] private PlayAgainButton _playAgainButton;
 		[SerializeField] private BackToMenu _backToMenu;
-		[SerializeField] private EndPoint _endPoint;
 
+		private EndPoint _endPoint;
 		private Action _unsubscribe;
 		private LevelLoader _levelLoader;
+
+		private void Awake() =>
+			_endPoint = FindObjectOfType<EndPoint>();
 
 		private void OnEnable()
 		{

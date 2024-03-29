@@ -44,6 +44,7 @@ namespace CubeProject.Game
 			}
 		}
 
+		#if UNITY_EDITOR
 		[Button] [ShowIf(nameof(CanLinkPortal))]
 		private void LinkPortal()
 		{
@@ -51,6 +52,7 @@ namespace CubeProject.Game
 			EditorUtility.SetDirty(this);
 			EditorUtility.SetDirty(_linkedPortal);
 		}
+		#endif
 
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)

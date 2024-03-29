@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using LeadTools.NaughtyAttributes;
@@ -130,3 +131,4 @@ namespace CubeProject.LeadTools.Utils
 		}
 	}
 }
+#endif

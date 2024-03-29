@@ -1,3 +1,4 @@
+using System;
 using CubeProject.Save.Data;
 using LeadTools.NaughtyAttributes;
 using LeadTools.SaveSystem;
@@ -47,23 +48,30 @@ namespace Source.Scripts.Game.Level
 				return;
 			}
 
+			Action loadScene;
+
 			if (index > _levels.Length - 1)
 			{
 				index = 0;
+				loadScene = () => MenuScene.Load<MenuState, LevelLoader>(_gameStateMachine, this);
+			}
+			else
+			{
+				loadScene = () => TypedScene<GameStateMachine>.LoadScene<PlayLevelState, LevelLoader>(
+					_levels[index],
+					LoadSceneMode.Single,
+					_gameStateMachine,
+					this);
 			}
 
 			_currentSceneIndex = index;
-
+			
 			if (_isDebug is false)
 			{
 				GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
 			}
 
-			TypedScene<GameStateMachine>.LoadScene<PlayLevelState, LevelLoader>(
-				_levels[index],
-				LoadSceneMode.Single,
-				_gameStateMachine,
-				this);
+			loadScene();
 		}
 	}
 }
