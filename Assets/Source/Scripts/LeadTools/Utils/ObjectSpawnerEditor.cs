@@ -13,27 +13,28 @@ namespace CubeProject.LeadTools.Utils
 		private const string PointName = "Point_";
         
 		private readonly List<Transform> _pointsPool = new List<Transform>();
-		
-		[SerializeField] private GameObject _objectPrefab;
-		[SerializeField] private Vector3 _objectRotation;
-		[SerializeField] private GameObject _parent;
-		[SerializeField] private GameObject _pointPrefab;
-		[SerializeField] [OnValueChanged(nameof(PointsChanged))] private Transform[] _points;
+
+		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] private PresetType _preset;
+		[SerializeField] [OnValueChanged(nameof(OnPointsChanged))] private Transform[] _points;
 
 		private List<GameObject> _spawnedObjects;
 		private bool _isSpawned;
+		private GameObject _parent;
 
 		private bool CanShowApplyButton => _isSpawned;
 
-		private bool CanShowSpawnButton => _objectPrefab != null && _points is {Length: >= 2} && _isSpawned == false;
+		private bool CanShowSpawnButton => _preset.Value.ObjectPrefab != null && _points is {Length: >= 2} && _isSpawned == false;
 
-		private void PointsChanged()
+		private void OnPresetChanged() =>
+			_parent = GameObject.Find(_preset.Value.ParentName);
+
+		private void OnPointsChanged()
 		{
 			for (int i = 0; i < _points.Length; i++)
 			{
 				if (_points[i] == null || _points[i].name != PointName + i)
 				{
-					var newPoint = (GameObject)PrefabUtility.InstantiatePrefab(_pointPrefab, SceneManager.GetActiveScene());
+					var newPoint = (GameObject)PrefabUtility.InstantiatePrefab(_preset.Value.PointPrefab, SceneManager.GetActiveScene());
 
 					newPoint.name = PointName + i;
 					newPoint.transform.position = Vector3.zero;
@@ -67,6 +68,7 @@ namespace CubeProject.LeadTools.Utils
 		private void Spawn()
 		{
 			_spawnedObjects = new List<GameObject>();
+			Vector3 previousPosition = Vector3.positiveInfinity;
 
 			for (int i = 0; i < _points.Length - 1; i++)
 			{
@@ -78,24 +80,31 @@ namespace CubeProject.LeadTools.Utils
 
 				while (currentPosition != endPoint)
 				{
-					InstantiateObject(currentPosition);
+					TryInstantiateObject(currentPosition);
 
 					currentPosition += direction.normalized;
 				}
 			
-				InstantiateObject(currentPosition);
+				TryInstantiateObject(currentPosition);
 			}
 
 			_isSpawned = true;
 
 			return;
 			
-			void InstantiateObject(Vector3 currentPosition)
+			void TryInstantiateObject(Vector3 currentPosition)
 			{
-				var spawnerObject = (GameObject)PrefabUtility.InstantiatePrefab(_objectPrefab, SceneManager.GetActiveScene());
+				if (currentPosition == previousPosition)
+				{
+					return;
+				}
+
+				previousPosition = currentPosition;
+				
+				var spawnerObject = (GameObject)PrefabUtility.InstantiatePrefab(_preset.Value.ObjectPrefab, SceneManager.GetActiveScene());
 
 				spawnerObject.transform.position = currentPosition;
-				spawnerObject.transform.rotation = Quaternion.Euler(_objectRotation);
+				spawnerObject.transform.rotation = Quaternion.Euler(_preset.Value.ObjectRotation);
 
 				if (_parent != null)
 				{
