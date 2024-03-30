@@ -9,14 +9,9 @@ namespace LeadTools.StateMachine
         private readonly TMachine _stateMachine;
         private readonly List<Subscription> _subscriptions = new List<Subscription>();
 
-        public TransitionInitializer(TMachine stateMachine, out Action subscribe, out Action unsubscribe)
-        {
-            subscribe = Subscribe;
-            unsubscribe = Unsubscribe;
-            
+        public TransitionInitializer(TMachine stateMachine) =>
             _stateMachine = stateMachine;
-        }
-        
+
         public void InitTransition<TTargetState>(ITransitSubject transitSubject, Action observer = null)
             where TTargetState : State<TMachine>
         {
@@ -32,7 +27,7 @@ namespace LeadTools.StateMachine
         public void InitTransition(ITransitSubject transitSubject, Action observer) =>
             _subscriptions.Add(new Subscription(transitSubject, observer));
 
-        private void Subscribe()
+        public void Subscribe()
         {
             if (_subscriptions == null)
             {
@@ -45,7 +40,7 @@ namespace LeadTools.StateMachine
             }
         }
 
-        private void Unsubscribe()
+        public void Unsubscribe()
         {
             if (_subscriptions == null)
             {

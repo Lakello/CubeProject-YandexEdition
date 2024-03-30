@@ -1,4 +1,4 @@
-using System;
+	using System;
 using CubeProject.UI;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
@@ -12,28 +12,34 @@ namespace CubeProject
 	public class MenuSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private StartButton _startButton;
-		[SerializeField] private LevelButtonSpawner _levelButtonSpawner;
+		[SerializeField] private LevelButtonFabric _levelButtonFabric;
 
-		private Action _unsubscribe;
+		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 
-		private void OnDisable() =>
-			_unsubscribe?.Invoke();
+		private void OnDisable()
+		{
+			if (_transitionInitializer != null)
+			{
+				_transitionInitializer.Unsubscribe();
+			}
+		}
+
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
-			_levelButtonSpawner.Init(levelLoader);
+			_levelButtonFabric.Init(levelLoader);
 			
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(machine.Window);
 
 			machine.EnterIn<TState>();
 
-			var transitionInitializer = new TransitionInitializer<GameStateMachine>(machine, out var subscribe, out _unsubscribe);
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
 
-			transitionInitializer.InitTransition(_startButton, levelLoader.LoadCurrentLevel);
+			_transitionInitializer.InitTransition(_startButton, levelLoader.LoadCurrentLevel);
 
-			subscribe?.Invoke();
+			_transitionInitializer.Subscribe();
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace CubeProject
 		[SerializeField] private BackToMenu _backToMenu;
 
 		private EndPoint _endPoint;
-		private Action _unsubscribe;
+		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
 
 		private void Awake() =>
@@ -33,7 +33,11 @@ namespace CubeProject
 		private void OnDisable()
 		{
 			_endPoint.LevelEnded -= OnLevelEnded;
-			_unsubscribe?.Invoke();
+
+			if (_transitionInitializer != null)
+			{
+				_transitionInitializer.Unsubscribe();
+			}
 		}
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
@@ -45,13 +49,13 @@ namespace CubeProject
 			windowInitializer.WindowsInit(machine.Window);
 			machine.EnterIn<TState>();
 
-			var transitionInitializer = new TransitionInitializer<GameStateMachine>(machine, out var subscribe, out _unsubscribe);
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
 
-			transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
-			transitionInitializer.InitTransition(_menuButton, LoadMenu);
-			transitionInitializer.InitTransition(_backToMenu, LoadMenu);
+			_transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
+			_transitionInitializer.InitTransition(_menuButton, LoadMenu);
+			_transitionInitializer.InitTransition(_backToMenu, LoadMenu);
 
-			subscribe?.Invoke();
+			_transitionInitializer.Subscribe();
 
 			return;
 

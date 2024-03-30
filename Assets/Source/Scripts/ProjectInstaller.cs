@@ -49,6 +49,7 @@ namespace CubeProject
 						[typeof(MenuWindowState)] = new MenuWindowState(),
 						[typeof(PlayLevelWindowState)] = new PlayLevelWindowState(),
 						[typeof(EndLevelWindowState)] = new EndLevelWindowState(),
+						[typeof(SelectLevelWindowState)] = new SelectLevelWindowState(),
 					});
 
 				gameStateMachine = new GameStateMachine(
@@ -58,6 +59,7 @@ namespace CubeProject
 						[typeof(MenuState)] = new MenuState(() => windowStateMachine.EnterIn<MenuWindowState>()),
 						[typeof(PlayLevelState)] = new PlayLevelState(() => windowStateMachine.EnterIn<PlayLevelWindowState>()),
 						[typeof(EndLevelState)] = new EndLevelState(() => windowStateMachine.EnterIn<EndLevelWindowState>()),
+						[typeof(SelectLevelState)] = new SelectLevelState(() => windowStateMachine.EnterIn<SelectLevelWindowState>())
 					});
 
 				descriptor.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));

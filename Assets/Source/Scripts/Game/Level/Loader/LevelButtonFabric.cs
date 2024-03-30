@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Game.Level
 {
-	public class LevelButtonSpawner : MonoBehaviour
+	public class LevelButtonFabric : MonoBehaviour
 	{
 		[SerializeField] private LevelButton _levelButtonPrefab;
 		[SerializeField] private RectTransform _content;
@@ -13,9 +13,9 @@ namespace Source.Scripts.Game.Level
 			_levelLoader = levelLoader;
 
 		private void Start() =>
-			SpawnButtons();
+			CreateButtons();
 
-		private void SpawnButtons()
+		private void CreateButtons()
 		{
 			for (int i = 0; i < _levelLoader.LevelsCount; i++)
 			{
