@@ -81,6 +81,7 @@ namespace CubeProject.LeadTools.Utils
 
 				while (currentPosition != endPoint)
 				{
+					
 					TryInstantiateObject(currentPosition);
 
 					currentPosition += direction.normalized;
