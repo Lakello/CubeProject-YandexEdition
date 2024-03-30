@@ -1,7 +1,10 @@
 using System;
+using Agava.YandexGames;
 using CubeProject.Game;
 using CubeProject.InputSystem;
+using CubeProject.Save.Data;
 using LeadTools.Extensions;
+using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
@@ -12,7 +15,7 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
+	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>, ITransitSubject
 	{
 		[SerializeField] private MenuButton _menuButton;
 		[SerializeField] private PlayAgainButton _playAgainButton;
@@ -21,28 +24,31 @@ namespace CubeProject
 		private EndPoint _endPoint;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
+		private GameStateMachine _gameStateMachine;
 
-		private void Awake() =>
-			_endPoint = FindObjectOfType<EndPoint>();
+		private EndPoint EndPoint => _endPoint ??= gameObject.FindObjectOfTypeElseThrow(out _endPoint);
 
-		private void OnEnable()
-		{
-			_endPoint.LevelEnded += OnLevelEnded;
-		}
+		public event Action StateTransiting;
 
 		private void OnDisable()
 		{
-			_endPoint.LevelEnded -= OnLevelEnded;
-
 			if (_transitionInitializer != null)
 			{
 				_transitionInitializer.Unsubscribe();
+			}
+
+			if (_gameStateMachine != null)
+			{
+				_gameStateMachine.UnSubscribeTo<EndLevelState>(OnLevelEnded);
 			}
 		}
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
+			_gameStateMachine = machine;
+			_gameStateMachine.SubscribeTo<EndLevelState>(OnLevelEnded);
+			
 			_levelLoader = levelLoader;
 			
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
@@ -54,21 +60,32 @@ namespace CubeProject
 			_transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
 			_transitionInitializer.InitTransition(_menuButton, LoadMenu);
 			_transitionInitializer.InitTransition(_backToMenu, LoadMenu);
+			_transitionInitializer.InitTransition<EndLevelState>(EndPoint);
 
 			_transitionInitializer.Subscribe();
 
 			return;
 
 			void LoadMenu() =>
-				MenuScene.Load<MenuState>(machine);
+				MenuScene.Load<MenuState<MenuWindowState>>(machine);
 			
 			void ReloadGame() =>
 				GameScene.Load<PlayLevelState>(machine);
 		}
-		
-		private void OnLevelEnded()
+
+		private void OnLevelEnded(bool isEntered)
 		{
-			_levelLoader.LoadNextLevel();
+			if (isEntered == false)
+			{
+				return;
+			}
+
+			if (GameDataSaver.Instance.Get<CurrentLevel>().Value + 1 >= _levelLoader.LevelsCount)
+			{
+				GameDataSaver.Instance.Set(new CurrentLevel(0));
+				
+				MenuScene.Load<MenuState<SelectLevelWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
+			}
 		}
 	}
 }

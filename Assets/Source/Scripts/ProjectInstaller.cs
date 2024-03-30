@@ -50,16 +50,21 @@ namespace CubeProject
 						[typeof(PlayLevelWindowState)] = new PlayLevelWindowState(),
 						[typeof(EndLevelWindowState)] = new EndLevelWindowState(),
 						[typeof(SelectLevelWindowState)] = new SelectLevelWindowState(),
+						[typeof(LeaderboardWindowState)] = new LeaderboardWindowState(),
 					});
 
 				gameStateMachine = new GameStateMachine(
 					windowStateMachine,
 					() => new Dictionary<Type, State<GameStateMachine>>
 					{
-						[typeof(MenuState)] = new MenuState(() => windowStateMachine.EnterIn<MenuWindowState>()),
+						[typeof(MenuState<SelectLevelWindowState>)] = new MenuState<SelectLevelWindowState>(
+							() => windowStateMachine.EnterIn<SelectLevelWindowState>()),
+						[typeof(MenuState<LeaderboardWindowState>)] = new MenuState<LeaderboardWindowState>(
+							() => windowStateMachine.EnterIn<LeaderboardWindowState>()),
+						[typeof(MenuState<MenuWindowState>)] = new MenuState<MenuWindowState>(
+							() => windowStateMachine.EnterIn<MenuWindowState>()),
 						[typeof(PlayLevelState)] = new PlayLevelState(() => windowStateMachine.EnterIn<PlayLevelWindowState>()),
 						[typeof(EndLevelState)] = new EndLevelState(() => windowStateMachine.EnterIn<EndLevelWindowState>()),
-						[typeof(SelectLevelState)] = new SelectLevelState(() => windowStateMachine.EnterIn<SelectLevelWindowState>())
 					});
 
 				descriptor.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));

@@ -26,7 +26,7 @@ namespace CubeProject
 			_callBack?.Invoke();
 #endif
 
-			MenuScene.Load<MenuState, LevelLoader>(_gameStateMachine, _levelLoader);
+			MenuScene.Load<MenuState<MenuWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
 
 			yield return null;
 		}

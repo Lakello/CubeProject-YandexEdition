@@ -38,7 +38,7 @@ namespace LeadTools.StateMachine
 			DoWith<TState>((state) => state.StateChanged -= observer);
 
 		protected State<TMachine> TryGetState(Type stateType) =>
-			_states.TryGetValue(stateType, out var state) ? state : null;
+			_states.GetValueOrDefault(stateType);
 
 		private void DoWith<TState>(Action<State<TMachine>> action)
 			where TState : State<TMachine>

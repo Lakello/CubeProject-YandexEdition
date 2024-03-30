@@ -12,6 +12,19 @@ namespace LeadTools.Extensions
 			return origin;
 		}
 
+		public static T FindObjectOfTypeElseThrow<T>(this GameObject origin, out T component)
+			where T : UnityEngine.Object
+		{
+			component = UnityEngine.Object.FindObjectOfType<T>();
+
+			if (component == null)
+			{
+				Debug.LogException(new NullReferenceException(), origin);
+			}
+
+			return component;
+		}
+		
 		public static T GetComponentElseThrow<T>(this GameObject origin) =>
 			GetComponentElseThrow(origin, out T _);
 

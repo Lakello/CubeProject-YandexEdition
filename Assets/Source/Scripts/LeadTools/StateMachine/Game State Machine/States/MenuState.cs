@@ -2,7 +2,8 @@ using System;
 
 namespace LeadTools.StateMachine.States
 {
-	public class MenuState : GameState
+	public class MenuState<TWindowState> : GameState
+		where TWindowState : WindowState
 	{
 		public MenuState(Action enterInWindowState) : base(enterInWindowState)
 		{

@@ -48,20 +48,9 @@ namespace Source.Scripts.Game.Level
 				return;
 			}
 
-			Action loadScene;
-
 			if (index > _levels.Length - 1)
 			{
 				index = 0;
-				loadScene = () => MenuScene.Load<MenuState, LevelLoader>(_gameStateMachine, this);
-			}
-			else
-			{
-				loadScene = () => TypedScene<GameStateMachine>.LoadScene<PlayLevelState, LevelLoader>(
-					_levels[index],
-					LoadSceneMode.Single,
-					_gameStateMachine,
-					this);
 			}
 
 			_currentSceneIndex = index;
@@ -71,7 +60,11 @@ namespace Source.Scripts.Game.Level
 				GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
 			}
 
-			loadScene();
+			TypedScene<GameStateMachine>.LoadScene<PlayLevelState, LevelLoader>(
+				_levels[index],
+				LoadSceneMode.Single,
+				_gameStateMachine,
+				this);
 		}
 	}
 }
