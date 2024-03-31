@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2379401782450471870}
   - component: {fileID: 2000956645141393298}
   - component: {fileID: 8038678656538195210}
+  - component: {fileID: 2504426539480671758}
   m_Layer: 10
   m_Name: Power_Station
   m_TagString: Untagged
@@ -105,6 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2504426539480671758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100349048613361465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b41650a8cc43adb39b10b4ed83d55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enteredPositionY: 0.216
+  _animationDuration: 0.2
+  _buttonObject: {fileID: 6868562933044310590}
 --- !u!1001 &5502414013789416081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +192,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c0b88731dcc43394599bef48aa483e8a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373186655418701999, guid: c0b88731dcc43394599bef48aa483e8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5721537177813197816, guid: c0b88731dcc43394599bef48aa483e8a, type: 3}
       propertyPath: m_Layer
@@ -255,5 +275,10 @@ Transform:
 --- !u!23 &5746893764314186878 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 260523827150614255, guid: c0b88731dcc43394599bef48aa483e8a, type: 3}
+  m_PrefabInstance: {fileID: 5502414013789416081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6868562933044310590 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1373186655418701999, guid: c0b88731dcc43394599bef48aa483e8a, type: 3}
   m_PrefabInstance: {fileID: 5502414013789416081}
   m_PrefabAsset: {fileID: 0}

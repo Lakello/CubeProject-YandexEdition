@@ -1,3 +1,4 @@
+using System;
 using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace CubeProject.Game
 
 		private ChargeHolder _selfChargeHolder;
 
+		public event Action Entered;
+
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _selfChargeHolder);
@@ -21,6 +24,7 @@ namespace CubeProject.Game
 		{
 			if (other.TryGetComponent(out Cube cube))
 			{
+				Entered?.Invoke();
 				OnTryUsing(cube);
 			}
 		}
