@@ -167,7 +167,7 @@ Material:
     - _EdgeColor: {r: 766.9961, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnergyColor: {r: 8.574187, g: 7.9061522, b: 0, a: 1}
-    - _HeartColor: {r: 1024, g: 0, b: 599.96436, a: 1}
+    - _HeartColor: {r: 1367.1202, g: 0, b: 801.6624, a: 1}
     - _LightColor: {r: 0, g: 116.35761, b: 274.37415, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

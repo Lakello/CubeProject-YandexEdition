@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -35,7 +34,7 @@ namespace CubeProject.Game
 			{
 				return;
 			}
-			
+
 			if (selfIsCharged && _canGiveCharge)
 			{
 				_selfChargeHolder.GivePowerTo(cube.ServiceHolder.ChargeHolder);

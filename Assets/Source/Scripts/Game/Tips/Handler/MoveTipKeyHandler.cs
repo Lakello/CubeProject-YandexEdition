@@ -24,10 +24,13 @@ namespace CubeProject.Tips
 			_service.StepEnded -= OnStepEnded;
 		}
 
+		private void OnStepStarted() =>
+			HandleStep(_service.CurrentDirection);
+		
 		private void OnStepEnded() =>
-			OnStepStarted(Vector3.zero);
+			HandleStep(Vector3.zero);
 
-		private void OnStepStarted(Vector3 direction)
+		private void HandleStep(Vector3 direction)
 		{
 			var tipKeyDirection = TipKey.Data.Direction;
 

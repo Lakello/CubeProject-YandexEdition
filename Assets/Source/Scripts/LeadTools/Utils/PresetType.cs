@@ -8,7 +8,7 @@ namespace CubeProject.LeadTools.Utils
 	public class PresetType
 	{
 		[SerializeField] [Dropdown(nameof(GetPresets))] private ObjectSpawnerPreset _value;
-
+		
 		public ObjectSpawnerPreset Value => _value;
 		
 		private DropdownList<ObjectSpawnerPreset> GetPresets()

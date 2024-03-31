@@ -8,7 +8,7 @@ namespace CubeProject.PlayableCube
 	public class CubeView : MonoBehaviour
 	{
 		private const string HeartColorProperty = "_HeartColor";
-		private const string EnergyColorProperty = "_EnergyProperty";
+		private const string EnergyColorProperty = "_EnergyColor";
 
 		[SerializeField] private HDRColorChanger _energyColorChanger;
 		[SerializeField] private HDRColorChanger _heartColorChanger;
@@ -28,6 +28,7 @@ namespace CubeProject.PlayableCube
 			_chargeHolder.ChargeChanged += _energyColorChanger.ChangeColor;
 			_chargeHolder.ChargeChanged += _heartColorChanger.ChangeColor;
 			_energyColorChanger.ChangeColor();
+			_heartColorChanger.ChangeColor();
 		}
 
 		private void OnDisable()

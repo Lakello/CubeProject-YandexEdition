@@ -26,7 +26,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		public event Action StepEnded;
 
-		public event Action<Vector3> StepStarted;
+		public event Action StepStarted;
 
 		public Vector3 CurrentDirection { get; private set; }
 
@@ -102,7 +102,7 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			CurrentDirection = direction;
 			
-			StepStarted?.Invoke(direction);
+			StepStarted?.Invoke();
 
 			yield return StartCoroutine(_roll.Move(
 				transform,
