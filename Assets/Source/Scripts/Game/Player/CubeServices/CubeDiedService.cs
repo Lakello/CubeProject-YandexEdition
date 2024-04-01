@@ -2,6 +2,7 @@ using CubeProject.Game;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
+using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
@@ -17,8 +18,8 @@ namespace CubeProject.PlayableCube
 		[SerializeField] private Vector3 _offset = new Vector3(0, 0.5f, 0);
 
 		private Cube _cube;
-		private CheckPointHolder _checkPointHolder;
 		private CubeDiedView _cubeDiedView;
+		private SpawnPoint _spawnPoint;
 		private TargetCameraHolder _targetCameraHolder;
 
 		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.ServiceHolder.StateMachine;
@@ -26,10 +27,10 @@ namespace CubeProject.PlayableCube
 		private CubeFallService CubeFallService => _cube.ServiceHolder.FallService;
 
 		[Inject]
-		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder)
+		private void Inject(SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)
 		{
 			_targetCameraHolder = targetCameraHolder;
-			_checkPointHolder = checkPointHolder;
+			_spawnPoint = spawnPoint;
 		}
 
 		private void Awake()
@@ -57,7 +58,7 @@ namespace CubeProject.PlayableCube
 
 		private void DissolveVisible()
 		{
-			_cube.transform.position = ((MonoBehaviour)_checkPointHolder.CurrentCheckPoint).transform.position + _offset;
+			_cube.transform.position = _spawnPoint.transform.position + _offset;
 
 			_targetCameraHolder.SetTarget();
 

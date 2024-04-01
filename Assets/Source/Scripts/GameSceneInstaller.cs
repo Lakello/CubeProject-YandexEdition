@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Cinemachine;
-using CubeProject.Game;
 using CubeProject.InputSystem;
 using CubeProject.PlayableCube;
 using CubeProject.Tips;
-using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Core;
 using Source.Scripts.Game;
@@ -21,13 +19,12 @@ namespace CubeProject
 	{
 		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
-		[SerializeField] private CheckPointHolder _checkPointHolder;
 		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private bool _isMobileTest;
 
 		private SpawnPoint _spawnPoint;
 		private Action _disable;
-		
+
 		private void OnDisable() =>
 			_disable?.Invoke();
 
@@ -38,28 +35,27 @@ namespace CubeProject
 			CubeStateMachine cubeStateMachine;
 
 			_spawnPoint = FindObjectOfType<SpawnPoint>();
-			
+
 			InitCube();
-			
+
 			InitInput();
-			
+
 			descriptor.AddSingleton(cube);
 			
-			_checkPointHolder.Init(_spawnPoint);
-			descriptor.AddSingleton(_checkPointHolder);
-
+			descriptor.AddSingleton(_spawnPoint);
+			
 			descriptor.AddSingleton(_virtualCamera);
 
 			descriptor.AddSingleton(new PushStateHandler(cube));
 
 			descriptor.AddSingleton(_maskHolder);
-			
+
 			descriptor.AddSingleton(new TargetCameraHolder(
 				this,
 				_virtualCamera,
 				playerInstance.Cube.transform,
 				playerInstance.Follower));
-			
+
 			return;
 
 			void InitCube()
@@ -79,32 +75,32 @@ namespace CubeProject
 						[typeof(PushState)] = new PushState(),
 						[typeof(TeleportState)] = new TeleportState(),
 					});
-				
+
 				cube = playerInstance.Cube;
 				cube.ServiceHolder.Init(cubeStateMachine);
-				
+
 				cubeStateMachine.EnterIn<ControlState>();
 			}
-			
+
 			void InitInput()
 			{
 				var playerInput = new PlayerInput();
 
 				playerInput.Enable();
 				_disable += () => playerInput.Disable();
-				
+
 				IInputService inputService;
 
-                if (Application.isMobilePlatform || _isMobileTest)
+				if (Application.isMobilePlatform || _isMobileTest)
 				{
-					inputService = gameObject.AddComponent<MobileInputService>();					
+					inputService = gameObject.AddComponent<MobileInputService>();
 				}
 				else
 				{
-                    inputService = gameObject.AddComponent<DesktopInputService>();
-                }
-				
-				inputService.Init(playerInput, cubeStateMachine);				
+					inputService = gameObject.AddComponent<DesktopInputService>();
+				}
+
+				inputService.Init(playerInput, cubeStateMachine);
 
 				descriptor.AddSingleton(inputService, typeof(IInputService));
 			}
