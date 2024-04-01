@@ -31,7 +31,8 @@ namespace CubeProject.Game
 				{
 					if (_scaleTweener == null)
 					{
-						_scaleTweener = transform.DOScale(endValueScale, _scaleSpeed).SetEase(_scaleCurve).SetLoops(-1, LoopType.Restart);
+						_scaleTweener = transform
+							.DOScale(endValueScale, _scaleSpeed).SetEase(_scaleCurve).SetLoops(-1, LoopType.Restart);
 					}
 					else
 					{
