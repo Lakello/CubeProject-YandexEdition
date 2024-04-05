@@ -7,7 +7,7 @@ namespace CubeProject.Game
 {
 	public class PortalColorPlane : MonoBehaviour
 	{
-		private const string ColorProperty = "_MainColor";
+		private const string ColorProperty = "_Color";
 
 		private ChargeConsumer _chargeConsumer;
 		private MeshRenderer _selfMeshRenderer;
@@ -35,6 +35,7 @@ namespace CubeProject.Game
 		private void OnEnable()
 		{
 			_chargeConsumer.ChargeChanged += OnChargeChanged;
+			OnChargeChanged();
 		}
 
 		private void OnDisable()

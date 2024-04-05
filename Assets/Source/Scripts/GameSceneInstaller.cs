@@ -42,6 +42,7 @@ namespace CubeProject
 
 			InitInput();
 
+			_portalColorData.ResetColorIndex();
 			descriptor.AddSingleton(_portalColorData);
 			
 			descriptor.AddSingleton(cube);

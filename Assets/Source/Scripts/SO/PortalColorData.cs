@@ -16,6 +16,11 @@ namespace CubeProject.SO
 
 		public float InactiveAlpha => _inactiveAlpha;
 
+		public void ResetColorIndex()
+		{
+			_currentColorIndex = 0;
+		}
+
 		public Color GetColor()
 		{
 			Debug.Log($"Index = {_currentColorIndex}");

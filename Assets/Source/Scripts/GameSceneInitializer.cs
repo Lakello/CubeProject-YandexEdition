@@ -55,7 +55,7 @@ namespace CubeProject
 
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
 
-			_transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
+			//_transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
 			_transitionInitializer.InitTransition(_menuButton, LoadMenu);
 			_transitionInitializer.InitTransition(_backToMenu, LoadMenu);
 			_transitionInitializer.InitTransition<EndLevelState>(EndPoint);
@@ -67,8 +67,8 @@ namespace CubeProject
 			void LoadMenu() =>
 				MenuScene.Load<MenuState<MenuWindowState>>(machine);
 			
-			void ReloadGame() =>
-				GameScene.Load<PlayLevelState>(machine);
+			// void ReloadGame() =>
+			// 	GameScene.Load<PlayLevelState>(machine);
 		}
 
 		private void OnLevelEnded(bool isEntered)
