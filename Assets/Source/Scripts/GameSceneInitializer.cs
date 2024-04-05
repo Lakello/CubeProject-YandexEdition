@@ -15,7 +15,7 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>, ITransitSubject
+	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private MenuButton _menuButton;
 		[SerializeField] private PlayAgainButton _playAgainButton;
@@ -27,8 +27,6 @@ namespace CubeProject
 		private GameStateMachine _gameStateMachine;
 
 		private EndPoint EndPoint => _endPoint ??= gameObject.FindObjectOfTypeElseThrow(out _endPoint);
-
-		public event Action StateTransiting;
 
 		private void OnDisable()
 		{

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7682878966037621185}
   - component: {fileID: 1597196459091692468}
   - component: {fileID: 1021379464890366739}
-  - component: {fileID: 8955902948500867038}
   m_Layer: 0
   m_Name: === Scene Scope ===
   m_TagString: Untagged
@@ -66,7 +65,6 @@ MonoBehaviour:
   _menuButton: {fileID: 8467853958708231605}
   _playAgainButton: {fileID: 5533379363898686160}
   _backToMenu: {fileID: 1021379464890366739}
-  _endPoint: {fileID: 0}
 --- !u!114 &7682878966037621185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,10 +100,9 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
   _virtualCamera: {fileID: 4205594948549121798}
-  _checkPointHolder: {fileID: 8955902948500867038}
-  _spawnPoint: {fileID: 0}
   _playerPrefab: {fileID: 4113640902855593495, guid: a1369558805586b4d8a9bf20cae0f40f, type: 3}
   _isMobileTest: 0
+  _portalColorData: {fileID: 11400000, guid: 192630a8537cf3743af7b543462fa419, type: 2}
 --- !u!114 &1021379464890366739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,18 +113,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2ad4aa1db3143bfadcac851e7a57b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8955902948500867038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6231096041998203697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6faa7ced464c45b8a79876f1bfda68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2974227043879324701

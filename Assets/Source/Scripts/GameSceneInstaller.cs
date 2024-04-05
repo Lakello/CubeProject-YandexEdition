@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using CubeProject.InputSystem;
 using CubeProject.PlayableCube;
+using CubeProject.SO;
 using CubeProject.Tips;
 using LeadTools.StateMachine;
 using Reflex.Core;
@@ -21,6 +22,7 @@ namespace CubeProject
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private bool _isMobileTest;
+		[SerializeField] private PortalColorData _portalColorData;
 
 		private SpawnPoint _spawnPoint;
 		private Action _disable;
@@ -40,6 +42,8 @@ namespace CubeProject
 
 			InitInput();
 
+			descriptor.AddSingleton(_portalColorData);
+			
 			descriptor.AddSingleton(cube);
 			
 			descriptor.AddSingleton(_spawnPoint);
