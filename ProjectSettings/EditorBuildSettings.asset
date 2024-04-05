@@ -77,8 +77,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_Template.unity
     guid: 1ec6af8d7a6fa8a498ce2b52da7b0f82
-  - enabled: 1
-    path: Assets/Hovl Studio/Auras pack/Demo scene/Auras_demo_scene.unity
-    guid: d2e6c306be83676498da430628f79890
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2caa60e61f044dc498353a3469fa881c, type: 2}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57fef30833cb4b01a305c6f1e63904f1, type: 3}
-  m_Name: Wall_2
+  m_Name: Wall_1x1 -- Ground 90
   m_EditorClassIdentifier: 
   _objectPrefab: {fileID: 4899586593171177602, guid: 049059960531ee94fa3e26ad1a7188ed, type: 3}
   _objectRotation: {x: 0, y: 90, z: 0}
