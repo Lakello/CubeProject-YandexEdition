@@ -11,6 +11,6 @@ namespace LeadTools.StateMachine
 			StateChanged?.Invoke(true);
 
 		public virtual void Exit() =>
-			StateChanged?.Invoke(true);
+			StateChanged?.Invoke(false);
 	}
 }

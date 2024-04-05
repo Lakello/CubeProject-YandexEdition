@@ -43,6 +43,7 @@ namespace Source.Scripts.Game.Level
 
 		public void LoadLevelAtIndex(int index)
 		{
+			Debug.Log($"LOAD LEVEL = {_currentSceneIndex}");
 			if (index < 0)
 			{
 				return;

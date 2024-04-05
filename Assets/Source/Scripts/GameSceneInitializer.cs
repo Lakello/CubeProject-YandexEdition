@@ -1,5 +1,3 @@
-using System;
-using Agava.YandexGames;
 using CubeProject.Game;
 using CubeProject.InputSystem;
 using CubeProject.Save.Data;
@@ -9,7 +7,6 @@ using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
 using Source.Scripts.Game.Level;
-using Source.Scripts.UI.Buttons;
 using UnityEngine;
 
 namespace CubeProject
@@ -17,8 +14,6 @@ namespace CubeProject
 	[RequireComponent(typeof(WindowInitializer))]
 	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
-		[SerializeField] private MenuButton _menuButton;
-		[SerializeField] private PlayAgainButton _playAgainButton;
 		[SerializeField] private BackToMenu _backToMenu;
 
 		private EndPoint _endPoint;
@@ -46,17 +41,15 @@ namespace CubeProject
 		{
 			_gameStateMachine = machine;
 			_gameStateMachine.SubscribeTo<EndLevelState>(OnLevelEnded);
-			
+
 			_levelLoader = levelLoader;
-			
+
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(machine.Window);
 			machine.EnterIn<TState>();
 
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
 
-			//_transitionInitializer.InitTransition(_playAgainButton, ReloadGame);
-			_transitionInitializer.InitTransition(_menuButton, LoadMenu);
 			_transitionInitializer.InitTransition(_backToMenu, LoadMenu);
 			_transitionInitializer.InitTransition<EndLevelState>(EndPoint);
 
@@ -66,9 +59,6 @@ namespace CubeProject
 
 			void LoadMenu() =>
 				MenuScene.Load<MenuState<MenuWindowState>>(machine);
-			
-			// void ReloadGame() =>
-			// 	GameScene.Load<PlayLevelState>(machine);
 		}
 
 		private void OnLevelEnded(bool isEntered)
@@ -81,8 +71,12 @@ namespace CubeProject
 			if (GameDataSaver.Instance.Get<CurrentLevel>().Value + 1 >= _levelLoader.LevelsCount)
 			{
 				GameDataSaver.Instance.Set(new CurrentLevel(0));
-				
+
 				MenuScene.Load<MenuState<SelectLevelWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
+			}
+			else
+			{
+				_levelLoader.LoadNextLevel();
 			}
 		}
 	}

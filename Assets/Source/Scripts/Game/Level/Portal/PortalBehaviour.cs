@@ -32,6 +32,8 @@ namespace CubeProject.Game
 		
 		public event Action Pushing;
 
+		public PortalBehaviour LinkedPortal => _linkedPortal;
+		
 		private bool CanLinkPortal =>
 			_linkedPortal is not null
 			&& _linkedPortal._linkedPortal is null;

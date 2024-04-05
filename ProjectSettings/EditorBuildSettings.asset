@@ -69,13 +69,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Levels_Aleksey/Level_50.unity
     guid: d42eeb0dfab8f9349bc65745f7491edd
   - enabled: 1
-    path: Assets/Demigiant/DOTweenPro Examples/DOTweenPath.unity
+    path: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenPath.unity
     guid: a351b59ca54a0bc4083c35844da13a61
   - enabled: 1
-    path: Assets/Demigiant/DOTweenPro Examples/DOTweenAnimation_Advanced.unity
+    path: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_Advanced.unity
     guid: a5f7a56d339da84449899ecf95fbe33d
   - enabled: 1
     path: Assets/Scenes/Level_Template.unity
     guid: 1ec6af8d7a6fa8a498ce2b52da7b0f82
+  - enabled: 1
+    path: Assets/Plugins/Demigiant/DOTweenPro Examples/DOTweenAnimation_Basics.unity
+    guid: 6a2ad353325ffe64983c28d69a8738f5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2caa60e61f044dc498353a3469fa881c, type: 2}

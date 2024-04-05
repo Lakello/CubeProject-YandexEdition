@@ -13,6 +13,8 @@ namespace LeadTools.StateMachine
 		protected StateMachine(Func<Dictionary<Type, State<TMachine>>> getStates) =>
 			_states = getStates();
 
+		public event Action StateChanged;
+
 		public Type CurrentState => _currentState.GetType();
 
 		public void Dispose() =>
@@ -26,6 +28,8 @@ namespace LeadTools.StateMachine
 				_currentState?.Exit();
 				_currentState = state;
 				_currentState.Enter();
+				
+				StateChanged?.Invoke();
 			});
 		}
 

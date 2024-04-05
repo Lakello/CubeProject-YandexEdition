@@ -1,0 +1,10 @@
+namespace LeadTools.Other
+{
+	public enum ShaderProperty
+	{
+		_Color,
+		_EmissionColor,
+		_Fresnel_Power,
+		_Displacement_Amount,
+	}
+}

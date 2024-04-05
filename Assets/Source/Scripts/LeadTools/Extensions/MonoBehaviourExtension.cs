@@ -95,6 +95,28 @@ namespace LeadTools.Extensions
 
 			endCallback?.Invoke();
 		}
+		
+		public static Coroutine PlaySmoothChangeValueWhileCondition(
+			this MonoBehaviour context,
+			Action lerp,
+			bool condition,
+			Action endCallback = null,
+			Action startCallback = null) =>
+			context.StartCoroutine(SmoothChangeValue(lerp, condition, endCallback, startCallback));
+
+		private static IEnumerator SmoothChangeValue(Action lerp, bool condition, Action endCallback, Action startCallback)
+		{
+			startCallback?.Invoke();
+
+			while (condition)
+			{
+				lerp();
+
+				yield return new WaitForFixedUpdate();
+			}
+
+			endCallback?.Invoke();
+		}
 
 		private static IEnumerator Wait(Coroutine routine, Action endCallback)
 		{
