@@ -60,8 +60,8 @@ namespace CubeProject.Game
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
 			_cube = cube;
-			_cubeMoveService = _cube.ServiceHolder.MoveService;
-			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
+			_cubeMoveService = _cube.Component.MoveService;
+			_cubeStateMachine = _cube.Component.StateMachine;
 
 			_teleporter = new Teleporter(this, cube, transform, _targetPoint, () => Pushing?.Invoke(), _teleporterData);
 		}

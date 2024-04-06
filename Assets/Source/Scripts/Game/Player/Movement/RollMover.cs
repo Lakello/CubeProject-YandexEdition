@@ -6,14 +6,18 @@ namespace CubeProject.PlayableCube.Movement
 {
 	public class RollMover
 	{
-		private readonly AudioSource _audioSource;
-
+		private readonly float _rollSpeed;
+		private readonly Transform _targetTransform;
+		
 		private float _currentAngle;
 
-		public RollMover(AudioSource source) =>
-			_audioSource = source;
+		public RollMover(float rollSpeed, Transform targetTransform)
+		{
+			_rollSpeed = rollSpeed;
+			_targetTransform = targetTransform;
+		}
 
-		public IEnumerator Move(Transform origin, Vector3 direction, Func<float> getSpeed, Action endCallback = null)
+		public IEnumerator Move(Vector3 direction, Action endCallback = null)
 		{
 			const float rollAngle = 90f;
 
@@ -22,11 +26,11 @@ namespace CubeProject.PlayableCube.Movement
 				_currentAngle = 0f;
 			}
 
-			var (anchor, axis) = GetRotateData(origin, direction);
+			var (anchor, axis) = GetRotateData(_targetTransform, direction);
 
 			while (_currentAngle < rollAngle)
 			{
-				var angle = getSpeed();
+				var angle = _rollSpeed;
 
 				if ((_currentAngle + angle) > rollAngle)
 				{
@@ -38,17 +42,15 @@ namespace CubeProject.PlayableCube.Movement
 					_currentAngle += angle;
 				}
 
-				origin.RotateAround(anchor, axis, angle);
+				_targetTransform.RotateAround(anchor, axis, angle);
 
 				yield return new WaitForFixedUpdate();
 			}
 
 			if (_currentAngle is < rollAngle or > rollAngle)
 			{
-				origin.RotateAround(anchor, axis, rollAngle - _currentAngle);
+				_targetTransform.RotateAround(anchor, axis, rollAngle - _currentAngle);
 			}
-
-			_audioSource.Play();
 
 			endCallback?.Invoke();
 		}

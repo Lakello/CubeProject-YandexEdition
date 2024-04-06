@@ -29,8 +29,8 @@ namespace CubeProject.PlayableCube
 		{
 			_mono = mono;
 			_cube = cube;
-			_became = _cube.ServiceHolder.BecameVisibleService;
-			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
+			_became = _cube.Component.BecameVisibleService;
+			_cubeStateMachine = _cube.Component.StateMachine;
 			_origin = origin;
 			_groundChecker = groundChecker;
 

@@ -3,7 +3,6 @@ using System.Collections;
 using CubeProject.InputSystem;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
-using Reflex.Attributes;
 using Source.Scripts.Game;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
@@ -11,18 +10,15 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube.Movement
 {
-	public class CubeMoveService : MonoBehaviour
+	public class CubeMoveService : IDisposable
 	{
-		[SerializeField] private float _rollSpeed;
-		[SerializeField] private AudioSource _audioSourceMove;
-
 		private RollMover _roll;
 		private BoxCollider _cubeCollider;
 		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Coroutine _moveCoroutine;
-		private bool _isBrake;
 		private IInputService _inputService;
 		private LayerMask _wallMask;
+		private MonoBehaviour _mono;
 
 		public event Action StepEnded;
 
@@ -30,26 +26,29 @@ namespace CubeProject.PlayableCube.Movement
 
 		public Vector3 CurrentDirection { get; private set; }
 
-		[Inject]
-		private void Inject(Cube cube, IInputService inputService, MaskHolder maskHolder)
+		public CubeMoveService(
+			IStateMachine<CubeStateMachine> stateMachine,
+			Transform cubeTransform,
+			IInputService inputService,
+			MaskHolder maskHolder,
+			float rollSpeed,
+			BoxCollider cubeCollider,
+			MonoBehaviour mono)
 		{
 			_wallMask = maskHolder.WallMask;
-			
-			_cubeStateMachine = cube.ServiceHolder.StateMachine;
-			
+			_cubeStateMachine = stateMachine;
 			_inputService = inputService;
+			_cubeCollider = cubeCollider;
+			_mono = mono;
+			_roll = new RollMover(rollSpeed, cubeTransform);
 
 			_inputService.Moving += OnMoving;
 		}
 
-		private void Awake()
+		public void Dispose()
 		{
-			gameObject.GetComponentElseThrow(out _cubeCollider);
-			_roll = new RollMover(_audioSourceMove);
-		}
-
-		private void OnDisable() =>
 			_inputService.Moving -= OnMoving;
+		}
 
 		public void Push(Vector3 direction)
 		{
@@ -65,7 +64,7 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			if (_moveCoroutine != null)
 			{
-				this.WaitRoutine(_moveCoroutine, endCallback);
+				_mono.WaitRoutine(_moveCoroutine, endCallback);
 			}
 			else
 			{
@@ -95,7 +94,7 @@ namespace CubeProject.PlayableCube.Movement
 				return;
 			}
 
-			_moveCoroutine = StartCoroutine(Move(direction));
+			_moveCoroutine = _mono.StartCoroutine(Move(direction));
 		}
 
 		private IEnumerator Move(Vector3 direction)
@@ -104,10 +103,8 @@ namespace CubeProject.PlayableCube.Movement
 			
 			StepStarted?.Invoke();
 
-			yield return StartCoroutine(_roll.Move(
-				transform,
+			yield return _mono.StartCoroutine(_roll.Move(
 				direction,
-				() => _rollSpeed,
 				() => StepEnded?.Invoke()));
 
 			_moveCoroutine = null;
@@ -115,6 +112,7 @@ namespace CubeProject.PlayableCube.Movement
 
 		private bool CanMove(Vector3 direction)
 		{
+			Vector3 halfExtentsOffset = new Vector3(0.01f, 0.01f, 0.01f);
 			RaycastHit[] results = new RaycastHit[1];
 
 			var bounds = _cubeCollider.bounds;
@@ -122,7 +120,7 @@ namespace CubeProject.PlayableCube.Movement
 
 			var hitCount = Physics.BoxCastNonAlloc(
 				bounds.center,
-				bounds.extents - new Vector3(0.01f, 0.01f, 0.01f),
+				bounds.extents - halfExtentsOffset,
 				direction,
 				results,
 				Quaternion.identity,

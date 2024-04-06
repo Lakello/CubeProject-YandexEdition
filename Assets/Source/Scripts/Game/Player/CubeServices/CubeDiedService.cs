@@ -22,9 +22,9 @@ namespace CubeProject.PlayableCube
 		private SpawnPoint _spawnPoint;
 		private TargetCameraHolder _targetCameraHolder;
 
-		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.ServiceHolder.StateMachine;
+		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.Component.StateMachine;
 
-		private CubeFallService CubeFallService => _cube.ServiceHolder.FallService;
+		private CubeFallService CubeFallService => _cube.Component.FallService;
 
 		[Inject]
 		private void Inject(SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)

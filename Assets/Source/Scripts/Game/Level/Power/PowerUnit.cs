@@ -31,7 +31,7 @@ namespace CubeProject.Game
 
 		private void OnTryUsing(Cube cube)
 		{
-			var cubeIsCharged = cube.ServiceHolder.ChargeHolder.IsCharged;
+			var cubeIsCharged = cube.Component.ChargeHolder.IsCharged;
 			var selfIsCharged = _selfChargeHolder.IsCharged;
 
 			if (selfIsCharged && cubeIsCharged)
@@ -41,11 +41,11 @@ namespace CubeProject.Game
 
 			if (selfIsCharged && _canGiveCharge)
 			{
-				_selfChargeHolder.GivePowerTo(cube.ServiceHolder.ChargeHolder);
+				_selfChargeHolder.GivePowerTo(cube.Component.ChargeHolder);
 			}
 			else if (cubeIsCharged && _canGetCharge)
 			{
-				cube.ServiceHolder.ChargeHolder.GivePowerTo(_selfChargeHolder);
+				cube.Component.ChargeHolder.GivePowerTo(_selfChargeHolder);
 			}
 		}
 	}

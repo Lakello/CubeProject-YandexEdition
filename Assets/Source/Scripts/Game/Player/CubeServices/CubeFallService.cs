@@ -26,7 +26,7 @@ namespace CubeProject.PlayableCube
 			_targetCameraHolder = targetCameraHolder;
 			_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
 			
-			_moveService = cube.ServiceHolder.MoveService;
+			_moveService = cube.Component.MoveService;
 			
 			_moveService.StepEnded += OnStepEnded;
 		}

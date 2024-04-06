@@ -21,7 +21,7 @@ namespace CubeProject.Game
 		
 		[Inject]
 		private void Inject(Cube cube) =>
-			_moveService = cube.ServiceHolder.MoveService;
+			_moveService = cube.Component.MoveService;
 
 		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _powerUnit);

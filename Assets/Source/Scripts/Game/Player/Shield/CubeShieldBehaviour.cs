@@ -5,26 +5,33 @@ using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
+using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
 	public class CubeShieldBehaviour : MonoBehaviour
 	{
+		private readonly Type[] _acceptableStates = 
+		{
+			typeof(ControlState), typeof(PushState),
+		};
+		
 		[SerializeField] [MinMaxSlider(0, 10f)] private Vector2 _distanceRange;
 		[SerializeField] [MinMaxSlider(0, 1f)] private Vector2 _fresnelPowerRange;
 		[SerializeField] [MinMaxSlider(0.001f, 0.01f)] private Vector2 _displacementAmountRange;
-		
+
 		private ChargeHolder _chargeHolder;
 		private IStateChangeable<GameStateMachine> _stateChangeable;
-		private bool _isAcceptableState;
 		private MeshRenderer _shieldMeshRenderer;
 		private Coroutine _shieldCoroutine;
-		
+		private bool _isAcceptableState;
+		private bool _isListenStates;
+
 		[Inject]
 		private void Inject(Cube cube, IStateChangeable<GameStateMachine> stateChangeable)
 		{
-			_chargeHolder = cube.ServiceHolder.ChargeHolder;
+			_chargeHolder = cube.Component.ChargeHolder;
 
 			_chargeHolder.ChargeChanged += OnChargeChanged;
 		}
@@ -49,7 +56,16 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void OnStateChanged()
 		{
-			throw new NotImplementedException();
+			foreach (var state in _acceptableStates)
+			{
+				if (_stateChangeable.CurrentState == state)
+				{
+					_isAcceptableState = true;
+					return;
+				}
+			}
+
+			_isAcceptableState = false;
 		}
 
 		private void TryChangeShieldState()
@@ -61,14 +77,19 @@ namespace Source.Scripts.Game.Level.Shield
 					{
 						
 					},
-					Vector3)
+					)
 					
 			}
 		}
 		
 		private void SetListenStateChanged(bool isListen)
 		{
-			if (isListen)
+			if (_isListenStates == isListen)
+				return;
+
+			_isListenStates = isListen;
+			
+			if (_isListenStates)
 			{
 				_stateChangeable.StateChanged += OnStateChanged;
 			}

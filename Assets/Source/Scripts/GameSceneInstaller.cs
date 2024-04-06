@@ -1,28 +1,24 @@
 using System;
-using System.Collections.Generic;
 using Cinemachine;
 using CubeProject.InputSystem;
-using CubeProject.PlayableCube;
 using CubeProject.SO;
 using CubeProject.Tips;
-using LeadTools.StateMachine;
+using LeadTools.Extensions;
 using Reflex.Core;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
 
 namespace CubeProject
 {
+	[RequireComponent(typeof(CubeInitializer))]
 	public class GameSceneInstaller : MonoBehaviour, IInstaller
 	{
 		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
-		[SerializeField] private Player _playerPrefab;
-		[SerializeField] private bool _isMobileTest;
 		[SerializeField] private PortalColorData _portalColorData;
+		[SerializeField] private bool _isMobileTest;
 
 		private SpawnPoint _spawnPoint;
 		private Action _disable;
@@ -32,60 +28,32 @@ namespace CubeProject
 
 		public void InstallBindings(ContainerDescriptor descriptor)
 		{
-			Player playerInstance;
-			Cube cube;
-			CubeStateMachine cubeStateMachine;
+			var playerInitializer = gameObject.GetComponentElseThrow<CubeInitializer>();
 
-			_spawnPoint = FindObjectOfType<SpawnPoint>();
-
-			InitCube();
+			playerInitializer.Init();
 
 			InitInput();
 
 			_portalColorData.ResetColorIndex();
 			descriptor.AddSingleton(_portalColorData);
-			
-			descriptor.AddSingleton(cube);
-			
+
+			descriptor.AddSingleton(playerInitializer.Cube);
+
 			descriptor.AddSingleton(_spawnPoint);
-			
+
 			descriptor.AddSingleton(_virtualCamera);
 
-			descriptor.AddSingleton(new PushStateHandler(cube));
+			descriptor.AddSingleton(new PushStateHandler(playerInitializer.Cube));
 
 			descriptor.AddSingleton(_maskHolder);
 
 			descriptor.AddSingleton(new TargetCameraHolder(
 				this,
 				_virtualCamera,
-				playerInstance.Cube.transform,
-				playerInstance.Follower));
+				playerInitializer.PlayerInstance.Cube.transform,
+				playerInitializer.PlayerInstance.Follower));
 
 			return;
-
-			void InitCube()
-			{
-				playerInstance = Instantiate(
-					_playerPrefab,
-					_spawnPoint.transform.position,
-					Quaternion.identity);
-
-				cubeStateMachine = new CubeStateMachine(
-					() => new Dictionary<Type, State<CubeStateMachine>>
-					{
-						[typeof(ControlState)] = new ControlState(),
-						[typeof(DieState)] = new DieState(),
-						[typeof(FallingToAbyssState)] = new FallingToAbyssState(),
-						[typeof(FallingToGroundState)] = new FallingToGroundState(),
-						[typeof(PushState)] = new PushState(),
-						[typeof(TeleportState)] = new TeleportState(),
-					});
-
-				cube = playerInstance.Cube;
-				cube.ServiceHolder.Init(cubeStateMachine);
-
-				cubeStateMachine.EnterIn<ControlState>();
-			}
 
 			void InitInput()
 			{
@@ -105,7 +73,7 @@ namespace CubeProject
 					inputService = gameObject.AddComponent<DesktopInputService>();
 				}
 
-				inputService.Init(playerInput, cubeStateMachine);
+				inputService.Init(playerInput, playerInitializer.CubeStateMachine);
 
 				descriptor.AddSingleton(inputService, typeof(IInputService));
 			}

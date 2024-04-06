@@ -5,21 +5,21 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[RequireComponent(typeof(CubeServiceHolder))]
+	[RequireComponent(typeof(CubeComponent))]
 	public class Cube : MonoBehaviour
 	{
-		private CubeServiceHolder _serviceHolder;
+		private CubeComponent _component;
 
 		public event Action Died;
 
-		public CubeServiceHolder ServiceHolder => _serviceHolder;
+		public CubeComponent Component => _component;
 
 		private void Awake() =>
-			gameObject.GetComponentElseThrow(out _serviceHolder);
+			gameObject.GetComponentElseThrow(out _component);
 
 		public void Kill()
 		{
-			_serviceHolder.StateMachine.EnterIn<DieState>();
+			_component.StateMachine.EnterIn<DieState>();
 			Died?.Invoke();
 		}
 	}

@@ -13,7 +13,7 @@ namespace CubeProject.Game
 		{
 			if (other.TryGetComponent(out Cube cube) && _chargeConsumer.IsCharged)
 			{
-				if (cube.ServiceHolder.ChargeHolder.IsCharged is false)
+				if (cube.Component.ChargeHolder.IsCharged is false)
 				{
 					gameObject.GetComponentElseThrow(out AudioSource audio);
 					audio.Play();
