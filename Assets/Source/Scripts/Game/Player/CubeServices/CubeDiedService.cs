@@ -1,7 +1,5 @@
-using CubeProject.Game;
-using LeadTools.Extensions;
+using System;
 using LeadTools.StateMachine;
-using Reflex.Attributes;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
 using Source.Scripts.Game.tateMachine;
@@ -10,40 +8,32 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[RequireComponent(typeof(CubeDiedView))]
-	[RequireComponent(typeof(Cube))]
-	public class CubeDiedService : MonoBehaviour
+	public class CubeDiedService : IDisposable
 	{
-		[SerializeField] private Transform _cameraFollow;
-		[SerializeField] private Vector3 _offset = new Vector3(0, 0.5f, 0);
+		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
+		private readonly Cube _cube;
+		private readonly CubeDiedView _cubeDiedView;
+		private readonly SpawnPoint _spawnPoint;
+		private readonly TargetCameraHolder _targetCameraHolder;
 
-		private Cube _cube;
-		private CubeDiedView _cubeDiedView;
-		private SpawnPoint _spawnPoint;
-		private TargetCameraHolder _targetCameraHolder;
+		public CubeDiedService(Cube cube, SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)
+		{
+			_cube = cube;
+			_cubeDiedView = _cube.Component.DiedView;
+			_targetCameraHolder = targetCameraHolder;
+			_spawnPoint = spawnPoint;
+
+			_cube.Died += OnDied;
+		}
 
 		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.Component.StateMachine;
 
 		private CubeFallService CubeFallService => _cube.Component.FallService;
 
-		[Inject]
-		private void Inject(SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)
+		public void Dispose()
 		{
-			_targetCameraHolder = targetCameraHolder;
-			_spawnPoint = spawnPoint;
-		}
-
-		private void Awake()
-		{
-			gameObject.GetComponentElseThrow(out _cubeDiedView);
-			gameObject.GetComponentElseThrow(out _cube);
-		}
-
-		private void OnEnable() =>
-			_cube.Died += OnDied;
-
-		private void OnDisable() =>
 			_cube.Died -= OnDied;
+		}
 
 		private void OnDied()
 		{
@@ -52,7 +42,7 @@ namespace CubeProject.PlayableCube
 				DissolveInvisible();
 			}
 		}
-		
+
 		private void DissolveInvisible() =>
 			_cubeDiedView.Play(false, DissolveVisible);
 

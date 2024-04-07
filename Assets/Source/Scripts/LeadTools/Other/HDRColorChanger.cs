@@ -7,8 +7,7 @@ namespace LeadTools.Other
 	[Serializable]
 	public class HDRColorChanger
 	{
-		private const string BaseColor = "_BaseColor";
-
+		[SerializeField] private ShaderProperty _propertyName;
 		[SerializeField] [Range(-10f, 10f)] private float _intensityChargedColor = 4;
 		[SerializeField] [Range(-10f, 10f)] private float _intensityDischargedColor = 1;
 		[SerializeField] private Color _chargedColor;
@@ -16,7 +15,6 @@ namespace LeadTools.Other
 		[SerializeField] private MeshRenderer[] _bloomMeshRenderers;
 
 		private Func<bool> _isChanged;
-		private string _lightProperty = BaseColor;
 
 		public float IntensityChargedColor => _intensityChargedColor;
 
@@ -26,9 +24,9 @@ namespace LeadTools.Other
 
 		public Color DischargedColor => _dischargedColor;
 
-		public void Init(string propertyName)
+		public void Init(ShaderProperty propertyName)
 		{
-			_lightProperty = propertyName;
+			_propertyName = propertyName;
 		}
 
 		public void Init(Func<bool> isCharged) =>
@@ -56,7 +54,7 @@ namespace LeadTools.Other
 		{
 			foreach (var meshRenderer in _bloomMeshRenderers)
 			{
-				meshRenderer.material.SetColor(_lightProperty, targetColor);
+				meshRenderer.material.SetColor(_propertyName.GetCurrentName(), targetColor);
 			}
 		}
 	}

@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
+using CubeProject.InputSystem;
 using CubeProject.PlayableCube;
+using CubeProject.PlayableCube.Movement;
+using CubeProject.SO;
+using LeadTools.Extensions;
 using LeadTools.StateMachine;
+using Reflex.Attributes;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
+using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.Level.Shield;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
@@ -13,23 +20,51 @@ namespace CubeProject
 	public class CubeInitializer : MonoBehaviour
 	{
 		[SerializeField] private Player _playerPrefab;
+		[SerializeField] private CubeData _data;
 
 		private bool _isInitialized;
+		private CubeFallService _fallService;
 
+		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }
 		public Cube Cube { get; private set; }
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
+
+		[Inject]
+		private void Inject(IInputService inputService, MaskHolder maskHolder, CubeData cubeData, Cube cube, TargetCameraHolder targetCameraHolder)
+		{
+			var moveService = new CubeMoveService(
+				Cube.Component.StateMachine,
+				transform,
+				inputService,
+				maskHolder,
+				cubeData.RollSpeed,
+				gameObject.GetComponentElseThrow<BoxCollider>(),
+				this);
+
+			_fallService = new CubeFallService(cube, maskHolder, targetCameraHolder, this);
+			
+			Cube.Component.Init(moveService, _fallService, _data);
+			
+			_ = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
+			_ = new CubeShieldService(Cube, PlayerInstance.gameObject.GetComponentInChildrenElseThrow<ShieldView>());
+		}
+
+		private void Start()
+		{
+			_fallService.TryFall();
+		}
 
 		public void Init()
 		{
 			if (_isInitialized)
 				return;
 			
-			var spawnPoint = FindObjectOfType<SpawnPoint>();
+			SpawnPoint = FindObjectOfType<SpawnPoint>();
 			
 			PlayerInstance = Instantiate(
 				_playerPrefab,
-				spawnPoint.transform.position,
+				SpawnPoint.transform.position,
 				Quaternion.identity);
 
 			CubeStateMachine = new CubeStateMachine(

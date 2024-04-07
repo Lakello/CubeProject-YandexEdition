@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CubeProject.PlayableCube
 {
 	[RequireComponent(typeof(SphereCollider))]
-	public class CubeWallFinder : MonoBehaviour
+	public class WallFadeShower : MonoBehaviour
 	{
 		private void OnTriggerEnter(Collider other)
 		{

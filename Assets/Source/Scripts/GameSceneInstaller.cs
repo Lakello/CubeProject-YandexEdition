@@ -20,7 +20,6 @@ namespace CubeProject
 		[SerializeField] private PortalColorData _portalColorData;
 		[SerializeField] private bool _isMobileTest;
 
-		private SpawnPoint _spawnPoint;
 		private Action _disable;
 
 		private void OnDisable() =>
@@ -39,7 +38,7 @@ namespace CubeProject
 
 			descriptor.AddSingleton(playerInitializer.Cube);
 
-			descriptor.AddSingleton(_spawnPoint);
+			descriptor.AddSingleton(playerInitializer.SpawnPoint);
 
 			descriptor.AddSingleton(_virtualCamera);
 
