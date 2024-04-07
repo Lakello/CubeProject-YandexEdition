@@ -3,6 +3,7 @@ using CubeProject.PlayableCube.Movement;
 using CubeProject.SO;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
+using Source.Scripts.Game.Level.Shield;
 using Source.Scripts.Game.Level.Trigger;
 using Source.Scripts.Game.tateMachine;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace CubeProject.PlayableCube
 		public TriggerObserver TriggerObserver { get; private set; }
 		public CubeDiedView DiedView { get; private set; }
 		public CubeData Data { get; private set; }
+		public CubeShieldService ShieldService { get; private set; }
 
 		private void Awake()
 		{
@@ -37,10 +39,11 @@ namespace CubeProject.PlayableCube
 			Data ??= data;
 		}
 
-		public void Init(CubeMoveService moveService, CubeFallService fallService)
+		public void Init(CubeMoveService moveService, CubeFallService fallService, CubeShieldService shieldService)
 		{
 			MoveService ??= moveService;
 			FallService ??= fallService;
+			ShieldService ??= shieldService;
 		}
 	}
 }

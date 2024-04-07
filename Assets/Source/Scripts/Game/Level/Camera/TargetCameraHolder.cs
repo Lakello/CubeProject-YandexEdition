@@ -10,20 +10,21 @@ namespace Source.Scripts.Game.Level.Camera
 		private readonly float _delayStopCameraFollow = 0.3f;
 		private readonly MonoBehaviour _mono;
 		private readonly CinemachineVirtualCamera _virtualCamera;
-		private readonly Transform _lookAtPoint;
-		private readonly Transform _followPoint;
+		private Transform _lookAtPoint;
+		private Transform _followPoint;
 		
-		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera, Transform lookAtPoint, Transform followPoint)
+		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera)
 		{
 			_mono = mono;
 			_virtualCamera = virtualCamera;
+		}
+
+		public void Init(Transform lookAtPoint, Transform followPoint)
+		{
 			_lookAtPoint = lookAtPoint;
 			_followPoint = followPoint;
-			
-			virtualCamera.Follow = _followPoint;
-			virtualCamera.LookAt = _lookAtPoint;
 		}
-		
+
 		public void ResetTarget() =>
 			_mono.WaitTime(
 				_delayStopCameraFollow,

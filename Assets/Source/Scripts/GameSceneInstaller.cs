@@ -6,7 +6,6 @@ using CubeProject.Tips;
 using LeadTools.Extensions;
 using Reflex.Core;
 using Source.Scripts.Game;
-using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
 using UnityEngine;
 
@@ -21,60 +20,71 @@ namespace CubeProject
 		[SerializeField] private bool _isMobileTest;
 
 		private Action _disable;
+		private IInputService _inputService;
+		private PlayerInput _playerInput;
 
 		private void OnDisable() =>
 			_disable?.Invoke();
 
-		public void InstallBindings(ContainerDescriptor descriptor)
+		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
 			var playerInitializer = gameObject.GetComponentElseThrow<CubeInitializer>();
 
-			playerInitializer.Init();
-
+			var targetCameraHolder = new TargetCameraHolder(this, _virtualCamera);
+			
+			CreateInputService();
+			playerInitializer.Init(_inputService, _maskHolder, targetCameraHolder);
+			
+			InitTargetCameraHolder();
 			InitInput();
 
 			_portalColorData.ResetColorIndex();
-			descriptor.AddSingleton(_portalColorData);
+			containerBuilder.AddSingleton(_portalColorData);
 
-			descriptor.AddSingleton(playerInitializer.Cube);
+			containerBuilder.AddSingleton(playerInitializer.Cube);
 
-			descriptor.AddSingleton(playerInitializer.SpawnPoint);
+			containerBuilder.AddSingleton(playerInitializer.SpawnPoint);
 
-			descriptor.AddSingleton(_virtualCamera);
+			containerBuilder.AddSingleton(_virtualCamera);
 
-			descriptor.AddSingleton(new PushStateHandler(playerInitializer.Cube));
+			containerBuilder.AddSingleton(typeof(PushStateHandler));
 
-			descriptor.AddSingleton(_maskHolder);
+			containerBuilder.AddSingleton(_maskHolder);
 
-			descriptor.AddSingleton(new TargetCameraHolder(
-				this,
-				_virtualCamera,
-				playerInitializer.PlayerInstance.Cube.transform,
-				playerInitializer.PlayerInstance.Follower));
+			containerBuilder.AddSingleton(targetCameraHolder);
 
 			return;
 
 			void InitInput()
 			{
-				var playerInput = new PlayerInput();
+				_inputService.Init(_playerInput, playerInitializer.CubeStateMachine);
 
-				playerInput.Enable();
-				_disable += () => playerInput.Disable();
+				containerBuilder.AddSingleton(_inputService, typeof(IInputService));
+			}
 
-				IInputService inputService;
+			void InitTargetCameraHolder()
+			{
+				targetCameraHolder.Init(
+					playerInitializer.PlayerInstance.Cube.transform, 
+					playerInitializer.PlayerInstance.Follower);
+				targetCameraHolder.SetTarget();
+			}
+		}
 
-				if (Application.isMobilePlatform || _isMobileTest)
-				{
-					inputService = gameObject.AddComponent<MobileInputService>();
-				}
-				else
-				{
-					inputService = gameObject.AddComponent<DesktopInputService>();
-				}
+		private void CreateInputService()
+		{
+			_playerInput = new PlayerInput();
 
-				inputService.Init(playerInput, playerInitializer.CubeStateMachine);
+			_playerInput.Enable();
+			_disable += () => _playerInput.Disable();
 
-				descriptor.AddSingleton(inputService, typeof(IInputService));
+			if (Application.isMobilePlatform || _isMobileTest)
+			{
+				_inputService = gameObject.AddComponent<MobileInputService>();
+			}
+			else
+			{
+				_inputService = gameObject.AddComponent<DesktopInputService>();
 			}
 		}
 	}

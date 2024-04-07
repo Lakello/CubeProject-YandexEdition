@@ -6,7 +6,6 @@ using CubeProject.PlayableCube.Movement;
 using CubeProject.SO;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
-using Reflex.Attributes;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
@@ -23,50 +22,58 @@ namespace CubeProject
 		[SerializeField] private CubeData _data;
 
 		private bool _isInitialized;
+		private IInputService _inputService;
+		private MaskHolder _maskHolder;
+		private TargetCameraHolder _targetCameraHolder;
+		private CubeMoveService _moveService;
 		private CubeFallService _fallService;
-
+		private CubeShieldService _shieldService;
+		
 		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }
 		public Cube Cube { get; private set; }
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
-
-		[Inject]
-		private void Inject(IInputService inputService, MaskHolder maskHolder, TargetCameraHolder targetCameraHolder)
-		{
-			var moveService = new CubeMoveService(
-				Cube.Component.StateMachine,
-				Cube.transform,
-				inputService,
-				maskHolder,
-				Cube.Component.Data.RollSpeed,
-				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
-				this);
-
-			_fallService = new CubeFallService(moveService, Cube, maskHolder, targetCameraHolder, this);
-			
-			Cube.Component.Init(moveService, _fallService);
-			
-			_ = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
-			_ = new CubeShieldService(Cube, PlayerInstance.gameObject.GetComponentInChildrenElseThrow<ShieldView>());
-		}
-
+		
 		private void Start()
 		{
 			_fallService.TryFall();
 		}
 
-		public void Init()
+		public void Init(IInputService inputService, MaskHolder maskHolder, TargetCameraHolder targetCameraHolder)
 		{
 			if (_isInitialized)
 				return;
+
+			_inputService = inputService;
+			_maskHolder = maskHolder;
+			_targetCameraHolder = targetCameraHolder;
 			
-			SpawnPoint = FindObjectOfType<SpawnPoint>();
+			InitSpawnPoint();
+			InitPlayerInstance();
+			InitCube();
+			InitStateMachine();
+			InitCubeComponent();
+			InitServices(targetCameraHolder);
+			InitCubeComponentServices();
 			
+			CubeStateMachine.EnterIn<ControlState>();
+			
+			_isInitialized = true;
+		}
+
+		private void InitPlayerInstance() =>
 			PlayerInstance = Instantiate(
 				_playerPrefab,
 				SpawnPoint.transform.position,
 				Quaternion.identity);
 
+		private void InitSpawnPoint() =>
+			SpawnPoint = FindObjectOfType<SpawnPoint>();
+		
+		private void InitCube() =>
+			Cube = PlayerInstance.Cube;
+		
+		private void InitStateMachine() =>
 			CubeStateMachine = new CubeStateMachine(
 				() => new Dictionary<Type, State<CubeStateMachine>>
 				{
@@ -77,13 +84,27 @@ namespace CubeProject
 					[typeof(PushState)] = new PushState(),
 					[typeof(TeleportState)] = new TeleportState(),
 				});
-
-			Cube = PlayerInstance.Cube;
+		
+		private void InitCubeComponent() =>
 			Cube.Component.Init(CubeStateMachine, _data);
 
-			CubeStateMachine.EnterIn<ControlState>();
+		private void InitCubeComponentServices() =>
+			Cube.Component.Init(_moveService, _fallService, _shieldService);
+		
+		private void InitServices(TargetCameraHolder targetCameraHolder)
+		{
+			_moveService = new CubeMoveService(
+				Cube.Component.StateMachine,
+				Cube.transform,
+				_inputService,
+				_maskHolder,
+				Cube.Component.Data.RollSpeed,
+				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
+				this);
 
-			_isInitialized = true;
+			_fallService = new CubeFallService(_moveService, Cube, _maskHolder, _targetCameraHolder, this);
+			_shieldService = new CubeShieldService(Cube);
+			_ = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
 		}
 	}
 }

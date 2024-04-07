@@ -15,11 +15,11 @@
       "url": "https://packages.unity.com"
     },
     "com.gustavopsantos.reflex": {
-      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#6.0.0",
+      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#8.0.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "c37c872107d63c2c9b6fb0b0fc369f9789c224f7"
+      "hash": "0e6c8ca13c9ad1632977696cfbec43efd930b028"
     },
     "com.unity.2d.common": {
       "version": "8.0.1",

@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
+using Source.Scripts.Game.Level.Shield.States;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 
@@ -16,19 +18,27 @@ namespace Source.Scripts.Game.Level.Shield
 		};
 		private readonly ChargeHolder _chargeHolder;
 		private readonly IStateChangeable<CubeStateMachine> _stateChangeable;
-		private readonly ShieldView _shieldView;
+		private readonly IStateMachine<ShieldStateMachine> _stateMachine;
 
 		private bool _isAcceptableState;
 		private bool _isListenStates;
 
-		public CubeShieldService(Cube cube, ShieldView shieldView)
+		public CubeShieldService(Cube cube)
 		{
 			_chargeHolder = cube.Component.ChargeHolder;
 			_stateChangeable = cube.Component.StateMachine;
-			_shieldView = shieldView;
+			
+			_stateMachine = new ShieldStateMachine(
+				() => new Dictionary<Type, State<ShieldStateMachine>>
+				{
+					[typeof(PlayState)] = new PlayState(),
+					[typeof(StopState)] = new StopState(),
+				});
 
 			_chargeHolder.ChargeChanged += OnChargeChanged;
 		}
+
+		public IStateChangeable<ShieldStateMachine> StateMachine => _stateMachine;
 
 		public void Dispose()
 		{
@@ -66,9 +76,9 @@ namespace Source.Scripts.Game.Level.Shield
 		private void TryChangeShieldState()
 		{
 			if (_chargeHolder.IsCharged && _isAcceptableState)
-				_shieldView.Play();
+				_stateMachine.EnterIn<PlayState>();
 			else
-				_shieldView.Stop();
+				_stateMachine.EnterIn<StopState>();
 		}
 
 		private void SetListenStateChanged(bool isListen)

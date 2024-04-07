@@ -62,7 +62,7 @@ namespace CubeProject.Game
 			_cube = cube;
 			_cubeMoveService = _cube.Component.MoveService;
 			_cubeStateMachine = _cube.Component.StateMachine;
-
+			
 			_teleporter = new Teleporter(this, cube, transform, _targetPoint, () => Pushing?.Invoke(), _teleporterData);
 		}
 

@@ -15,8 +15,6 @@ namespace CubeProject.SO
 		private Vector2 _displacementAmountRange = new Vector2(0.001f, 0.005f);
 
 		public float RollSpeed => _rollSpeed;
-		public Vector2 DistanceRange => _distanceRange;
-		public Vector2 FresnelPowerRange => _fresnelPowerRange;
-		public Vector2 DisplacementAmountRange => _displacementAmountRange;
+		public (Vector2, Vector2, Vector2) GetShieldData => (_distanceRange, _fresnelPowerRange, _displacementAmountRange);
 	}
 }
