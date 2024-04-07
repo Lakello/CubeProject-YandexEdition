@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1999178458204257241}
   - component: {fileID: 613912390492823221}
   - component: {fileID: 2379401782450471870}
-  - component: {fileID: 2000956645141393298}
   - component: {fileID: 8038678656538195210}
   - component: {fileID: 2504426539480671758}
+  - component: {fileID: 3984998593808315714}
   m_Layer: 10
   m_Name: Power_Station
   m_TagString: Untagged
@@ -65,26 +65,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canGiveCharge: 1
   _canGetCharge: 1
---- !u!114 &2000956645141393298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9100349048613361465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde49e0cc5104956b506e38b64e9676c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hdrColorChanger:
-    _intensityChargedColor: 4
-    _intensityDischargedColor: 0
-    _chargedColor: {r: 0.05882353, g: 0.8039216, b: 0.28627452, a: 1}
-    _dischargedColor: {r: 0, g: 0.32156864, b: 0.13725491, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 5746893764314186878}
-    - {fileID: 115520782672248439}
 --- !u!65 &8038678656538195210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,6 +101,27 @@ MonoBehaviour:
   _enteredPositionY: 0.216
   _animationDuration: 0.2
   _buttonObject: {fileID: 6868562933044310590}
+--- !u!114 &3984998593808315714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100349048613361465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 0, g: 1, b: 0.9903934, a: 1}
+    _dischargedColor: {r: 0.26614454, g: 0.42906722, b: 0.5283019, a: 1}
+    _bloomMeshRenderers:
+    - {fileID: 5746893764314186878}
+    - {fileID: 115520782672248439}
 --- !u!1001 &5502414013789416081
 PrefabInstance:
   m_ObjectHideFlags: 0

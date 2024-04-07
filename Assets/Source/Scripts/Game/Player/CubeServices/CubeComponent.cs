@@ -14,7 +14,7 @@ namespace CubeProject.PlayableCube
 	[RequireComponent(typeof(BoxCollider))]
 	public class CubeComponent : MonoBehaviour
 	{
-		public BecameVisibleService BecameVisibleService { get; private set; }
+		public BecameVisibleBehaviour BecameVisibleBehaviour { get; private set; }
 		public CubeMoveService MoveService { get; private set; }
 		public ChargeHolder ChargeHolder { get; private set; }
 		public CubeFallService FallService { get; private set; }
@@ -25,23 +25,22 @@ namespace CubeProject.PlayableCube
 
 		private void Awake()
 		{
-			BecameVisibleService = gameObject.GetComponentInChildrenElseThrow<BecameVisibleService>();
+			BecameVisibleBehaviour = gameObject.GetComponentInChildrenElseThrow<BecameVisibleBehaviour>();
 			ChargeHolder = gameObject.GetComponentElseThrow<ChargeHolder>();
-			FallService = gameObject.GetComponentElseThrow<CubeFallService>();
 			TriggerObserver = gameObject.GetComponentElseThrow<TriggerObserver>();
 			DiedView = gameObject.GetComponentElseThrow<CubeDiedView>();
 		}
 
-		public void Init(IStateMachine<CubeStateMachine> stateMachine)
+		public void Init(IStateMachine<CubeStateMachine> stateMachine, CubeData data)
 		{
 			StateMachine ??= stateMachine;
+			Data ??= data;
 		}
 
-		public void Init(CubeMoveService moveService, CubeFallService fallService, CubeData data)
+		public void Init(CubeMoveService moveService, CubeFallService fallService)
 		{
 			MoveService ??= moveService;
 			FallService ??= fallService;
-			Data ??= data;
 		}
 	}
 }

@@ -31,20 +31,20 @@ namespace CubeProject
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
 
 		[Inject]
-		private void Inject(IInputService inputService, MaskHolder maskHolder, CubeData cubeData, Cube cube, TargetCameraHolder targetCameraHolder)
+		private void Inject(IInputService inputService, MaskHolder maskHolder, TargetCameraHolder targetCameraHolder)
 		{
 			var moveService = new CubeMoveService(
 				Cube.Component.StateMachine,
-				transform,
+				Cube.transform,
 				inputService,
 				maskHolder,
-				cubeData.RollSpeed,
-				gameObject.GetComponentElseThrow<BoxCollider>(),
+				Cube.Component.Data.RollSpeed,
+				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
 				this);
 
-			_fallService = new CubeFallService(cube, maskHolder, targetCameraHolder, this);
+			_fallService = new CubeFallService(moveService, Cube, maskHolder, targetCameraHolder, this);
 			
-			Cube.Component.Init(moveService, _fallService, _data);
+			Cube.Component.Init(moveService, _fallService);
 			
 			_ = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
 			_ = new CubeShieldService(Cube, PlayerInstance.gameObject.GetComponentInChildrenElseThrow<ShieldView>());
@@ -79,9 +79,11 @@ namespace CubeProject
 				});
 
 			Cube = PlayerInstance.Cube;
-			Cube.Component.Init(CubeStateMachine);
+			Cube.Component.Init(CubeStateMachine, _data);
 
 			CubeStateMachine.EnterIn<ControlState>();
+
+			_isInitialized = true;
 		}
 	}
 }

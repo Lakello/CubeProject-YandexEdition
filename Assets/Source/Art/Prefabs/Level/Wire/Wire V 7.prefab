@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1947581317230878860}
   - component: {fileID: 163858096272119532}
   - component: {fileID: 2877145535056545647}
-  - component: {fileID: 7165314749551693113}
+  - component: {fileID: 5469977704652556472}
   m_Layer: 0
   m_Name: Wire V 7
   m_TagString: Untagged
@@ -100,7 +100,7 @@ MonoBehaviour:
   _isAlwaysCharged: 0
   _needAllCharge: 0
   _gameObjectsOnChargeable: []
---- !u!114 &7165314749551693113
+--- !u!114 &5469977704652556472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,13 +109,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5847860554277668417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde49e0cc5104956b506e38b64e9676c, type: 3}
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hdrColorChanger:
+  _changers:
+  - _propertyName: 1
     _intensityChargedColor: 4
     _intensityDischargedColor: 1
-    _chargedColor: {r: 0.08198643, g: 0.790883, b: 0.9245283, a: 1}
-    _dischargedColor: {r: 1, g: 1, b: 1, a: 1}
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
     _bloomMeshRenderers:
     - {fileID: 163858096272119532}

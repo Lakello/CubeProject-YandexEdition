@@ -15,7 +15,7 @@ namespace CubeProject.PlayableCube
 		private readonly Transform _origin;
 		private readonly GroundChecker _groundChecker;
 		private readonly Cube _cube;
-		private readonly BecameVisibleService _became;
+		private readonly BecameVisibleBehaviour _became;
 		private readonly float _speedFall = 3;
 		private readonly float _speedFallMultiplier = 1.1f;
 		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
@@ -29,7 +29,7 @@ namespace CubeProject.PlayableCube
 		{
 			_mono = mono;
 			_cube = cube;
-			_became = _cube.Component.BecameVisibleService;
+			_became = _cube.Component.BecameVisibleBehaviour;
 			_cubeStateMachine = _cube.Component.StateMachine;
 			_origin = origin;
 			_groundChecker = groundChecker;

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 0
   _target: {fileID: 7700228605977031009}
-  _offset: {x: -10, y: 10, z: 10}
+  _offset: {x: 10, y: 10, z: -10}
   _speedRange: {x: 0, y: 5}
   _distanceRange: {x: 0.05, y: 0.1}
 --- !u!1 &2348316050753323191
@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 169226487549009863}
   - component: {fileID: 9169597038207546759}
   - component: {fileID: 1685948700190409386}
+  - component: {fileID: 53420852455611604}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -175,17 +176,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energyColorChanger:
+  _changers:
+  - _propertyName: 0
     _intensityChargedColor: 4.5
     _intensityDischargedColor: 1
-    _chargedColor: {r: 0.15236738, g: 0.754717, b: 0.596781, a: 1}
-    _dischargedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    _chargedColor: {r: 0.15294118, g: 0.7529412, b: 0.59607846, a: 1}
+    _dischargedColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
     _bloomMeshRenderers:
     - {fileID: 2012689621649595358}
-  _heartColorChanger:
+  - _propertyName: 0
     _intensityChargedColor: 4.5
     _intensityDischargedColor: 1
-    _chargedColor: {r: 1, g: 0, b: 0.6401868, a: 1}
+    _chargedColor: {r: 1, g: 0, b: 0.6392157, a: 1}
     _dischargedColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
     _bloomMeshRenderers:
     - {fileID: 2012689621649595358}
@@ -213,6 +215,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 191a6658e5af4668bfde7b08783c1dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &53420852455611604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348316050753323191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7267418d6f624368bd86e73d17cfe422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3760603947137364281
@@ -488,6 +502,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5260799522664045372, guid: 801c93adb06f98a4db70ed2b6e7d6c41, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4751740129810142739}
+    - targetCorrespondingSourceObject: {fileID: 5260799522664045372, guid: 801c93adb06f98a4db70ed2b6e7d6c41, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6858621808287417703}
   m_SourcePrefab: {fileID: 100100000, guid: 801c93adb06f98a4db70ed2b6e7d6c41, type: 3}
 --- !u!4 &2592376214541534041 stripped
 Transform:
@@ -516,3 +533,21 @@ MonoBehaviour:
   _offset: {x: 0, y: 0, z: 0}
   _speedRange: {x: 0, y: 7.8222075}
   _distanceRange: {x: 0.028561201, y: 0.38557655}
+--- !u!114 &6858621808287417703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932451121150286307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5285c3123941808d00674c7b5d6757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 3725273703629748278}
+--- !u!23 &3725273703629748278 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5909533303647566569, guid: 801c93adb06f98a4db70ed2b6e7d6c41, type: 3}
+  m_PrefabInstance: {fileID: 7039185080034820831}
+  m_PrefabAsset: {fileID: 0}

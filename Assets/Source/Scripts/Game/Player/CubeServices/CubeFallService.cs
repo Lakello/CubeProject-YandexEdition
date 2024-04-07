@@ -19,18 +19,19 @@ namespace CubeProject.PlayableCube
 		private bool IsGrounded => _groundChecker.IsGround(_transform.position, CheckDistance, out _);
 
 		public CubeFallService(
+			CubeMoveService moveService,
 			Cube cube,
 			MaskHolder maskHolder,
 			TargetCameraHolder targetCameraHolder,
 			MonoBehaviour mono)
 		{
-			_transform = mono.transform;
+			_transform = cube.transform;
 			_groundChecker = new GroundChecker(maskHolder.GroundMask);
 			_fallHandler = new FallHandler(mono, cube, _transform, _groundChecker, () => IsGrounded);
 			_targetCameraHolder = targetCameraHolder;
 			_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
 
-			_moveService = cube.Component.MoveService;
+			_moveService = moveService;
 
 			_moveService.StepEnded += OnStepEnded;
 		}

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5847551906854944937}
   - component: {fileID: 1419346823930386985}
-  - component: {fileID: 9160620692382999172}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -55,25 +54,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9160620692382999172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3261027465260236278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde49e0cc5104956b506e38b64e9676c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hdrColorChanger:
-    _intensityChargedColor: 4
-    _intensityDischargedColor: 0
-    _chargedColor: {r: 0.05882353, g: 0.8039216, b: 0.28627452, a: 1}
-    _dischargedColor: {r: 0, g: 0.3207547, b: 0.13688679, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 1009813399579527465}
 --- !u!1001 &2550487902316428980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,11 +263,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4abd218322dff4dbcc30082a0a3a0e, type: 3}
---- !u!23 &1009813399579527465 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3271501002609424285, guid: 9a4abd218322dff4dbcc30082a0a3a0e, type: 3}
-  m_PrefabInstance: {fileID: 2550487902316428980}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2661519930754406751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9a4abd218322dff4dbcc30082a0a3a0e, type: 3}
