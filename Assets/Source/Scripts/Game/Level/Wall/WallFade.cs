@@ -11,22 +11,23 @@ namespace Source.Scripts.Game.Level.Wall
 		private const float Duration = 0.2f;
 
 		[SerializeField] private ShaderProperty _property = ShaderProperty._Color;
-		[SerializeField] private MeshRenderer _renderer;
+		[SerializeField] private MeshRenderer[] _renderers;
 
 		private Color _materialColor;
 		private Coroutine _alphaCoroutine;
 
 		private void Awake()
 		{
-			if (_renderer is null)
+			if (_renderers is null)
+				gameObject.GetComponentElseThrow(out _renderers);
+
+			foreach (var meshRenderer in _renderers)
 			{
-				gameObject.GetComponentElseThrow(out _renderer);
+				var color = meshRenderer.material.GetColor(_property.GetCurrentName());
+
+				color.a = HideAlpha;
+				_materialColor = color;
 			}
-
-			var color = _renderer.material.GetColor(_property.GetCurrentName());
-
-			color.a = HideAlpha;
-			_materialColor = color;
 
 			Hide();
 		}
@@ -45,15 +46,14 @@ namespace Source.Scripts.Game.Level.Wall
 				(currentTime) =>
 				{
 					if (isShow is false)
-					{
 						currentTime = 1 - currentTime;
-					}
 
 					var color = _materialColor;
 
 					color.a = Mathf.Lerp(HideAlpha, ShowAlpha, currentTime);
 
-					_renderer.material.SetColor(_property.GetCurrentName(), color);
+					foreach (var meshRenderer in _renderers)
+						meshRenderer.material.SetColor(_property.GetCurrentName(), color);
 				},
 				Duration);
 		}
