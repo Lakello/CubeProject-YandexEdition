@@ -15,22 +15,7 @@ namespace CubeProject.UI
         //[SerializeField] private LeanLocalization _leanLocalization;
 
         private List<ResultPlayer> _resultPlayers = new List<ResultPlayer>();
-        private string _leaderboardName = "PlayersScore";
-
-        public void AddPlayer(int score)
-        {
-            Leaderboard.GetPlayerEntry(_leaderboardName, result =>
-            {
-                Leaderboard.SetScore(_leaderboardName, score);
-                GetLeaderboard();
-            });
-
-           /* if (_virtualEmulator.GetPlayerEntry() != null)
-            {
-                _virtualLeaderboard.RecordResultPlayer(score);
-                GetLeaderboard();
-            }*/
-        }
+        private string _leaderboardName = "PlayersScore";       
 
         public void GetLeaderboard()
         {
