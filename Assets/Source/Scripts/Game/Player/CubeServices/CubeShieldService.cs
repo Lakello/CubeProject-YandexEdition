@@ -7,6 +7,7 @@ using LeadTools.StateMachine;
 using Source.Scripts.Game.Level.Shield.States;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
@@ -34,7 +35,9 @@ namespace Source.Scripts.Game.Level.Shield
 					[typeof(PlayState)] = new PlayState(),
 					[typeof(StopState)] = new StopState(),
 				});
-
+			
+			_stateMachine.EnterIn<StopState>();
+			
 			_chargeHolder.ChargeChanged += OnChargeChanged;
 		}
 
@@ -75,9 +78,9 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void TryChangeShieldState()
 		{
-			if (_chargeHolder.IsCharged && _isAcceptableState)
+			if (_chargeHolder.IsCharged && _isAcceptableState && _stateMachine.CurrentState != typeof(PlayState))
 				_stateMachine.EnterIn<PlayState>();
-			else
+			else if (_stateMachine.CurrentState != typeof(StopState))
 				_stateMachine.EnterIn<StopState>();
 		}
 

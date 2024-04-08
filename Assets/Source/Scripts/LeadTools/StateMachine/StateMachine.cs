@@ -48,13 +48,9 @@ namespace LeadTools.StateMachine
 			where TState : State<TMachine>
 		{
 			if (_states.TryGetValue(typeof(TState), out var state))
-			{
 				action(state);
-			}
 			else
-			{
 				throw new ArgumentException();
-			}
 		}
 	}
 }

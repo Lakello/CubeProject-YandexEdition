@@ -1,25 +1,21 @@
-using System;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Trigger
 {
 	public class TriggerObserver : MonoBehaviour
 	{
-		public bool IsEntered { get; private set; }
-
-		public Transform Target { get; private set; }
+		public Transform CurrentTarget { get; private set; }
 
 		public void Entered(Transform target)
 		{
-			IsEntered = true;
-			Target = target;
+			CurrentTarget = target;
 		}
 
 		public void Exited(Transform target)
 		{
-			if (Target == target)
+			if (CurrentTarget == target)
 			{
-				IsEntered = false;
+				CurrentTarget = null;
 			}
 		}
 	}
