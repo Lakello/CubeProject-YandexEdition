@@ -5,11 +5,13 @@ namespace Source.Scripts.Game.Level.Trigger
 	[RequireComponent(typeof(BoxCollider))]
 	public class TriggerBehaviour : MonoBehaviour
 	{
+		[SerializeField] private Transform _target;
+		
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out TriggerObserver observer))
 			{
-				observer.Entered(transform);
+				observer.Entered(_target);
 			}
 		}
 
@@ -17,7 +19,7 @@ namespace Source.Scripts.Game.Level.Trigger
 		{
 			if (other.TryGetComponent(out TriggerObserver observer))
 			{
-				observer.Exited(transform);
+				observer.Exited(_target);
 			}
 		}
 	}

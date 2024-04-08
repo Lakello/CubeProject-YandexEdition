@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
+	[Serializable]
 	public class CubeShieldService : IDisposable
 	{
 		private readonly Type[] _acceptableStates =
@@ -21,8 +22,8 @@ namespace Source.Scripts.Game.Level.Shield
 		private readonly IStateChangeable<CubeStateMachine> _stateChangeable;
 		private readonly IStateMachine<ShieldStateMachine> _stateMachine;
 
-		private bool _isAcceptableState;
-		private bool _isListenStates;
+		[SerializeField] private bool _isAcceptableState;
+		[SerializeField] private bool _isListenStates;
 
 		public CubeShieldService(Cube cube)
 		{
@@ -38,7 +39,8 @@ namespace Source.Scripts.Game.Level.Shield
 			
 			_stateMachine.EnterIn<StopState>();
 			
-			_chargeHolder.ChargeChanged += OnChargeChanged;
+			_chargeHolder.ChargeChanged += OnChargeChanged; 
+			OnChargeChanged();
 		}
 
 		public IStateChangeable<ShieldStateMachine> StateMachine => _stateMachine;
@@ -78,10 +80,16 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void TryChangeShieldState()
 		{
-			if (_chargeHolder.IsCharged && _isAcceptableState && _stateMachine.CurrentState != typeof(PlayState))
-				_stateMachine.EnterIn<PlayState>();
-			else if (_stateMachine.CurrentState != typeof(StopState))
-				_stateMachine.EnterIn<StopState>();
+			if (_chargeHolder.IsCharged && _isAcceptableState)
+			{
+				if (_stateMachine.CurrentState != typeof(PlayState))
+					_stateMachine.EnterIn<PlayState>();
+			}
+			else
+			{
+				if (_stateMachine.CurrentState != typeof(StopState))
+					_stateMachine.EnterIn<StopState>();
+			}
 		}
 
 		private void SetListenStateChanged(bool isListen)
@@ -92,9 +100,14 @@ namespace Source.Scripts.Game.Level.Shield
 			_isListenStates = isListen;
 
 			if (_isListenStates)
+			{
 				_stateChangeable.StateChanged += OnStateChanged;
+				OnStateChanged();
+			}
 			else
+			{
 				_stateChangeable.StateChanged -= OnStateChanged;
+			}
 		}
 	}
 }

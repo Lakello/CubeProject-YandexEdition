@@ -13,8 +13,13 @@ namespace CubeProject.SO
 		private Vector2 _fresnelPowerRange = new Vector2(0, 0.5f);
 		[SerializeField] [MinMaxSlider(0.001f, 0.01f)] [BoxGroup("Shield")]
 		private Vector2 _displacementAmountRange = new Vector2(0.001f, 0.005f);
-
+		[SerializeField] [Range(-1, 1)] [BoxGroup("Shield")]
+		private float _displacementAmountHide = 1;
+		[SerializeField] [Range(0, 2)] [BoxGroup("Shield")]
+		private float _hideShowDuration = 0.2f;
+		
 		public float RollSpeed => _rollSpeed;
-		public (Vector2, Vector2, Vector2) GetShieldData => (_distanceRange, _fresnelPowerRange, _displacementAmountRange);
+		public (Vector2, Vector2, Vector2, float, float) GetShieldData => 
+			(_distanceRange, _fresnelPowerRange, _displacementAmountRange, _displacementAmountHide, _hideShowDuration);
 	}
 }

@@ -23,9 +23,6 @@ namespace CubeProject.SO
 
 		public Color GetColor()
 		{
-			Debug.Log($"Index = {_currentColorIndex}");
-			Debug.Log($"Length = {_colors.Length}");
-			
 			if (_currentColorIndex >= _colors.Length)
 			{
 				Debug.LogError($"Required more colors");

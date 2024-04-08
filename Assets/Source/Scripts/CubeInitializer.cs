@@ -27,7 +27,7 @@ namespace CubeProject
 		private TargetCameraHolder _targetCameraHolder;
 		private CubeMoveService _moveService;
 		private CubeFallService _fallService;
-		private CubeShieldService _shieldService;
+		[SerializeField] private CubeShieldService _shieldService;
 		
 		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }

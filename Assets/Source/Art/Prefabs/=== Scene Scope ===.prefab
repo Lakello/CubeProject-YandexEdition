@@ -184,7 +184,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7484143774018813305, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
@@ -266,6 +267,26 @@ PrefabInstance:
     - target: {fileID: 4152578906471200286, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
       propertyPath: m_Name
       value: === System ===
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: antialiasingMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: temporalAntialiasing.sharpness
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: temporalAntialiasing.jitterSpread
+      value: 0.447
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: temporalAntialiasing.motionBlending
+      value: 0.234
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: temporalAntialiasing.stationaryBlending
+      value: 0.663
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
