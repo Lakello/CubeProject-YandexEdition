@@ -7,10 +7,22 @@ namespace CubeProject.InputSystem
 {
 	public class BackToMenu : MonoBehaviour, ITransitSubject
 	{
+		private IInputService _inputService;
+
 		public event Action StateTransiting;
 
 		[Inject]
-		private void Inject(IInputService input) =>
-			input.MenuKeyChanged += () => StateTransiting?.Invoke();
+		private void Inject(IInputService inputService)
+		{
+			_inputService = inputService;
+
+			_inputService.MenuKeyChanged += OnMenuKeyChanged;
+		}
+
+		private void OnDisable() =>
+			_inputService.MenuKeyChanged -= OnMenuKeyChanged;
+
+		private void OnMenuKeyChanged() =>
+			StateTransiting?.Invoke();
 	}
 }

@@ -155,7 +155,7 @@ PrefabInstance:
       addedObject: {fileID: 6459506396005444479}
     - targetCorrespondingSourceObject: {fileID: -9184163349028223812, guid: 88b528c772e90464c8707ec7da6701b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5731667550196110690}
+      addedObject: {fileID: 5806651507986508980}
   m_SourcePrefab: {fileID: 100100000, guid: 88b528c772e90464c8707ec7da6701b0, type: 3}
 --- !u!1 &7053691855491139627 stripped
 GameObject:
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81e2892757d493696988c5f213aa207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5731667550196110690
+--- !u!114 &5806651507986508980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,14 +204,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7053691855491139627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde49e0cc5104956b506e38b64e9676c, type: 3}
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hdrColorChanger:
-    _intensityChargedColor: 2.7
-    _intensityDischargedColor: 0
-    _chargedColor: {r: 0, g: 0.70510626, b: 1, a: 1}
-    _dischargedColor: {r: 0.39048594, g: 0.61279327, b: 0.7075472, a: 1}
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 0, g: 0.90418863, b: 1, a: 1}
+    _dischargedColor: {r: 0.33414024, g: 0.6762268, b: 0.7169812, a: 1}
     _bloomMeshRenderers:
     - {fileID: 7602676302697482181}
 --- !u!4 &7413569556572154748 stripped

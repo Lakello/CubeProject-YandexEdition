@@ -15,11 +15,6 @@ namespace CubeProject.InputSystem
 		private IStateChangeable<CubeStateMachine> _cubeStateMachine;
 
 		public event Action<Vector3> Moving;
-
-		public event Action UsePressed;
-
-		public event Action UseReleased;
-
 		public event Action MenuKeyChanged;
 
 		public void Init(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)

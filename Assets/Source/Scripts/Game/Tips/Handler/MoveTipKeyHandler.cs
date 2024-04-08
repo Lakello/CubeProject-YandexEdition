@@ -12,7 +12,7 @@ namespace CubeProject.Tips
 		[Inject]
 		protected void Inject(Cube cube)
 		{
-			_service = cube.ServiceHolder.MoveService;
+			_service = cube.Component.MoveService;
 
 			_service.StepStarted += OnStepStarted;
 			_service.StepEnded += OnStepEnded;

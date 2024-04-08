@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using LeadTools.NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -14,28 +16,49 @@ namespace CubeProject.LeadTools.Utils
 		private const string PointName = "Point_";
         
 		private readonly List<Transform> _pointsPool = new List<Transform>();
-
-		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] private PresetType _preset;
+		
+		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] [Dropdown(nameof(GetPresets))] private ObjectSpawnerPreset _preset;
 		[SerializeField] [OnValueChanged(nameof(OnPointsChanged))] private Transform[] _points;
+		[SerializeField] private int _height = 1;
 
 		private List<GameObject> _spawnedObjects;
 		private bool _isSpawned;
 		private GameObject _parent;
+		private ObjectSpawnerPreset[] _presets;
 
 		private bool CanShowApplyButton => _isSpawned;
 
-		private bool CanShowSpawnButton => _preset.Value.ObjectPrefab != null && _points is {Length: >= 2} && _isSpawned == false;
+		private bool CanShowSpawnButton => _preset.ObjectPrefab != null && _points is {Length: >= 2} && _isSpawned == false;
 
 		private void OnPresetChanged() =>
-			_parent = GameObject.Find(_preset.Value.ParentName);
+			_parent = GameObject.Find(_preset.ParentName);
 
+		private void FindPresets()
+		{
+			_presets = Resources.LoadAll<ObjectSpawnerPreset>("ObjectSpawnerSO");
+		}
+
+		private DropdownList<ObjectSpawnerPreset> GetPresets()
+		{
+			FindPresets();
+			
+			var list = new DropdownList<ObjectSpawnerPreset>();
+			
+			foreach (var preset in _presets)
+			{
+				list.Add(preset.name, preset);
+			}
+
+			return list;
+		}
+		
 		private void OnPointsChanged()
 		{
 			for (int i = 0; i < _points.Length; i++)
 			{
 				if (_points[i] == null || _points[i].name != PointName + i)
 				{
-					var newPoint = (GameObject)PrefabUtility.InstantiatePrefab(_preset.Value.PointPrefab, SceneManager.GetActiveScene());
+					var newPoint = (GameObject)PrefabUtility.InstantiatePrefab(_preset.PointPrefab, SceneManager.GetActiveScene());
 
 					newPoint.name = PointName + i;
 					newPoint.transform.position = Vector3.zero;
@@ -71,28 +94,39 @@ namespace CubeProject.LeadTools.Utils
 			_spawnedObjects = new List<GameObject>();
 			Vector3 previousPosition = Vector3.positiveInfinity;
 
-			for (int i = 0; i < _points.Length - 1; i++)
+			for (int i = 0; i < _height; i++)
 			{
-				Vector3 startPoint = _points[i].position;
-				Vector3 endPoint = _points[i + 1].position;
-				
-				Vector3 currentPosition = startPoint;
-				Vector3 direction = endPoint - startPoint;
-
-				while (currentPosition != endPoint)
-				{
-					
-					TryInstantiateObject(currentPosition);
-
-					currentPosition += direction.normalized;
-				}
-			
-				TryInstantiateObject(currentPosition);
+				SetRow(i);
 			}
 
 			_isSpawned = true;
 
 			return;
+
+			void SetRow(int heightIncrement)
+			{
+				for (int i = 0; i < _points.Length - 1; i++)
+				{
+					Vector3 startPoint = _points[i].position;
+					Vector3 endPoint = _points[i + 1].position;
+
+					startPoint.y += heightIncrement;
+					endPoint.y += heightIncrement;
+					
+					Vector3 currentPosition = startPoint;
+					Vector3 direction = endPoint - startPoint;
+
+					while (currentPosition != endPoint)
+					{
+					
+						TryInstantiateObject(currentPosition);
+
+						currentPosition += direction.normalized;
+					}
+			
+					TryInstantiateObject(currentPosition);
+				}
+			}
 			
 			void TryInstantiateObject(Vector3 currentPosition)
 			{
@@ -103,10 +137,10 @@ namespace CubeProject.LeadTools.Utils
 
 				previousPosition = currentPosition;
 				
-				var spawnerObject = (GameObject)PrefabUtility.InstantiatePrefab(_preset.Value.ObjectPrefab, SceneManager.GetActiveScene());
+				var spawnerObject = (GameObject)PrefabUtility.InstantiatePrefab(_preset.ObjectPrefab, SceneManager.GetActiveScene());
 
 				spawnerObject.transform.position = currentPosition;
-				spawnerObject.transform.rotation = Quaternion.Euler(_preset.Value.ObjectRotation);
+				spawnerObject.transform.rotation = Quaternion.Euler(_preset.ObjectRotation);
 
 				if (_parent != null)
 				{

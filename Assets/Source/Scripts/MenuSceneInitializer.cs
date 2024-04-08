@@ -39,7 +39,7 @@ namespace CubeProject
 
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(machine.Window);
-
+			
 			machine.EnterIn<TState>();
 
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);

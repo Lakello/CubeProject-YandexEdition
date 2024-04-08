@@ -1,9 +1,8 @@
-using CubeProject.Game;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level
 {
-	public class SpawnPoint : MonoBehaviour, ICheckPoint
+	public class SpawnPoint : MonoBehaviour
 	{
 	}
 }

@@ -1,7 +1,6 @@
-using CubeProject.Game;
-using LeadTools.Extensions;
+using System;
 using LeadTools.StateMachine;
-using Reflex.Attributes;
+using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
@@ -9,40 +8,32 @@ using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[RequireComponent(typeof(CubeDiedView))]
-	[RequireComponent(typeof(Cube))]
-	public class CubeDiedService : MonoBehaviour
+	public class CubeDiedService : IDisposable
 	{
-		[SerializeField] private Transform _cameraFollow;
-		[SerializeField] private Vector3 _offset = new Vector3(0, 0.5f, 0);
+		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
+		private readonly Cube _cube;
+		private readonly CubeDiedView _cubeDiedView;
+		private readonly SpawnPoint _spawnPoint;
+		private readonly TargetCameraHolder _targetCameraHolder;
 
-		private Cube _cube;
-		private CheckPointHolder _checkPointHolder;
-		private CubeDiedView _cubeDiedView;
-		private TargetCameraHolder _targetCameraHolder;
-
-		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.ServiceHolder.StateMachine;
-
-		private CubeFallService CubeFallService => _cube.ServiceHolder.FallService;
-
-		[Inject]
-		private void Inject(CheckPointHolder checkPointHolder, TargetCameraHolder targetCameraHolder)
+		public CubeDiedService(Cube cube, SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)
 		{
+			_cube = cube;
+			_cubeDiedView = _cube.Component.DiedView;
 			_targetCameraHolder = targetCameraHolder;
-			_checkPointHolder = checkPointHolder;
-		}
+			_spawnPoint = spawnPoint;
 
-		private void Awake()
-		{
-			gameObject.GetComponentElseThrow(out _cubeDiedView);
-			gameObject.GetComponentElseThrow(out _cube);
-		}
-
-		private void OnEnable() =>
 			_cube.Died += OnDied;
+		}
 
-		private void OnDisable() =>
+		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.Component.StateMachine;
+
+		private CubeFallService CubeFallService => _cube.Component.FallService;
+
+		public void Dispose()
+		{
 			_cube.Died -= OnDied;
+		}
 
 		private void OnDied()
 		{
@@ -51,13 +42,13 @@ namespace CubeProject.PlayableCube
 				DissolveInvisible();
 			}
 		}
-		
+
 		private void DissolveInvisible() =>
 			_cubeDiedView.Play(false, DissolveVisible);
 
 		private void DissolveVisible()
 		{
-			_cube.transform.position = ((MonoBehaviour)_checkPointHolder.CurrentCheckPoint).transform.position + _offset;
+			_cube.transform.position = _spawnPoint.transform.position + _offset;
 
 			_targetCameraHolder.SetTarget();
 

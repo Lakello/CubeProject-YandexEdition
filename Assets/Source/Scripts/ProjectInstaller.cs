@@ -17,7 +17,7 @@ namespace CubeProject
 
 		private Action _unsubscribe;
 
-		public void InstallBindings(ContainerDescriptor descriptor)
+		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
 			var audioSource = new GameObject(nameof(AudioSource)).AddComponent<AudioSource>();
 			audioSource.clip = _audioClipBackground;
@@ -36,7 +36,7 @@ namespace CubeProject
 			InitStateMachine();
 
 			ProjectInit();
-
+			
 			return;
 
 			#region InitMethods
@@ -67,7 +67,7 @@ namespace CubeProject
 						[typeof(EndLevelState)] = new EndLevelState(() => windowStateMachine.EnterIn<EndLevelWindowState>()),
 					});
 
-				descriptor.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));
+				containerBuilder.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));
 			}
 
 			void ProjectInit()

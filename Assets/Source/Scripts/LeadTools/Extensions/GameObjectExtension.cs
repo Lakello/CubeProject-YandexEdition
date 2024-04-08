@@ -52,6 +52,21 @@ namespace LeadTools.Extensions
 
 			return component;
 		}
+		
+		public static T GetComponentInParentElseThrow<T>(this GameObject origin) =>
+			GetComponentInParentElseThrow(origin, out T _);
+
+		public static T GetComponentInParentElseThrow<T>(this GameObject origin, out T component)
+		{
+			component = origin.GetComponentInParent<T>();
+
+			if (component is null)
+			{
+				Debug.LogException(new NullReferenceException(), origin);
+			}
+
+			return component;
+		}
 
 		public static T[] GetComponentsInChildrenElseThrow<T>(this GameObject origin) =>
 			GetComponentInChildrenElseThrow(origin, out T[] _);

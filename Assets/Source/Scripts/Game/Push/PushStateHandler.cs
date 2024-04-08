@@ -15,7 +15,7 @@ namespace CubeProject.Tips
 		public PushStateHandler(Cube cube)
 		{
 			_cube = cube;
-			_cubeStateMachine = _cube.ServiceHolder.StateMachine;
+			_cubeStateMachine = _cube.Component.StateMachine;
 		}
 
 		public void Pushing(Pusher pusher)
@@ -36,7 +36,7 @@ namespace CubeProject.Tips
 			_currentPusher.Pushed -= OnPushed;
 			_currentPusher = null;
 
-			if (_cube.ServiceHolder.FallService.TryFall() is false)
+			if (_cube.Component.FallService.TryFall() is false)
 			{
 				_cubeStateMachine.EnterIn<ControlState>();
 			}

@@ -29,7 +29,7 @@ namespace CubeProject.Tips
 		{
 			_stateHandler = stateHandler;
 			_cube = cube;
-			_moveService = _cube.ServiceHolder.MoveService;
+			_moveService = _cube.Component.MoveService;
 			_groundMask = holder.GroundMask;
 		}
 

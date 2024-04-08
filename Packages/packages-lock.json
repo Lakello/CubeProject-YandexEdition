@@ -15,11 +15,11 @@
       "url": "https://packages.unity.com"
     },
     "com.gustavopsantos.reflex": {
-      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#6.0.0",
+      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#8.0.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "c37c872107d63c2c9b6fb0b0fc369f9789c224f7"
+      "hash": "0e6c8ca13c9ad1632977696cfbec43efd930b028"
     },
     "com.unity.2d.common": {
       "version": "8.0.1",
@@ -171,26 +171,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.probuilder": {
-      "version": "5.1.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.3",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.progrids": {
-      "version": "3.0.3-preview.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.2"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.render-pipelines.core": {
       "version": "14.0.8",
       "depth": 1,
@@ -211,7 +191,7 @@
     },
     "com.unity.settings-manager": {
       "version": "2.0.1",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
