@@ -1,9 +1,7 @@
 #if UNITY_EDITOR
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using LeadTools.NaughtyAttributes;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +15,7 @@ namespace CubeProject.LeadTools.Utils
         
 		private readonly List<Transform> _pointsPool = new List<Transform>();
 		
-		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] [Dropdown(nameof(GetPresets))] private ObjectSpawnerPreset _preset;
+		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] [ValueDropdown(nameof(GetPresets))] private ObjectSpawnerPreset _preset;
 		[SerializeField] [OnValueChanged(nameof(OnPointsChanged))] private Transform[] _points;
 		[SerializeField] private int _height = 1;
 
@@ -38,11 +36,11 @@ namespace CubeProject.LeadTools.Utils
 			_presets = Resources.LoadAll<ObjectSpawnerPreset>("ObjectSpawnerSO");
 		}
 
-		private DropdownList<ObjectSpawnerPreset> GetPresets()
+		private ValueDropdownList<ObjectSpawnerPreset> GetPresets()
 		{
 			FindPresets();
 			
-			var list = new DropdownList<ObjectSpawnerPreset>();
+			var list = new ValueDropdownList<ObjectSpawnerPreset>();
 			
 			foreach (var preset in _presets)
 			{
