@@ -1,11 +1,9 @@
-using System;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Wall
 {
-	[RequireComponent(typeof(MeshRenderer))]
 	public class WallFade : MonoBehaviour
 	{
 		private const float HideAlpha = 0f;
@@ -14,7 +12,7 @@ namespace Source.Scripts.Game.Level.Wall
 
 		[SerializeField] private ShaderProperty _property = ShaderProperty._Color;
 		[SerializeField] private MeshRenderer _renderer;
-		
+
 		private Color _materialColor;
 		private Coroutine _alphaCoroutine;
 
@@ -24,12 +22,12 @@ namespace Source.Scripts.Game.Level.Wall
 			{
 				gameObject.GetComponentElseThrow(out _renderer);
 			}
-			
+
 			var color = _renderer.material.GetColor(_property.GetCurrentName());
 
 			color.a = HideAlpha;
 			_materialColor = color;
-			
+
 			Hide();
 		}
 
@@ -38,7 +36,7 @@ namespace Source.Scripts.Game.Level.Wall
 
 		public void Hide() =>
 			ChangeAlpha(false);
-		
+
 		private void ChangeAlpha(bool isShow)
 		{
 			this.StopRoutine(_alphaCoroutine);
@@ -50,7 +48,7 @@ namespace Source.Scripts.Game.Level.Wall
 					{
 						currentTime = 1 - currentTime;
 					}
-					
+
 					var color = _materialColor;
 
 					color.a = Mathf.Lerp(HideAlpha, ShowAlpha, currentTime);

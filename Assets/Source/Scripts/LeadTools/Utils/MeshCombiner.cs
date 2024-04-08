@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Source.Scripts.LeadTools.Utils;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -93,6 +94,8 @@ namespace LeadTools.Utils
 				meshFilters = meshFilters.Where((meshFilter) => meshFilter != _meshFiltersToSkip[i]).ToArray();
 			}
 
+			meshFilters = meshFilters.Where((meshFilter) => meshFilter.TryGetComponent(out MeshCombinerIgnore _) == false).ToArray();
+			
 			return meshFilters;
 		}
 
