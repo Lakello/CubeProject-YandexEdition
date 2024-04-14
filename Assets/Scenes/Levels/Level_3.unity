@@ -442,7 +442,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 1156728103726587680, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_Name
@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_LocalPosition.y
@@ -488,11 +488,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4076295368374598304, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076295368374598304, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+--- !u!4 &18823009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+  m_PrefabInstance: {fileID: 18823008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &21161142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1969,15 +1982,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2001,7 +2022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2020,6 +2041,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &95892094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 95892093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &102301616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2792,7 +2818,32 @@ Transform:
   m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 436735897}
+  - {fileID: 1286253789}
+  - {fileID: 1483079412}
+  - {fileID: 1303233789}
+  - {fileID: 1953978384}
+  - {fileID: 1594371183}
+  - {fileID: 517327068}
+  - {fileID: 696055853}
+  - {fileID: 1597434414}
+  - {fileID: 18823009}
+  - {fileID: 1154476241}
+  - {fileID: 772177004}
+  - {fileID: 272523839}
+  - {fileID: 1343852925}
+  - {fileID: 95892094}
+  - {fileID: 792915960}
+  - {fileID: 2050066758}
+  - {fileID: 974143028}
+  - {fileID: 797538739}
+  - {fileID: 1311644359}
+  - {fileID: 1462737899}
+  - {fileID: 1323883635}
+  - {fileID: 808573712}
+  - {fileID: 817171224}
+  - {fileID: 824747693}
   m_Father: {fileID: 991689666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179415773
@@ -4063,15 +4114,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4095,7 +4154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4114,6 +4173,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &272523839 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 272523838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &289336241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6830,15 +6894,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9999995
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6872,6 +6936,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H -
@@ -6881,6 +6953,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &436735897 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 436735896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &438807653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8143,15 +8220,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8194,6 +8279,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &517327068 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 517327067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &527013550 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3370096441436384951, guid: ff3aab6f5ca893a4883df157fb6c799b, type: 3}
@@ -10545,15 +10635,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10596,6 +10694,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &696055853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 696055852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &697824597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11746,15 +11849,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11778,7 +11889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11797,6 +11908,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &772177004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 772177003}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &776669981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12041,15 +12157,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12073,7 +12197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12092,21 +12216,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &792915960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 792915959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &797538738
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12130,7 +12267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12149,6 +12286,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &797538739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 797538738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &798313498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12341,15 +12483,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000009536743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12383,6 +12525,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (5)
@@ -12392,6 +12542,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &808573712 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 808573711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &810120424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12522,11 +12677,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12564,6 +12719,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (6)
@@ -12573,6 +12736,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &817171224 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 817171223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &821622762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12649,7 +12817,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 1156728103726587680, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_Name
@@ -12657,11 +12825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9999995
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12695,11 +12863,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4076295368374598304, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076295368374598304, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+--- !u!4 &824747693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1944652737472285838, guid: ad9061d60d2f41d4ea0cb55cd8dcf096, type: 3}
+  m_PrefabInstance: {fileID: 824747692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &826118561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15007,15 +15188,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15039,7 +15228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15058,6 +15247,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &974143028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 974143027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &975015917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17337,15 +17531,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9999995
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17379,6 +17573,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (4)
@@ -17388,6 +17590,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &1154476241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 1154476240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1155505396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18778,15 +18985,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99999905
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18824,11 +19031,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+--- !u!4 &1286253789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+  m_PrefabInstance: {fileID: 1286253788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1287729890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18959,11 +19179,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19001,6 +19221,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (1)
@@ -19010,6 +19238,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &1303233789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 1303233788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1306147578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19078,15 +19311,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19110,7 +19351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19129,6 +19370,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &1311644359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 1311644358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1313517175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19259,15 +19505,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000009536743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19305,11 +19551,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+--- !u!4 &1323883635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2093223224136610196, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+  m_PrefabInstance: {fileID: 1323883634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1324881806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19750,15 +20009,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19782,7 +20049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19801,6 +20068,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &1343852925 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 1343852924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1354502441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20978,11 +21250,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21006,7 +21278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21020,6 +21292,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_Name
       value: Wire V --
@@ -21029,6 +21309,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6051722d87906724fa984020502f02c8, type: 3}
+--- !u!4 &1462737899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
+  m_PrefabInstance: {fileID: 1462737898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1466351395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21283,15 +21568,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21315,7 +21608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21334,6 +21627,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &1483079412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 1483079411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1484892524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22456,11 +22754,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22498,6 +22796,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (3)
@@ -22507,6 +22813,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &1594371183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 1594371182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1596428276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22575,15 +22886,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22626,6 +22945,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &1597434414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 1597434413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1597563714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28666,11 +28990,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28708,6 +29032,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (2)
@@ -28717,6 +29049,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+--- !u!4 &1953978384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+  m_PrefabInstance: {fileID: 1953978383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1970078276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29991,15 +30328,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 173300622}
     m_Modifications:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 74343866}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30023,7 +30368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -30042,6 +30387,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+--- !u!4 &2050066758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+  m_PrefabInstance: {fileID: 2050066757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2054201487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31188,28 +31538,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 8977630}
   - {fileID: 1653056655}
-  - {fileID: 436735896}
-  - {fileID: 1286253788}
-  - {fileID: 1483079411}
-  - {fileID: 1303233788}
-  - {fileID: 1953978383}
-  - {fileID: 1594371182}
-  - {fileID: 517327067}
-  - {fileID: 696055852}
-  - {fileID: 1597434413}
-  - {fileID: 18823008}
-  - {fileID: 1154476240}
-  - {fileID: 772177003}
-  - {fileID: 272523838}
-  - {fileID: 1343852924}
-  - {fileID: 95892093}
-  - {fileID: 792915959}
-  - {fileID: 2050066757}
-  - {fileID: 974143027}
-  - {fileID: 797538738}
-  - {fileID: 1311644358}
-  - {fileID: 1462737898}
-  - {fileID: 1323883634}
-  - {fileID: 808573711}
-  - {fileID: 817171223}
-  - {fileID: 824747692}
