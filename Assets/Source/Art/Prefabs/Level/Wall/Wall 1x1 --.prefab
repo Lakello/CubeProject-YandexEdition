@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4336399215119290708
 Transform:
@@ -48,7 +48,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6310449415778540660
 Transform:
@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane White
       objectReference: {fileID: 0}
+    - target: {fileID: 5700728159321802657, guid: 3df1c06b3da4d28428a2a2bb666d48d6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -272,6 +276,10 @@ PrefabInstance:
     - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_Name
       value: Wall 16 right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7329874078164046205, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_LocalScale.x
@@ -382,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane White
       objectReference: {fileID: 0}
+    - target: {fileID: 5700728159321802657, guid: 3df1c06b3da4d28428a2a2bb666d48d6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -411,6 +423,10 @@ PrefabInstance:
     - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_Name
       value: Wall 16 up
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7329874078164046205, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_LocalScale.x
@@ -520,6 +536,10 @@ PrefabInstance:
     - target: {fileID: 7684339080530661309, guid: 98ffc93cd217d5a43851ee05a4aac6bc, type: 3}
       propertyPath: m_Name
       value: Plane Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684339080530661309, guid: 98ffc93cd217d5a43851ee05a4aac6bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -656,6 +676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 7684339080530661309, guid: 98ffc93cd217d5a43851ee05a4aac6bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -718,6 +742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane White
       objectReference: {fileID: 0}
+    - target: {fileID: 5700728159321802657, guid: 3df1c06b3da4d28428a2a2bb666d48d6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -747,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_Name
       value: Wall 16 left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018992860187717711, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7329874078164046205, guid: 96b92447ca241c442b0f30f653decb36, type: 3}
       propertyPath: m_LocalScale.x
