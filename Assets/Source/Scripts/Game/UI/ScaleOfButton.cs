@@ -8,40 +8,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ScaleOfButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
-    private WordWobble _wordWobble;
-    private Color[] _defaultColors;
+{ 
     private Color _defaultVertexColor;
     private TextMeshProUGUI _text;
+    private Vector3 _scalePointerEnter = new Vector3(1.2f, 1.2f, 1f);
+    private float _speedScale = 0.3f;
+    
 
     private void Start()
     {
-        _text = GetComponent<TextMeshProUGUI>();
-        _defaultColors = _text.mesh.colors;
-        _defaultVertexColor = _text.color;
-        Debug.Log(_defaultColors);
+        _text = GetComponent<TextMeshProUGUI>();        
+        _defaultVertexColor = _text.color;       
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {       
-        transform.DOScale(new Vector3(1.2f, 1.2f, 1f), 0.3f);
-
-        if (TryGetComponent(out WordWobble wordWobble))
-        {
-            _wordWobble = wordWobble;
-            _wordWobble.enabled = true;
-        }        
+        transform.DOScale(_scalePointerEnter, _speedScale);
+        _text.color = Color.red;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOScale(new Vector3(1f, 1f, 1f), 0.3f);
-
-        if (TryGetComponent(out WordWobble wordWobble))
-        {            
-            _wordWobble.enabled = false;          
-            _text.mesh.colors = _defaultColors;
-            _text.color = _defaultVertexColor;
-        }        
+        transform.DOScale(Vector3.one, _speedScale);
+        _text.color = _defaultVertexColor;        
     }
 }
