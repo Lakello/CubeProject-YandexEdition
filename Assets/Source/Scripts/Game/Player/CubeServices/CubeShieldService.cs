@@ -53,6 +53,7 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void OnChargeChanged()
 		{
+			Debug.Log(nameof(OnChargeChanged));
 			SetListenStateChanged(_chargeHolder.IsCharged);
 
 			TryChangeShieldState();
@@ -60,26 +61,17 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void OnStateChanged()
 		{
-			if (_acceptableStates.Any(state => state == _stateChangeable.CurrentState))
-			{
-				ChangeIsAcceptableState(true);
+			Debug.Log(nameof(OnStateChanged));
+			_isAcceptableState = 
+				_acceptableStates.Any(state => state == _stateChangeable.CurrentState);
 
-				return;
-			}
-
-			ChangeIsAcceptableState(false);
-
-			return;
-
-			void ChangeIsAcceptableState(bool value)
-			{
-				_isAcceptableState = value;
-				TryChangeShieldState();
-			}
+			TryChangeShieldState();
 		}
 
 		private void TryChangeShieldState()
 		{
+			Debug.Log(nameof(TryChangeShieldState));
+			
 			if (_chargeHolder.IsCharged && _isAcceptableState)
 			{
 				if (_stateMachine.CurrentState != typeof(PlayState))
@@ -94,6 +86,8 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private void SetListenStateChanged(bool isListen)
 		{
+			Debug.Log(nameof(SetListenStateChanged));
+			
 			if (_isListenStates == isListen)
 				return;
 

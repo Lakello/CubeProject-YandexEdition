@@ -178,13 +178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changers:
-  - _propertyName: 5
-    _intensityChargedColor: 4
-    _intensityDischargedColor: 1
-    _chargedColor: {r: 0.15294118, g: 0.7529412, b: 0.59607846, a: 1}
-    _dischargedColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 2012689621649595358}
   - _propertyName: 4
     _intensityChargedColor: 4
     _intensityDischargedColor: 1

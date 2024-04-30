@@ -11,20 +11,24 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(PowerUnit))]
 	public class PowerUnitView : MonoBehaviour
 	{
-		[SerializeField] private float _enteredPositionY;
+		[SerializeField] private float _yOffset = 0.216f;
 		[SerializeField] private float _animationDuration;
 		[SerializeField] private Transform _buttonObject;
 		
 		private CubeMoveService _moveService;
 		private PowerUnit _powerUnit;
 		private Tweener _animationTweener;
+		private float _enteredPositionY;
 		
 		[Inject]
 		private void Inject(Cube cube) =>
 			_moveService = cube.Component.MoveService;
 
-		private void Awake() =>
+		private void Awake()
+		{
 			gameObject.GetComponentElseThrow(out _powerUnit);
+			_enteredPositionY = transform.position.y + _yOffset;
+		}
 
 		private void OnEnable() =>
 			_powerUnit.Entered += OnEntered;
