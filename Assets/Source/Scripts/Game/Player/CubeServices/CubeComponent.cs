@@ -20,7 +20,7 @@ namespace CubeProject.PlayableCube
 		public ChargeHolder ChargeHolder { get; private set; }
 		public CubeFallService FallService { get; private set; }
 		public IStateMachine<CubeStateMachine> StateMachine { get; private set; }
-		public TriggerObserver TriggerObserver { get; private set; }
+		public TriggerDetector TriggerDetector { get; private set; }
 		public CubeDiedView DiedView { get; private set; }
 		public CubeData Data { get; private set; }
 		public CubeShieldService ShieldService { get; private set; }
@@ -29,7 +29,7 @@ namespace CubeProject.PlayableCube
 		{
 			BecameVisibleBehaviour = gameObject.GetComponentInChildrenElseThrow<BecameVisibleBehaviour>();
 			ChargeHolder = gameObject.GetComponentElseThrow<ChargeHolder>();
-			TriggerObserver = gameObject.GetComponentElseThrow<TriggerObserver>();
+			TriggerDetector = gameObject.GetComponentElseThrow<TriggerDetector>();
 			DiedView = gameObject.GetComponentElseThrow<CubeDiedView>();
 		}
 

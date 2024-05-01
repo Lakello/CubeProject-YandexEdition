@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Source.Scripts.Game.Level.Shield.States;
+using Source.Scripts.Game.Level.Trigger;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
@@ -15,9 +15,9 @@ namespace Source.Scripts.Game.Level.Shield
 	{
 		private const ShaderProperty FresnelPowerProperty = ShaderProperty._Fresnel_Power;
 		private const ShaderProperty DisplacementAmountProperty = ShaderProperty._Displacement_Amount;
-		
+
 		[SerializeField] private MeshRenderer _renderer;
-		
+
 		private Vector2 _distanceRange;
 		private Vector2 _fresnelPowerRange;
 		private Vector2 _displacementAmountRange;
@@ -27,20 +27,19 @@ namespace Source.Scripts.Game.Level.Shield
 		private Coroutine _viewCoroutine;
 		private Coroutine _changeShieldVisible;
 		private Func<Transform> _getCubeTransform;
-		private Func<Transform> _getTargetTransform;
-		private Func<IChargeable> _getChargeable;
+		private TriggerDetector _triggerDetector;
 
 		[Inject]
 		private void Inject(Cube cube)
 		{
 			(_distanceRange, _fresnelPowerRange, _displacementAmountRange, _displacementAmountHide, _hideShowDuration)
 				= cube.Component.Data.GetShieldData;
+
 			_stateMachine = cube.Component.ShieldService.StateMachine;
 
 			_getCubeTransform = () => cube.transform;
-			_getTargetTransform = () => cube.Component.TriggerObserver.CurrentTarget;
-			_getChargeable = () => cube.Component.TriggerObserver.Chargeable;
-			
+			_triggerDetector = cube.Component.TriggerDetector;
+
 			_stateMachine.SubscribeTo<PlayState>(OnPlay);
 			_stateMachine.SubscribeTo<StopState>(OnStop);
 
@@ -58,9 +57,9 @@ namespace Source.Scripts.Game.Level.Shield
 		{
 			if (isEntered == false)
 				return;
-			
+
 			this.StopRoutine(_changeShieldVisible);
-			
+
 			_viewCoroutine = StartCoroutine(UpdateView());
 		}
 
@@ -68,50 +67,52 @@ namespace Source.Scripts.Game.Level.Shield
 		{
 			if (isEntered == false)
 				return;
-			
+
 			this.StopRoutine(_viewCoroutine);
 			this.StopRoutine(_changeShieldVisible);
 
-			_changeShieldVisible = StartCoroutine(ChangeShieldVisible(false));
+			_changeShieldVisible = StartCoroutine(ChangeShieldVisible(false, _distanceRange.y));
 		}
 
 		private IEnumerator UpdateView()
 		{
 			var waitUpdate = new WaitForFixedUpdate();
-			
+
 			while (enabled)
 			{
-				if (_getTargetTransform() is not null && _getChargeable() is { IsCharged: true })
+				if (_triggerDetector.TryGetTargetTransform(out var targetTransform))
 				{
+					var normalDistance = CalculateNormalDistance(targetTransform);
+
 					if (_renderer.enabled == false)
-						yield return ChangeShieldVisible(true);
-					
-					UpdateShieldProperties();
+						yield return ChangeShieldVisible(true, normalDistance);
+
+					UpdateShieldProperties(normalDistance);
 				}
 				else
 				{
 					if (_renderer.enabled)
-						yield return ChangeShieldVisible(false);
+						yield return ChangeShieldVisible(false, _distanceRange.y);
 				}
-				
+
 				yield return waitUpdate;
 			}
 		}
 
-		private IEnumerator ChangeShieldVisible(bool isShow)
+		private IEnumerator ChangeShieldVisible(bool isShow, float normalDistance)
 		{
-			var targetValue = GetPropertyValueOnDistance(_displacementAmountRange, CalculateNormalDistance());
+			var targetValue = GetPropertyValueOnDistance(_displacementAmountRange, normalDistance);
 			UpdateProperty(DisplacementAmountProperty.GetCurrentName(), _displacementAmountHide);
 
 			if (isShow)
 				_renderer.enabled = true;
-			
+
 			yield return this.PlaySmoothChangeValue(
 				(normalTime) =>
 				{
 					if (isShow)
 						normalTime = 1 - normalTime;
-					
+
 					var value = Mathf.Lerp(targetValue, _displacementAmountHide, normalTime);
 					UpdateProperty(DisplacementAmountProperty.GetCurrentName(), value);
 				},
@@ -120,40 +121,37 @@ namespace Source.Scripts.Game.Level.Shield
 			if (isShow == false)
 				_renderer.enabled = false;
 		}
-		
-		private void UpdateShieldProperties()
+
+		private void UpdateShieldProperties(float normalDistance)
 		{
-			var normalDistance = CalculateNormalDistance();
-			
 			UpdateProperty(
-				FresnelPowerProperty.GetCurrentName(), 
+				FresnelPowerProperty.GetCurrentName(),
 				GetPropertyValueOnDistance(_fresnelPowerRange, 1 - normalDistance));
-			
+
 			UpdateProperty(
 				DisplacementAmountProperty.GetCurrentName(),
 				GetPropertyValueOnDistance(_displacementAmountRange, normalDistance));
 		}
 
-		private float CalculateNormalDistance()
+		private float CalculateNormalDistance(Transform targetTransform)
 		{
-			var targetTransform = _getTargetTransform();
 			float distance;
 
 			if (targetTransform is null)
 				distance = _distanceRange.y;
 			else
-				distance = Vector3.Distance(_getCubeTransform().position, _getTargetTransform().position);
-			
+				distance = Vector3.Distance(_getCubeTransform().position, targetTransform.position);
+
 			float normalDistance;
 
 			if (distance > _distanceRange.x)
 				normalDistance = distance / _distanceRange.y;
-			else 
+			else
 				normalDistance = 1;
 
 			return normalDistance;
 		}
-		
+
 		private void UpdateProperty(string propertyName, float value) =>
 			_renderer.material.SetFloat(propertyName, value);
 
