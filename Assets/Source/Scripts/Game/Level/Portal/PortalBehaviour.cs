@@ -3,9 +3,9 @@ using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
 using CubeProject.Tips;
 using LeadTools.Extensions;
-using LeadTools.NaughtyAttributes;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
+using Sirenix.OdinInspector;
 using Source.Scripts.Game;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
@@ -17,7 +17,7 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(ChargeConsumer))]
 	public sealed class PortalBehaviour : MonoBehaviour, IPushHandler
 	{
-		[ShowNonSerializedField] private bool _isActive;
+		[ShowInInspector] private bool _isActive;
 		
 		[SerializeField] private Transform _targetPoint;
 		[SerializeField] private TeleporterData _teleporterData;
