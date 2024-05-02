@@ -13,8 +13,6 @@ namespace CubeProject.Game
 
 		private ChargeHolder _selfChargeHolder;
 
-		public event Action Entered;
-
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _selfChargeHolder);
@@ -23,10 +21,7 @@ namespace CubeProject.Game
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out Cube cube))
-			{
-				Entered?.Invoke();
 				OnTryUsing(cube);
-			}
 		}
 
 		private void OnTryUsing(Cube cube)
@@ -35,18 +30,12 @@ namespace CubeProject.Game
 			var selfIsCharged = _selfChargeHolder.IsCharged;
 
 			if (selfIsCharged && cubeIsCharged)
-			{
 				return;
-			}
 
 			if (selfIsCharged && _canGiveCharge)
-			{
 				_selfChargeHolder.GivePowerTo(cube.Component.ChargeHolder);
-			}
 			else if (cubeIsCharged && _canGetCharge)
-			{
 				cube.Component.ChargeHolder.GivePowerTo(_selfChargeHolder);
-			}
 		}
 	}
 }

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 613912390492823221}
   - component: {fileID: 2379401782450471870}
   - component: {fileID: 8038678656538195210}
-  - component: {fileID: 2504426539480671758}
   - component: {fileID: 3984998593808315714}
+  - component: {fileID: 4451635043677225209}
   m_Layer: 10
   m_Name: Power_Station
   m_TagString: Untagged
@@ -86,21 +86,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2504426539480671758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9100349048613361465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b41650a8cc43adb39b10b4ed83d55a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enteredPositionY: 0.216
-  _animationDuration: 0.2
-  _buttonObject: {fileID: 6868562933044310590}
 --- !u!114 &3984998593808315714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +107,22 @@ MonoBehaviour:
     _bloomMeshRenderers:
     - {fileID: 5746893764314186878}
     - {fileID: 115520782672248439}
+--- !u!114 &4451635043677225209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100349048613361465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2bec48fc064630913d2c40abf00bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yOffset: 0.216
+  _animationDuration: 0.5
+  _isThisAnimate: 0
+  _animateObject: {fileID: 6868562933044310590}
 --- !u!1001 &5502414013789416081
 PrefabInstance:
   m_ObjectHideFlags: 0

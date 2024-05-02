@@ -35,7 +35,7 @@ namespace CubeProject.Tips
 
 		public bool TryRelease()
 		{
-			if (_stateMachine.CurrentState.GetType() != typeof(ReleaseState))
+			if (_stateMachine.CurrentState != typeof(ReleaseState))
 			{
 				_stateMachine.EnterIn<ReleaseState>();
 
@@ -47,7 +47,7 @@ namespace CubeProject.Tips
 
 		public bool TryPress()
 		{
-			if (_stateMachine.CurrentState.GetType() != typeof(PressState))
+			if (_stateMachine.CurrentState != typeof(PressState))
 			{
 				_stateMachine.EnterIn<PressState>();
 
