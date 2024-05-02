@@ -102,8 +102,8 @@ MonoBehaviour:
   - _propertyName: 1
     _intensityChargedColor: 4
     _intensityDischargedColor: 1
-    _chargedColor: {r: 0, g: 1, b: 0.9903934, a: 1}
-    _dischargedColor: {r: 0.26614454, g: 0.42906722, b: 0.5283019, a: 1}
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
     _bloomMeshRenderers:
     - {fileID: 5746893764314186878}
     - {fileID: 115520782672248439}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CubeProject.Tips
 {
-	public class TipKeyPushHandler : MonoBehaviour, IPushHandler
+	public class TriggerPushHandler : MonoBehaviour, IPushHandler
 	{
 		public event Action Pushing;
 
