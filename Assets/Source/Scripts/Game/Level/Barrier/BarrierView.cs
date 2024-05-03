@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using DG.Tweening;
 using LeadTools.Extensions;
 using UnityEngine;
 
@@ -12,18 +12,28 @@ namespace CubeProject.Game
 		private const string BaseColor = "_BaseColor";
 		private const string Clip = "_Clip";
 
-		[SerializeField] private BarrierViewData _openData;
-		[SerializeField] private BarrierViewData _closeData;
+		[SerializeField] private BarrierViewData _animationData;
 		[SerializeField] private MeshRenderer _meshRendererWall;
 
-		private Coroutine _maskChangeCoroutine;
-		private Coroutine _changeMaskCoroutine;
-		private Coroutine _changeStateCoroutine;
 		private ChargeConsumer _chargeConsumer;
+		private Tweener _animation;
 
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
+
+			_animation = DOTween
+				.To(progress =>
+					{
+						LerpColor(_animationData.Gradient, progress);
+						LerpCurve(_animationData.ClipCurve, progress, SetClip);
+						LerpCurve(_animationData.MaskPowerCurve, progress, SetMask);
+					},
+					0,
+					1,
+					_animationData.ChangingStateDuration)
+				.SetAutoKill(false)
+				.Pause();
 
 			OnChargeChanged();
 		}
@@ -31,35 +41,20 @@ namespace CubeProject.Game
 		private void OnEnable() =>
 			_chargeConsumer.ChargeChanged += OnChargeChanged;
 
-		private void OnDisable() =>
+		private void OnDisable()
+		{
+			_animation.Kill();
 			_chargeConsumer.ChargeChanged -= OnChargeChanged;
+		}
 
 		private void OnChargeChanged()
 		{
-			this.StopRoutine(_changeMaskCoroutine);
-			this.StopRoutine(_maskChangeCoroutine);
-			this.StopRoutine(_changeStateCoroutine);
+			_animation.Pause();
 
-			_changeStateCoroutine = StartCoroutine(ChangeState());
-		}
-
-		private IEnumerator ChangeState()
-		{
-			var data = GetStateData(_chargeConsumer.IsCharged);
-			
-			_maskChangeCoroutine = this.PlaySmoothChangeValue(
-				(currentTime) =>
-				{
-					LerpColor(
-						data.Gradient,
-						currentTime);
-
-					LerpCurve(data.MaskPowerCurve, currentTime, SetMask);
-					LerpCurve(data.ClipCurve, currentTime, SetClip);
-				},
-				data.ChangingStateDuration);
-
-			yield return _maskChangeCoroutine;
+			if (_chargeConsumer.IsCharged)
+				_animation.PlayBackwards();
+			else
+				_animation.PlayForward();
 		}
 
 		private void LerpCurve(AnimationCurve curve, float currentTime, Action<float> set)
@@ -72,12 +67,9 @@ namespace CubeProject.Game
 		private void LerpColor(Gradient gradient, float currentTime)
 		{
 			var resultMaskColor = gradient.Evaluate(currentTime);
-			
+
 			SetColor(resultMaskColor);
 		}
-
-		private BarrierViewData GetStateData(bool isCharged) =>
-			isCharged is false ? _openData : _closeData;
 
 		private void SetColor(Color color) =>
 			_meshRendererWall.material.SetColor(BaseColor, color);
