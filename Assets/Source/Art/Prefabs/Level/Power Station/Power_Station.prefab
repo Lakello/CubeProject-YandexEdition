@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2bec48fc064630913d2c40abf00bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _yOffset: 0.216
-  _animationDuration: 0.5
+  _yOffset: 0.1
+  _animationDuration: 0.2
   _isThisAnimate: 0
   _animateObject: {fileID: 6868562933044310590}
 --- !u!1001 &5502414013789416081

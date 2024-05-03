@@ -28,6 +28,7 @@ namespace CubeProject.Game
 		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Teleporter _teleporter;
 		private CubeMoveService _cubeMoveService;
+		private CubeFallService _cubeFallService;
 		private ChargeConsumer _chargeConsumer;
 		
 		public event Action Pushing;
@@ -55,15 +56,26 @@ namespace CubeProject.Game
 			EditorUtility.SetDirty(_linkedPortal);
 		}
 		#endif
-
+		
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
 			_cube = cube;
 			_cubeMoveService = _cube.Component.MoveService;
 			_cubeStateMachine = _cube.Component.StateMachine;
+			_cubeFallService = _cube.Component.FallService;
 			
-			_teleporter = new Teleporter(this, cube, transform, _targetPoint, () => Pushing?.Invoke(), _teleporterData);
+			_teleporter = new Teleporter(
+				this,
+				cube,
+				transform,
+				_targetPoint,
+				() =>
+				{
+					if (_cubeFallService.TryFall() is false)
+						Pushing?.Invoke();
+				}, 
+				_teleporterData);
 		}
 
 		private void Awake() =>

@@ -15,16 +15,16 @@ namespace CubeProject.Tips
 			new DropdownList<Vector3>
 			{
 				{
-					"Right", Vector3.right
+					"Back", Vector3.right
 				},
 				{
-					"Left", Vector3.left
+					"Forward", Vector3.left
 				},
 				{
-					"Forward", Vector3.forward
+					"Right", Vector3.forward
 				},
 				{
-					"Back", Vector3.back
+					"Left", Vector3.back
 				},
 			};
 	}

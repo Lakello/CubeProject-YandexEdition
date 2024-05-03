@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Trigger
 {
-	[RequireComponent(typeof(BoxCollider))]
 	public class TriggerDetector : MonoBehaviour
 	{
-		private List<TriggerTarget> _targets = new List<TriggerTarget>();
+		[SerializeField] private List<TriggerTarget> _targets = new List<TriggerTarget>();
 
 		private void OnTriggerEnter(Collider other)
 		{

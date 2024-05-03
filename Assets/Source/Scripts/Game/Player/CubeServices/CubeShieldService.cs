@@ -16,7 +16,9 @@ namespace Source.Scripts.Game.Level.Shield
 	{
 		private readonly Type[] _acceptableStates =
 		{
-			typeof(ControlState), typeof(PushState),
+			typeof(ControlState), 
+			typeof(PushState),
+			typeof(FallingToGroundState),
 		};
 		private readonly ChargeHolder _chargeHolder;
 		private readonly IStateChangeable<CubeStateMachine> _stateChangeable;

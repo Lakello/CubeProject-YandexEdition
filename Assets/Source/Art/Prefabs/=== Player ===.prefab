@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 9169597038207546759}
   - component: {fileID: 1685948700190409386}
   - component: {fileID: 5239229189709755625}
-  - component: {fileID: 8033896647990741208}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -88,7 +87,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 839268567308689585}
-  - {fileID: 2476915704440505029}
+  - {fileID: 9061104084920219893}
   m_Father: {fileID: 3505936904620517583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8187578591020481753
@@ -224,18 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 3725273703629748278}
---- !u!114 &8033896647990741208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2348316050753323191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b843b125fc5f4830879d9c82e0025824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3760603947137364281
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cube: {fileID: 2855505055584217692}
   _follower: {fileID: 2559993266569072274}
---- !u!1 &6433068603686141597
+--- !u!1 &7142489375379462335
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,23 +280,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2476915704440505029}
-  - component: {fileID: 131867291692573959}
-  - component: {fileID: 4293178772044423663}
+  - component: {fileID: 9061104084920219893}
+  - component: {fileID: 6029219308418011652}
+  - component: {fileID: 7738351702429926697}
+  - component: {fileID: 9044865419722274825}
   m_Layer: 6
-  m_Name: Wall Finder
+  m_Name: Trigger detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2476915704440505029
+--- !u!4 &9061104084920219893
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433068603686141597}
+  m_GameObject: {fileID: 7142489375379462335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -318,13 +306,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7700228605977031009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &131867291692573959
+--- !u!114 &6029219308418011652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142489375379462335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b843b125fc5f4830879d9c82e0025824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targets: []
+--- !u!135 &7738351702429926697
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433068603686141597}
+  m_GameObject: {fileID: 7142489375379462335}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -337,20 +338,35 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4293178772044423663
-MonoBehaviour:
+--- !u!54 &9044865419722274825
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433068603686141597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 351efa1fcace4ca7989a11ff310afaaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_GameObject: {fileID: 7142489375379462335}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1001 &877945937742825306
 PrefabInstance:
   m_ObjectHideFlags: 0

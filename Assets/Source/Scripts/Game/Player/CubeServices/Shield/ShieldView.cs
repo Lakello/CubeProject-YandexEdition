@@ -135,21 +135,13 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private float CalculateNormalDistance(Transform targetTransform)
 		{
-			float distance;
+			float distance = targetTransform is null
+				? _distanceRange.y
+				: Vector3.Distance(_getCubeTransform().position, targetTransform.position);
 
-			if (targetTransform is null)
-				distance = _distanceRange.y;
-			else
-				distance = Vector3.Distance(_getCubeTransform().position, targetTransform.position);
-
-			float normalDistance;
-
-			if (distance > _distanceRange.x)
-				normalDistance = distance / _distanceRange.y;
-			else
-				normalDistance = 1;
-
-			return normalDistance;
+			return distance > _distanceRange.x
+				? distance / _distanceRange.y
+				: 1;
 		}
 
 		private void UpdateProperty(string propertyName, float value) =>

@@ -7,7 +7,7 @@ namespace CubeProject.Game
 	public class Teleporter
 	{
 		private readonly TeleportView _view;
-		private readonly Action _callPushing;
+		private readonly Action _endCallback;
 		private readonly AnimationCurve _scaleCurve;
 		private readonly AnimationCurve _heightCurve;
 
@@ -16,14 +16,14 @@ namespace CubeProject.Game
 			Cube cube,
 			Transform origin,
 			Transform targetPoint,
-			Action callPushing,
+			Action endCallback,
 			TeleporterData data)
 		{
 			_view = new TeleportView(cube, mono, origin, targetPoint, data.AnimationTime);
 
 			_scaleCurve = data.ScaleCurve;
 			_heightCurve = data.HeightCurve;
-			_callPushing = callPushing;
+			_endCallback = endCallback;
 		}
 
 		public void Absorb(Action endCallback)
@@ -41,7 +41,7 @@ namespace CubeProject.Game
 			_view.AnimationPlay(
 				(time) => 1 - _scaleCurve.Evaluate(time),
 				(time) => 1 - _heightCurve.Evaluate(time),
-				_callPushing);
+				_endCallback);
 		}
 	}
 }

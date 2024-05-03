@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using LeadTools.NaughtyAttributes;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CubeProject.Game

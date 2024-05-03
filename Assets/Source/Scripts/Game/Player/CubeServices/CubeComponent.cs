@@ -28,8 +28,8 @@ namespace CubeProject.PlayableCube
 		private void Awake()
 		{
 			BecameVisibleBehaviour = gameObject.GetComponentInChildrenElseThrow<BecameVisibleBehaviour>();
+			TriggerDetector = gameObject.GetComponentInChildrenElseThrow<TriggerDetector>();
 			ChargeHolder = gameObject.GetComponentElseThrow<ChargeHolder>();
-			TriggerDetector = gameObject.GetComponentElseThrow<TriggerDetector>();
 			DiedView = gameObject.GetComponentElseThrow<CubeDiedView>();
 		}
 
