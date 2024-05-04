@@ -1,70 +1,93 @@
 using DG.Tweening;
+using LeadTools.Extensions;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class PortalAnimation : MonoBehaviour
+	public class PortalAnimation : SerializedMonoBehaviour
 	{
-		[SerializeField] private Vector3 _playingScale;
-		[SerializeField] private Vector3 _stoppingScale;
-		[SerializeField] private AnimationCurve _scaleCurve;
-		[SerializeField] private float _scalePlayingDuration;
-		[SerializeField] private float _scaleStoppingDuration;
-		[SerializeField] private float _scaleSpeed;
-		[SerializeField] private float _rotateSpeed;
+		[OdinSerialize] [MinMaxSlider(0, 2)] private Vector2 _playingScaleRange;
+		[SerializeField] private Ease _appearScaleEase;
+		[SerializeField] private float _appearScaleDuration;
+		[SerializeField] private float _playingScaleSpeed;
+		[SerializeField] private float _perDuration;
 
-		private Tweener _stateChangedScaleTweener;
-		private Tweener _scaleTweener;
-		private Tweener _rotateTweener; 
-		
+		private Tweener _appearTweener;
+		private Sequence _playingSequence;
+
+		private void Awake()
+		{
+			Vector3 newScale = new Vector3();
+			Vector3 newPlayingScale = new Vector3();
+			Vector3 newRotation = new Vector3();
+
+			_appearTweener = DOTween
+				.To(
+					progress =>
+					{
+						newScale = newScale.SetAll(progress);
+						transform.localScale = newScale;
+					},
+					0,
+					1,
+					_appearScaleDuration)
+				.SetEase(_appearScaleEase)
+				.SetAutoKill(false)
+				.Pause();
+
+			_playingSequence = DOTween
+				.Sequence()
+				.SetAutoKill(false)
+				.Append(DOTween
+					.To(progress =>
+						{
+							newPlayingScale = newPlayingScale.SetAll(progress);
+							transform.localScale = newPlayingScale;
+						},
+						_playingScaleRange.x,
+						_playingScaleRange.y,
+						_playingScaleSpeed)
+					.SetLoops(-1, LoopType.Yoyo))
+				.Join(DOTween
+					.To(progress =>
+						{
+							newRotation.y = progress;
+							transform.localRotation = quaternion.Euler(newRotation);
+						},
+						0,
+						360,
+						_perDuration)
+					.SetLoops(-1, LoopType.Incremental))
+				.Pause();
+		}
+
+		private void OnDisable()
+		{
+			_appearTweener.Kill();
+			_playingSequence.Kill();
+		}
+
 		public void Play()
 		{
 			ResetAnimation();
-			
-			var endValueRotate = Vector3.up * 360;
-			var endValueScale = Vector3.one * _scaleCurve.Evaluate(1);
 
-			_stateChangedScaleTweener = transform
-				.DOScale(_playingScale, _scalePlayingDuration)
-				.SetEase(Ease.InOutFlash)
-				.OnKill(() =>
-				{
-					if (_scaleTweener == null)
-					{
-						_scaleTweener = transform
-							.DOScale(endValueScale, _scaleSpeed).SetEase(_scaleCurve).SetLoops(-1, LoopType.Restart);
-					}
-					else
-					{
-						_scaleTweener.Play();
-					}
-				});
-			
-			if (_rotateTweener == null)
-			{
-				_rotateTweener = transform.DORotate(endValueRotate, _rotateSpeed).SetLoops(-1, LoopType.Incremental);
-			}
-			else
-			{
-				_rotateTweener.Play();
-			}
+			_appearTweener.PlayForward();
+			_playingSequence.PlayForward();
 		}
 
 		public void Stop()
 		{
+			_appearTweener.PlayBackwards();
 			ResetAnimation();
-
-			_stateChangedScaleTweener = transform
-				.DOScale(_stoppingScale, _scaleStoppingDuration);
 		}
 
 		private void ResetAnimation()
 		{
-			_stateChangedScaleTweener.Kill();
-			_stateChangedScaleTweener = null;
-			
-			_scaleTweener.Pause();
-			_rotateTweener.Pause();
+			_appearTweener.Pause();
+			_playingSequence.Pause();
 		}
 	}
 }

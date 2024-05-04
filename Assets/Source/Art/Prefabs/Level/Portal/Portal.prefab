@@ -96,45 +96,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8facd611ed394fd49fa1e2e6ee777a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playingScale: {x: 0.99, y: 0.99, z: 0.99}
-  _stoppingScale: {x: 0, y: 0, z: 0}
-  _scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 2.3367023
-      outSlope: 2.3367023
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.22563821
-      value: 1.5272493
-      inSlope: -4.209049
-      outSlope: -4.209049
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.08683472
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.68088245
-      outSlope: -0.68088245
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _scalePlayingDuration: 0.8
-  _scaleStoppingDuration: 0.5
-  _scaleSpeed: 40
-  _rotateSpeed: 0.2
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _playingScaleRange
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.166966
+    - Name: 
+      Entry: 4
+      Data: 1.274686
+    - Name: 
+      Entry: 8
+      Data: 
+  _appearScaleEase: 35
+  _appearScaleDuration: 0.2
+  _playingScaleSpeed: 2
+  _perDuration: 100
 --- !u!1 &882290613673366908
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,45 +217,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8facd611ed394fd49fa1e2e6ee777a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playingScale: {x: 0.79, y: 0.79, z: 0.79}
-  _stoppingScale: {x: 0, y: 0, z: 0}
-  _scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.8
-      inSlope: 0.43777776
-      outSlope: 0.43777776
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4568528
-      value: 1
-      inSlope: -5.007904
-      outSlope: -5.007904
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.059424497
-      outWeight: 0.09345791
-    - serializedVersion: 3
-      time: 1
-      value: 0.8
-      inSlope: -0.3682243
-      outSlope: -0.3682243
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _scalePlayingDuration: 0.8
-  _scaleStoppingDuration: 0.5
-  _scaleSpeed: 49
-  _rotateSpeed: 0.08
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _playingScaleRange
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.7719929
+    - Name: 
+      Entry: 4
+      Data: 1.15798938
+    - Name: 
+      Entry: 8
+      Data: 
+  _appearScaleEase: 35
+  _appearScaleDuration: 0.2
+  _playingScaleSpeed: 2
+  _perDuration: 100
 --- !u!1 &1265586946480024446
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,45 +541,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8facd611ed394fd49fa1e2e6ee777a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playingScale: {x: 0.49, y: 0.49, z: 0.49}
-  _stoppingScale: {x: 0, y: 0, z: 0}
-  _scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 2.6226547
-      outSlope: 2.6226547
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.1319357
-      value: 0.8460218
-      inSlope: -1.3634863
-      outSlope: -1.3634863
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33463916
-      outWeight: 0.04191915
-    - serializedVersion: 3
-      time: 1
-      value: 0.5
-      inSlope: -0.39861307
-      outSlope: -0.39861307
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _scalePlayingDuration: 0.8
-  _scaleStoppingDuration: 0.5
-  _scaleSpeed: 45
-  _rotateSpeed: 0.15
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _playingScaleRange
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2692998
+    - Name: 
+      Entry: 4
+      Data: 1.10412943
+    - Name: 
+      Entry: 8
+      Data: 
+  _appearScaleEase: 35
+  _appearScaleDuration: 0.2
+  _playingScaleSpeed: 2
+  _perDuration: 100
 --- !u!1 &4350099150734224449
 GameObject:
   m_ObjectHideFlags: 0
