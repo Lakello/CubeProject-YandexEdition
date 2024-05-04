@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace CubeProject.UI
@@ -7,14 +8,17 @@ namespace CubeProject.UI
     public class ScoreSystem : MonoBehaviour
     {
         [SerializeField] private Timer _timer;
+        [SerializeField] private RecorderScore _recorderScore;
 
         private float _maxTime = 180;      
         private int _reward;
         private int _baseReward = 100;
 
+        public int Reward => _reward;
+
         private void OnEnable()
         {
-            _timer.TimeLeft += CalculateReward;
+            _timer.TimeLeft += CalculateReward;         
         }
 
         private void OnDisable()
@@ -34,8 +38,8 @@ namespace CubeProject.UI
             {
                 _reward = Mathf.RoundToInt((tempTime / 100) * _baseReward);
             }
-
-            Debug.Log($"Полученная награда = {_reward}");
+                       
+            _recorderScore.TrySetScore(_reward);           
         }
     }
 }
