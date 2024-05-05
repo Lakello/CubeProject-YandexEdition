@@ -1,4 +1,3 @@
-using System;
 using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
@@ -13,10 +12,8 @@ namespace CubeProject.Game
 
 		private ChargeHolder _selfChargeHolder;
 
-		private void Awake()
-		{
+		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _selfChargeHolder);
-		}
 
 		private void OnTriggerEnter(Collider other)
 		{

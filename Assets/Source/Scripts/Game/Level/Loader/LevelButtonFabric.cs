@@ -6,9 +6,9 @@ namespace Source.Scripts.Game.Level
 	{
 		[SerializeField] private LevelButton _levelButtonPrefab;
 		[SerializeField] private RectTransform _content;
-		
+
 		private LevelLoader _levelLoader;
-		
+
 		public void Init(LevelLoader levelLoader) =>
 			_levelLoader = levelLoader;
 

@@ -12,24 +12,16 @@ namespace Source.Scripts.Game.Level.Trigger
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out TriggerTarget target))
-			{
 				_targets.Add(target);
-			}
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
 			if (other.TryGetComponent(out TriggerTarget target))
-			{
 				_targets.Remove(target);
-			}
 		}
 
-		public bool TryGetTargetTransform([CanBeNull] out Transform targetTransform)
-		{
+		public bool TryGetTargetTransform([CanBeNull] out Transform targetTransform) =>
 			targetTransform = _targets.FirstOrDefault(trigger => trigger.Chargeable.IsCharged)?.transform;
-
-			return targetTransform;
-		}
 	}
 }

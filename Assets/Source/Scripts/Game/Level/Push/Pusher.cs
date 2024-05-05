@@ -1,6 +1,6 @@
 using System;
-using CubeProject.PlayableCube.Movement;
 using CubeProject.PlayableCube;
+using CubeProject.PlayableCube.Movement;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
@@ -67,11 +67,11 @@ namespace CubeProject.Tips
 		private Vector3 GetDirection()
 		{
 			Vector3 direction;
-			
+
 			if (_isAnyDirection)
 			{
 				direction = _moveService.CurrentDirection;
-				
+
 				if (_cube.IsThereFreeSeat(ref direction, _groundMask) is false)
 				{
 					Debug.LogError($"Invalid direction", _cube.gameObject);
@@ -83,6 +83,6 @@ namespace CubeProject.Tips
 			}
 
 			return direction;
-		} 
+		}
 	}
 }

@@ -1,5 +1,4 @@
 using CubeProject.PlayableCube;
-using LeadTools.Extensions;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -11,15 +10,10 @@ namespace CubeProject.Game
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube cube) && _chargeConsumer.IsCharged)
-			{
-				if (cube.Component.ChargeHolder.IsCharged is false)
-				{
-					gameObject.GetComponentElseThrow(out AudioSource audio);
-					audio.Play();
-					cube.Kill();
-				}
-			}
+			if (other.TryGetComponent(out Cube cube)
+				&& _chargeConsumer.IsCharged
+				&& cube.Component.ChargeHolder.IsCharged is false)
+				cube.Kill();
 		}
 	}
 }

@@ -36,8 +36,6 @@ namespace CubeProject.Game
 
 		public void Return()
 		{
-			//_cube.transform.position = TargetPosition;
-
 			_view.AnimationPlay(
 				(time) => 1 - _scaleCurve.Evaluate(time),
 				(time) => 1 - _heightCurve.Evaluate(time),

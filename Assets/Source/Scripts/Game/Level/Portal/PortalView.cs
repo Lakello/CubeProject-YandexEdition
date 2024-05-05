@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using LeadTools.Extensions;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace CubeProject.Game
@@ -10,7 +11,7 @@ namespace CubeProject.Game
 		private readonly Dictionary<MeshRenderer, PortalAnimationBehaviour> _animations = new Dictionary<MeshRenderer, PortalAnimationBehaviour>();
 
 		[SerializeField] private MeshRenderer[] _meshRenderers;
-		
+
 		private ChargeConsumer _chargeConsumer;
 		private Coroutine _updateViewCoroutine;
 
@@ -18,12 +19,9 @@ namespace CubeProject.Game
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
 
-			foreach (var renderer in _meshRenderers)
-			{
-				_animations.Add(
-					renderer,
-					renderer.gameObject.GetComponentElseThrow<PortalAnimationBehaviour>());
-			}
+			_meshRenderers.ForEach(meshRenderer => _animations.Add(
+				meshRenderer,
+				meshRenderer.gameObject.GetComponentElseThrow<PortalAnimationBehaviour>()));
 		}
 
 		private void OnEnable() =>
@@ -35,19 +33,9 @@ namespace CubeProject.Game
 		private void OnChargeChanged()
 		{
 			if (_chargeConsumer.IsCharged)
-			{
-				foreach (var meshRenderer in _meshRenderers)
-				{
-					_animations[meshRenderer].Play();
-				}
-			}
+				_meshRenderers.ForEach(meshRenderer => _animations[meshRenderer].Play());
 			else
-			{
-				foreach (var meshRenderer in _meshRenderers)
-				{
-					_animations[meshRenderer].Stop();
-				}
-			}
+				_meshRenderers.ForEach(meshRenderer => _animations[meshRenderer].Stop());
 		}
 	}
 }

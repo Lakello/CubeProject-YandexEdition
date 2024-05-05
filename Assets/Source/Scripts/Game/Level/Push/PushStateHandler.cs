@@ -21,9 +21,7 @@ namespace CubeProject.Tips
 		public void Pushing(Pusher pusher)
 		{
 			if (_currentPusher is not null)
-			{
 				_currentPusher.Pushed -= OnPushed;
-			}
 
 			_currentPusher = pusher;
 			_currentPusher.Pushed += OnPushed;
@@ -37,9 +35,7 @@ namespace CubeProject.Tips
 			_currentPusher = null;
 
 			if (_cube.Component.FallService.TryFall() is false)
-			{
 				_cubeStateMachine.EnterIn<ControlState>();
-			}
 		}
 	}
 }

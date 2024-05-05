@@ -16,9 +16,7 @@ namespace CubeProject.Game
 		private void Start()
 		{
 			if (_isStartCharged || _isAlwaysCharged)
-			{
 				Charge();
-			}
 		}
 
 		public void Charge() =>
@@ -27,9 +25,7 @@ namespace CubeProject.Game
 		public void Defuse()
 		{
 			if (_isAlwaysCharged is false)
-			{
 				ChangeCharge(false);
-			}
 		}
 
 		private void ChangeCharge(bool newCharge)

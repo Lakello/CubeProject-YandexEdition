@@ -19,15 +19,11 @@ namespace CubeProject.Game
 		private Tweener _rotateTweener;
 		private Tweener _moveTweener;
 
-		private void OnValidate()
-		{
+		private void OnValidate() =>
 			ChangeState(_change);
-		}
 
-		private void Awake()
-		{
+		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
-		}
 
 		private void OnEnable()
 		{
@@ -46,9 +42,7 @@ namespace CubeProject.Game
 			var currentCharged = _chargeConsumer.IsCharged;
 
 			if (_previousCharged == currentCharged)
-			{
 				return;
-			}
 
 			_previousCharged = currentCharged;
 
@@ -60,14 +54,12 @@ namespace CubeProject.Game
 		private void ChangeState(bool isCharged)
 		{
 			StopTweeners();
-			
+
 			Action<Door> execute = isCharged ? Open : Close;
-			
+
 			foreach (var door in _doors)
-			{
 				execute(door);
-			}
-			
+
 			return;
 
 			void Open(Door door)

@@ -1,5 +1,4 @@
 using Cinemachine;
-using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 
@@ -10,9 +9,10 @@ namespace Source.Scripts.Game.Level.Camera
 		private readonly float _delayStopCameraFollow = 0.3f;
 		private readonly MonoBehaviour _mono;
 		private readonly CinemachineVirtualCamera _virtualCamera;
+
 		private Transform _lookAtPoint;
 		private Transform _followPoint;
-		
+
 		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera)
 		{
 			_mono = mono;

@@ -18,7 +18,7 @@ namespace CubeProject.Game
 	public sealed class PortalBehaviour : MonoBehaviour, IPushHandler
 	{
 		[ShowInInspector] private bool _isActive;
-		
+
 		[SerializeField] private Transform _targetPoint;
 		[SerializeField] private TeleporterData _teleporterData;
 		[SerializeField] private PortalBehaviour _linkedPortal;
@@ -30,11 +30,11 @@ namespace CubeProject.Game
 		private CubeMoveService _cubeMoveService;
 		private CubeFallService _cubeFallService;
 		private ChargeConsumer _chargeConsumer;
-		
+
 		public event Action Pushing;
 
 		public PortalBehaviour LinkedPortal => _linkedPortal;
-		
+
 		private bool CanLinkPortal =>
 			_linkedPortal is not null
 			&& _linkedPortal._linkedPortal is null;
@@ -42,9 +42,7 @@ namespace CubeProject.Game
 		private void OnValidate()
 		{
 			if (_linkedPortal == this)
-			{
 				_linkedPortal = null;
-			}
 		}
 
 		#if UNITY_EDITOR
@@ -56,7 +54,7 @@ namespace CubeProject.Game
 			EditorUtility.SetDirty(_linkedPortal);
 		}
 		#endif
-		
+
 		[Inject]
 		private void Inject(Cube cube, MaskHolder maskHolder)
 		{
@@ -64,7 +62,7 @@ namespace CubeProject.Game
 			_cubeMoveService = _cube.Component.MoveService;
 			_cubeStateMachine = _cube.Component.StateMachine;
 			_cubeFallService = _cube.Component.FallService;
-			
+
 			_teleporter = new Teleporter(
 				this,
 				cube,
@@ -74,7 +72,7 @@ namespace CubeProject.Game
 				{
 					if (_cubeFallService.TryFall() is false)
 						Pushing?.Invoke();
-				}, 
+				},
 				_teleporterData);
 		}
 
@@ -90,24 +88,16 @@ namespace CubeProject.Game
 		private void OnTriggerEnter(Collider other)
 		{
 			if (_isBlocked)
-			{
 				return;
-			}
 
 			if (_linkedPortal is null)
-			{
 				return;
-			}
 
 			if (other.TryGetComponent(out Cube _) is false)
-			{
 				return;
-			}
 
 			if (_isActive is false || _linkedPortal._isActive is false)
-			{
 				return;
-			}
 
 			_linkedPortal.Block();
 
@@ -121,9 +111,7 @@ namespace CubeProject.Game
 		private void OnTriggerExit(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
-			{
 				_isBlocked = false;
-			}
 		}
 
 		private void OnChargeChanged() =>

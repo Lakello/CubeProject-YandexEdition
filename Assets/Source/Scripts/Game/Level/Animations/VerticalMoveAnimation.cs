@@ -11,14 +11,13 @@ namespace Source.Scripts.Game.Level.Animations
 	{
 		[SerializeField] private float _yOffset = 0.216f;
 		[SerializeField] private float _animationDuration;
-		
+
 		[SerializeField]
-		[TabGroup("Animate")] 
+		[BoxGroup("Animate")]
 		private bool _isThisAnimate;
-		
 		[SerializeField]
-		[TabGroup("Animate")] 
-		[ShowIf(nameof(IsShowAnimateObject))] 
+		[BoxGroup("Animate")]
+		[ShowIf(nameof(IsShowAnimateObject))]
 		private Transform _animateObject;
 
 		private CubeMoveService _moveService;
@@ -26,7 +25,7 @@ namespace Source.Scripts.Game.Level.Animations
 		private float _enteredPositionY;
 
 		private bool IsShowAnimateObject => _isThisAnimate == false;
-		
+
 		[Inject]
 		private void Inject(Cube cube) =>
 			_moveService = cube.Component.MoveService;
@@ -35,7 +34,7 @@ namespace Source.Scripts.Game.Level.Animations
 		{
 			if (_isThisAnimate)
 				_animateObject = transform;
-			
+
 			_enteredPositionY = transform.position.y + _yOffset;
 		}
 
@@ -77,7 +76,7 @@ namespace Source.Scripts.Game.Level.Animations
 		private void OnExitStepStarted()
 		{
 			_moveService.StepStarted -= OnExitStepStarted;
-			
+
 			_animationTweener.PlayBackwards();
 		}
 	}

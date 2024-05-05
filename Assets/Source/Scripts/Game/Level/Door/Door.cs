@@ -13,17 +13,11 @@ namespace CubeProject.Game
 		[SerializeField] private Vector3 _closeScale;
 
 		public Transform Center => _center;
-
 		public Vector3 OpenRotation => _openRotation;
-
 		public Vector3 OpenPosition => _openPosition;
-
 		public Vector3 OpenScale => _openScale;
-
 		public Vector3 CloseRotation => _closeRotation;
-
 		public Vector3 ClosePosition => _closePosition;
-
 		public Vector3 CloseScale => _closeScale;
 	}
 }

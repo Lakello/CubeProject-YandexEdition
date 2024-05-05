@@ -10,7 +10,7 @@ namespace CubeProject.Game
 		public static Tweener CreateAppear(Transform origin, float appearScaleDuration, Ease appearScaleEase)
 		{
 			Vector3 newScale = new Vector3();
-			
+
 			return DOTween
 				.To(
 					progress =>
@@ -25,11 +25,11 @@ namespace CubeProject.Game
 				.SetAutoKill(false)
 				.Pause();
 		}
-		
+
 		public static Tweener CreateRotation(Transform origin, float durationTurnover)
 		{
 			Vector3 newRotation = new Vector3();
-			
+
 			return DOTween
 				.To(progress =>
 					{

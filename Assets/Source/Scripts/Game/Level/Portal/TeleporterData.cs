@@ -11,9 +11,7 @@ namespace CubeProject.Game
 		[SerializeField] private float _animationTime;
 
 		public AnimationCurve ScaleCurve => _scaleCurve;
-
 		public AnimationCurve HeightCurve => _heightCurve;
-		
 		public float AnimationTime => _animationTime;
 	}
 }

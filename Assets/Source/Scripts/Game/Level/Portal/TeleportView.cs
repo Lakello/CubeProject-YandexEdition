@@ -13,7 +13,12 @@ namespace CubeProject.Game
 		private readonly Transform _targetPoint;
 		private readonly float _animationTime;
 
-		public TeleportView(Cube cube, MonoBehaviour mono, Transform origin, Transform targetPoint, float animationTime)
+		public TeleportView(
+			Cube cube,
+			MonoBehaviour mono,
+			Transform origin,
+			Transform targetPoint,
+			float animationTime)
 		{
 			_cube = cube;
 			_mono = mono;
@@ -21,12 +26,14 @@ namespace CubeProject.Game
 			_targetPoint = targetPoint;
 			_animationTime = animationTime;
 		}
-		
-		private Vector3 OriginPosition => _origin.position;
 
+		private Vector3 OriginPosition => _origin.position;
 		private Vector3 TargetPosition => _targetPoint.position;
-		
-		public void AnimationPlay(Func<float, float> getScaleValue, Func<float, float> getHeightValue, Action endCallback)
+
+		public void AnimationPlay(
+			Func<float, float> getScaleValue,
+			Func<float, float> getHeightValue,
+			Action endCallback)
 		{
 			_mono.PlaySmoothChangeValue(
 				(currentTime) =>

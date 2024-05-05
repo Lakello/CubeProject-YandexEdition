@@ -29,7 +29,7 @@ namespace CubeProject.Game
 			_appearTweener.Kill();
 			_playingTweeners.ForEach(tweener => tweener.Kill());
 		}
-		
+
 		public void Play()
 		{
 			ResetAnimation();

@@ -11,9 +11,7 @@ namespace CubeProject.Tips
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
-			{
 				Pushing?.Invoke();
-			}
 		}
 	}
 }

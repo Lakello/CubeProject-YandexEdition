@@ -15,16 +15,10 @@ namespace CubeProject.InputSystem
 		private IStateChangeable<CubeStateMachine> _cubeStateMachine;
 
 		public event Action<Vector3> Moving;
-
 		public event Action MenuKeyChanged;
 
-		private void OnDisable()
-		{
-			if (_cubeStateMachine != null)
-			{
-				_cubeStateMachine.UnSubscribeTo<ControlState>(OnControlStateChanged);
-			}
-		}
+		private void OnDisable() =>
+			_cubeStateMachine?.UnSubscribeTo<ControlState>(OnControlStateChanged);
 
 		public void Init(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)
 		{
@@ -35,25 +29,21 @@ namespace CubeProject.InputSystem
 			_cubeStateMachine.SubscribeTo<ControlState>(OnControlStateChanged);
 
 			_playerInput.Desktop.Menu.performed += _ => OnMenuPerformed();
-			
+
 			OnControlStateChanged(_cubeStateMachine.CurrentState == typeof(ControlState));
 		}
 
 		private void OnControlStateChanged(bool isEntered)
 		{
 			if (isEntered)
-			{
 				_updateInputCoroutine = StartCoroutine(UpdateInput());
-			}
 			else
-			{
 				this.StopRoutine(_updateInputCoroutine);
-			}
 		}
 
 		private void OnMenuPerformed() =>
 			MenuKeyChanged?.Invoke();
-		
+
 		private IEnumerator UpdateInput()
 		{
 			var wait = new WaitForFixedUpdate();

@@ -16,10 +16,8 @@ namespace CubeProject.Game
 		private bool _isInitialized;
 
 		[Inject]
-		private void Inject(PortalColorData data)
-		{
+		private void Inject(PortalColorData data) =>
 			SyncColor(data);
-		}
 
 		private void Awake()
 		{
@@ -33,31 +31,29 @@ namespace CubeProject.Game
 			OnChargeChanged();
 		}
 
-		private void OnDisable()
-		{
+		private void OnDisable() =>
 			_chargeConsumer.ChargeChanged -= OnChargeChanged;
-		}
 
 		private void Init(Color activeColor, Color inactiveColor)
 		{
 			if (_isInitialized)
 				return;
-			
+
 			_activeColor = activeColor;
 
 			_inactiveColor = inactiveColor;
 
 			_isInitialized = true;
 		}
-		
+
 		private void SyncColor(PortalColorData data)
 		{
 			var portal = gameObject.GetComponentInParentElseThrow<PortalBehaviour>();
 			var linkedColorPlane = portal.LinkedPortal.gameObject.GetComponentInChildrenElseThrow<PortalColorPlane>();
-			
+
 			if (linkedColorPlane._isInitialized)
 				return;
-			
+
 			var color = data.GetColor();
 
 			color.a = data.ActiveAlpha;
@@ -65,21 +61,17 @@ namespace CubeProject.Game
 
 			color.a = data.InactiveAlpha;
 			var inactiveColor = color;
-			
+
 			Init(activeColor, inactiveColor);
 			linkedColorPlane.Init(activeColor, inactiveColor);
 		}
-		
+
 		private void OnChargeChanged()
 		{
 			if (_chargeConsumer.IsCharged)
-			{
 				_selfMeshRenderer.material.SetColor(ColorProperty, _activeColor);
-			}
 			else
-			{
 				_selfMeshRenderer.material.SetColor(ColorProperty, _inactiveColor);
-			}
 		}
 	}
 }
