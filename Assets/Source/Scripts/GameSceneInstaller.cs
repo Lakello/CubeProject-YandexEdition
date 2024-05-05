@@ -23,6 +23,8 @@ namespace CubeProject
 		private IInputService _inputService;
 		private PlayerInput _playerInput;
 
+		public IInputService InputService => _inputService ??= TryCreateInputService();
+		
 		private void OnDisable() =>
 			_disable?.Invoke();
 
@@ -32,8 +34,7 @@ namespace CubeProject
 
 			var targetCameraHolder = new TargetCameraHolder(this, _virtualCamera);
 			
-			CreateInputService();
-			playerInitializer.Init(_inputService, _maskHolder, targetCameraHolder);
+			playerInitializer.Init(InputService, _maskHolder, targetCameraHolder);
 			
 			InitTargetCameraHolder();
 			InitInput();
@@ -57,9 +58,9 @@ namespace CubeProject
 
 			void InitInput()
 			{
-				_inputService.Init(_playerInput, playerInitializer.CubeStateMachine);
+				InputService.Init(_playerInput, playerInitializer.CubeStateMachine);
 
-				containerBuilder.AddSingleton(_inputService, typeof(IInputService));
+				containerBuilder.AddSingleton(InputService, typeof(IInputService));
 			}
 
 			void InitTargetCameraHolder()
@@ -71,21 +72,19 @@ namespace CubeProject
 			}
 		}
 
-		private void CreateInputService()
+		private IInputService TryCreateInputService()
 		{
-			_playerInput = new PlayerInput();
-
-			_playerInput.Enable();
-			_disable += () => _playerInput.Disable();
-
-			if (Application.isMobilePlatform || _isMobileTest)
+			if (_inputService == null)
 			{
-				_inputService = gameObject.AddComponent<MobileInputService>();
-			}
-			else
-			{
+				_playerInput = new PlayerInput();
+
+				_playerInput.Enable();
+				_disable += () => _playerInput.Disable();
+
 				_inputService = gameObject.AddComponent<DesktopInputService>();
 			}
+
+			return _inputService;
 		}
 	}
 }

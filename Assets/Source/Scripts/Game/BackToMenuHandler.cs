@@ -1,25 +1,22 @@
 using System;
 using LeadTools.StateMachine;
-using Reflex.Attributes;
-using UnityEngine;
 
 namespace CubeProject.InputSystem
 {
-	public class BackToMenu : MonoBehaviour, ITransitSubject
+	public class BackToMenuHandler : IDisposable, ITransitSubject
 	{
-		private IInputService _inputService;
+		private readonly IInputService _inputService;
 
 		public event Action StateTransiting;
 
-		[Inject]
-		private void Inject(IInputService inputService)
+		public BackToMenuHandler(IInputService inputService)
 		{
 			_inputService = inputService;
 
 			_inputService.MenuKeyChanged += OnMenuKeyChanged;
 		}
 
-		private void OnDisable() =>
+		public void Dispose() =>
 			_inputService.MenuKeyChanged -= OnMenuKeyChanged;
 
 		private void OnMenuKeyChanged() =>

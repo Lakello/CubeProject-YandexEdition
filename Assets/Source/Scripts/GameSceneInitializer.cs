@@ -12,10 +12,10 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	public class GameSceneInitializer : MonoBehaviour, ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
+	public class GameSceneInitializer : 
+		MonoBehaviour,
+		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
-		[SerializeField] private BackToMenu _backToMenu;
-
 		private EndPoint _endPoint;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
@@ -25,15 +25,8 @@ namespace CubeProject
 
 		private void OnDisable()
 		{
-			if (_transitionInitializer != null)
-			{
-				_transitionInitializer.Unsubscribe();
-			}
-
-			if (_gameStateMachine != null)
-			{
-				_gameStateMachine.UnSubscribeTo<EndLevelState>(OnLevelEnded);
-			}
+			_transitionInitializer?.Unsubscribe();
+			_gameStateMachine?.UnSubscribeTo<EndLevelState>(OnLevelEnded);
 		}
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
@@ -48,9 +41,12 @@ namespace CubeProject
 			windowInitializer.WindowsInit(machine.Window);
 			machine.EnterIn<TState>();
 
+			var backToMenuHandler = new BackToMenuHandler(
+				gameObject.GetComponentElseThrow<GameSceneInstaller>().InputService);
+			
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
 
-			_transitionInitializer.InitTransition(_backToMenu, LoadMenu);
+			_transitionInitializer.InitTransition(backToMenuHandler, LoadMenu);
 			_transitionInitializer.InitTransition<EndLevelState>(EndPoint);
 
 			_transitionInitializer.Subscribe();
@@ -64,15 +60,15 @@ namespace CubeProject
 		private void OnLevelEnded(bool isEntered)
 		{
 			if (isEntered == false)
-			{
 				return;
-			}
 
 			if (GameDataSaver.Instance.Get<CurrentLevel>().Value + 1 >= _levelLoader.LevelsCount)
 			{
 				GameDataSaver.Instance.Set(new CurrentLevel(0));
 
-				MenuScene.Load<MenuState<SelectLevelWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
+				MenuScene.Load<MenuState<SelectLevelWindowState>, LevelLoader>(
+					_gameStateMachine,
+					_levelLoader);
 			}
 			else
 			{
