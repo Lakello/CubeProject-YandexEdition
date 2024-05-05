@@ -13,7 +13,7 @@ namespace CubeProject.Game
 		[SerializeField] private Ease _appearScaleEase;
 		[SerializeField] private float _appearScaleDuration;
 		[SerializeField] private float _playingScaleSpeed;
-		[SerializeField] private float _perDuration;
+		[SerializeField] private float _durationTurnover;
 
 		private Tweener _appearTweener;
 		private Sequence _playingSequence;
@@ -59,7 +59,7 @@ namespace CubeProject.Game
 						},
 						0,
 						360,
-						_perDuration)
+						_durationTurnover)
 					.SetLoops(-1, LoopType.Incremental))
 				.Pause();
 		}
