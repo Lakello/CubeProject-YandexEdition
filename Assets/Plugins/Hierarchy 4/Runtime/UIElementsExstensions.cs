@@ -2,23 +2,19 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Hierarchy2
+namespace TNTD.Hierarchy4
 {
     public static class UIElementsExstensions
     {
-        public static void StyleDisplay(this VisualElement ui, DisplayStyle displayStyle) =>
-            ui.style.display = displayStyle;
+        public static void StyleDisplay(this VisualElement ui, DisplayStyle displayStyle) => ui.style.display = displayStyle;
 
-        public static void StyleDisplay(this VisualElement ui, bool value) =>
-            ui.StyleDisplay(value ? DisplayStyle.Flex : DisplayStyle.None);
+        public static void StyleDisplay(this VisualElement ui, bool value) => ui.StyleDisplay(value ? DisplayStyle.Flex : DisplayStyle.None);
 
         public static bool IsDisplaying(this VisualElement ui) => ui.style.display == DisplayStyle.Flex;
 
-        public static void StyleVisibility(this VisualElement ui, Visibility visibility) =>
-            ui.style.visibility = visibility;
+        public static void StyleVisibility(this VisualElement ui, Visibility visibility) => ui.style.visibility = visibility;
 
-        public static void StyleVisibility(this VisualElement ui, bool value) =>
-            ui.StyleVisibility(value ? Visibility.Visible : Visibility.Hidden);
+        public static void StyleVisibility(this VisualElement ui, bool value) => ui.StyleVisibility(value ? Visibility.Visible : Visibility.Hidden);
 
         public static Vector2 StylePosition(this VisualElement ui)
         {
@@ -103,29 +99,23 @@ namespace Hierarchy2
 
         public static void StyleMaxHeight(this VisualElement ui, StyleLength height) => ui.style.maxHeight = height;
 
-        public static void StyleFont(this VisualElement ui, FontStyle fontStyle) =>
-            ui.style.unityFontStyleAndWeight = fontStyle;
+        public static void StyleFont(this VisualElement ui, FontStyle fontStyle) => ui.style.unityFontStyleAndWeight = fontStyle;
 
         public static void StyleFontSize(this VisualElement ui, StyleLength size) => ui.style.fontSize = size;
 
-        public static void StyleTextAlign(this VisualElement ui, TextAnchor textAnchor) =>
-            ui.style.unityTextAlign = textAnchor;
+        public static void StyleTextAlign(this VisualElement ui, TextAnchor textAnchor) => ui.style.unityTextAlign = textAnchor;
 
         public static void StyleAlignSelf(this VisualElement ui, Align align) => ui.style.alignSelf = align;
 
         public static void StyleAlignItem(this VisualElement ui, Align align) => ui.style.alignItems = align;
 
-        public static void StyleJustifyContent(this VisualElement ui, Justify justify) =>
-            ui.style.justifyContent = justify;
+        public static void StyleJustifyContent(this VisualElement ui, Justify justify) => ui.style.justifyContent = justify;
 
-        public static void StyleFlexDirection(this VisualElement ui, FlexDirection flexDirection) =>
-            ui.style.flexDirection = flexDirection;
+        public static void StyleFlexDirection(this VisualElement ui, FlexDirection flexDirection) => ui.style.flexDirection = flexDirection;
 
-        public static void StyleMargin(this VisualElement ui, StyleLength value) =>
-            ui.StyleMargin(value, value, value, value);
+        public static void StyleMargin(this VisualElement ui, StyleLength value) => ui.StyleMargin(value, value, value, value);
 
-        public static void StyleMargin(this VisualElement ui, StyleLength left, StyleLength right, StyleLength top,
-            StyleLength bottom)
+        public static void StyleMargin(this VisualElement ui, StyleLength left, StyleLength right, StyleLength top, StyleLength bottom)
         {
             ui.style.marginLeft = left;
             ui.style.marginRight = right;
@@ -141,11 +131,9 @@ namespace Hierarchy2
 
         public static void StyleMarginBottom(this VisualElement ui, StyleLength value) => ui.style.marginBottom = value;
 
-        public static void StylePadding(this VisualElement ui, StyleLength value) =>
-            ui.StylePadding(value, value, value, value);
+        public static void StylePadding(this VisualElement ui, StyleLength value) => ui.StylePadding(value, value, value, value);
 
-        public static void StylePadding(this VisualElement ui, StyleLength left, StyleLength right, StyleLength top,
-            StyleLength bottom)
+        public static void StylePadding(this VisualElement ui, StyleLength left, StyleLength right, StyleLength top, StyleLength bottom)
         {
             ui.style.paddingLeft = left;
             ui.style.paddingRight = right;
@@ -159,14 +147,11 @@ namespace Hierarchy2
 
         public static void StylePaddingTop(this VisualElement ui, StyleLength value) => ui.style.paddingTop = value;
 
-        public static void StylePaddingBottom(this VisualElement ui, StyleLength value) =>
-            ui.style.paddingBottom = value;
+        public static void StylePaddingBottom(this VisualElement ui, StyleLength value) => ui.style.paddingBottom = value;
 
-        public static void StyleBorderRadius(this VisualElement ui, StyleLength radius) =>
-            ui.StyleBorderRadius(radius, radius, radius, radius);
+        public static void StyleBorderRadius(this VisualElement ui, StyleLength radius) => ui.StyleBorderRadius(radius, radius, radius, radius);
 
-        public static void StyleBorderRadius(this VisualElement ui, StyleLength topLeft, StyleLength topRight,
-            StyleLength bottomLeft, StyleLength bottomRight)
+        public static void StyleBorderRadius(this VisualElement ui, StyleLength topLeft, StyleLength topRight, StyleLength bottomLeft, StyleLength bottomRight)
         {
             ui.style.borderTopLeftRadius = topLeft;
             ui.style.borderTopRightRadius = topRight;
@@ -174,11 +159,9 @@ namespace Hierarchy2
             ui.style.borderBottomRightRadius = bottomRight;
         }
 
-        public static void StyleBorderWidth(this VisualElement ui, StyleFloat width) =>
-            ui.StyleBorderWidth(width, width, width, width);
+        public static void StyleBorderWidth(this VisualElement ui, StyleFloat width) => ui.StyleBorderWidth(width, width, width, width);
 
-        public static void StyleBorderWidth(this VisualElement ui, StyleFloat left, StyleFloat right, StyleFloat top,
-            StyleFloat bottom)
+        public static void StyleBorderWidth(this VisualElement ui, StyleFloat left, StyleFloat right, StyleFloat top, StyleFloat bottom)
         {
             ui.style.borderLeftWidth = left;
             ui.style.borderRightWidth = right;
@@ -186,11 +169,9 @@ namespace Hierarchy2
             ui.style.borderBottomWidth = bottom;
         }
 
-        public static void StyleBorderColor(this VisualElement ui, StyleColor color) =>
-            ui.StyleBorderColor(color, color, color, color);
+        public static void StyleBorderColor(this VisualElement ui, StyleColor color) => ui.StyleBorderColor(color, color, color, color);
 
-        public static void StyleBorderColor(this VisualElement ui, StyleColor left, StyleColor right, StyleColor top,
-            StyleColor bottom)
+        public static void StyleBorderColor(this VisualElement ui, StyleColor left, StyleColor right, StyleColor top, StyleColor bottom)
         {
             ui.style.borderLeftColor = left;
             ui.style.borderRightColor = right;
@@ -198,13 +179,11 @@ namespace Hierarchy2
             ui.style.borderBottomColor = bottom;
         }
 
-        public static void StyleFlexBasisAsPercent(this VisualElement ui, StyleLength basis) =>
-            ui.style.flexBasis = basis;
+        public static void StyleFlexBasisAsPercent(this VisualElement ui, StyleLength basis) => ui.style.flexBasis = basis;
 
         public static void StyleFlexGrow(this VisualElement ui, StyleFloat grow) => ui.style.flexGrow = grow;
 
-        public static void StyleBackgroundColor(this VisualElement ui, StyleColor color) =>
-            ui.style.backgroundColor = color;
+        public static void StyleBackgroundColor(this VisualElement ui, StyleColor color) => ui.style.backgroundColor = color;
 
         public static void StyleTextColor(this VisualElement ui, StyleColor color) => ui.style.color = color;
 
@@ -223,8 +202,7 @@ namespace Hierarchy2
             return ui.hierarchy.Children().ToList().Find(childElement => childElement.name == name);
         }
 
-        public static VisualElement FindChildrenPhysicalHierarchy<T>(this VisualElement ui, string name)
-            where T : VisualElement
+        public static VisualElement FindChildrenPhysicalHierarchy<T>(this VisualElement ui, string name) where T : VisualElement
         {
             return ui.FindChildrenPhysicalHierarchy(name) as T;
         }

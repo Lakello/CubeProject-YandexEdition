@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace Hierarchy2
+namespace TNTD.Hierarchy4
 {
-    [AddComponentMenu("Hierarchy 2/Hierarchy Folder", 0)]
+    [AddComponentMenu("Hierarchy 4/Hierarchy Folder", 0)]
     public class HierarchyFolder : MonoBehaviour
     {
         public enum FlattenMode
@@ -46,8 +49,14 @@ namespace Hierarchy2
 
             var parent = flattenSpace == FlattenSpace.World ? null : transform.parent;
             var childCount = transform.childCount;
+            var parentOrderIndex = flattenSpace == FlattenSpace.World ? transform.root.GetSiblingIndex() : transform.GetSiblingIndex();
+
             while (childCount-- > 0)
-                transform.GetChild(0).SetParent(parent);
+            {
+                var child = transform.GetChild(0);
+                child.SetParent(parent);
+                child.SetSiblingIndex(++parentOrderIndex);
+            }
 
             if (destroyAfterFlatten)
                 Destroy(gameObject);

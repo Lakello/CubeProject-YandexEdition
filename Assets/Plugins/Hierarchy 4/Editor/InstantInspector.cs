@@ -2,8 +2,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
+using Foldout = TNTD.Hierarchy4.Foldout;
 
-namespace Hierarchy2
+namespace TNTD.Hierarchy4
 {
     public class InstantInspector : EditorWindow
     {
@@ -22,6 +23,7 @@ namespace Hierarchy2
         public static InstantInspector OpenEditor()
         {
             InstantInspector window = GetWindow<InstantInspector>("Instant Inspector");
+            window.titleContent.image = EditorGUIUtility.IconContent("UnityEditor.InspectorWindow").image;
             return window;
         }
 
@@ -85,7 +87,7 @@ namespace Hierarchy2
                     {
                         Rect rect = new Rect(folout.headerElement.layout);
                         rect.position = evt.mousePosition;
-                        HierarchyEditor.DisplayObjectContextMenu(rect, component, 0);
+                        HierarchyEditor.DisplayObjectContextMenuDelegate(rect, component, 0);
                         evt.StopPropagation();
                     }
                 });
@@ -177,6 +179,10 @@ namespace Hierarchy2
                     });
                 }
 
+                inspector.style.marginLeft = 16;
+                inspector.style.marginRight = 2;
+                inspector.style.marginTop = 4;
+
                 folout.Add(inspector);
                 editors.Add(editor);
                 scrollView.Add(folout);
@@ -190,10 +196,7 @@ namespace Hierarchy2
                     });
                     preview.StyleMarginTop(4);
                     preview.StretchToParentWidth();
-                    inspector.RegisterCallback<GeometryChangedEvent>((callback) =>
-                    {
-                        preview.StyleHeight(Mathf.Clamp(inspector.layout.width / 2, 64, 200));
-                    });
+                    inspector.RegisterCallback<GeometryChangedEvent>((callback) => { preview.StyleHeight(Mathf.Clamp(inspector.layout.width / 2, 64, 200)); });
                     preview.StylePosition(Position.Relative);
                     preview.name = "Material Preview";
                     folout.Add(preview);

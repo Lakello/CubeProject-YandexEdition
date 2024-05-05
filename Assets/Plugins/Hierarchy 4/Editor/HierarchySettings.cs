@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine.Serialization;
+using System.IO;
 
-namespace Hierarchy2
+namespace TNTD.Hierarchy4
 {
+    [Serializable]
     internal class HierarchySettings : ScriptableObject
     {
         [Serializable]
@@ -55,6 +59,18 @@ namespace Hierarchy2
             }
         }
 
+        ///<summary>Define background color using prefix.</summary>
+        [Serializable]
+        public struct InstantBackgroundColor
+        {
+            public bool active;
+            public bool useStartWith, useTag, useLayer;
+            public string startWith;
+            public string tag;
+            public LayerMask layer;
+            public Color color;
+        }
+
         public enum ComponentSize
         {
             Small,
@@ -75,6 +91,8 @@ namespace Hierarchy2
             Tag = (1 << 1),
             Layer = (1 << 2)
         }
+
+        private static HierarchySettings instance;
 
         public ThemeData personalTheme;
         public ThemeData professionalTheme;
@@ -105,14 +123,11 @@ namespace Hierarchy2
         }
 
         [HideInInspector] public bool activeHierarchy = true;
-        [HideInInspector] public bool autoCreateHLD = true;
-        [HideInInspector] public bool pingHierarchyLocalDataObject = false;
-        [HideInInspector] public bool displayVersion = true;
         public bool displayCustomObjectIcon = true;
         public bool displayTreeView = true;
         public bool displayRowBackground = true;
         public bool displayGrid = false;
-        [HideInInspector] public bool displayStaticButton = true;
+        public bool displayStaticIcon = true;
         public int offSetIconAfterName = 8;
         public bool displayComponents = true;
         public ElementAlignment componentAlignment = ElementAlignment.AfterName;
@@ -121,12 +136,12 @@ namespace Hierarchy2
         {
             All = 0,
             ScriptOnly = 1,
-            Below = 2,
+            Specified = 2,
             Ignore = 3
         }
 
         public ComponentDisplayMode componentDisplayMode = ComponentDisplayMode.Ignore;
-        public string[] components = new string[] {"Transform", "RectTransform"};
+        public string[] components = new string[] { "Transform", "RectTransform" };
         [HideInInspector] public int componentLimited = 0;
         [Range(12, 16)] public int componentSize = 16;
         public int componentSpacing = 0;
@@ -137,8 +152,12 @@ namespace Hierarchy2
         [HideInInspector] public bool applyStaticTargetAndChild = true;
         public bool applyTagTargetAndChild = false;
         public bool applyLayerTargetAndChild = true;
-        public string headerPrefix = "$h";
-        public string headerDefaultTag = "Untagged";
+        public string separatorStartWith = "--->";
+        public string separatorDefaultTag = "Untagged";
+        public bool useInstantBackground = false;
+
+        public List<InstantBackgroundColor> instantBackgroundColors = new List<InstantBackgroundColor>();
+
         public bool onlyDisplayWhileMouseEnter = false;
         public ContentDisplay contentDisplay = ContentDisplay.Component | ContentDisplay.Tag | ContentDisplay.Layer;
 
@@ -162,8 +181,6 @@ namespace Hierarchy2
 
             onSettingsChanged?.Invoke(param);
             hideFlags = HideFlags.None;
-
-            EditorUtility.SetDirty(this);
         }
 
         [SettingsProvider]
@@ -175,19 +192,38 @@ namespace Hierarchy2
 
                 activateHandler = (searchContext, rootElement) =>
                 {
-                    Editor editor = Editor.CreateEditor(GetAssets());
-                    var settings = editor.target as HierarchySettings;
+                    var settings = GetAssets();
 
                     float TITLE_MARGIN_TOP = 14;
                     float TITLE_MARGIN_BOTTOM = 8;
                     float CONTENT_MARGIN_LEFT = 10;
 
+                    HorizontalLayout horizontalLayout = new HorizontalLayout();
+                    horizontalLayout.style.backgroundColor = new Color(0, 0, 0, 0.2f);
+                    horizontalLayout.style.paddingTop = 4;
+                    horizontalLayout.style.paddingBottom = 27;
+                    rootElement.Add(horizontalLayout);
+
                     Label hierarchyTitle = new Label("Hierarchy");
                     hierarchyTitle.StyleFontSize(20);
                     hierarchyTitle.StyleMargin(10, 0, 2, 2);
                     hierarchyTitle.StyleFont(FontStyle.Bold);
-                    rootElement.Add(hierarchyTitle);
+                    horizontalLayout.Add(hierarchyTitle);
 
+                    Label importButton = new Label();
+                    importButton.text = "  Import";
+                    importButton.style.unityFontStyleAndWeight = FontStyle.Italic;
+                    Color importExportButtonColor = new Color32(102, 157, 246, 255);
+                    importButton.style.color = importExportButtonColor;
+                    importButton.RegisterCallback<PointerUpEvent>(evt => instance.ImportFromJson());
+                    horizontalLayout.Add(importButton);
+
+                    Label exportButton = new Label();
+                    exportButton.text = "| Export";
+                    exportButton.style.unityFontStyleAndWeight = FontStyle.Italic;
+                    exportButton.style.color = importExportButtonColor;
+                    exportButton.RegisterCallback<PointerUpEvent>(evt => instance.ExportToJson());
+                    horizontalLayout.Add(exportButton);
 
                     ScrollView scrollView = new ScrollView();
                     rootElement.Add(scrollView);
@@ -205,6 +241,8 @@ namespace Hierarchy2
                     displayCustomObjectIcon.value = settings.displayCustomObjectIcon;
                     displayCustomObjectIcon.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayCustomObjectIcon = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayCustomObjectIcon));
                     });
@@ -220,6 +258,8 @@ namespace Hierarchy2
                     displayRowBackground.value = settings.displayRowBackground;
                     displayRowBackground.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayRowBackground = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayRowBackground));
                     });
@@ -230,6 +270,8 @@ namespace Hierarchy2
                     displayTreeView.value = settings.displayTreeView;
                     displayTreeView.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayTreeView = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayTreeView));
                     });
@@ -240,6 +282,8 @@ namespace Hierarchy2
                     displayGrid.value = settings.displayGrid;
                     displayGrid.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayGrid = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayGrid));
                     });
@@ -251,10 +295,12 @@ namespace Hierarchy2
                     Components.StyleMargin(0, 0, TITLE_MARGIN_TOP, TITLE_MARGIN_BOTTOM);
                     verticalLayout.Add(Components);
 
-                    var displayComponents = new Toggle("Display Components Icon");
+                    var displayComponents = new Toggle("Display Icon");
                     displayComponents.value = settings.displayComponents;
                     displayComponents.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayComponents = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayComponents));
                     });
@@ -262,35 +308,41 @@ namespace Hierarchy2
                     verticalLayout.Add(displayComponents);
 
                     var componentAlignment = new EnumField(settings.componentAlignment);
-                    componentAlignment.label = "Component Alignment";
+                    componentAlignment.label = "Alignment";
                     componentAlignment.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.componentAlignment = (ElementAlignment) evt.newValue;
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.componentAlignment = (ElementAlignment)evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.componentAlignment));
                     });
                     componentAlignment.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(componentAlignment);
 
                     var componentDisplayMode = new EnumField(settings.componentDisplayMode);
-                    componentDisplayMode.label = "Component Display Mode";
+                    componentDisplayMode.label = "Display Mode";
                     componentDisplayMode.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(componentDisplayMode);
 
-                    var componentListInput = new TextField("Components");
+                    var componentListInput = new TextField("Types");
                     componentListInput.value = string.Join(" ", settings.components);
                     componentListInput.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(componentListInput);
                     componentListInput.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.components = evt.newValue.Split(' ');
                         settings.OnSettingsChanged(nameof(settings.components));
                     });
                     componentDisplayMode.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.componentDisplayMode = (ComponentDisplayMode) evt.newValue;
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.componentDisplayMode = (ComponentDisplayMode)evt.newValue;
                         switch (settings.componentDisplayMode)
                         {
-                            case ComponentDisplayMode.Below:
+                            case ComponentDisplayMode.Specified:
                                 componentListInput.StyleDisplay(true);
                                 break;
 
@@ -327,10 +379,12 @@ namespace Hierarchy2
                     }
 
                     var componentSize = new EnumField(componentSizeEnum);
-                    componentSize.label = "Component Size";
+                    componentSize.label = "Size";
                     componentSize.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     componentSize.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         switch (evt.newValue)
                         {
                             case ComponentSize.Small:
@@ -351,35 +405,41 @@ namespace Hierarchy2
                     verticalLayout.Add(componentSize);
 
                     var componentSpacing = new IntegerField();
-                    componentSpacing.label = "Component Spacing";
+                    componentSpacing.label = "Spacing";
                     componentSpacing.value = settings.componentSpacing;
                     componentSpacing.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     componentSpacing.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.componentSpacing = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.componentSpacing));
                     });
                     verticalLayout.Add(componentSpacing);
 
-                    var TagAndLayer = new Label("Tag And Layer");
-                    TagAndLayer.StyleFont(FontStyle.Bold);
-                    TagAndLayer.StyleMargin(0, 0, TITLE_MARGIN_TOP, TITLE_MARGIN_BOTTOM);
-                    verticalLayout.Add(TagAndLayer);
+                    var tagLabel = new Label("Tag");
+                    tagLabel.StyleFont(FontStyle.Bold);
+                    tagLabel.StyleMargin(0, 0, TITLE_MARGIN_TOP, TITLE_MARGIN_BOTTOM);
+                    verticalLayout.Add(tagLabel);
 
-                    var displayTag = new Toggle("Display Tag");
+                    var displayTag = new Toggle("Display");
                     displayTag.value = settings.displayTag;
                     displayTag.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayTag = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayTag));
                     });
                     displayTag.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(displayTag);
 
-                    var applyTagTargetAndChild = new Toggle("Tag Recursive Change");
+                    var applyTagTargetAndChild = new Toggle("Recursive Change");
                     applyTagTargetAndChild.value = settings.applyTagTargetAndChild;
                     applyTagTargetAndChild.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.applyTagTargetAndChild = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.applyTagTargetAndChild));
                     });
@@ -387,19 +447,28 @@ namespace Hierarchy2
                     verticalLayout.Add(applyTagTargetAndChild);
 
                     var tagAlignment = new EnumField(settings.tagAlignment);
-                    tagAlignment.label = "Tag Alignment";
+                    tagAlignment.label = "Alignment";
                     tagAlignment.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.tagAlignment = (ElementAlignment) evt.newValue;
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.tagAlignment = (ElementAlignment)evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.tagAlignment));
                     });
                     tagAlignment.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(tagAlignment);
 
-                    var displayLayer = new Toggle("Display Layer");
+                    var layerLabel = new Label("Layer");
+                    layerLabel.StyleFont(FontStyle.Bold);
+                    layerLabel.StyleMargin(0, 0, TITLE_MARGIN_TOP, TITLE_MARGIN_BOTTOM);
+                    verticalLayout.Add(layerLabel);
+
+                    var displayLayer = new Toggle("Display");
                     displayLayer.value = settings.displayLayer;
                     displayLayer.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.displayLayer = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.displayLayer));
                     });
@@ -407,10 +476,12 @@ namespace Hierarchy2
                     displayLayer.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     verticalLayout.Add(displayLayer);
 
-                    var applyLayerTargetAndChild = new Toggle("Layer Recursive Change");
+                    var applyLayerTargetAndChild = new Toggle("Recursive Change");
                     applyLayerTargetAndChild.value = settings.applyLayerTargetAndChild;
                     applyLayerTargetAndChild.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.applyLayerTargetAndChild = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.applyLayerTargetAndChild));
                     });
@@ -418,10 +489,12 @@ namespace Hierarchy2
                     verticalLayout.Add(applyLayerTargetAndChild);
 
                     var layerAlignment = new EnumField(settings.layerAlignment);
-                    layerAlignment.label = "Layer Alignment";
+                    layerAlignment.label = "Alignment";
                     layerAlignment.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.layerAlignment = (ElementAlignment) evt.newValue;
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.layerAlignment = (ElementAlignment)evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.layerAlignment));
                     });
                     layerAlignment.StyleMarginLeft(CONTENT_MARGIN_LEFT);
@@ -432,35 +505,56 @@ namespace Hierarchy2
                     advanced.StyleMargin(0, 0, TITLE_MARGIN_TOP, TITLE_MARGIN_BOTTOM);
                     verticalLayout.Add(advanced);
 
-                    var headerPrefix = new TextField();
-                    headerPrefix.label = "Header Prefix";
-                    headerPrefix.StyleMarginLeft(CONTENT_MARGIN_LEFT);
-                    headerPrefix.value = settings.headerPrefix;
-                    headerPrefix.RegisterValueChangedCallback((evt) =>
+                    var separatorStartWith = new TextField();
+                    separatorStartWith.label = "Separator StartWith";
+                    separatorStartWith.StyleMarginLeft(CONTENT_MARGIN_LEFT);
+                    separatorStartWith.value = settings.separatorStartWith;
+                    separatorStartWith.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.headerPrefix = evt.newValue == String.Empty ? "$h" : evt.newValue;
-                        settings.OnSettingsChanged(nameof(settings.headerPrefix));
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.separatorStartWith = evt.newValue == String.Empty ? "--->" : evt.newValue;
+                        settings.OnSettingsChanged(nameof(settings.separatorStartWith));
                     });
-                    verticalLayout.Add(headerPrefix);
-                    
-                    
+                    verticalLayout.Add(separatorStartWith);
+
                     var headerDefaultTag = new TagField();
-                    headerDefaultTag.label = "Header Default Tag";
-                    headerDefaultTag.value = settings.headerDefaultTag;
+                    headerDefaultTag.label = "Separator Default Tag";
+                    headerDefaultTag.value = settings.separatorDefaultTag;
                     headerDefaultTag.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.headerDefaultTag = evt.newValue;
-                        settings.OnSettingsChanged(nameof(settings.headerDefaultTag));
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.separatorDefaultTag = evt.newValue;
+                        settings.OnSettingsChanged(nameof(settings.separatorDefaultTag));
                     });
                     headerDefaultTag.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                     headerDefaultTag.StyleMarginBottom(4);
                     verticalLayout.Add(headerDefaultTag);
 
+                    SerializedObject serializedSetting = new SerializedObject(settings);
+                    IMGUIContainer instantBackgroundIMGUI = new IMGUIContainer(() =>
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        settings.useInstantBackground = EditorGUILayout.Toggle("Use Instant Background", settings.useInstantBackground);
+                        EditorGUILayout.BeginVertical("helpbox");
+                        EditorGUILayout.PropertyField(serializedSetting.FindProperty(nameof(instantBackgroundColors)), GUIContent.none);
+                        EditorGUILayout.EndVertical();
+                        EditorGUILayout.EndHorizontal();
+                        serializedSetting.ApplyModifiedProperties();
+                    });
+                    instantBackgroundIMGUI.StyleMarginTop(7);
+                    instantBackgroundIMGUI.StyleMarginLeft(CONTENT_MARGIN_LEFT);
+                    verticalLayout.Add(instantBackgroundIMGUI);
+
                     var onlyDisplayWhileMouseHovering = new Toggle("Display Hovering");
                     onlyDisplayWhileMouseHovering.tooltip = "Only display while mouse hovering";
+                    onlyDisplayWhileMouseHovering.StyleMarginTop(7);
                     onlyDisplayWhileMouseHovering.value = settings.onlyDisplayWhileMouseEnter;
                     onlyDisplayWhileMouseHovering.RegisterValueChangedCallback((evt) =>
                     {
+                        Undo.RecordObject(settings, "Change Settings");
+
                         settings.onlyDisplayWhileMouseEnter = evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.onlyDisplayWhileMouseEnter));
                     });
@@ -470,13 +564,12 @@ namespace Hierarchy2
                     var contentMaskEnumFlags = new EnumFlagsField(settings.contentDisplay);
                     contentMaskEnumFlags.StyleDisplay(onlyDisplayWhileMouseHovering.value);
                     contentMaskEnumFlags.label = "Content Mask";
-                    onlyDisplayWhileMouseHovering.RegisterValueChangedCallback((evt) =>
-                    {
-                        contentMaskEnumFlags.StyleDisplay(evt.newValue);
-                    });
+                    onlyDisplayWhileMouseHovering.RegisterValueChangedCallback((evt) => { contentMaskEnumFlags.StyleDisplay(evt.newValue); });
                     contentMaskEnumFlags.RegisterValueChangedCallback((evt) =>
                     {
-                        settings.contentDisplay = (ContentDisplay) evt.newValue;
+                        Undo.RecordObject(settings, "Change Settings");
+
+                        settings.contentDisplay = (ContentDisplay)evt.newValue;
                         settings.OnSettingsChanged(nameof(settings.contentDisplay));
                     });
                     contentMaskEnumFlags.style.marginLeft = CONTENT_MARGIN_LEFT;
@@ -506,6 +599,8 @@ namespace Hierarchy2
                         colorRowEven.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorRowEven.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorRowEven = evt.newValue;
                             else
@@ -520,6 +615,8 @@ namespace Hierarchy2
                         colorRowOdd.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorRowOdd.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorRowOdd = evt.newValue;
                             else
@@ -534,6 +631,8 @@ namespace Hierarchy2
                         colorGrid.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorGrid.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorGrid = evt.newValue;
                             else
@@ -548,6 +647,8 @@ namespace Hierarchy2
                         colorTreeView.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorTreeView.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorTreeView = evt.newValue;
                             else
@@ -562,6 +663,8 @@ namespace Hierarchy2
                         colorLockIcon.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorLockIcon.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorLockIcon = evt.newValue;
                             else
@@ -576,6 +679,8 @@ namespace Hierarchy2
                         tagColor.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         tagColor.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.tagColor = evt.newValue;
                             else
@@ -590,6 +695,8 @@ namespace Hierarchy2
                         layerColor.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         layerColor.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.layerColor = evt.newValue;
                             else
@@ -604,6 +711,8 @@ namespace Hierarchy2
                         colorHeaderTitle.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorHeaderTitle.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorHeaderTitle = evt.newValue;
                             else
@@ -618,6 +727,8 @@ namespace Hierarchy2
                         colorHeaderBackground.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         colorHeaderBackground.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.colorHeaderBackground = evt.newValue;
                             else
@@ -632,6 +743,8 @@ namespace Hierarchy2
                         comSelBGColor.StyleMarginLeft(CONTENT_MARGIN_LEFT);
                         comSelBGColor.RegisterValueChangedCallback((evt) =>
                         {
+                            Undo.RecordObject(settings, "Change Settings");
+
                             if (EditorGUIUtility.isProSkin)
                                 settings.professionalTheme.comSelBGColor = evt.newValue;
                             else
@@ -641,31 +754,53 @@ namespace Hierarchy2
                         });
                         verticalLayout.Add(comSelBGColor);
                     }
+
+                    Undo.undoRedoPerformed -= OnUndoRedoPerformed;
+                    Undo.undoRedoPerformed += OnUndoRedoPerformed;
+                    EditorUtility.SetDirty(settings);
                 },
 
-                keywords = new HashSet<string>(new[] {"Hierarchy"})
+                deactivateHandler = () =>
+                {
+                    Undo.undoRedoPerformed -= OnUndoRedoPerformed;
+                },
+
+                keywords = new HashSet<string>(new[] { "Hierarchy" })
             };
 
             return provider;
         }
 
+        private static void OnUndoRedoPerformed()
+        {
+            SettingsService.NotifySettingsProviderChanged();
+
+            if (instance != null)
+            {
+                instance.onSettingsChanged?.Invoke(nameof(instance.components)); // Refresh components on undo & redo
+            }
+        }
+
         internal static HierarchySettings GetAssets()
         {
+            if (instance != null)
+                return instance;
+
             var guids = AssetDatabase.FindAssets(string.Format("t:{0}", typeof(HierarchySettings).Name));
 
-            if (guids.Length > 0)
+            for (int i = 0; i < guids.Length; i++)
             {
-                var asset = AssetDatabase.LoadAssetAtPath<HierarchySettings>(AssetDatabase.GUIDToAssetPath(guids[0]));
-                if (asset != null)
-                    return asset;
+                instance = AssetDatabase.LoadAssetAtPath<HierarchySettings>(AssetDatabase.GUIDToAssetPath(guids[i]));
+                if (instance != null)
+                    return instance;
             }
 
-            return null;
+            return instance = CreateAssets();
         }
 
         internal static HierarchySettings CreateAssets()
         {
-            String path = EditorUtility.SaveFilePanelInProject("Save as...", "Settings", "asset", "");
+            string path = EditorUtility.SaveFilePanelInProject("Save as...", "Hierarchy 2 Settings", "asset", "");
             if (path.Length > 0)
             {
                 HierarchySettings settings = ScriptableObject.CreateInstance<HierarchySettings>();
@@ -675,6 +810,49 @@ namespace Hierarchy2
                 EditorUtility.FocusProjectWindow();
                 Selection.activeObject = settings;
                 return settings;
+            }
+
+            return null;
+        }
+
+        internal bool ImportFromJson()
+        {
+            string path = EditorUtility.OpenFilePanel("Import Hierarchy 2 settings", "", "json");
+            if (path.Length > 0)
+            {
+                string json = string.Empty;
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    json = sr.ReadToEnd();
+                }
+
+                if (string.IsNullOrEmpty(json)) return false;
+                JsonUtility.FromJsonOverwrite(json, this);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                return true;
+            }
+
+            return false;
+        }
+
+        internal TextAsset ExportToJson()
+        {
+            string path = EditorUtility.SaveFilePanelInProject("Export Hierarchy 2 settings as...", "Hierarchy 2 Settings", "json", "");
+            if (path.Length > 0)
+            {
+                string json = JsonUtility.ToJson(instance, true);
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    sw.Write(json);
+                }
+
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                EditorUtility.FocusProjectWindow();
+                TextAsset asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
+                Selection.activeObject = asset;
+                return asset;
             }
 
             return null;
