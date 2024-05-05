@@ -47,6 +47,11 @@ namespace CubeProject.UI
                          }
                      }*/
 
+                     if (string.IsNullOrEmpty(name))
+                     {
+                         name = "anonymous";
+                     }
+
                      int score = result.entries[i].score;
                      int rank = result.entries[i].rank;
 
