@@ -7,7 +7,7 @@ namespace CubeProject.Game
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class PortalView : MonoBehaviour
 	{
-		private readonly Dictionary<MeshRenderer, PortalAnimation> _animations = new Dictionary<MeshRenderer, PortalAnimation>();
+		private readonly Dictionary<MeshRenderer, PortalAnimationBehaviour> _animations = new Dictionary<MeshRenderer, PortalAnimationBehaviour>();
 
 		[SerializeField] private MeshRenderer[] _meshRenderers;
 		
@@ -22,7 +22,7 @@ namespace CubeProject.Game
 			{
 				_animations.Add(
 					renderer,
-					renderer.gameObject.GetComponentElseThrow<PortalAnimation>());
+					renderer.gameObject.GetComponentElseThrow<PortalAnimationBehaviour>());
 			}
 		}
 

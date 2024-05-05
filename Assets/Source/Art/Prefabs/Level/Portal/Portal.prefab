@@ -110,17 +110,17 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1.166966
+      Data: 0.9335728
     - Name: 
       Entry: 4
-      Data: 1.274686
+      Data: 1.113106
     - Name: 
       Entry: 8
       Data: 
   _appearScaleEase: 35
-  _appearScaleDuration: 0.2
-  _playingScaleSpeed: 2
-  _perDuration: 100
+  _appearScaleDuration: 0.3
+  _playingScaleSpeed: 520
+  _durationTurnover: 550
 --- !u!1 &882290613673366908
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,17 +231,17 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.7719929
+      Data: 0.8438062
     - Name: 
       Entry: 4
-      Data: 1.15798938
+      Data: 1.03231609
     - Name: 
       Entry: 8
       Data: 
   _appearScaleEase: 35
-  _appearScaleDuration: 0.2
-  _playingScaleSpeed: 2
-  _perDuration: 100
+  _appearScaleDuration: 0.3
+  _playingScaleSpeed: 480
+  _durationTurnover: 650
 --- !u!1 &1265586946480024446
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,17 +555,17 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.2692998
+      Data: 0.754039466
     - Name: 
       Entry: 4
-      Data: 1.10412943
+      Data: 0.951526165
     - Name: 
       Entry: 8
       Data: 
   _appearScaleEase: 35
-  _appearScaleDuration: 0.2
-  _playingScaleSpeed: 2
-  _perDuration: 100
+  _appearScaleDuration: 0.3
+  _playingScaleSpeed: 500
+  _durationTurnover: 600
 --- !u!1 &4350099150734224449
 GameObject:
   m_ObjectHideFlags: 0
