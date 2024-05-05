@@ -1032,6 +1032,7 @@ GameObject:
   - component: {fileID: 528615923}
   - component: {fileID: 528615922}
   - component: {fileID: 528615925}
+  - component: {fileID: 528615926}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -1115,9 +1116,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2045907838}
-        m_TargetAssemblyTypeName: CubeProject.UI.LeaderboardGame, Assembly-CSharp
-        m_MethodName: GetLeaderboard
+      - m_Target: {fileID: 528615926}
+        m_TargetAssemblyTypeName: AuthorizePlayer, Assembly-CSharp
+        m_MethodName: RequestData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1177,6 +1178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc9ad748e6948fb90cc158f7c50a8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &528615926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528615919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5108aa022a698c44ea694cd5c0210ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leaderboardGame: {fileID: 2045907838}
 --- !u!1 &682059687
 GameObject:
   m_ObjectHideFlags: 0

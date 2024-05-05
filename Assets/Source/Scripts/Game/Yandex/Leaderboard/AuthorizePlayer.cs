@@ -7,6 +7,8 @@ using Agava.YandexGames;
 
 public class AuthorizePlayer : MonoBehaviour
 {
+    [SerializeField] private LeaderboardGame _leaderboardGame;
+
     public ResultPlayer ResultPlayer { get; private set; }
 
     public bool DoRequestOnPersonalData { get; private set; } = false;
@@ -20,7 +22,7 @@ public class AuthorizePlayer : MonoBehaviour
         }
         else
         {
-            RequestData();
+           //RequestData();
         }
     }
 
@@ -38,12 +40,14 @@ public class AuthorizePlayer : MonoBehaviour
             }
         }
 
-        if (DoRequestOnPersonalData == false)
+        _leaderboardGame.GetLeaderboard();
+
+        /*if (DoRequestOnPersonalData == false)
         {           
             ResultPlayer = new ResultPlayer("Anonim", 0, 0);
             DoRequestOnPersonalData = true;
             //PlayerPrefs.SetInt(_requestPersonalData, DoRequestOnPersonalData ? 1 : 0);
             Debug.Log("Register");
-        }
+        } */
     }
 }
