@@ -58,7 +58,7 @@ namespace CubeProject
 			return;
 
 			void LoadMenu() =>
-				MenuScene.Load<MenuState<MenuWindowState>>(machine);
+				MenuScene.Load<MenuState<MenuWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
 		}
 
 		private void OnLevelEnded(bool isEntered)
