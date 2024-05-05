@@ -9,7 +9,7 @@ namespace CubeProject.UI
     {
         private string _leaderboardName = "PlayersScore";
 
-        public void AddPlayer(int score)
+        public void TrySetScore(int score)
         {
             Leaderboard.GetPlayerEntry(_leaderboardName, result =>
             {

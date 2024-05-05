@@ -5,27 +5,30 @@ namespace CubeProject.UI
 {
     public class Timer : MonoBehaviour
     {
+        [SerializeField] private EndLevelResult _levelResult;
+
         private float _minutes;
-        private float _seconds;
-        private bool _isStopTimer = false;
+        private float _seconds;      
 
         public event Action<float> TimeLeft;
         public event Action<float, float> VisualTime;
 
         public float CurrentTime { get; private set; } = 0;
 
+        private void OnEnable()
+        {
+            _levelResult.LevelCompleted += StopTimer;            
+        }
+
+        private void OnDisable()
+        {
+            _levelResult.LevelCompleted -= StopTimer;
+        }
+
         private void Update()
         {
-            if (_isStopTimer == true)
-                return;
-
             CurrentTime += Time.deltaTime;
             UpdateTimeText();
-
-            if (CurrentTime >= 40)
-            {
-                StopTimer();
-            }
         }
 
         private void UpdateTimeText()
@@ -36,8 +39,7 @@ namespace CubeProject.UI
         }
 
         private void StopTimer()
-        {
-            _isStopTimer = true;
+        {           
             TimeLeft?.Invoke(CurrentTime);
         }
     }
