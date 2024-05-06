@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using LeadTools.Extensions;
@@ -11,11 +10,14 @@ namespace CubeProject.LeadTools.UI
 	[ExecuteInEditMode]
 	public class AnchorAnimator : SerializedMonoBehaviour
 	{
-		[SerializeField] [BoxGroup("PlayInAwake")] private bool _isPlayInAwake;
+		[SerializeField] [BoxGroup("Play")] private bool _isPlayInAwake;
 		[SerializeField]
-		[BoxGroup("PlayInAwake")]
+		[BoxGroup("Play")]
 		[ShowIf(nameof(_isPlayInAwake))]
 		private AnchorAnimatorState _awakeState;
+		[SerializeField]
+		[BoxGroup("Play")]
+		private float _playDelay;
 		[SerializeField] private Ease _ease;
 		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _datas;
 
@@ -39,6 +41,7 @@ namespace CubeProject.LeadTools.UI
 
 			_sequence = DOTween
 				.Sequence()
+				.AppendInterval(_playDelay)
 				.Append(Rect.DOAnchorMin(data.AnchorMin, data.Duration).SetEase(_ease))
 				.Join(Rect.DOAnchorMax(data.AnchorMax, data.Duration).SetEase(_ease))
 				.Join(DOTween.To(

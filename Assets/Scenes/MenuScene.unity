@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00006620998, g: 0.0001609651, b: 0.004335399, a: 1}
+  m_IndirectSpecularColor: {r: 0.00006619262, g: 0.00016093373, b: 0.00435538, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 96673027}
   - component: {fileID: 96673026}
   - component: {fileID: 96673025}
+  - component: {fileID: 96673029}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -350,11 +351,11 @@ RectTransform:
   - {fileID: 507141401}
   m_Father: {fileID: 1205030707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.084395826, y: 0.513}
-  m_AnchorMax: {x: 0.28052083, y: 0.61}
-  m_AnchoredPosition: {x: 1, y: -0.5}
-  m_SizeDelta: {x: -1.2290993, y: -1.8361969}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.084395826, y: 0}
+  m_AnchorMax: {x: 0.28052083, y: 0}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: -1.2290993, y: 105}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &96673025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +462,190 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96673023}
   m_CullTransparentMesh: 1
+--- !u!114 &96673029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96673023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab639945d984d408eb04f711b67346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _datas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp],[CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0.513
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2805208
+    - Name: 
+      Entry: 4
+      Data: 0.61
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2805208
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _isPlayInAwake: 1
+  _awakeState: 1
+  _playDelay: 0.4
+  _ease: 28
 --- !u!1 &97509663
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &284261096
 RectTransform:
   m_ObjectHideFlags: 0
@@ -995,7 +1180,8 @@ MonoBehaviour:
       Data: 
   _isPlayInAwake: 1
   _awakeState: 1
-  _ease: 35
+  _playDelay: 0
+  _ease: 28
 --- !u!1 &507141400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1388,7 @@ GameObject:
   - component: {fileID: 528615922}
   - component: {fileID: 528615925}
   - component: {fileID: 528615926}
+  - component: {fileID: 528615927}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -1224,11 +1411,11 @@ RectTransform:
   - {fileID: 1773204379}
   m_Father: {fileID: 1205030707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.084395826, y: 0.441}
-  m_AnchorMax: {x: 0.40256253, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.5}
-  m_SizeDelta: {x: -0.000061035156, y: -1.6578999}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.084395826, y: 0}
+  m_AnchorMax: {x: 0.40256253, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.000061035156, y: 62.342102}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &528615922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1547,190 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leaderboardGame: {fileID: 2045907838}
+--- !u!114 &528615927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528615919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab639945d984d408eb04f711b67346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _datas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp],[CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0.441
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.4025625
+    - Name: 
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.4025625
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _isPlayInAwake: 1
+  _awakeState: 1
+  _playDelay: 0.5
+  _ease: 28
 --- !u!1 &682059687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,6 +1817,7 @@ GameObject:
   - component: {fileID: 692065434}
   - component: {fileID: 692065436}
   - component: {fileID: 692065435}
+  - component: {fileID: 692065437}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -1467,11 +1839,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1205030707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.065125, y: 0.7777037}
-  m_AnchorMax: {x: 0.26000002, y: 0.81488895}
-  m_AnchoredPosition: {x: 3.4909668, y: 1}
-  m_SizeDelta: {x: -6.357601, y: 4.1934}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.7777037}
+  m_AnchorMax: {x: 0, y: 0.81488895}
+  m_AnchoredPosition: {x: 0, y: 0.9999695}
+  m_SizeDelta: {x: 374.3122, y: 4.1934}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &692065435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1941,190 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692065433}
   m_CullTransparentMesh: 1
+--- !u!114 &692065437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692065433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab639945d984d408eb04f711b67346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _datas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp],[CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.065125
+    - Name: 
+      Entry: 4
+      Data: 0.7777037
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.26
+    - Name: 
+      Entry: 4
+      Data: 0.814889
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.7777037
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.814889
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _isPlayInAwake: 1
+  _awakeState: 1
+  _playDelay: 0.45
+  _ease: 28
 --- !u!1 &709114953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +2136,7 @@ GameObject:
   - component: {fileID: 709114954}
   - component: {fileID: 709114956}
   - component: {fileID: 709114955}
+  - component: {fileID: 709114957}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1601,11 +2158,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1205030707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05939584, y: 0.80185187}
-  m_AnchorMax: {x: 0.39370832, y: 0.90000004}
-  m_AnchoredPosition: {x: -1, y: -2}
-  m_SizeDelta: {x: -7.649414, y: -2.7463074}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.80185187}
+  m_AnchorMax: {x: 0, y: 0.90000004}
+  m_AnchoredPosition: {x: 0, y: -2.0000305}
+  m_SizeDelta: {x: 634.3506, y: -2.7463074}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &709114955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,6 +2260,190 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709114953}
   m_CullTransparentMesh: 1
+--- !u!114 &709114957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709114953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab639945d984d408eb04f711b67346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _datas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp],[CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.05939584
+    - Name: 
+      Entry: 4
+      Data: 0.8018519
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.3937083
+    - Name: 
+      Entry: 4
+      Data: 0.9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.8018519
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _isPlayInAwake: 1
+  _awakeState: 1
+  _playDelay: 0.35
+  _ease: 28
 --- !u!1 &859060472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,6 +3670,7 @@ GameObject:
   - component: {fileID: 1697680773}
   - component: {fileID: 1697680772}
   - component: {fileID: 1697680775}
+  - component: {fileID: 1697680776}
   m_Layer: 5
   m_Name: Levels
   m_TagString: Untagged
@@ -2951,11 +3693,11 @@ RectTransform:
   - {fileID: 14474843}
   m_Father: {fileID: 1205030707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.084395826, y: 0.34800002}
-  m_AnchorMax: {x: 0.28052083, y: 0.4062963}
+  m_AnchorMin: {x: 0.084395826, y: 0}
+  m_AnchorMax: {x: 0.28052083, y: 0}
   m_AnchoredPosition: {x: -0.61450195, y: 0}
-  m_SizeDelta: {x: -1.2289734, y: -0.65789795}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: -1.2289734, y: 62.342102}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1697680772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3062,6 +3804,190 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7b7314ba644f81ae476e94111ee566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1697680776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697680769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab639945d984d408eb04f711b67346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _datas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp],[CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CubeProject.LeadTools.UI.AnchorAnimatorState,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0.348
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2805208
+    - Name: 
+      Entry: 4
+      Data: 0.4062963
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|CubeProject.LeadTools.UI.AnchorAnimatorData, Assembly-CSharp
+    - Name: AnchorMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.08439583
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AnchorMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2805208
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMin
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OffsetMax
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Duration
+      Entry: 4
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _isPlayInAwake: 1
+  _awakeState: 1
+  _playDelay: 0.6
+  _ease: 28
 --- !u!1 &1773204378
 GameObject:
   m_ObjectHideFlags: 0
