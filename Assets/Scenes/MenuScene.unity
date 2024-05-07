@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00006619262, g: 0.00016093373, b: 0.00435538, a: 1}
+  m_IndirectSpecularColor: {r: 0.00006620998, g: 0.0001609651, b: 0.004335399, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3138,7 +3138,10 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 1697680775}
+    - {fileID: 528615925}
+    - {fileID: 1937256576}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -3176,6 +3179,9 @@ MonoBehaviour:
       Data: 2|CubeProject.UI.EventTriggerButton[], Assembly-CSharp
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
       Data: 0
     - Name: 
       Entry: 13
@@ -3197,7 +3203,10 @@ MonoBehaviour:
       Data: 3|CubeProject.UI.EventTriggerButton[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 13
       Data: 
@@ -3218,7 +3227,10 @@ MonoBehaviour:
       Data: 4|CubeProject.UI.EventTriggerButton[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 13
       Data: 
