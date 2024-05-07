@@ -48,11 +48,20 @@ namespace LeadTools.StateMachine
 		{
 			_sequence?.Kill();
 
-			_sequence = DOTween.Sequence().Pause().Append();
+			_sequence = DOTween.Sequence().Pause();
 
-			_window.Animations
-				.CreateAnimations(state)
-				.ForEach(sequence => _sequence.Join(sequence));
+			var sequences = _window.Animations.CreateAnimations(state);
+
+			if (sequences == null || sequences.Length < 1)
+				return;
+			
+			_sequence.Append(sequences[0]);
+			
+			if (sequences.Length > 1)
+			{
+				for (int i = 1; i < sequences.Length; i++)
+					_sequence.Join(sequences[i]);
+			}
 
 			_sequence.OnKill(() => completeCallback?.Invoke());
 			_sequence.Play();
