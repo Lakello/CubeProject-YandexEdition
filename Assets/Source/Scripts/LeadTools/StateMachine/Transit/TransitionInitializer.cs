@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 
 namespace LeadTools.StateMachine
 {
@@ -12,24 +13,6 @@ namespace LeadTools.StateMachine
 		public TransitionInitializer(TMachine stateMachine) =>
 			_stateMachine = stateMachine;
 
-		public TransitionInitializer<TMachine> InitTransition<TTargetState, TTargetMachine>(
-			ITransitSubject transitSubject,
-			TTargetMachine machine,
-			Action observer = null)
-			where TTargetMachine : StateMachine<TTargetMachine>
-			where TTargetState : State<TTargetMachine>
-		{
-			var transition = new Transition<TTargetMachine, TTargetState>(machine);
-
-			InitTransition(transitSubject, () =>
-			{
-				transition.Transit();
-				observer?.Invoke();
-			});
-
-			return this;
-		}
-
 		public TransitionInitializer<TMachine> InitTransition<TTargetState>(
 			ITransitSubject transitSubject,
 			Action observer = null)
@@ -37,11 +20,19 @@ namespace LeadTools.StateMachine
 		{
 			var transition = new Transition<TMachine, TTargetState>(_stateMachine);
 
-			InitTransition(transitSubject, () =>
-			{
-				transition.Transit();
-				observer?.Invoke();
-			});
+			InitTransition(transitSubject, observer, transition);
+
+			return this;
+		}
+		
+		public TransitionInitializer<TMachine> InitTransition<TTargetState>(
+			IEnumerable<ITransitSubject> transitSubjects,
+			Action observer = null)
+			where TTargetState : State<TMachine>
+		{
+			var transition = new Transition<TMachine, TTargetState>(_stateMachine);
+
+			transitSubjects.ForEach(subject => InitTransition(subject, observer, transition));
 
 			return this;
 		}
@@ -57,28 +48,30 @@ namespace LeadTools.StateMachine
 
 		public TransitionInitializer<TMachine> Subscribe()
 		{
-			if (_subscriptions != null)
-			{
-				foreach (var action in _subscriptions)
-				{
-					action.TransitSubject.StateTransiting += action.Observer;
-				}
-			}
+			_subscriptions?
+				.ForEach(
+					subscription => subscription.TransitSubject.StateTransiting += subscription.Observer);
 
 			return this;
 		}
 
-		public void Unsubscribe()
-		{
-			if (_subscriptions == null)
-			{
-				return;
-			}
+		public void Unsubscribe() =>
+			_subscriptions?
+				.ForEach(
+					subscription => subscription.TransitSubject.StateTransiting += subscription.Observer);
 
-			foreach (var subscription in _subscriptions)
+		private void InitTransition<TTargetState, TTargetMachine>(
+			ITransitSubject transitSubject,
+			Action observer,
+			Transition<TTargetMachine, TTargetState> transition)
+			where TTargetMachine : StateMachine<TTargetMachine>
+			where TTargetState : State<TTargetMachine>
+		{
+			InitTransition(transitSubject, () =>
 			{
-				subscription.TransitSubject.StateTransiting -= subscription.Observer;
-			}
+				transition.Transit();
+				observer?.Invoke();
+			});
 		}
 	}
 }
