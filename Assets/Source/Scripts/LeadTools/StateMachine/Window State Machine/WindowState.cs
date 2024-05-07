@@ -1,7 +1,6 @@
 ﻿using System;
 using CubeProject.LeadTools.UI;
 using DG.Tweening;
-using Sirenix.Utilities;
 using UnityEngine;
 
 namespace LeadTools.StateMachine
@@ -18,9 +17,8 @@ namespace LeadTools.StateMachine
 		{
 			base.Enter();
 
+			Debug.Log($"Enter {_window.WindowType}");
 			_window.gameObject.SetActive(true);
-
-			Debug.Log($"Enter = {_window.Animations != null}");
 			
 			if (_window.Animations != null)
 				PlayAnimations(AnchorAnimatorState.Target);
@@ -39,6 +37,8 @@ namespace LeadTools.StateMachine
 
 			void HideWindow()
 			{
+				Debug.Log($"Hide");
+				
 				if (_window != null)
 					_window.gameObject.SetActive(false);
 			}
@@ -46,14 +46,18 @@ namespace LeadTools.StateMachine
 
 		private void PlayAnimations(AnchorAnimatorState state, Action completeCallback = null)
 		{
-			_sequence?.Kill();
+			if (_sequence != null)
+				_sequence.onKill = null;
 
 			_sequence = DOTween.Sequence().Pause();
 
 			var sequences = _window.Animations.CreateAnimations(state);
 
 			if (sequences == null || sequences.Length < 1)
+			{
+				completeCallback?.Invoke();
 				return;
+			}
 			
 			_sequence.Append(sequences[0]);
 			
@@ -63,7 +67,11 @@ namespace LeadTools.StateMachine
 					_sequence.Join(sequences[i]);
 			}
 
-			_sequence.OnKill(() => completeCallback?.Invoke());
+			_sequence.OnKill(() =>
+			{
+				Debug.Log("Kill");
+				completeCallback?.Invoke();
+			});
 			_sequence.Play();
 		}
 	}

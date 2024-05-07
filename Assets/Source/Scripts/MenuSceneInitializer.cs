@@ -24,19 +24,15 @@ namespace CubeProject
 		[OdinSerialize] private Dictionary<MenuWindowButton, EventTriggerButton[]> _buttons;
 
 		private LevelButtonFabric _levelButtonFabric;
-		private TransitionInitializer<GameStateMachine> _gameTransitionInitializer;
-		private TransitionInitializer<WindowStateMachine> _menuWindowTransitionInitializer;
+		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 
 		public event Action<MenuWindowButton> Transiting;
 
 		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _levelButtonFabric);
 
-		private void OnDisable()
-		{
-			_gameTransitionInitializer?.Unsubscribe();
-			_menuWindowTransitionInitializer?.Unsubscribe();
-		}
+		private void OnDisable() =>
+			_transitionInitializer?.Unsubscribe();
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
@@ -48,16 +44,11 @@ namespace CubeProject
 
 			machine.EnterIn<TState>();
 
-			_gameTransitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
-				.InitTransition(
-					_startButton,
-					levelLoader.LoadCurrentLevel)
-				.Subscribe();
-
-			_menuWindowTransitionInitializer = new TransitionInitializer<WindowStateMachine>(machine.Window)
-				.InitTransition<SelectLevelWindowState>(_buttons[MenuWindowButton.SelectLevel])
-				.InitTransition<LeaderboardWindowState>(_buttons[MenuWindowButton.Leaderboard])
-				.InitTransition<MenuWindowState>(_buttons[MenuWindowButton.Menu])
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
+				.InitTransition(_startButton, levelLoader.LoadCurrentLevel)
+				.InitTransition<MenuState<SelectLevelWindowState>>(_buttons[MenuWindowButton.SelectLevel])
+				.InitTransition<MenuState<LeaderboardWindowState>>(_buttons[MenuWindowButton.Leaderboard])
+				.InitTransition<MenuState<MenuWindowState>>(_buttons[MenuWindowButton.Menu])
 				.Subscribe();
 		}
 	}
