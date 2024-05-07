@@ -35,25 +35,33 @@ namespace CubeProject.LeadTools.UI
 		[Button]
 		public void Play(AnchorAnimatorState state)
 		{
-			var data = _datas[state];
-
 			_sequence?.Kill();
 
-			_sequence = DOTween
+			_sequence = CreateAnimation(state);
+			_sequence.Play();
+		}
+
+		public Sequence CreateAnimation(AnchorAnimatorState state)
+		{
+			var data = _datas[state];
+			
+			return DOTween
 				.Sequence()
 				.AppendInterval(_playDelay)
 				.Append(Rect.DOAnchorMin(data.AnchorMin, data.Duration).SetEase(_ease))
 				.Join(Rect.DOAnchorMax(data.AnchorMax, data.Duration).SetEase(_ease))
-				.Join(DOTween.To(
-					_ =>
-					{
-						Rect.offsetMin = data.OffsetMin;
-						Rect.offsetMax = data.OffsetMax;
-					},
-					0,
-					0,
-					data.Duration)
-					.SetEase(_ease));
+				.Join(DOTween
+					.To(
+						_ =>
+						{
+							Rect.offsetMin = data.OffsetMin;
+							Rect.offsetMax = data.OffsetMax;
+						},
+						0,
+						0,
+						data.Duration)
+					.SetEase(_ease))
+				.Pause();
 		}
 	}
 }

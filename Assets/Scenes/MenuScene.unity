@@ -814,7 +814,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 64.746666, y: 64.746666}
+  m_CellSize: {x: 202.74, y: 202.74}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -922,6 +922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3305ed384c240b3a1ff82ec9ccaeafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animations:
+    _animators: []
 --- !u!1 &284261095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,7 +2625,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 1142.9982, y: 261.76913}
+  m_CellSize: {x: 1165.12, y: 220}
   m_Spacing: {x: -1000, y: 50}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -3364,6 +3366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10fc6de91a6ece46a6cfa3341aa159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animations:
+    _animators:
+    - {fileID: 96673029}
+    - {fileID: 528615927}
+    - {fileID: 1697680776}
+    - {fileID: 709114957}
+    - {fileID: 692065437}
 --- !u!1 &1341881331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4565,6 +4574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089c6865fbaf4e8fa2b33c46c7589ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animations:
+    _animators: []
 --- !u!114 &2045907835
 MonoBehaviour:
   m_ObjectHideFlags: 0
