@@ -10,15 +10,14 @@ namespace CubeProject.LeadTools.UI
 	[ExecuteInEditMode]
 	public class AnchorAnimator : SerializedMonoBehaviour
 	{
-		[SerializeField] [BoxGroup("Play")] private bool _isPlayInAwake;
-		[SerializeField]
-		[BoxGroup("Play")]
-		[ShowIf(nameof(_isPlayInAwake))]
-		private AnchorAnimatorState _awakeState;
-		[SerializeField]
-		[BoxGroup("Play")]
-		private float _playDelay;
-		[SerializeField] private Ease _ease;
+		[BoxGroup("Awake")]
+		[SerializeField] private bool _isPlayInAwake;
+		[BoxGroup("Awake")] [ShowIf(nameof(_isPlayInAwake))]
+		[SerializeField] private AnchorAnimatorState _awakeState;
+		[BoxGroup("Awake")]
+		[SerializeField] private bool _isSetInitialStateInAwake;
+		[BoxGroup("Awake")] [ShowIf(nameof(_isSetInitialStateInAwake))]
+		[SerializeField] private AnchorAnimatorState _initialState;
 		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _datas;
 
 		private RectTransform _rect;
@@ -28,11 +27,13 @@ namespace CubeProject.LeadTools.UI
 
 		private void Awake()
 		{
+			if (_isSetInitialStateInAwake)
+				JumpTo(_initialState);
+
 			if (_isPlayInAwake)
 				Play(_awakeState);
 		}
 
-		[Button]
 		public void Play(AnchorAnimatorState state)
 		{
 			_sequence?.Kill();
@@ -44,13 +45,15 @@ namespace CubeProject.LeadTools.UI
 		public Sequence CreateAnimation(AnchorAnimatorState state)
 		{
 			var data = _datas[state];
-			
-			return DOTween
+
+			var sequence = DOTween
 				.Sequence()
-				.AppendInterval(_playDelay)
-				.Append(Rect.DOAnchorMin(data.AnchorMin, data.Duration).SetEase(_ease))
-				.Join(Rect.DOAnchorMax(data.AnchorMax, data.Duration).SetEase(_ease))
-				.Join(DOTween
+				.AppendInterval(data.PlayDelay)
+				.Append(Rect.DOAnchorMin(data.AnchorMin, data.Duration).SetEase(data.Ease))
+				.Join(Rect.DOAnchorMax(data.AnchorMax, data.Duration).SetEase(data.Ease));
+
+			if (data.IsAnimateOffset)
+				_sequence.Join(DOTween
 					.To(
 						_ =>
 						{
@@ -60,8 +63,24 @@ namespace CubeProject.LeadTools.UI
 						0,
 						0,
 						data.Duration)
-					.SetEase(_ease))
-				.Pause();
+					.SetEase(data.Ease));
+
+			return sequence.Pause();
+		}
+
+		[Button]
+		private void JumpTo(AnchorAnimatorState state)
+		{
+			var data = _datas[state];
+
+			Rect.anchorMin = data.AnchorMin;
+			Rect.anchorMax = data.AnchorMax;
+
+			if (data.IsAnimateOffset)
+			{
+				Rect.offsetMin = data.OffsetMin;
+				Rect.offsetMax = data.OffsetMax;
+			}
 		}
 	}
 }
