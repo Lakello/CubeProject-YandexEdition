@@ -17,16 +17,13 @@ namespace CubeProject
 	[RequireComponent(typeof(LevelButtonFabric))]
 	public class MenuSceneInitializer :
 		SerializedMonoBehaviour,
-		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>,
-		ITransitInitializer
+		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private StartButton _startButton;
 		[OdinSerialize] private Dictionary<MenuWindowButton, EventTriggerButton[]> _buttons;
 
 		private LevelButtonFabric _levelButtonFabric;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
-
-		public event Action<MenuWindowButton> Transiting;
 
 		private void Awake() =>
 			gameObject.GetComponentElseThrow(out _levelButtonFabric);

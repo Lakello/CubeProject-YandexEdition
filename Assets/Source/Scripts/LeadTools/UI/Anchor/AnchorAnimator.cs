@@ -3,6 +3,9 @@ using DG.Tweening;
 using LeadTools.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using Sirenix.Utilities;
+using Tayx.Graphy.Utils.NumString;
+using UnityEditor;
 using UnityEngine;
 
 namespace CubeProject.LeadTools.UI
@@ -14,16 +17,35 @@ namespace CubeProject.LeadTools.UI
 		[SerializeField] private bool _isPlayInAwake;
 		[BoxGroup("Awake")] [ShowIf(nameof(_isPlayInAwake))]
 		[SerializeField] private AnchorAnimatorState _awakeState;
+		
 		[BoxGroup("Awake")]
 		[SerializeField] private bool _isSetInitialStateInAwake;
 		[BoxGroup("Awake")] [ShowIf(nameof(_isSetInitialStateInAwake))]
 		[SerializeField] private AnchorAnimatorState _initialState;
-		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _datas;
+		
+		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _animatorsData = 
+			new Dictionary<AnchorAnimatorState, AnchorAnimatorData>
+			{
+				[AnchorAnimatorState.Initial] = new AnchorAnimatorData(),
+				[AnchorAnimatorState.Target] = new AnchorAnimatorData(),
+			};
+		
+		[BoxGroup("Anchor")]
+		[SerializeField] private bool _isSetAllStates;
+		[BoxGroup("Anchor")] [HideIf(nameof(_isSetAllStates))]
+		[SerializeField] private AnchorAnimatorState _settingAnchorState;
+		[BoxGroup("Anchor")]
+		[SerializeField] private bool _isUseThisRect;
+		[BoxGroup("Anchor")] [HideIf(nameof(_isUseThisRect))]
+		[SerializeField] private RectTransform _settingTargetRect;
 
 		private RectTransform _rect;
 		private Sequence _sequence;
 
 		private RectTransform Rect => _rect ??= gameObject.GetComponentElseThrow<RectTransform>();
+		private RectTransform SettingTargetRect => _isUseThisRect
+			? Rect
+			: _settingTargetRect;
 
 		private void Awake()
 		{
@@ -44,7 +66,7 @@ namespace CubeProject.LeadTools.UI
 
 		public Sequence CreateAnimation(AnchorAnimatorState state)
 		{
-			var data = _datas[state];
+			var data = _animatorsData[state];
 
 			var sequence = DOTween
 				.Sequence()
@@ -71,7 +93,7 @@ namespace CubeProject.LeadTools.UI
 		[Button]
 		private void JumpTo(AnchorAnimatorState state)
 		{
-			var data = _datas[state];
+			var data = _animatorsData[state];
 
 			Rect.anchorMin = data.AnchorMin;
 			Rect.anchorMax = data.AnchorMax;
@@ -80,6 +102,27 @@ namespace CubeProject.LeadTools.UI
 			{
 				Rect.offsetMin = data.OffsetMin;
 				Rect.offsetMax = data.OffsetMax;
+			}
+		}
+
+		[Button] [BoxGroup("Anchor")]
+		private void SetAnchorData()
+		{
+			var targetRect = SettingTargetRect;
+
+			if (_isSetAllStates)
+				_animatorsData.Values.ForEach(Set);
+			else
+				Set(_animatorsData[_settingAnchorState]);
+
+			return;
+			
+			void Set(AnchorAnimatorData data)
+			{
+				data.AnchorMin = targetRect.anchorMin;
+				data.AnchorMax = targetRect.anchorMax;
+				
+				EditorUtility.SetDirty(this);
 			}
 		}
 	}
