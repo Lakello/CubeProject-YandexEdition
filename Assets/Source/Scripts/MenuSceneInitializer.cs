@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using CubeProject.LeadTools.UI.PageSystem;
 using CubeProject.SO;
 using CubeProject.UI;
 using LeadTools.Extensions;
@@ -14,19 +14,17 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	[RequireComponent(typeof(LevelButtonFabric))]
+	[RequireComponent(typeof(PageBehaviour))]
 	public class MenuSceneInitializer :
 		SerializedMonoBehaviour,
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
+		[SerializeField] private LevelButton _levelButtonPrefab;
+		
 		[SerializeField] private StartButton _startButton;
 		[OdinSerialize] private Dictionary<MenuWindowButton, EventTriggerButton[]> _buttons;
 
-		private LevelButtonFabric _levelButtonFabric;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
-
-		private void Awake() =>
-			gameObject.GetComponentElseThrow(out _levelButtonFabric);
 
 		private void OnDisable() =>
 			_transitionInitializer?.Unsubscribe();
@@ -34,8 +32,9 @@ namespace CubeProject
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
-			_levelButtonFabric.Init(levelLoader);
-
+			gameObject.GetComponentElseThrow<PageBehaviour>()
+				.Init(LevelButtonFactory.Create(_levelButtonPrefab, levelLoader));
+			
 			gameObject.GetComponentElseThrow(out WindowInitializer _)
 				.WindowsInit(machine.Window);
 

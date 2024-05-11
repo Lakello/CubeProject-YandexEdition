@@ -1,15 +1,18 @@
-using System;
 using System.Linq;
 using DG.Tweening;
 using Sirenix.Utilities;
-using UnityEngine;
 
 namespace CubeProject.LeadTools.UI
 {
-	[Serializable]
 	public class AnchorAnimationGroup
 	{
-		[SerializeField] private AnchorAnimator[] _animators;
+		private readonly AnchorAnimator[] _animators;
+
+		public AnchorAnimationGroup(AnchorAnimator[] animators)
+		{
+			_animators = animators;
+			_animators.ForEach(animator => animator.Init());
+		}
 
 		public void Play(AnchorAnimatorState state) =>
 			_animators.ForEach(animator => animator.Play(state));

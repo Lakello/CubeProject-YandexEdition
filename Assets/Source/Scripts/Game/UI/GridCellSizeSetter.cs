@@ -3,66 +3,69 @@ using UnityEngine.UI;
 
 namespace ArenaHero.UI
 {
-    [ExecuteAlways]
-    [RequireComponent(typeof(GridLayoutGroup))]
-    public sealed class GridCellSizeSetter : MonoBehaviour, ILayoutGroup
-    {
-        [SerializeField] private AspectType _aspectType;
+	[ExecuteAlways]
+	[RequireComponent(typeof(GridLayoutGroup))]
+	public sealed class GridCellSizeSetter : MonoBehaviour, ILayoutGroup
+	{
+		[SerializeField] private AspectType _aspectType;
+		[SerializeField] private int _rowCount;
+		[SerializeField] private int _columnCount;
+		[SerializeField] private RectTransform _parent;
 
-        [SerializeField] private int _rowCount;
-        [SerializeField] private int _columnCount;
-        [SerializeField] private RectTransform _parent;
+		private GridLayoutGroup _grid;
 
-        private GridLayoutGroup _grid;
+		private void OnEnable()
+		{
+			if (_grid == null)
+				_grid = GetComponent<GridLayoutGroup>();
 
-        private void OnValidate()
-        {
-            if (_grid == null)
-                _grid = GetComponent<GridLayoutGroup>();
+			if (_parent == null)
+				_parent = GetComponent<RectTransform>();
 
-            if (_parent == null)
-                _parent = GetComponent<RectTransform>();
+			SetLayoutVertical();
+		}
 
-            SetLayoutVertical();
-        }
+		public void SetLayoutHorizontal()
+		{
+		}
 
-        private Vector2 CalculateSize()
-        {
-            Vector2 size;
-            
-            switch (_aspectType)
-            {
-                case AspectType.Horizontal:
-                    CalculateX();
-                    size.y = size.x;
-                    break;
-                case AspectType.Vertical:
-                    CalculateY();
-                    size.x = size.y;
-                    break;
-                case AspectType.None:
-                    CalculateX();
-                    CalculateY();
-                    break;
-                default:
-                    size = Vector2.one;
-                    break;
-            }
+		public void SetLayoutVertical() =>
+			_grid.cellSize = CalculateSize();
 
-            return size;
+		private Vector2 CalculateSize()
+		{
+			Vector2 size;
 
-            void CalculateX() =>
-                size.x = _parent.rect.size.x / _columnCount - _grid.spacing.x - _grid.padding.left - _grid.padding.right;
+			switch (_aspectType)
+			{
+				case AspectType.Horizontal:
+					CalculateX();
+					size.y = size.x;
 
-            void CalculateY() =>
-                size.y = _parent.rect.size.y / _rowCount - _grid.spacing.y - _grid.padding.top - _grid.padding.bottom;
-        }
+					break;
+				case AspectType.Vertical:
+					CalculateY();
+					size.x = size.y;
 
-        public void SetLayoutHorizontal()
-        {
-        }
+					break;
+				case AspectType.None:
+					CalculateX();
+					CalculateY();
 
-        public void SetLayoutVertical() =>
-            _grid.cellSize = CalculateSize();
-    }
+					break;
+				default:
+					size = Vector2.one;
+
+					break;
+			}
+
+			return size;
+
+			void CalculateX() =>
+				size.x = _parent.rect.size.x / _columnCount - _grid.spacing.x - _grid.padding.left - _grid.padding.right;
+
+			void CalculateY() =>
+				size.y = _parent.rect.size.y / _rowCount - _grid.spacing.y - _grid.padding.top - _grid.padding.bottom;
+		}
+	}
 }

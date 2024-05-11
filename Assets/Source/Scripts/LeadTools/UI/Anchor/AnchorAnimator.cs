@@ -4,7 +4,6 @@ using LeadTools.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Sirenix.Utilities;
-using Tayx.Graphy.Utils.NumString;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,23 +12,24 @@ namespace CubeProject.LeadTools.UI
 	[ExecuteInEditMode]
 	public class AnchorAnimator : SerializedMonoBehaviour
 	{
-		[BoxGroup("Awake")]
-		[SerializeField] private bool _isPlayInAwake;
-		[BoxGroup("Awake")] [ShowIf(nameof(_isPlayInAwake))]
-		[SerializeField] private AnchorAnimatorState _awakeState;
-		
-		[BoxGroup("Awake")]
-		[SerializeField] private bool _isSetInitialStateInAwake;
-		[BoxGroup("Awake")] [ShowIf(nameof(_isSetInitialStateInAwake))]
-		[SerializeField] private AnchorAnimatorState _initialState;
-		
-		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _animatorsData = 
+		[BoxGroup("Init")]
+		[SerializeField] private bool _isInitInAwake;
+		[BoxGroup("Init")]
+		[SerializeField] private bool _isPlayInInit;
+		[BoxGroup("Init")] [ShowIf(nameof(_isPlayInInit))]
+		[SerializeField] private AnchorAnimatorState _initState;
+		[BoxGroup("Init")]
+		[SerializeField] private bool _isJumpStateInInit;
+		[BoxGroup("Init")] [ShowIf(nameof(_isJumpStateInInit))]
+		[SerializeField] private AnchorAnimatorState _jumpState;
+
+		[OdinSerialize] private Dictionary<AnchorAnimatorState, AnchorAnimatorData> _animatorsData =
 			new Dictionary<AnchorAnimatorState, AnchorAnimatorData>
 			{
 				[AnchorAnimatorState.Initial] = new AnchorAnimatorData(),
 				[AnchorAnimatorState.Target] = new AnchorAnimatorData(),
 			};
-		
+
 		[BoxGroup("Anchor")]
 		[SerializeField] private bool _isSetAllStates;
 		[BoxGroup("Anchor")] [HideIf(nameof(_isSetAllStates))]
@@ -49,11 +49,19 @@ namespace CubeProject.LeadTools.UI
 
 		private void Awake()
 		{
-			if (_isSetInitialStateInAwake)
-				JumpTo(_initialState);
+			if (_isInitInAwake == false)
+				return;
 
-			if (_isPlayInAwake)
-				Play(_awakeState);
+			Init();
+		}
+
+		public void Init()
+		{
+			if (_isJumpStateInInit)
+				JumpTo(_jumpState);
+
+			if (_isPlayInInit)
+				Play(_initState);
 		}
 
 		public void Play(AnchorAnimatorState state)
@@ -116,12 +124,12 @@ namespace CubeProject.LeadTools.UI
 				Set(_animatorsData[_settingAnchorState]);
 
 			return;
-			
+
 			void Set(AnchorAnimatorData data)
 			{
 				data.AnchorMin = targetRect.anchorMin;
 				data.AnchorMax = targetRect.anchorMax;
-				
+
 				EditorUtility.SetDirty(this);
 			}
 		}
