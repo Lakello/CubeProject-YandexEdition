@@ -14,13 +14,12 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	[RequireComponent(typeof(PageBehaviour))]
 	public class MenuSceneInitializer :
 		SerializedMonoBehaviour,
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
+		[SerializeField] private PageBehaviour _pageBehaviour;
 		[SerializeField] private LevelButton _levelButtonPrefab;
-		
 		[SerializeField] private StartButton _startButton;
 		[OdinSerialize] private Dictionary<MenuWindowButton, EventTriggerButton[]> _buttons;
 
@@ -32,8 +31,7 @@ namespace CubeProject
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
-			gameObject.GetComponentElseThrow<PageBehaviour>()
-				.Init(LevelButtonFactory.Create(_levelButtonPrefab, levelLoader));
+			_pageBehaviour.Init(LevelButtonFactory.Create(_levelButtonPrefab, levelLoader));
 			
 			gameObject.GetComponentElseThrow(out WindowInitializer _)
 				.WindowsInit(machine.Window);

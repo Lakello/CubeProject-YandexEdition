@@ -37,8 +37,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.03044737, y: 1}
-  m_AnchorMax: {x: 0.96955264, y: 1}
+  m_AnchorMin: {x: 0.15, y: 1}
+  m_AnchorMax: {x: 0.85, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
@@ -278,6 +278,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  _isDebug: 1
   _isInitInAwake: 0
   _isPlayInInit: 0
   _initState: 0
@@ -320,7 +321,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 601.02734, y: 601.02734}
+  m_CellSize: {x: 448, y: 448}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

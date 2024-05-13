@@ -45,18 +45,18 @@ namespace CubeProject.LeadTools.UI.PageSystem
 			{
 				var page = Instantiate(_pagePrefab, _container);
 				page.Init();
+				page.Hide();
 				_pages.Add(page);
 
 				return page;
 			}
 		}
 
-		private void Start()
-		{
-			_pages.ForEach(page => page.Hide());
-
+		private void OnEnable() =>
 			_pages[_currentPageIndex].Show();
-		}
+
+		private void OnDisable() =>
+			_pages[_currentPageIndex].Hide();
 
 		public void NextPage() =>
 			ChangePage(() =>
