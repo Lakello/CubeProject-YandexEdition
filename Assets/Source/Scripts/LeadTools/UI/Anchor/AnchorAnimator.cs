@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using DG.Tweening;
 using LeadTools.Extensions;
 using Sirenix.OdinInspector;
@@ -6,6 +7,7 @@ using Sirenix.Serialization;
 using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace CubeProject.LeadTools.UI
 {
@@ -41,7 +43,7 @@ namespace CubeProject.LeadTools.UI
 
 		private RectTransform _rect;
 		private Sequence _sequence;
-
+ 
 		private RectTransform Rect => _rect ??= gameObject.GetComponentElseThrow<RectTransform>();
 		private RectTransform SettingTargetRect => _isUseThisRect
 			? Rect
@@ -103,8 +105,8 @@ namespace CubeProject.LeadTools.UI
 		{
 			var data = _animatorsData[state];
 
-			Rect.anchorMin = data.AnchorMin;
-			Rect.anchorMax = data.AnchorMax;
+			Rect.DOAnchorMin(data.AnchorMin, 0);
+			Rect.DOAnchorMax(data.AnchorMax, 0);
 
 			if (data.IsAnimateOffset)
 			{

@@ -13,20 +13,13 @@ namespace CubeProject
 {
 	public class ProjectInstaller : MonoBehaviour, IInstaller
 	{
-		[SerializeField] private AudioClip _audioClipBackground;
+		[SerializeField] private AudioPlayer _backgroundAudioPrefab;
 
 		private Action _unsubscribe;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
-			var audioSource = new GameObject(nameof(AudioSource)).AddComponent<AudioSource>();
-			audioSource.clip = _audioClipBackground;
-			audioSource.loop = true;
-			audioSource.playOnAwake = false;
-
-			DontDestroyOnLoad(audioSource.gameObject);
-
-			audioSource.Play();
+			InitAudio();
 
 			var context = new GameObject(nameof(Context)).AddComponent<Context>();
 			DontDestroyOnLoad(context.gameObject);
@@ -36,10 +29,17 @@ namespace CubeProject
 			InitStateMachine();
 
 			ProjectInit();
-			
+
 			return;
 
 			#region InitMethods
+
+			void InitAudio()
+			{
+				var audioPlayer = Instantiate(_backgroundAudioPrefab);
+
+				DontDestroyOnLoad(audioPlayer.gameObject);
+			}
 
 			void InitStateMachine()
 			{
@@ -73,7 +73,7 @@ namespace CubeProject
 			void ProjectInit()
 			{
 				var levelLoader = gameObject.GetComponentElseThrow<LevelLoader>();
-				
+
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
 
 				projectInitializer.Init(

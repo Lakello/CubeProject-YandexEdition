@@ -66,6 +66,9 @@ GameObject:
   - component: {fileID: 9169597038207546759}
   - component: {fileID: 1685948700190409386}
   - component: {fileID: 5239229189709755625}
+  - component: {fileID: 5997751084420083653}
+  - component: {fileID: 3340439265975070085}
+  - component: {fileID: 8548587057151903484}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -223,6 +226,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 3725273703629748278}
+--- !u!114 &5997751084420083653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348316050753323191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d4686c5a594491a8d7f49cd0aade71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3340439265975070085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348316050753323191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c371577da694e258c26de19f00f4a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sourceAudio: {fileID: 8548587057151903484}
+  _clip:
+    _id: 099ff44e-830a-4aac-8c7f-b2b803eb3468
+    _key: CubeStep
+  _isPlayInAwake: 0
+  _isListenAudioSource: 1
+--- !u!114 &8548587057151903484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348316050753323191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994bd5a6b4cdde04cbc5b175f7662486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _provider: 0
+  _volume: 1
+  _loop: 0
+  _mute: 0
+  _pitch: 1
+  _output: {fileID: 0}
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _stereoPan: 0
+  _spatialBlend: 0
+  _reverbZoneMix: 1
+  _dopplerLevel: 1
+  _spread: 0
+  _volumeRolloff: 0
+  _minDistance: 1
+  _maxDistance: 500
 --- !u!1 &3760603947137364281
 GameObject:
   m_ObjectHideFlags: 0

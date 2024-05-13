@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed988abd1f041d48056ee5f56c16afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClipBackground: {fileID: 8300000, guid: 626fd8181d508874594b43fef3dc2ab0, type: 3}
+  _backgroundAudioPrefab: {fileID: 8061080178988038971, guid: c141ffc0323af454ebdad45361f19583, type: 3}
 --- !u!114 &-5875644122897357117
 MonoBehaviour:
   m_ObjectHideFlags: 0

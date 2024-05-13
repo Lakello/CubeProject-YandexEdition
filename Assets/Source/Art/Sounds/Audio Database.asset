@@ -19,3 +19,15 @@ MonoBehaviour:
     Name: BackgroundSound.wav
     Preload: 1
     _id: 5281749d-fe1b-4a41-98fd-c960ecc3eb8e
+  - Clip: {fileID: 8300000, guid: 9066e1547cd26f24ab311a0864364753, type: 3}
+    Key: BarrierDead
+    FolderPath: Source\Art\Sounds\
+    Name: BarrierDead.wav
+    Preload: 1
+    _id: 2ce51147-72d9-4db1-a2a5-877286d641f5
+  - Clip: {fileID: 8300000, guid: 8a1bced11693fbc41a08d0914968dbe1, type: 3}
+    Key: CubeStep
+    FolderPath: Source\Art\Sounds\
+    Name: CubeStep.wav
+    Preload: 1
+    _id: 099ff44e-830a-4aac-8c7f-b2b803eb3468
