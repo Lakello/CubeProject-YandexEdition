@@ -31,3 +31,33 @@ MonoBehaviour:
     Name: CubeStep.wav
     Preload: 1
     _id: 099ff44e-830a-4aac-8c7f-b2b803eb3468
+  - Clip: {fileID: 8300000, guid: 7c30b069b06aeb64ab9d67954ff443ea, type: 3}
+    Key: CubeCharged
+    FolderPath: Source\Art\Sounds\
+    Name: CubeCharged.mp3
+    Preload: 1
+    _id: dc4dd383-d04e-426c-bef2-2dd925e22546
+  - Clip: {fileID: 8300000, guid: d660201590f2afc4b81d3618dbd76499, type: 3}
+    Key: CubeUnCharged
+    FolderPath: Source\Art\Sounds\
+    Name: CubeUnCharged.mp3
+    Preload: 1
+    _id: 7cf134e8-473e-45f6-a3c5-f3754bf7b73c
+  - Clip: {fileID: 8300000, guid: 2be7cbc734ec16640b71ee26bd879a4e, type: 3}
+    Key: Door
+    FolderPath: Source\Art\Sounds\
+    Name: Door.mp3
+    Preload: 1
+    _id: 429602fa-50a1-404e-b234-84596b108750
+  - Clip: {fileID: 8300000, guid: 7ec4ef90115f31e4bba2b47464b50ef4, type: 3}
+    Key: LevelEnd
+    FolderPath: Source\Art\Sounds\
+    Name: LevelEnd.mp3
+    Preload: 1
+    _id: 9a2a5661-e11b-4d2c-9802-437cd7dbce3f
+  - Clip: {fileID: 8300000, guid: 191f2901043a14045aca79c21a6f8dc6, type: 3}
+    Key: Portal
+    FolderPath: Source\Art\Sounds\
+    Name: Portal.mp3
+    Preload: 1
+    _id: 8f9873c7-185a-4852-8eb7-f5d2bf3d0956

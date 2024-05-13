@@ -1,46 +1,47 @@
 using LeadTools.Extensions;
-using Plugins.Audio.Core;
-using Plugins.Audio.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using Sirenix.Utilities;
 using UnityEngine;
 
-public class AudioPlayer : MonoBehaviour
+public class AudioPlayer : SerializedMonoBehaviour
 {
 	[SerializeField] private bool _isThisSourceAudio = true;
-	[SerializeField] [HideIf(nameof(_isThisSourceAudio))] private SourceAudio _sourceAudio;
-	[SerializeField] private AudioDataProperty _clip;
+	[SerializeField] [HideIf(nameof(_isThisSourceAudio))] private AudioSource _audioSource;
+	[SerializeField] private AudioClip _clip;
 	[SerializeField] private bool _isPlayInAwake;
 	[SerializeField] private bool _isListenAudioSource = true;
-
-	private IAudioSource _source;
+	[SerializeField] [ShowIf(nameof(_isListenAudioSource))] private bool _isThisAudioSource = true;
+	[OdinSerialize] [HideIf(nameof(_isThisAudioSource))] private IAudioSource[] _sources;
 
 	private void Awake()
 	{
 		if (_isPlayInAwake)
 			OnAudioPlaying();
 
-		if (_isThisSourceAudio 
-			&& TryGetComponent(out _sourceAudio) == false)
-		{
-			_sourceAudio = gameObject.AddComponent<SourceAudio>();
-		}
-		
-		if (_isListenAudioSource)
-			gameObject.GetComponentElseThrow(out _source);
+		if (_isThisSourceAudio && TryGetComponent(out _audioSource) == false)
+			_audioSource = gameObject.AddComponent<AudioSource>();
+
+		if (_isListenAudioSource && _isThisAudioSource)
+			gameObject.GetComponentsElseThrow(out _sources);
 	}
 
 	private void OnEnable()
 	{
 		if (_isListenAudioSource)
-			_source.AudioPlaying += OnAudioPlaying;
+			_sources.ForEach(source => source.AudioPlaying += OnAudioPlaying);
 	}
 
 	private void OnDisable()
 	{
 		if (_isListenAudioSource)
-			_source.AudioPlaying -= OnAudioPlaying;
+			_sources.ForEach(source => source.AudioPlaying -= OnAudioPlaying);
 	}
 
-	private void OnAudioPlaying() =>
-		_sourceAudio.Play(_clip);
+	private void OnAudioPlaying()
+	{
+		_audioSource.Pause();
+		_audioSource.clip = _clip;
+		_audioSource.Play();
+	}
 }

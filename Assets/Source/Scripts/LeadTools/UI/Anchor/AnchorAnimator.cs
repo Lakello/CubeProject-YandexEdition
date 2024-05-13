@@ -113,6 +113,7 @@ namespace CubeProject.LeadTools.UI
 			}
 		}
 
+#if UNITY_EDITOR
 		[Button] [BoxGroup("Anchor")]
 		private void SetAnchorData()
 		{
@@ -133,5 +134,6 @@ namespace CubeProject.LeadTools.UI
 				EditorUtility.SetDirty(this);
 			}
 		}
+#endif
 	}
 }

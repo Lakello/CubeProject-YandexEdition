@@ -5,13 +5,6 @@ namespace LeadTools.Extensions
 {
 	public static class GameObjectExtension
 	{
-		public static GameObject SetActiveAndReturn(this GameObject origin, bool value)
-		{
-			origin.SetActive(value);
-
-			return origin;
-		}
-
 		public static T FindObjectOfTypeElseThrow<T>(this GameObject origin, out T component)
 			where T : UnityEngine.Object
 		{
@@ -36,6 +29,21 @@ namespace LeadTools.Extensions
 			}
 
 			return component;
+		}
+		
+		public static T[] GetComponentsElseThrow<T>(this GameObject origin) =>
+			GetComponentsElseThrow(origin, out T[] _);
+
+		public static T[] GetComponentsElseThrow<T>(this GameObject origin, out T[] components)
+		{
+			components = origin.GetComponents<T>();
+
+			if (components is null)
+			{
+				Debug.LogException(new NullReferenceException(), origin);
+			}
+
+			return components;
 		}
 
 		public static T GetComponentInChildrenElseThrow<T>(this GameObject origin) =>
