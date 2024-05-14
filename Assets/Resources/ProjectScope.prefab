@@ -58,7 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed988abd1f041d48056ee5f56c16afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundAudioPrefab: {fileID: 8061080178988038971, guid: c141ffc0323af454ebdad45361f19583, type: 3}
+  _audioSourceHolderPrefab: {fileID: 2802228882693729726, guid: 57f2455358d7ee841a26d104b6e3d1f5, type: 3}
+  _backgroundClip: {fileID: 8300000, guid: 626fd8181d508874594b43fef3dc2ab0, type: 3}
+  _targetFrameRate: 60
 --- !u!114 &-5875644122897357117
 MonoBehaviour:
   m_ObjectHideFlags: 0

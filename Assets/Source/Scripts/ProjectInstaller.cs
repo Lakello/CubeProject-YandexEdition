@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using LeadTools.Extensions;
+using LeadTools.Object;
 using LeadTools.Other;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
+using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
 using UnityEngine;
 
@@ -13,16 +15,22 @@ namespace CubeProject
 {
 	public class ProjectInstaller : MonoBehaviour, IInstaller
 	{
-		[SerializeField] private AudioPlayer _backgroundAudioPrefab;
+		[SerializeField] private AudioSourceHolder _audioSourceHolderPrefab;
+		[SerializeField] private AudioClip _backgroundClip;
+		[SerializeField] private int _targetFrameRate = 60;
 
 		private Action _unsubscribe;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
-			InitAudio();
+			QualitySettings.vSyncCount = 0;
+			Application.targetFrameRate = _targetFrameRate;
 
-			var context = new GameObject(nameof(Context)).AddComponent<Context>();
-			DontDestroyOnLoad(context.gameObject);
+			var mono = InitMono();
+
+			var audioSpawner = InitAudioPool();
+
+			InitBackgroundAudio();
 
 			GameStateMachine gameStateMachine;
 
@@ -32,13 +40,33 @@ namespace CubeProject
 
 			return;
 
+			DontDestroyMono InitMono()
+			{
+				var mono = new GameObject(nameof(DontDestroyMono)).AddComponent<DontDestroyMono>();
+				DontDestroyOnLoad(mono.gameObject);
+
+				return mono;
+			}
+
 			#region InitMethods
 
-			void InitAudio()
+			ObjectSpawner<AudioSourceHolder, AudioInitData> InitAudioPool()
 			{
-				var audioPlayer = Instantiate(_backgroundAudioPrefab);
+				var spawner = new ObjectSpawner<AudioSourceHolder, AudioInitData>(mono.transform, _audioSourceHolderPrefab);
 
-				DontDestroyOnLoad(audioPlayer.gameObject);
+				containerBuilder.AddSingleton(spawner);
+
+				return spawner;
+			}
+
+			void InitBackgroundAudio()
+			{
+				_ = audioSpawner.Spawn(
+					new AudioInitData
+					{
+						Clip = _backgroundClip,
+						IsLoop = true,
+					});
 			}
 
 			void InitStateMachine()

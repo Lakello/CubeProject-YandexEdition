@@ -1,34 +1,48 @@
 using LeadTools.Extensions;
+using LeadTools.Object;
+using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Sirenix.Utilities;
+using Source.Scripts.Game;
 using UnityEngine;
 
 public class AudioPlayer : SerializedMonoBehaviour
 {
-	[SerializeField] private bool _isThisSourceAudio = true;
-	[SerializeField] [HideIf(nameof(_isThisSourceAudio))] private AudioSource _audioSource;
 	[SerializeField] private AudioClip _clip;
-	[SerializeField] private bool _isPlayInAwake;
+	[SerializeField] private bool _isPlayAfterInit;
 	[SerializeField] private bool _isListenAudioSource = true;
 	[SerializeField] [ShowIf(nameof(_isListenAudioSource))] private bool _isThisAudioSource = true;
 	[OdinSerialize] [HideIf(nameof(_isThisAudioSource))] private IAudioSource[] _sources;
 
-	private void Awake()
-	{
-		if (_isPlayInAwake)
-			OnAudioPlaying();
+	private ObjectSpawner<AudioSourceHolder, AudioInitData> _audioSpawner;
+	private AudioInitData _data;
 
-		if (_isThisSourceAudio && TryGetComponent(out _audioSource) == false)
-			_audioSource = gameObject.AddComponent<AudioSource>();
+	[Inject]
+	private void Inject(ObjectSpawner<AudioSourceHolder, AudioInitData> audioSpawner)
+	{
+		_audioSpawner = audioSpawner;
+
+		_data = new AudioInitData
+		{
+			Clip = _clip
+		};
+
+		if (_isPlayAfterInit)
+			OnAudioPlaying();
 
 		if (_isListenAudioSource && _isThisAudioSource)
 			gameObject.GetComponentsElseThrow(out _sources);
+		
+		Subscribe();
 	}
 
-	private void OnEnable()
+	private void OnEnable() =>
+		Subscribe();
+
+	private void Subscribe()
 	{
-		if (_isListenAudioSource)
+		if (_isListenAudioSource && _audioSpawner != null)
 			_sources.ForEach(source => source.AudioPlaying += OnAudioPlaying);
 	}
 
@@ -40,8 +54,9 @@ public class AudioPlayer : SerializedMonoBehaviour
 
 	private void OnAudioPlaying()
 	{
-		_audioSource.Pause();
-		_audioSource.clip = _clip;
-		_audioSource.Play();
+		Debug.Log("Spawn");
+		var audio = _audioSpawner.Spawn(_data);
+		
+		Debug.Log(audio != null);
 	}
 }

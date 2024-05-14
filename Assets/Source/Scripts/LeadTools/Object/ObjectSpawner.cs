@@ -6,17 +6,25 @@ namespace LeadTools.Object
 	public class ObjectSpawner<TInstance, TInit>
 		where TInstance : MonoBehaviour
 	{
+		private readonly IPoolingObject<TInstance, TInit> _defaultPoolingObject;
 		private readonly ObjectFactory<TInstance, TInit> _factory;
 		private readonly ObjectPool<TInstance, TInit> _pool;
 
-		public ObjectSpawner(Transform container)
+		public ObjectSpawner(Transform container, IPoolingObject<TInstance, TInit> defaultPoolingObject)
 		{
+			_defaultPoolingObject = defaultPoolingObject;
 			_factory = new ObjectFactory<TInstance, TInit>(container);
 			_pool = new ObjectPool<TInstance, TInit>();
 		}
 
-		public IPoolingObject<TInstance, TInit> Spawn(IPoolingObject<TInstance, TInit> poolingObject, TInit init, Func<Vector3> getSpawnPosition = null)
+		public IPoolingObject<TInstance, TInit> Spawn(
+			TInit init,
+			IPoolingObject<TInstance, TInit> poolingObject = null,
+			Func<Vector3> getSpawnPosition = null)
 		{
+			if (poolingObject == null)
+				poolingObject = _defaultPoolingObject;
+			
 			IPoolingObject<TInstance, TInit> spawningObject = GetObject(poolingObject);
 
 			if (getSpawnPosition != null)

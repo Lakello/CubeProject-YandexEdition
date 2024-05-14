@@ -23,7 +23,10 @@ namespace Source.Scripts.Game
 		private void OnDisable() =>
 			_moveService.StepEnded -= OnStepEnded;
 
-		private void OnStepEnded() =>
+		private void OnStepEnded()
+		{
+			Debug.Log("AudioPlaying Invoke");
 			AudioPlaying?.Invoke();
+		}
 	}
 }
