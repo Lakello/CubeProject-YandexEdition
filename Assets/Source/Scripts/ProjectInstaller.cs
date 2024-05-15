@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CubeProject.InputSystem;
 using LeadTools.Extensions;
 using LeadTools.Object;
 using LeadTools.Other;
@@ -18,8 +19,7 @@ namespace CubeProject
 		[SerializeField] private AudioSourceHolder _audioSourceHolderPrefab;
 		[SerializeField] private AudioClip _backgroundClip;
 		[SerializeField] private int _targetFrameRate = 60;
-
-		private Action _unsubscribe;
+		[SerializeField] private bool _isDebug;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
@@ -43,7 +43,7 @@ namespace CubeProject
 			return;
 
 			#region InitMethods
-
+			
 			void InitMono()
 			{
 				mono = new GameObject(nameof(DontDestroyMono)).AddComponent<DontDestroyMono>();

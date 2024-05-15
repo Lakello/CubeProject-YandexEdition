@@ -12,10 +12,12 @@ using UnityEngine;
 namespace CubeProject
 {
 	[RequireComponent(typeof(WindowInitializer))]
-	public class GameSceneInitializer : 
+	public class GameSceneInitializer :
 		MonoBehaviour,
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
+		[SerializeField] private bool _isDebug;
+
 		private EndPoint _endPoint;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
@@ -41,13 +43,16 @@ namespace CubeProject
 			windowInitializer.WindowsInit(machine.Window);
 			machine.EnterIn<TState>();
 
-			var backToMenuHandler = new BackToMenuHandler(
-				gameObject.GetComponentElseThrow<GameSceneInstaller>().InputService);
-			
-			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine);
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
+				.InitTransition<EndLevelState>(EndPoint);
 
-			_transitionInitializer.InitTransition(backToMenuHandler, LoadMenu);
-			_transitionInitializer.InitTransition<EndLevelState>(EndPoint);
+			if (_isDebug)
+			{
+				var backToMenuHandler = new BackToMenuHandler(
+					gameObject.GetComponentElseThrow<GameSceneInstaller>().InputService);
+
+				_transitionInitializer.InitTransition(backToMenuHandler, LoadMenu);
+			}
 
 			_transitionInitializer.Subscribe();
 
