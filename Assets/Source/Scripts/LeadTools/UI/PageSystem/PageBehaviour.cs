@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using LeadTools.StateMachine;
+using LeadTools.StateMachine.States;
+using Reflex.Attributes;
 using Source.Scripts.Game.Level;
 using UnityEngine;
 
@@ -10,16 +13,36 @@ namespace CubeProject.LeadTools.UI.PageSystem
 		[SerializeField] private Page _pagePrefab;
 		[SerializeField] private Transform _container;
 
-		private List<Page> _pages;
-
+		private List<Page> _pages = new List<Page>();
+		private IStateChangeable<GameStateMachine> _stateChangeable;
 		private int _currentPageIndex;
+
+		[Inject]
+		private void Inject(IStateChangeable<GameStateMachine> stateChangeable)
+		{
+			_stateChangeable = stateChangeable;
+			Debug.Log("Inject");
+		}
+
+		private void OnEnable()
+		{
+			
+			Debug.Log("Enable");
+			
+			_pages[_currentPageIndex].Show();
+
+			_stateChangeable?.SubscribeTo<MenuState<SelectLevelWindowState>>(OnStateChanged);
+		}
+
+		private void OnDisable() =>
+			_stateChangeable.UnSubscribeTo<MenuState<SelectLevelWindowState>>(OnStateChanged);
 
 		public void Init(Queue<LevelButton> buttons)
 		{
-			if (_pages != null)
+			if (_pages.Count != 0)
 				return;
-
-			_pages = new List<Page>();
+			
+			Debug.Log("Init");
 
 			Page currentPage = InitPage();
 
@@ -52,12 +75,6 @@ namespace CubeProject.LeadTools.UI.PageSystem
 			}
 		}
 
-		private void OnEnable() =>
-			_pages[_currentPageIndex].Show();
-
-		private void OnDisable() =>
-			_pages[_currentPageIndex].Hide();
-
 		public void NextPage() =>
 			ChangePage(() =>
 			{
@@ -83,6 +100,16 @@ namespace CubeProject.LeadTools.UI.PageSystem
 			changeIndex();
 
 			_pages[_currentPageIndex].Show();
+		}
+
+		private void OnStateChanged(bool isEntered)
+		{
+			if (isEntered)
+				return;
+			
+			Debug.Log(_pages != null);
+			
+			_pages[_currentPageIndex].Hide();
 		}
 	}
 }
