@@ -17,15 +17,31 @@ namespace LeadTools.StateMachine
 		{
 			base.Enter();
 
-			_window.gameObject.SetActive(true);
-
-			_animator.PlayAnimations(AnchorAnimatorState.Target);
+			TryShow();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
 
+			TryHide();
+		}
+
+		private void TryShow()
+		{
+			if (_window == null)
+				return;
+			
+			_window.gameObject.SetActive(true);
+
+			_animator.PlayAnimations(AnchorAnimatorState.Target);
+		}
+
+		private void TryHide()
+		{
+			if (_window == null)
+				return;
+			
 			_animator.PlayAnimations(
 				AnchorAnimatorState.Initial,
 				() => _window.gameObject.SetActive(false));
