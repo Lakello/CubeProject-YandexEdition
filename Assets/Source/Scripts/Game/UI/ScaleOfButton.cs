@@ -14,7 +14,7 @@ public class ScaleOfButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void Start()
     {
-        gameObject.GetComponentElseThrow(out _text);        
+        gameObject.GetComponentInChildrenElseThrow(out _text);        
         _defaultVertexColor = _text.color;
         SetDefaultScale();
     }

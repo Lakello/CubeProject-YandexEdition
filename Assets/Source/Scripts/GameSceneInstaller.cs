@@ -17,7 +17,6 @@ namespace CubeProject
 		[SerializeField] private MaskHolder _maskHolder;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private PortalColorData _portalColorData;
-		[SerializeField] private bool _isMobileTest;
 
 		private Action _disable;
 		private IInputService _inputService;

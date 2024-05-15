@@ -26,9 +26,11 @@ namespace CubeProject
 			QualitySettings.vSyncCount = 0;
 			Application.targetFrameRate = _targetFrameRate;
 
-			var mono = InitMono();
+			DontDestroyMono mono;
+			InitMono();
 
-			var audioSpawner = InitAudioPool();
+			ObjectSpawner<AudioSourceHolder, AudioInitData> audioSpawner;
+			InitAudioSpawner();
 
 			InitBackgroundAudio();
 
@@ -40,23 +42,19 @@ namespace CubeProject
 
 			return;
 
-			DontDestroyMono InitMono()
-			{
-				var mono = new GameObject(nameof(DontDestroyMono)).AddComponent<DontDestroyMono>();
-				DontDestroyOnLoad(mono.gameObject);
-
-				return mono;
-			}
-
 			#region InitMethods
 
-			ObjectSpawner<AudioSourceHolder, AudioInitData> InitAudioPool()
+			void InitMono()
 			{
-				var spawner = new ObjectSpawner<AudioSourceHolder, AudioInitData>(mono.transform, _audioSourceHolderPrefab);
+				mono = new GameObject(nameof(DontDestroyMono)).AddComponent<DontDestroyMono>();
+				DontDestroyOnLoad(mono.gameObject);
+			}
 
-				containerBuilder.AddSingleton(spawner);
+			void InitAudioSpawner()
+			{
+				audioSpawner = new ObjectSpawner<AudioSourceHolder, AudioInitData>(mono.transform, _audioSourceHolderPrefab);
 
-				return spawner;
+				containerBuilder.AddSingleton(audioSpawner);
 			}
 
 			void InitBackgroundAudio()
