@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using CubeProject.InputSystem;
 using LeadTools.Extensions;
 using LeadTools.Object;
 using LeadTools.Other;
@@ -18,6 +17,7 @@ namespace CubeProject
 	{
 		[SerializeField] private AudioSourceHolder _audioSourceHolderPrefab;
 		[SerializeField] private AudioClip _backgroundClip;
+		[SerializeField] [Range(0, 1)] private float _volume;
 		[SerializeField] private int _targetFrameRate = 60;
 		[SerializeField] private bool _isDebug;
 
@@ -64,6 +64,7 @@ namespace CubeProject
 					{
 						Clip = _backgroundClip,
 						IsLoop = true,
+						Volume = _volume,
 					});
 			}
 

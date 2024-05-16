@@ -6,5 +6,6 @@ namespace Source.Scripts.Game
 	{
 		public AudioClip Clip;
 		public bool IsLoop;
+		public float Volume;
 	}
 }

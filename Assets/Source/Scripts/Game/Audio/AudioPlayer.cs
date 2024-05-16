@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class AudioPlayer : SerializedMonoBehaviour
 {
+	[SerializeField] [Range(0, 1)] private float _volume = 1;
 	[SerializeField] private AudioClip _clip;
 	[SerializeField] private bool _isPlayAfterInit;
 	[SerializeField] private bool _isListenAudioSource = true;
@@ -25,7 +26,8 @@ public class AudioPlayer : SerializedMonoBehaviour
 
 		_data = new AudioInitData
 		{
-			Clip = _clip
+			Clip = _clip,
+			Volume = _volume,
 		};
 
 		if (_isPlayAfterInit)
@@ -52,11 +54,6 @@ public class AudioPlayer : SerializedMonoBehaviour
 			_sources.ForEach(source => source.AudioPlaying -= OnAudioPlaying);
 	}
 
-	private void OnAudioPlaying()
-	{
-		Debug.Log("Spawn");
-		var audio = _audioSpawner.Spawn(_data);
-		
-		Debug.Log(audio != null);
-	}
+	private void OnAudioPlaying() =>
+		_ = _audioSpawner.Spawn(_data);
 }
