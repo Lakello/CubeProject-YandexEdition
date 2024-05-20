@@ -2,6 +2,8 @@ using System;
 using CubeProject.PlayableCube.Movement;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.Messages;
+using UniRx;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -16,10 +18,11 @@ namespace CubeProject.PlayableCube
 		private readonly TargetCameraHolder _targetCameraHolder;
 		private readonly Transform _transform;
 
+		private CompositeDisposable _disposable;
+
 		private bool IsGrounded => _groundChecker.IsGround(_transform.position, CheckDistance, out _);
 
 		public CubeFallService(
-			CubeMoveService moveService,
 			Cube cube,
 			MaskHolder maskHolder,
 			TargetCameraHolder targetCameraHolder,
@@ -31,14 +34,18 @@ namespace CubeProject.PlayableCube
 			_targetCameraHolder = targetCameraHolder;
 			_fallHandler.AbyssFalling += _targetCameraHolder.ResetTarget;
 
-			_moveService = moveService;
+			_disposable = new CompositeDisposable();
 
-			_moveService.StepEnded += OnStepEnded;
+			MessageBroker.Default
+				.Receive<Message<CubeMoveService>>()
+				.Where(message => message.Id == MessageId.StepEnded)
+				.Subscribe(_ => OnStepEnded())
+				.AddTo(_disposable);
 		}
 
 		public void Dispose()
 		{
-			_moveService.StepEnded -= OnStepEnded;
+			_disposable?.Dispose();
 			_fallHandler.AbyssFalling -= _targetCameraHolder.ResetTarget;
 		}
 

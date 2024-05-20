@@ -76,7 +76,11 @@ namespace LeadTools.Extensions
 			Action startCallback = null) =>
 			context.StartCoroutine(SmoothChangeValue(lerp, totalTime, endCallback, startCallback));
 
-		private static IEnumerator SmoothChangeValue(Action<float> lerp, float totalTime, Action endCallback, Action startCallback)
+		public static IEnumerator SmoothChangeValue(
+			Action<float> lerp,
+			float totalTime,
+			Action endCallback = null,
+			Action startCallback = null)
 		{
 			startCallback?.Invoke();
 

@@ -16,7 +16,6 @@ namespace CubeProject.PlayableCube
 	public class CubeComponent : MonoBehaviour
 	{
 		public BecameVisibleBehaviour BecameVisibleBehaviour { get; private set; }
-		public CubeMoveService MoveService { get; private set; }
 		public ChargeHolder ChargeHolder { get; private set; }
 		public CubeFallService FallService { get; private set; }
 		public IStateMachine<CubeStateMachine> StateMachine { get; private set; }
@@ -39,9 +38,8 @@ namespace CubeProject.PlayableCube
 			Data ??= data;
 		}
 
-		public void Init(CubeMoveService moveService, CubeFallService fallService, CubeShieldService shieldService)
+		public void Init(CubeFallService fallService, CubeShieldService shieldService)
 		{
-			MoveService ??= moveService;
 			FallService ??= fallService;
 			ShieldService ??= shieldService;
 		}

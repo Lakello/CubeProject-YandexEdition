@@ -2,31 +2,26 @@ using System;
 using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
 using Reflex.Attributes;
+using Source.Scripts.Game.Messages;
+using UniRx;
 using UnityEngine;
 
 namespace Source.Scripts.Game
 {
 	public class CubeStepAudioSource : MonoBehaviour, IAudioSource
 	{
-		private CubeMoveService _moveService;
-
 		public event Action AudioPlaying;
 
-		[Inject]
-		private void Inject(Cube cube)
+		private void Awake()
 		{
-			_moveService = cube.Component.MoveService;
-
-			_moveService.StepEnded += OnStepEnded;
+			MessageBroker.Default
+				.Receive<Message<CubeMoveService>>()
+				.Where(message => message.Id == MessageId.StepEnded)
+				.Subscribe(_ => OnStepEnded())
+				.AddTo(this);
 		}
 
-		private void OnDisable() =>
-			_moveService.StepEnded -= OnStepEnded;
-
-		private void OnStepEnded()
-		{
-			Debug.Log("AudioPlaying Invoke");
+		private void OnStepEnded() =>
 			AudioPlaying?.Invoke();
-		}
 	}
 }

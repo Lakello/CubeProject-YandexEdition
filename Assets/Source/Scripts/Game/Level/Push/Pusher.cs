@@ -5,6 +5,8 @@ using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using Source.Scripts.Game;
+using Source.Scripts.Game.Messages;
+using UniRx;
 using UnityEngine;
 
 namespace CubeProject.Tips
@@ -15,10 +17,11 @@ namespace CubeProject.Tips
 		[SerializeField] [ShowIf(nameof(IsConcreteDirection))] private DirectionType _direction;
 
 		private PushStateHandler _stateHandler;
-		private CubeMoveService _moveService;
 		private IPushHandler _pushHandler;
 		private Cube _cube;
 		private LayerMask _groundMask;
+		private CompositeDisposable _disposable;
+		private Vector3 _currentDirection;
 
 		public event Action Pushed;
 
@@ -29,18 +32,28 @@ namespace CubeProject.Tips
 		{
 			_stateHandler = stateHandler;
 			_cube = cube;
-			_moveService = _cube.Component.MoveService;
 			_groundMask = holder.GroundMask;
 		}
 
-		private void Awake() =>
+		private void Awake()
+		{
 			gameObject.GetComponentElseThrow(out _pushHandler);
+
+			MessageBroker.Default
+				.Receive<Message<Vector3, CubeMoveService>>()
+				.Where(message => message.Id == MessageId.DirectionChanged)
+				.Subscribe(message => _currentDirection = message.Data)
+				.AddTo(this);
+		}
 
 		private void OnEnable() =>
 			_pushHandler.Pushing += OnPushing;
 
-		private void OnDisable() =>
+		private void OnDisable()
+		{
+			_disposable?.Dispose();
 			_pushHandler.Pushing -= OnPushing;
+		}
 
 		private void OnPushing()
 		{
@@ -50,17 +63,21 @@ namespace CubeProject.Tips
 
 		private void Push()
 		{
-			_moveService.DoAfterMove(() =>
-			{
-				_moveService.StepEnded += OnStepEnded;
+			_disposable = new CompositeDisposable();
 
-				_moveService.Push(GetDirection());
-			});
+			MessageBroker.Default
+				.Receive<Message<CubeMoveService>>()
+				.Where(message => message.Id == MessageId.StepEnded)
+				.Subscribe(_ => OnStepEnded())
+				.AddTo(_disposable);
+			
+			MessageBroker.Default
+				.Publish(new PushAfterStepMessage(GetDirection()));
 		}
 
 		private void OnStepEnded()
 		{
-			_moveService.StepEnded -= OnStepEnded;
+			_disposable?.Dispose();
 			Pushed?.Invoke();
 		}
 
@@ -70,7 +87,7 @@ namespace CubeProject.Tips
 
 			if (_isAnyDirection)
 			{
-				direction = _moveService.CurrentDirection;
+				direction = _currentDirection;
 
 				if (_cube.IsThereFreeSeat(ref direction, _groundMask) is false)
 				{

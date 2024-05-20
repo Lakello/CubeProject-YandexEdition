@@ -6,6 +6,7 @@ using CubeProject.PlayableCube.Movement;
 using CubeProject.SO;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
+using Sirenix.Utilities;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
@@ -21,6 +22,7 @@ namespace CubeProject
 		[SerializeField] private Player _playerPrefab;
 		[SerializeField] private CubeData _data;
 
+		private IDisposable[] _disposables;
 		private bool _isInitialized;
 		private IInputService _inputService;
 		private MaskHolder _maskHolder;
@@ -28,15 +30,20 @@ namespace CubeProject
 		private CubeMoveService _moveService;
 		private CubeFallService _fallService;
 		[SerializeField] private CubeShieldService _shieldService;
-		
+
 		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }
 		public Cube Cube { get; private set; }
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
-		
+
 		private void Start()
 		{
 			_fallService.TryFall();
+		}
+
+		private void OnDisable()
+		{
+			_disposables?.ForEach(disposable => disposable.Dispose());
 		}
 
 		public void Init(IInputService inputService, MaskHolder maskHolder, TargetCameraHolder targetCameraHolder)
@@ -47,7 +54,7 @@ namespace CubeProject
 			_inputService = inputService;
 			_maskHolder = maskHolder;
 			_targetCameraHolder = targetCameraHolder;
-			
+
 			InitSpawnPoint();
 			InitPlayerInstance();
 			InitCube();
@@ -55,9 +62,9 @@ namespace CubeProject
 			InitCubeComponent();
 			InitServices(targetCameraHolder);
 			InitCubeComponentServices();
-			
+
 			CubeStateMachine.EnterIn<ControlState>();
-			
+
 			_isInitialized = true;
 		}
 
@@ -69,10 +76,10 @@ namespace CubeProject
 
 		private void InitSpawnPoint() =>
 			SpawnPoint = FindObjectOfType<SpawnPoint>();
-		
+
 		private void InitCube() =>
 			Cube = PlayerInstance.Cube;
-		
+
 		private void InitStateMachine() =>
 			CubeStateMachine = new CubeStateMachine(
 				() => new Dictionary<Type, State<CubeStateMachine>>
@@ -84,16 +91,16 @@ namespace CubeProject
 					[typeof(PushState)] = new PushState(),
 					[typeof(TeleportState)] = new TeleportState(),
 				});
-		
+
 		private void InitCubeComponent() =>
 			Cube.Component.Init(CubeStateMachine, _data);
 
 		private void InitCubeComponentServices() =>
-			Cube.Component.Init(_moveService, _fallService, _shieldService);
-		
+			Cube.Component.Init(_fallService, _shieldService);
+
 		private void InitServices(TargetCameraHolder targetCameraHolder)
 		{
-			_moveService = new CubeMoveService(
+			var moveService = new CubeMoveService(
 				Cube.Component.StateMachine,
 				Cube.transform,
 				_inputService,
@@ -102,9 +109,14 @@ namespace CubeProject
 				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
 				this);
 
-			_fallService = new CubeFallService(_moveService, Cube, _maskHolder, _targetCameraHolder, this);
+			_fallService = new CubeFallService(Cube, _maskHolder, _targetCameraHolder, this);
 			_shieldService = new CubeShieldService(Cube);
-			_ = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
+			var diedService = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
+
+			_disposables = new IDisposable[]
+			{
+				moveService, _fallService, _shieldService, diedService
+			};
 		}
 	}
 }
