@@ -121,9 +121,9 @@ namespace CubeProject.Game
 		private void OnTeleportEnded()
 		{
 			MessageBroker.Default
-				.Publish(new CheckGroundMessage(isGrounded =>
+				.Publish(new CheckGroundMessage(isFall =>
 				{
-					if (isGrounded is false)
+					if (isFall == false)
 						Pushing?.Invoke();
 				}));
 		}

@@ -1,19 +1,26 @@
-using System;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
 {
-	[Serializable]
 	public class GroundChecker
 	{
+		private const float CheckDistance = 0.1f;
+		
 		private readonly RaycastHit[] _results = new RaycastHit[1];
 		private readonly Vector3 _extents = new Vector3(0.45f, 0.45f, 0.45f);
 		private readonly LayerMask _groundMask;
-		
-		public GroundChecker(LayerMask groundMask) =>
-			_groundMask = groundMask;
+		private readonly Transform _defaultTransform;
 
-		public bool IsGround(Vector3 center, float checkDistance, out float groundPositionY)
+		public GroundChecker(LayerMask groundMask, Transform defaultTransform)
+		{
+			_groundMask = groundMask;
+			_defaultTransform = defaultTransform;
+		}
+
+		public bool IsGrounded() =>
+			IsGrounded(_defaultTransform.position, CheckDistance, out _);
+
+		public bool IsGrounded(Vector3 center, float checkDistance, out float groundPositionY)
 		{
 			groundPositionY = 0f;
 

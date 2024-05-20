@@ -1,15 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
-using Source.Scripts.Game.Level.Shield.States;
 using Source.Scripts.Game.Messages.ShieldServiceMessage;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 using UniRx;
-using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
@@ -17,24 +14,22 @@ namespace Source.Scripts.Game.Level.Shield
 	{
 		private readonly Type[] _acceptableStates =
 		{
-			typeof(ControlState), 
-			typeof(PushState),
-			typeof(FallingToGroundState),
+			typeof(ControlState), typeof(PushState), typeof(FallingToGroundState),
 		};
 		private readonly ChargeHolder _chargeHolder;
-		private readonly IStateChangeable<CubeStateMachine> _stateChangeable;
+		private readonly IStateChangeable<CubeStateMachine> _cubeStateMachine;
 		private bool _isAcceptableState;
 		private bool _isListenStates;
 
 		public CubeShieldService(Cube cube)
 		{
 			_chargeHolder = cube.Component.ChargeHolder;
-			_stateChangeable = cube.Component.StateMachine;
-			
+			_cubeStateMachine = cube.Component.StateMachine;
+
 			MessageBroker.Default
 				.Publish(new ChangeShieldStateMessage(MessageId.HideShield));
-			
-			_chargeHolder.ChargeChanged += OnChargeChanged; 
+
+			_chargeHolder.ChargeChanged += OnChargeChanged;
 			OnChargeChanged();
 		}
 
@@ -51,10 +46,10 @@ namespace Source.Scripts.Game.Level.Shield
 			TryChangeShieldState();
 		}
 
-		private void OnStateChanged()
+		private void OnCubeStateChanged()
 		{
-			_isAcceptableState = 
-				_acceptableStates.Any(state => state == _stateChangeable.CurrentState);
+			_isAcceptableState =
+				_acceptableStates.Any(state => state == _cubeStateMachine.CurrentState);
 
 			TryChangeShieldState();
 		}
@@ -62,15 +57,11 @@ namespace Source.Scripts.Game.Level.Shield
 		private void TryChangeShieldState()
 		{
 			if (_chargeHolder.IsCharged && _isAcceptableState)
-			{
-				if (_stateMachine.CurrentState != typeof(PlayState))
-					_stateMachine.EnterIn<PlayState>();
-			}
+				MessageBroker.Default
+					.Publish(new ChangeShieldStateMessage(MessageId.ShowShield));
 			else
-			{
-				if (_stateMachine.CurrentState != typeof(StopState))
-					_stateMachine.EnterIn<StopState>();
-			}
+				MessageBroker.Default
+					.Publish(new ChangeShieldStateMessage(MessageId.HideShield));
 		}
 
 		private void SetListenStateChanged(bool isListen)
@@ -82,12 +73,12 @@ namespace Source.Scripts.Game.Level.Shield
 
 			if (_isListenStates)
 			{
-				_stateChangeable.StateChanged += OnStateChanged;
-				OnStateChanged();
+				_cubeStateMachine.StateChanged += OnCubeStateChanged;
+				OnCubeStateChanged();
 			}
 			else
 			{
-				_stateChangeable.StateChanged -= OnStateChanged;
+				_cubeStateMachine.StateChanged -= OnCubeStateChanged;
 			}
 		}
 	}
