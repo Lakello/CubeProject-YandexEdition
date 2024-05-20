@@ -7,5 +7,6 @@ namespace Source.Scripts.Game
 		DirectionChanged,
 		ShowShield,
 		HideShield,
+		FallingIntoAbyss,
 	}
 }

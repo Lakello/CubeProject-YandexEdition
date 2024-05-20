@@ -31,7 +31,7 @@ namespace CubeProject
 		{
 			var playerInitializer = gameObject.GetComponentElseThrow<CubeInitializer>();
 
-			var targetCameraHolder = new TargetCameraHolder(this, _virtualCamera);
+			var targetCameraHolder = new TargetCameraHolder(_virtualCamera);
 			
 			playerInitializer.Init(InputService, _maskHolder, targetCameraHolder);
 			

@@ -27,7 +27,7 @@ namespace CubeProject
 		private IInputService _inputService;
 		private MaskHolder _maskHolder;
 		private TargetCameraHolder _targetCameraHolder;
-		[SerializeField] private CubeShieldService _shieldService;
+		private CubeShieldService _shieldService;
 
 		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }
@@ -98,7 +98,7 @@ namespace CubeProject
 				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
 				this);
 
-			var fallService = new CubeFallService(Cube, _maskHolder, _targetCameraHolder, this);
+			var fallService = new CubeFallService(Cube, _maskHolder);
 			var shieldService = new CubeShieldService(Cube);
 			var diedService = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
 
