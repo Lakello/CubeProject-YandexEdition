@@ -3,6 +3,7 @@ using LeadTools.StateMachine;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
 using Source.Scripts.Game.Messages;
+using Source.Scripts.Game.Messages.Camera;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 using UniRx;
@@ -16,13 +17,11 @@ namespace CubeProject.PlayableCube
 		private readonly Cube _cube;
 		private readonly CubeDiedView _cubeDiedView;
 		private readonly SpawnPoint _spawnPoint;
-		private readonly TargetCameraHolder _targetCameraHolder;
 
-		public CubeDiedService(Cube cube, SpawnPoint spawnPoint, TargetCameraHolder targetCameraHolder)
+		public CubeDiedService(Cube cube, SpawnPoint spawnPoint)
 		{
 			_cube = cube;
 			_cubeDiedView = _cube.Component.DiedView;
-			_targetCameraHolder = targetCameraHolder;
 			_spawnPoint = spawnPoint;
 
 			_cube.Died += OnDied;
@@ -50,7 +49,8 @@ namespace CubeProject.PlayableCube
 		{
 			_cube.transform.position = _spawnPoint.transform.position + _offset;
 
-			_targetCameraHolder.SetTarget();
+			MessageBroker.Default
+				.Publish(new SetTargetCameraMessage());
 
 			_cubeDiedView.Play(true, () =>
 			{

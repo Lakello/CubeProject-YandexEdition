@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using LeadTools.Other;
+using LeadTools.StateMachine;
 using Reflex.Attributes;
+using Source.Scripts.Game.Level.Shield.States;
 using Source.Scripts.Game.Level.Trigger;
 using Source.Scripts.Game.Messages.ShieldServiceMessage;
 using UniRx;
@@ -27,10 +30,10 @@ namespace Source.Scripts.Game.Level.Shield
 		private Coroutine _changeShieldVisible;
 		private Func<Transform> _getCubeTransform;
 		private TriggerDetector _triggerDetector;
-		private CompositeDisposable _disposable;
+		private IStateChangeable<ShieldStateMachine> _shieldStateChangeable;
 
 		[Inject]
-		private void Inject(Cube cube)
+		private void Inject(Cube cube, IStateChangeable<ShieldStateMachine> shieldStateChangeable)
 		{
 			(_distanceRange, _fresnelPowerRange, _displacementAmountRange, _displacementAmountHide, _hideShowDuration)
 				= cube.Component.Data.GetShieldData;
@@ -38,36 +41,36 @@ namespace Source.Scripts.Game.Level.Shield
 			_getCubeTransform = () => cube.transform;
 			_triggerDetector = cube.Component.TriggerDetector;
 
-			_disposable = new CompositeDisposable();
-
-			MessageBroker.Default
-				.Receive<ChangeShieldStateMessage>()
-				.Where(message => message.Id == MessageId.ShowShield)
-				.Subscribe(_ => OnPlay())
-				.AddTo(_disposable);
-
-			MessageBroker.Default
-				.Receive<ChangeShieldStateMessage>()
-				.Where(message => message.Id == MessageId.HideShield)
-				.Subscribe(_ => OnStop())
-				.AddTo(_disposable);
+			_shieldStateChangeable = shieldStateChangeable;
+			
+			_shieldStateChangeable.SubscribeTo<PlayState>(OnPlay);
+			_shieldStateChangeable.SubscribeTo<StopState>(OnStop);
 
 			_renderer.enabled = false;
-			OnStop();
+			OnStop(true);
 		}
 
-		private void OnDisable() =>
-			_disposable?.Dispose();
-
-		private void OnPlay()
+		private void OnDisable()
 		{
+			_shieldStateChangeable.UnSubscribeTo<PlayState>(OnPlay);
+			_shieldStateChangeable.UnSubscribeTo<StopState>(OnStop);
+		}
+
+		private void OnPlay(bool isEntered)
+		{
+			if (isEntered == false)
+				return;
+			
 			this.StopRoutine(_changeShieldVisible);
 
 			_viewCoroutine = StartCoroutine(UpdateView());
 		}
 
-		private void OnStop()
+		private void OnStop(bool isEntered)
 		{
+			if (isEntered == false)
+				return;
+
 			this.StopRoutine(_viewCoroutine);
 			this.StopRoutine(_changeShieldVisible);
 
