@@ -1,7 +1,9 @@
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
+using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 
 namespace CubeProject.Tips
 {
@@ -34,8 +36,12 @@ namespace CubeProject.Tips
 			_currentPusher.Pushed -= OnPushed;
 			_currentPusher = null;
 
-			if (_cube.Component.FallService.TryFall() is false)
-				_cubeStateMachine.EnterIn<ControlState>();
+			MessageBroker.Default
+				.Publish(new CheckGroundMessage(isGrounded =>
+				{
+					if (isGrounded is false)
+						_cubeStateMachine.EnterIn<ControlState>();
+				}));
 		}
 	}
 }

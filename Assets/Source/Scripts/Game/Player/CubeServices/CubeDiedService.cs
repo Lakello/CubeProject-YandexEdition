@@ -2,8 +2,10 @@ using System;
 using LeadTools.StateMachine;
 using Source.Scripts.Game.Level;
 using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube
@@ -27,8 +29,6 @@ namespace CubeProject.PlayableCube
 		}
 
 		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.Component.StateMachine;
-
-		private CubeFallService CubeFallService => _cube.Component.FallService;
 
 		public void Dispose()
 		{
@@ -54,10 +54,12 @@ namespace CubeProject.PlayableCube
 
 			_cubeDiedView.Play(true, () =>
 			{
-				if (CubeFallService.TryFall() is false)
-				{
-					CubeStateMachine.EnterIn<ControlState>();
-				}
+				MessageBroker.Default
+					.Publish(new CheckGroundMessage(isGrounded =>
+					{
+						if (isGrounded is false)
+							CubeStateMachine.EnterIn<ControlState>();
+					}));
 			});
 		}
 	}

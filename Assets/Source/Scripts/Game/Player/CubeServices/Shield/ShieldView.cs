@@ -23,7 +23,7 @@ namespace Source.Scripts.Game.Level.Shield
 		private Vector2 _displacementAmountRange;
 		private float _displacementAmountHide;
 		private float _hideShowDuration;
-		private IStateChangeable<ShieldStateMachine> _stateMachine;
+		//private IStateChangeable<ShieldStateMachine> _stateMachine;
 		private Coroutine _viewCoroutine;
 		private Coroutine _changeShieldVisible;
 		private Func<Transform> _getCubeTransform;

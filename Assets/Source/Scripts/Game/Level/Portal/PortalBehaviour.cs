@@ -29,7 +29,6 @@ namespace CubeProject.Game
 		private Cube _cube;
 		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Teleporter _teleporter;
-		private CubeFallService _cubeFallService;
 		private ChargeConsumer _chargeConsumer;
 		private CompositeDisposable _disposable;
 
@@ -62,7 +61,6 @@ namespace CubeProject.Game
 		{
 			_cube = cube;
 			_cubeStateMachine = _cube.Component.StateMachine;
-			_cubeFallService = _cube.Component.FallService;
 
 			_teleporter = new Teleporter(
 				cube,
@@ -109,11 +107,7 @@ namespace CubeProject.Game
 					_disposable = new CompositeDisposable();
 					Observable.FromCoroutine(_teleporter.Absorb)
 						.SelectMany(_linkedPortal._teleporter.Return)
-						.Subscribe(_ =>
-						{
-							if (_cubeFallService.TryFall() is false)
-								Pushing?.Invoke();
-						})
+						.Subscribe(_ => OnTeleportEnded())
 						.AddTo(_disposable);
 				}));
 		}
@@ -122,6 +116,16 @@ namespace CubeProject.Game
 		{
 			if (other.TryGetComponent(out Cube _))
 				_isBlocked = false;
+		}
+
+		private void OnTeleportEnded()
+		{
+			MessageBroker.Default
+				.Publish(new CheckGroundMessage(isGrounded =>
+				{
+					if (isGrounded is false)
+						Pushing?.Invoke();
+				}));
 		}
 
 		private void OnChargeChanged() =>

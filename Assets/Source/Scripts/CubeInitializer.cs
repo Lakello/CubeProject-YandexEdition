@@ -27,19 +27,12 @@ namespace CubeProject
 		private IInputService _inputService;
 		private MaskHolder _maskHolder;
 		private TargetCameraHolder _targetCameraHolder;
-		private CubeMoveService _moveService;
-		private CubeFallService _fallService;
 		[SerializeField] private CubeShieldService _shieldService;
 
 		public SpawnPoint SpawnPoint { get; private set; }
 		public Player PlayerInstance { get; private set; }
 		public Cube Cube { get; private set; }
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
-
-		private void Start()
-		{
-			_fallService.TryFall();
-		}
 
 		private void OnDisable()
 		{
@@ -61,7 +54,6 @@ namespace CubeProject
 			InitStateMachine();
 			InitCubeComponent();
 			InitServices(targetCameraHolder);
-			InitCubeComponentServices();
 
 			CubeStateMachine.EnterIn<ControlState>();
 
@@ -95,9 +87,6 @@ namespace CubeProject
 		private void InitCubeComponent() =>
 			Cube.Component.Init(CubeStateMachine, _data);
 
-		private void InitCubeComponentServices() =>
-			Cube.Component.Init(_fallService, _shieldService);
-
 		private void InitServices(TargetCameraHolder targetCameraHolder)
 		{
 			var moveService = new CubeMoveService(
@@ -109,13 +98,13 @@ namespace CubeProject
 				Cube.gameObject.GetComponentElseThrow<BoxCollider>(),
 				this);
 
-			_fallService = new CubeFallService(Cube, _maskHolder, _targetCameraHolder, this);
-			_shieldService = new CubeShieldService(Cube);
+			var fallService = new CubeFallService(Cube, _maskHolder, _targetCameraHolder, this);
+			var shieldService = new CubeShieldService(Cube);
 			var diedService = new CubeDiedService(Cube, SpawnPoint, targetCameraHolder);
 
 			_disposables = new IDisposable[]
 			{
-				moveService, _fallService, _shieldService, diedService
+				moveService, fallService, shieldService, diedService
 			};
 		}
 	}

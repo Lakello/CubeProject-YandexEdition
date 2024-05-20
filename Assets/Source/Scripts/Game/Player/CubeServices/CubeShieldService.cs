@@ -5,13 +5,14 @@ using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
 using Source.Scripts.Game.Level.Shield.States;
+using Source.Scripts.Game.Messages.ShieldServiceMessage;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
-	[Serializable]
 	public class CubeShieldService : IDisposable
 	{
 		private readonly Type[] _acceptableStates =
@@ -22,30 +23,20 @@ namespace Source.Scripts.Game.Level.Shield
 		};
 		private readonly ChargeHolder _chargeHolder;
 		private readonly IStateChangeable<CubeStateMachine> _stateChangeable;
-		private readonly IStateMachine<ShieldStateMachine> _stateMachine;
-
-		[SerializeField] private bool _isAcceptableState;
-		[SerializeField] private bool _isListenStates;
+		private bool _isAcceptableState;
+		private bool _isListenStates;
 
 		public CubeShieldService(Cube cube)
 		{
 			_chargeHolder = cube.Component.ChargeHolder;
 			_stateChangeable = cube.Component.StateMachine;
 			
-			_stateMachine = new ShieldStateMachine(
-				() => new Dictionary<Type, State<ShieldStateMachine>>
-				{
-					[typeof(PlayState)] = new PlayState(),
-					[typeof(StopState)] = new StopState(),
-				});
-			
-			_stateMachine.EnterIn<StopState>();
+			MessageBroker.Default
+				.Publish(new ChangeShieldStateMessage(MessageId.HideShield));
 			
 			_chargeHolder.ChargeChanged += OnChargeChanged; 
 			OnChargeChanged();
 		}
-
-		public IStateChangeable<ShieldStateMachine> StateMachine => _stateMachine;
 
 		public void Dispose()
 		{

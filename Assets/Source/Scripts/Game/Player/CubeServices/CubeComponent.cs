@@ -17,12 +17,10 @@ namespace CubeProject.PlayableCube
 	{
 		public BecameVisibleBehaviour BecameVisibleBehaviour { get; private set; }
 		public ChargeHolder ChargeHolder { get; private set; }
-		public CubeFallService FallService { get; private set; }
 		public IStateMachine<CubeStateMachine> StateMachine { get; private set; }
 		public TriggerDetector TriggerDetector { get; private set; }
 		public CubeDiedView DiedView { get; private set; }
 		public CubeData Data { get; private set; }
-		public CubeShieldService ShieldService { get; private set; }
 
 		private void Awake()
 		{
@@ -36,12 +34,6 @@ namespace CubeProject.PlayableCube
 		{
 			StateMachine ??= stateMachine;
 			Data ??= data;
-		}
-
-		public void Init(CubeFallService fallService, CubeShieldService shieldService)
-		{
-			FallService ??= fallService;
-			ShieldService ??= shieldService;
 		}
 	}
 }
