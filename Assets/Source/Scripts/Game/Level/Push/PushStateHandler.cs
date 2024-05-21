@@ -10,15 +10,11 @@ namespace CubeProject.Tips
 	public class PushStateHandler
 	{
 		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
-		private readonly Cube _cube;
 
 		private Pusher _currentPusher;
 
-		public PushStateHandler(Cube cube)
-		{
-			_cube = cube;
-			_cubeStateMachine = _cube.Component.StateMachine;
-		}
+		public PushStateHandler(CubeComponent cubeComponent) =>
+			_cubeStateMachine = cubeComponent.StateMachine;
 
 		public void Pushing(Pusher pusher)
 		{

@@ -18,7 +18,7 @@ namespace CubeProject.Tips
 
 		private PushStateHandler _stateHandler;
 		private IPushHandler _pushHandler;
-		private Cube _cube;
+		private Transform _cubeTransform;
 		private LayerMask _groundMask;
 		private CompositeDisposable _disposable;
 		private Vector3 _currentDirection;
@@ -28,10 +28,11 @@ namespace CubeProject.Tips
 		private bool IsConcreteDirection => _isAnyDirection is false;
 
 		[Inject]
-		private void Inject(Cube cube, PushStateHandler stateHandler, MaskHolder holder)
+		private void Inject(CubeComponent cubeComponent, PushStateHandler stateHandler, MaskHolder holder)
 		{
+			Debug.Log($"{nameof(Inject)} {nameof(Pusher)}");
 			_stateHandler = stateHandler;
-			_cube = cube;
+			_cubeTransform = cubeComponent.transform;
 			_groundMask = holder.GroundMask;
 		}
 
@@ -89,9 +90,9 @@ namespace CubeProject.Tips
 			{
 				direction = _currentDirection;
 
-				if (_cube.IsThereFreeSeat(ref direction, _groundMask) is false)
+				if (_cubeTransform.IsThereFreeSeat(ref direction, _groundMask) is false)
 				{
-					Debug.LogError($"Invalid direction", _cube.gameObject);
+					Debug.LogError($"Invalid direction", _cubeTransform.gameObject);
 				}
 			}
 			else
