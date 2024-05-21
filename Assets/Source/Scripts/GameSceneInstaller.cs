@@ -1,12 +1,17 @@
 using System;
+using System.Collections.Generic;
 using Cinemachine;
 using CubeProject.InputSystem;
+using CubeProject.PlayableCube;
 using CubeProject.SO;
 using CubeProject.Tips;
 using LeadTools.Extensions;
+using LeadTools.StateMachine;
 using Reflex.Core;
 using Source.Scripts.Game;
 using Source.Scripts.Game.Level.Camera;
+using Source.Scripts.Game.Level.Shield;
+using Source.Scripts.Game.Level.Shield.States;
 using UnityEngine;
 
 namespace CubeProject
@@ -23,7 +28,7 @@ namespace CubeProject
 		private PlayerInput _playerInput;
 
 		public IInputService InputService => _inputService ??= TryCreateInputService();
-		
+
 		private void OnDisable() =>
 			_disable?.Invoke();
 
@@ -32,18 +37,27 @@ namespace CubeProject
 			var playerInitializer = gameObject.GetComponentElseThrow<CubeInitializer>();
 
 			var targetCameraHolder = new TargetCameraHolder(_virtualCamera);
-			
-			playerInitializer.Init(InputService, _maskHolder, targetCameraHolder);
-			
+
+			var shieldStateMachine = new ShieldStateMachine(
+				() => new Dictionary<Type, State<ShieldStateMachine>>
+				{
+					[typeof(PlayState)] = new PlayState(),
+					[typeof(StopState)] = new StopState(),
+				});
+
+			containerBuilder.AddSingleton(shieldStateMachine, typeof(IStateChangeable<ShieldStateMachine>));
+
+			playerInitializer.Init(InputService, _maskHolder, shieldStateMachine);
+
 			InitTargetCameraHolder();
 			InitInput();
 
 			_portalColorData.ResetColorIndex();
 			containerBuilder.AddSingleton(_portalColorData);
 
-			containerBuilder.AddSingleton(playerInitializer.Cube);
-
 			containerBuilder.AddSingleton(playerInitializer.SpawnPoint);
+
+			containerBuilder.AddSingleton(playerInitializer.Cube.Component, typeof(CubeComponent));
 
 			containerBuilder.AddSingleton(_virtualCamera);
 
@@ -65,9 +79,8 @@ namespace CubeProject
 			void InitTargetCameraHolder()
 			{
 				targetCameraHolder.Init(
-					playerInitializer.PlayerInstance.Cube.transform, 
+					playerInitializer.PlayerInstance.Cube.transform,
 					playerInitializer.PlayerInstance.Follower);
-				targetCameraHolder.SetTarget();
 			}
 		}
 

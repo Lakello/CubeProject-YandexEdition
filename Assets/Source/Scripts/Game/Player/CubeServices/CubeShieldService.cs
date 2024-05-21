@@ -3,6 +3,7 @@ using System.Linq;
 using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
+using Source.Scripts.Game.Level.Shield.States;
 using Source.Scripts.Game.Messages.ShieldServiceMessage;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
@@ -18,17 +19,20 @@ namespace Source.Scripts.Game.Level.Shield
 		};
 		private readonly ChargeHolder _chargeHolder;
 		private readonly IStateChangeable<CubeStateMachine> _cubeStateMachine;
+		private readonly IStateMachine<ShieldStateMachine> _shieldStateMachine;
+
 		private bool _isAcceptableState;
 		private bool _isListenStates;
 
-		public CubeShieldService(Cube cube)
+		public CubeShieldService(Cube cube, IStateMachine<ShieldStateMachine> shieldStateMachine)
 		{
 			_chargeHolder = cube.Component.ChargeHolder;
 			_cubeStateMachine = cube.Component.StateMachine;
 
-			MessageBroker.Default
-				.Publish(new ChangeShieldStateMessage(MessageId.HideShield));
+			_shieldStateMachine = shieldStateMachine;
 
+			_shieldStateMachine.EnterIn<StopState>();
+			
 			_chargeHolder.ChargeChanged += OnChargeChanged;
 			OnChargeChanged();
 		}
@@ -57,11 +61,15 @@ namespace Source.Scripts.Game.Level.Shield
 		private void TryChangeShieldState()
 		{
 			if (_chargeHolder.IsCharged && _isAcceptableState)
-				MessageBroker.Default
-					.Publish(new ChangeShieldStateMessage(MessageId.ShowShield));
+			{
+				if (_shieldStateMachine.CurrentState != typeof(PlayState))
+					_shieldStateMachine.EnterIn<PlayState>();
+			}
 			else
-				MessageBroker.Default
-					.Publish(new ChangeShieldStateMessage(MessageId.HideShield));
+			{
+				if (_shieldStateMachine.CurrentState != typeof(StopState))
+					_shieldStateMachine.EnterIn<StopState>();
+			}
 		}
 
 		private void SetListenStateChanged(bool isListen)

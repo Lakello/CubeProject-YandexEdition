@@ -2,6 +2,7 @@ using System;
 using Cinemachine;
 using CubeProject.PlayableCube;
 using Source.Scripts.Game.Messages;
+using Source.Scripts.Game.Messages.Camera;
 using UniRx;
 using UnityEngine;
 
@@ -26,18 +27,25 @@ namespace Source.Scripts.Game.Level.Camera
 				.Where(message => message.Id == MessageId.FallingIntoAbyss)
 				.Subscribe(_ => ResetTarget())
 				.AddTo(_disposable);
+
+			MessageBroker.Default
+				.Receive<SetTargetCameraMessage>()
+				.Subscribe(_ => SetTarget())
+				.AddTo(_disposable);
 		}
 
 		public void Init(Transform lookAtPoint, Transform followPoint)
 		{
 			_lookAtPoint = lookAtPoint;
 			_followPoint = followPoint;
+			
+			SetTarget();
 		}
 
 		public void Dispose() =>
 			_disposable?.Dispose();
 
-		public void SetTarget()
+		private void SetTarget()
 		{
 			_virtualCamera.LookAt = _lookAtPoint;
 			_virtualCamera.Follow = _followPoint;

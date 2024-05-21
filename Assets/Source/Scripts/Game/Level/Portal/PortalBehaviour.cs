@@ -26,7 +26,6 @@ namespace CubeProject.Game
 		[SerializeField] private PortalBehaviour _linkedPortal;
 
 		private bool _isBlocked;
-		private Cube _cube;
 		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Teleporter _teleporter;
 		private ChargeConsumer _chargeConsumer;
@@ -57,13 +56,12 @@ namespace CubeProject.Game
 		#endif
 
 		[Inject]
-		private void Inject(Cube cube, MaskHolder maskHolder)
+		private void Inject(CubeComponent cubeComponent, MaskHolder maskHolder)
 		{
-			_cube = cube;
-			_cubeStateMachine = _cube.Component.StateMachine;
+			_cubeStateMachine = cubeComponent.StateMachine;
 
 			_teleporter = new Teleporter(
-				cube,
+				cubeComponent.transform,
 				transform,
 				_targetPoint,
 				_teleporterData);

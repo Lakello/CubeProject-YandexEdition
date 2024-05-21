@@ -8,18 +8,18 @@ namespace CubeProject.Game
 {
 	public class TeleportView
 	{
-		private readonly Cube _cube;
+		private readonly Transform _cubeTransform;
 		private readonly Transform _origin;
 		private readonly Transform _targetPoint;
 		private readonly float _animationTime;
 
 		public TeleportView(
-			Cube cube,
+			Transform cubeTransform,
 			Transform origin,
 			Transform targetPoint,
 			float animationTime)
 		{
-			_cube = cube;
+			_cubeTransform = cubeTransform;
 			_origin = origin;
 			_targetPoint = targetPoint;
 			_animationTime = animationTime;
@@ -34,11 +34,11 @@ namespace CubeProject.Game
 				(currentTime) =>
 				{
 					var scaleValue = getScaleValue(currentTime);
-					_cube.transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
+					_cubeTransform.transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
 					var heightValue = getHeightValue(currentTime);
 					var position = Vector3.Lerp(OriginPosition, TargetPosition, heightValue);
-					_cube.transform.position = position;
+					_cubeTransform.transform.position = position;
 				},
 				_animationTime);
 		}

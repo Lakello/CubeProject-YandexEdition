@@ -12,12 +12,12 @@ namespace CubeProject.Game
 		private readonly AnimationCurve _heightCurve;
 
 		public Teleporter(
-			Cube cube,
+			Transform cubeTransform,
 			Transform origin,
 			Transform targetPoint,
 			TeleporterData data)
 		{
-			_view = new TeleportView(cube, origin, targetPoint, data.AnimationTime);
+			_view = new TeleportView(cubeTransform, origin, targetPoint, data.AnimationTime);
 
 			_scaleCurve = data.ScaleCurve;
 			_heightCurve = data.HeightCurve;

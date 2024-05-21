@@ -5,8 +5,6 @@ namespace Source.Scripts.Game
 		StepStarted,
 		StepEnded,
 		DirectionChanged,
-		ShowShield,
-		HideShield,
 		FallingIntoAbyss,
 	}
 }
