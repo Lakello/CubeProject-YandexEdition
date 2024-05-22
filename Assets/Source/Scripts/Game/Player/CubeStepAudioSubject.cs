@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Game
 {
-	public class CubeStepAudioSource : MonoBehaviour, IAudioSource
+	public class CubeStepAudioSubject : MonoBehaviour, IAudioSubject
 	{
 		public event Action AudioPlaying;
 

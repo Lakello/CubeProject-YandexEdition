@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CubeProject.Game
 {
-	public class BarrierField : MonoBehaviour, IAudioSource
+	public class BarrierField : MonoBehaviour, IAudioSubject
 	{
 		[SerializeField] private ChargeConsumer _chargeConsumer;
 

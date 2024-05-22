@@ -141,13 +141,15 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _sources
+    - Name: _subjects
       Entry: 6
       Data: 
-  _clip: {fileID: 8300000, guid: 9066e1547cd26f24ab311a0864364753, type: 3}
-  _isPlayAfterInit: 0
-  _isListenAudioSource: 1
-  _isThisAudioSource: 1
+  _soundID:
+    ID: 1073741826
+    _sourceAsset: {fileID: 11400000, guid: 853c4aebab3d8e84b8f4e66bc90b7df4, type: 2}
+  _isPlayInStart: 0
+  _isListenAudioSubject: 1
+  _isThisAudioSubject: 1
 --- !u!1 &4952277757752314386
 GameObject:
   m_ObjectHideFlags: 0

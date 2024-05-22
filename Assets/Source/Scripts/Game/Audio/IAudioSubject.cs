@@ -1,6 +1,6 @@
 using System;
 
-public interface IAudioSource
+public interface IAudioSubject
 {
 	public event Action AudioPlaying;
 }

@@ -30,7 +30,6 @@ namespace CubeProject.Tips
 		[Inject]
 		private void Inject(CubeComponent cubeComponent, PushStateHandler stateHandler, MaskHolder holder)
 		{
-			Debug.Log($"{nameof(Inject)} {nameof(Pusher)}");
 			_stateHandler = stateHandler;
 			_cubeTransform = cubeComponent.transform;
 			_groundMask = holder.GroundMask;

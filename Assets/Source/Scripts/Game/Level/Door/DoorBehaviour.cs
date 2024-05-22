@@ -6,14 +6,12 @@ using UnityEngine;
 namespace CubeProject.Game
 {
 	[RequireComponent(typeof(ChargeConsumer))]
-	public class DoorHandler : MonoBehaviour
+	public class DoorBehaviour : MonoBehaviour
 	{
 		[SerializeField] private Door[] _doors;
 		[SerializeField] private float _animationTime;
 		[SerializeField] private bool _change;
 
-		private Coroutine _doorCoroutine;
-		private bool _previousCharged;
 		private ChargeConsumer _chargeConsumer;
 		private Tweener _scaleTweener;
 		private Tweener _rotateTweener;
@@ -37,19 +35,8 @@ namespace CubeProject.Game
 			StopTweeners();
 		}
 
-		private void OnChargeChanged()
-		{
-			var currentCharged = _chargeConsumer.IsCharged;
-
-			if (_previousCharged == currentCharged)
-				return;
-
-			_previousCharged = currentCharged;
-
-			this.StopRoutine(_doorCoroutine);
-
-			ChangeState(currentCharged);
-		}
+		private void OnChargeChanged() =>
+			ChangeState(_chargeConsumer.IsCharged);
 
 		private void ChangeState(bool isCharged)
 		{

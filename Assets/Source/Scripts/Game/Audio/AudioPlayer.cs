@@ -1,59 +1,39 @@
+using Ami.BroAudio;
 using LeadTools.Extensions;
-using LeadTools.Object;
-using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Sirenix.Utilities;
-using Source.Scripts.Game;
 using UnityEngine;
 
 public class AudioPlayer : SerializedMonoBehaviour
 {
-	[SerializeField] [Range(0, 1)] private float _volume = 1;
-	[SerializeField] private AudioClip _clip;
-	[SerializeField] private bool _isPlayAfterInit;
-	[SerializeField] private bool _isListenAudioSource = true;
-	[SerializeField] [ShowIf(nameof(_isListenAudioSource))] private bool _isThisAudioSource = true;
-	[OdinSerialize] [HideIf(nameof(_isThisAudioSource))] private IAudioSource[] _sources;
+	[SerializeField] private SoundID _soundID;
+	[SerializeField] private bool _isPlayInStart;
+	[SerializeField] private bool _isListenAudioSubject = true;
+	[SerializeField] [ShowIf(nameof(_isListenAudioSubject))] private bool _isThisAudioSubject = true;
+	[OdinSerialize] [HideIf(nameof(_isThisAudioSubject))] private IAudioSubject[] _subjects;
 
-	private ObjectSpawner<AudioSourceHolder, AudioInitData> _audioSpawner;
-	private AudioInitData _data;
-
-	[Inject]
-	private void Inject(ObjectSpawner<AudioSourceHolder, AudioInitData> audioSpawner)
+	private void Awake()
 	{
-		_audioSpawner = audioSpawner;
-
-		_data = new AudioInitData
-		{
-			Clip = _clip,
-			Volume = _volume,
-		};
-
-		if (_isPlayAfterInit)
+		if (_isPlayInStart)
 			OnAudioPlaying();
 
-		if (_isListenAudioSource && _isThisAudioSource)
-			gameObject.GetComponentsElseThrow(out _sources);
-		
-		Subscribe();
+		if (_isListenAudioSubject && _isThisAudioSubject)
+			gameObject.GetComponentsElseThrow(out _subjects);
 	}
 
-	private void OnEnable() =>
-		Subscribe();
-
-	private void Subscribe()
+	private void OnEnable()
 	{
-		if (_isListenAudioSource && _audioSpawner != null)
-			_sources.ForEach(source => source.AudioPlaying += OnAudioPlaying);
+		if (_isListenAudioSubject)
+			_subjects.ForEach(source => source.AudioPlaying += OnAudioPlaying);
 	}
 
 	private void OnDisable()
 	{
-		if (_isListenAudioSource)
-			_sources.ForEach(source => source.AudioPlaying -= OnAudioPlaying);
+		if (_isListenAudioSubject)
+			_subjects.ForEach(source => source.AudioPlaying -= OnAudioPlaying);
 	}
 
 	private void OnAudioPlaying() =>
-		_ = _audioSpawner.Spawn(_data);
+		BroAudio.Play(_soundID);
 }

@@ -1,6 +1,10 @@
 {
     "AssetOutputPath": "Assets/Plugins/BroAudio/AudioAssets",
     "GUIDs": [
-        "7adfa0ab4f9c90b4eb9d9306a3145fe7"
+        "43926f50b567319438babc4491e8f192",
+        "e2408660ff8d08742ad5639e1162d667",
+        "17079d0dbaaf9d44aae699e8b60c01cd",
+        "853c4aebab3d8e84b8f4e66bc90b7df4",
+        "931f41edcc0e04646a29b8c3ac2b528f"
     ]
 }

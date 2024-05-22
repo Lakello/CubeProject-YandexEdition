@@ -1,14 +1,12 @@
 using System;
 using CubeProject.Game;
-using CubeProject.PlayableCube;
-using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Source.Scripts.Game
 {
-	public class ChargeAudioSource : SerializedMonoBehaviour, IAudioSource
+	public class ChargeAudioSubject : SerializedMonoBehaviour, IAudioSubject
 	{
 		[SerializeField] private bool _targetCharged;
 		[OdinSerialize] private IChargeable _chargeable;

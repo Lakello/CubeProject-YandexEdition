@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using LeadTools.Extensions;
-using LeadTools.Object;
-using LeadTools.Other;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
@@ -15,23 +13,12 @@ namespace CubeProject
 {
 	public class ProjectInstaller : MonoBehaviour, IInstaller
 	{
-		[SerializeField] private AudioSourceHolder _audioSourceHolderPrefab;
-		[SerializeField] private AudioClip _backgroundClip;
-		[SerializeField] [Range(0, 1)] private float _volume;
+		[SerializeField] private BackgroundAudioSource _backgroundAudioSourcePrefab;
 		[SerializeField] private int _targetFrameRate = 60;
 		[SerializeField] private bool _isDebug;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
-			QualitySettings.vSyncCount = 0;
-			Application.targetFrameRate = _targetFrameRate;
-
-			DontDestroyMono mono;
-			InitMono();
-
-			ObjectSpawner<AudioSourceHolder, AudioInitData> audioSpawner;
-			InitAudioSpawner();
-
 			InitBackgroundAudio();
 
 			GameStateMachine gameStateMachine;
@@ -43,29 +30,11 @@ namespace CubeProject
 			return;
 
 			#region InitMethods
-			
-			void InitMono()
-			{
-				mono = new GameObject(nameof(DontDestroyMono)).AddComponent<DontDestroyMono>();
-				DontDestroyOnLoad(mono.gameObject);
-			}
-
-			void InitAudioSpawner()
-			{
-				audioSpawner = new ObjectSpawner<AudioSourceHolder, AudioInitData>(mono.transform, _audioSourceHolderPrefab);
-
-				containerBuilder.AddSingleton(audioSpawner);
-			}
 
 			void InitBackgroundAudio()
 			{
-				_ = audioSpawner.Spawn(
-					new AudioInitData
-					{
-						Clip = _backgroundClip,
-						IsLoop = true,
-						Volume = _volume,
-					});
+				var source = Instantiate(_backgroundAudioSourcePrefab);
+				DontDestroyOnLoad(source.gameObject);
 			}
 
 			void InitStateMachine()
@@ -99,6 +68,9 @@ namespace CubeProject
 
 			void ProjectInit()
 			{
+				QualitySettings.vSyncCount = 0;
+				Application.targetFrameRate = _targetFrameRate;
+				
 				var levelLoader = gameObject.GetComponentElseThrow<LevelLoader>();
 
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
