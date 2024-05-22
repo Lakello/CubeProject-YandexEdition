@@ -9,5 +9,6 @@ namespace LeadTools.Other
 		_HeartColor,
 		_EnergyColor,
 		_BaseColor,
+		_Clip,
 	}
 }

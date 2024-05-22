@@ -33,6 +33,8 @@ namespace CubeProject.PlayableCube
 				.Receive<CheckGroundMessage>()
 				.Subscribe(message => message.Callback.Invoke(TryFall()))
 				.AddTo(_disposable);
+
+			TryFall();
 		}
 
 		public void Dispose()
