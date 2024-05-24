@@ -67,8 +67,12 @@ namespace CubeProject.Game
 				_teleporterData);
 		}
 
-		private void Awake() =>
+		private void Awake()
+		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
+			
+			OnChargeChanged();
+		}
 
 		private void OnEnable() =>
 			_chargeConsumer.ChargeChanged += OnChargeChanged;
