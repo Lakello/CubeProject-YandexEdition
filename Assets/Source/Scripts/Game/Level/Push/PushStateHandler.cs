@@ -26,7 +26,6 @@ namespace CubeProject.Tips
 			_currentPusher.Pushed += OnPushed;
 
 			_cubeStateMachine.EnterIn<PushState>();
-			Debug.Log($"{nameof(Pushing)} {_cubeStateMachine.CurrentState}");
 		}
 
 		private void OnPushed()

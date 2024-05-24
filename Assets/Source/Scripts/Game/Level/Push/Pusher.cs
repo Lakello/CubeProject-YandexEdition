@@ -91,13 +91,9 @@ namespace CubeProject.Tips
 			if (_isAnyDirection)
 			{
 				direction = _currentDirection;
-				
-				Debug.Log($"Direction = {direction}");
 
 				if (_cubeTransform.IsThereFreeSeat(ref direction, _groundMask) is false)
-				{
-					Debug.LogError($"Invalid direction", _cubeTransform.gameObject);
-				}
+					throw new ArgumentException("Invalid direction");
 			}
 			else
 			{

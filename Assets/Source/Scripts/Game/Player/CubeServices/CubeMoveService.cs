@@ -62,13 +62,8 @@ namespace CubeProject.PlayableCube.Movement
 
 		private void Push(Vector3 direction)
 		{
-			Debug.Log(nameof(Push));
-			Debug.Log(direction);
-			Debug.Log(_cubeStateMachine.CurrentState);
-			
 			if (_cubeStateMachine.CurrentState != typeof(PushState))
 			{
-				Debug.Log($"{nameof(Push)} return");
 				return;
 			}
 
@@ -77,8 +72,6 @@ namespace CubeProject.PlayableCube.Movement
 
 		private void DoAfterStep(Action endCallback)
 		{
-			Debug.Log(nameof(DoAfterStep));
-			
 			if (_moveCoroutine != null)
 			{
 				_mono.WaitRoutine(_moveCoroutine, endCallback);
