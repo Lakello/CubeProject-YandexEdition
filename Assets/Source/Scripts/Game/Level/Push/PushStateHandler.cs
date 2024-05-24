@@ -4,6 +4,7 @@ using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 using UniRx;
+using UnityEngine;
 
 namespace CubeProject.Tips
 {
@@ -25,6 +26,7 @@ namespace CubeProject.Tips
 			_currentPusher.Pushed += OnPushed;
 
 			_cubeStateMachine.EnterIn<PushState>();
+			Debug.Log($"{nameof(Pushing)} {_cubeStateMachine.CurrentState}");
 		}
 
 		private void OnPushed()

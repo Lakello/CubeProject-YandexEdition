@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0159084, g: 0.018896267, b: 0.021908788, a: 1}
+  m_IndirectSpecularColor: {r: 0.015990026, g: 0.018989522, b: 0.022011, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2403,6 +2403,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
     - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_Name
       value: Wire V -- (1)
@@ -2679,7 +2687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2713,6 +2721,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (1)
@@ -6643,6 +6659,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H -
@@ -9813,6 +9837,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 883594380}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6327553
@@ -15884,6 +15916,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 883594380}
     - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_Name
       value: Wire V -- (2)
@@ -18140,6 +18180,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193670103}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V -
@@ -18202,6 +18250,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231647832}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 883594380}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (4)
@@ -18392,6 +18448,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.0000176
@@ -19342,6 +19406,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193670103}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (1)
@@ -19683,6 +19755,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231647832}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (2)
@@ -20343,6 +20423,12 @@ Transform:
   - {fileID: 809135197}
   - {fileID: 189058924}
   - {fileID: 1714127654}
+  - {fileID: 1474975494}
+  - {fileID: 1035167599}
+  - {fileID: 369487691}
+  - {fileID: 1012147103}
+  - {fileID: 1261185170}
+  - {fileID: 1293187095}
   - {fileID: 1444257337}
   - {fileID: 2086389584}
   - {fileID: 1680378000}
@@ -20351,12 +20437,6 @@ Transform:
   - {fileID: 1134763583}
   - {fileID: 1782188196}
   - {fileID: 123050379}
-  - {fileID: 1474975494}
-  - {fileID: 1035167599}
-  - {fileID: 369487691}
-  - {fileID: 1012147103}
-  - {fileID: 1261185170}
-  - {fileID: 1293187095}
   m_Father: {fileID: 1002149919}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1001 &1203445698
@@ -21624,6 +21704,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_Name
       value: Wire V --
@@ -22080,6 +22168,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193670103}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (1)
@@ -24580,6 +24676,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231647832}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (3)
@@ -24748,6 +24852,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25066,6 +25178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25898,6 +26018,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231647832}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 883594380}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V - (5)
@@ -26310,6 +26438,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
       propertyPath: m_Name
       value: Wire V --
@@ -30103,6 +30239,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H -
@@ -31753,6 +31897,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -32249,6 +32401,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6327553
@@ -34431,6 +34591,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193670103}
     m_Modifications:
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 697356611865230140, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8639964070881312474, guid: b65f8479b4245ca48868bcb531f0b9b2, type: 3}
       propertyPath: m_Name
       value: Wire V -
@@ -36784,6 +36952,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 905095951}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9999882

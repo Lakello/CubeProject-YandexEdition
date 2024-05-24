@@ -64,15 +64,18 @@ namespace CubeProject.Tips
 		private void Push()
 		{
 			_disposable = new CompositeDisposable();
-
-			MessageBroker.Default
-				.Receive<Message<CubeMoveService>>()
-				.Where(message => message.Id == MessageId.StepEnded)
-				.Subscribe(_ => OnStepEnded())
-				.AddTo(_disposable);
 			
 			MessageBroker.Default
-				.Publish(new PushAfterStepMessage(GetDirection()));
+				.Publish(new PushAfterStepMessage(() =>
+				{
+					MessageBroker.Default
+						.Receive<Message<CubeMoveService>>()
+						.Where(message => message.Id == MessageId.StepEnded)
+						.Subscribe(_ => OnStepEnded())
+						.AddTo(_disposable);
+
+					return GetDirection();
+				}));
 		}
 
 		private void OnStepEnded()
@@ -88,6 +91,8 @@ namespace CubeProject.Tips
 			if (_isAnyDirection)
 			{
 				direction = _currentDirection;
+				
+				Debug.Log($"Direction = {direction}");
 
 				if (_cubeTransform.IsThereFreeSeat(ref direction, _groundMask) is false)
 				{
