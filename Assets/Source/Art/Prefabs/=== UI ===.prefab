@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 1327639603626178407}
   - component: {fileID: 7147807170321636002}
   - component: {fileID: 4538037539219951056}
+  - component: {fileID: 6523361362226459901}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -804,7 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4e9e246c22c004993773bc01314631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelResult: {fileID: 0}
+  _levelResult: {fileID: 6523361362226459901}
 --- !u!114 &7147807170321636002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,6 +832,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timer: {fileID: 1327639603626178407}
   _recorderScore: {fileID: 7147807170321636002}
+--- !u!114 &6523361362226459901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337448041785981900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ff4df7d8de6de4aaf7b8439ecc8baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5801337355551910578
 GameObject:
   m_ObjectHideFlags: 0
