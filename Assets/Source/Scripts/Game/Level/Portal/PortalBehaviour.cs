@@ -7,8 +7,10 @@ using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using Source.Scripts.Game;
+using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,12 +26,10 @@ namespace CubeProject.Game
 		[SerializeField] private PortalBehaviour _linkedPortal;
 
 		private bool _isBlocked;
-		private Cube _cube;
 		private IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private Teleporter _teleporter;
-		private CubeMoveService _cubeMoveService;
-		private CubeFallService _cubeFallService;
 		private ChargeConsumer _chargeConsumer;
+		private CompositeDisposable _disposable;
 
 		public event Action Pushing;
 
@@ -56,34 +56,32 @@ namespace CubeProject.Game
 		#endif
 
 		[Inject]
-		private void Inject(Cube cube, MaskHolder maskHolder)
+		private void Inject(CubeComponent cubeComponent, MaskHolder maskHolder)
 		{
-			_cube = cube;
-			_cubeMoveService = _cube.Component.MoveService;
-			_cubeStateMachine = _cube.Component.StateMachine;
-			_cubeFallService = _cube.Component.FallService;
+			_cubeStateMachine = cubeComponent.StateMachine;
 
 			_teleporter = new Teleporter(
-				this,
-				cube,
+				cubeComponent.transform,
 				transform,
 				_targetPoint,
-				() =>
-				{
-					if (_cubeFallService.TryFall() is false)
-						Pushing?.Invoke();
-				},
 				_teleporterData);
 		}
 
-		private void Awake() =>
+		private void Awake()
+		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
+			
+			OnChargeChanged();
+		}
 
 		private void OnEnable() =>
 			_chargeConsumer.ChargeChanged += OnChargeChanged;
 
-		private void OnDisable() =>
+		private void OnDisable()
+		{
+			_disposable?.Dispose();
 			_chargeConsumer.ChargeChanged -= OnChargeChanged;
+		}
 
 		private void OnTriggerEnter(Collider other)
 		{
@@ -103,15 +101,33 @@ namespace CubeProject.Game
 
 			_cubeStateMachine.EnterIn<TeleportState>();
 
-			_cubeMoveService.DoAfterMove(
-				() => _teleporter.Absorb(
-					() => _linkedPortal._teleporter.Return()));
+			MessageBroker.Default
+				.Publish(new DoAfterStepMessage(() =>
+				{
+					_disposable?.Dispose();
+					
+					_disposable = new CompositeDisposable();
+					Observable.FromCoroutine(_teleporter.Absorb)
+						.SelectMany(_linkedPortal._teleporter.Return)
+						.Subscribe(_ => OnTeleportEnded())
+						.AddTo(_disposable);
+				}));
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
 			if (other.TryGetComponent(out Cube _))
 				_isBlocked = false;
+		}
+
+		private void OnTeleportEnded()
+		{
+			MessageBroker.Default
+				.Publish(new CheckGroundMessage(isFall =>
+				{
+					if (isFall == false)
+						Pushing?.Invoke();
+				}));
 		}
 
 		private void OnChargeChanged() =>

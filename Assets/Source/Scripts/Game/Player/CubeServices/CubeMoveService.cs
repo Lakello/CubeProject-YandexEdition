@@ -4,8 +4,10 @@ using CubeProject.InputSystem;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Source.Scripts.Game;
+using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 using UnityEngine;
 
 namespace CubeProject.PlayableCube.Movement
@@ -19,12 +21,7 @@ namespace CubeProject.PlayableCube.Movement
 		private IInputService _inputService;
 		private LayerMask _wallMask;
 		private MonoBehaviour _mono;
-
-		public event Action StepEnded;
-
-		public event Action StepStarted;
-
-		public Vector3 CurrentDirection { get; private set; }
+		private CompositeDisposable _disposable;
 
 		public CubeMoveService(
 			IStateMachine<CubeStateMachine> stateMachine,
@@ -43,14 +40,27 @@ namespace CubeProject.PlayableCube.Movement
 			_roll = new RollMover(rollSpeed, cubeTransform);
 
 			_inputService.Moving += OnMoving;
+
+			_disposable = new CompositeDisposable();
+			
+			MessageBroker.Default
+				.Receive<DoAfterStepMessage>()
+				.Subscribe(message => DoAfterStep(message.Action))
+				.AddTo(_disposable);
+
+			MessageBroker.Default
+				.Receive<PushAfterStepMessage>()
+				.Subscribe(message => DoAfterStep(() => Push(message.GetDirection())))
+				.AddTo(_disposable);
 		}
 
 		public void Dispose()
 		{
+			_disposable?.Dispose();
 			_inputService.Moving -= OnMoving;
 		}
 
-		public void Push(Vector3 direction)
+		private void Push(Vector3 direction)
 		{
 			if (_cubeStateMachine.CurrentState != typeof(PushState))
 			{
@@ -60,7 +70,7 @@ namespace CubeProject.PlayableCube.Movement
 			TryMove(direction);
 		}
 
-		public void DoAfterMove(Action endCallback)
+		private void DoAfterStep(Action endCallback)
 		{
 			if (_moveCoroutine != null)
 			{
@@ -99,13 +109,16 @@ namespace CubeProject.PlayableCube.Movement
 
 		private IEnumerator Move(Vector3 direction)
 		{
-			CurrentDirection = direction;
+			MessageBroker.Default
+				.Publish(new Message<Vector3, CubeMoveService>(MessageId.DirectionChanged, direction));
 			
-			StepStarted?.Invoke();
+			MessageBroker.Default
+				.Publish(new Message<CubeMoveService>(MessageId.StepStarted));
 
 			yield return _mono.StartCoroutine(_roll.Move(
 				direction,
-				() => StepEnded?.Invoke()));
+				() => MessageBroker.Default
+					.Publish(new Message<CubeMoveService>(MessageId.StepEnded))));
 
 			_moveCoroutine = null;
 		}

@@ -22,6 +22,8 @@ namespace CubeProject.Game
 			_meshRenderers.ForEach(meshRenderer => _animations.Add(
 				meshRenderer,
 				meshRenderer.gameObject.GetComponentElseThrow<PortalAnimationBehaviour>()));
+			
+			OnChargeChanged();
 		}
 
 		private void OnEnable() =>

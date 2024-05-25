@@ -1,43 +1,63 @@
+using System;
 using Cinemachine;
-using LeadTools.Extensions;
+using CubeProject.PlayableCube;
+using Source.Scripts.Game.Messages;
+using Source.Scripts.Game.Messages.Camera;
+using UniRx;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Camera
 {
-	public class TargetCameraHolder
+	public class TargetCameraHolder : IDisposable
 	{
 		private readonly float _delayStopCameraFollow = 0.3f;
-		private readonly MonoBehaviour _mono;
 		private readonly CinemachineVirtualCamera _virtualCamera;
+		private readonly CompositeDisposable _disposable;
 
 		private Transform _lookAtPoint;
 		private Transform _followPoint;
 
-		public TargetCameraHolder(MonoBehaviour mono, CinemachineVirtualCamera virtualCamera)
+		public TargetCameraHolder(CinemachineVirtualCamera virtualCamera)
 		{
-			_mono = mono;
 			_virtualCamera = virtualCamera;
+			_disposable = new CompositeDisposable();
+
+			MessageBroker.Default
+				.Receive<Message<CubeFallService>>()
+				.Where(message => message.Id == MessageId.FallingIntoAbyss)
+				.Subscribe(_ => ResetTarget())
+				.AddTo(_disposable);
+
+			MessageBroker.Default
+				.Receive<SetTargetCameraMessage>()
+				.Subscribe(_ => SetTarget())
+				.AddTo(_disposable);
 		}
 
 		public void Init(Transform lookAtPoint, Transform followPoint)
 		{
 			_lookAtPoint = lookAtPoint;
 			_followPoint = followPoint;
+			
+			SetTarget();
 		}
 
-		public void ResetTarget() =>
-			_mono.WaitTime(
-				_delayStopCameraFollow,
-				() =>
-				{
-					_virtualCamera.LookAt = null;
-					_virtualCamera.Follow = null;
-				});
+		public void Dispose() =>
+			_disposable?.Dispose();
 
-		public void SetTarget()
+		private void SetTarget()
 		{
 			_virtualCamera.LookAt = _lookAtPoint;
 			_virtualCamera.Follow = _followPoint;
 		}
+
+		private void ResetTarget() =>
+			Observable.Timer(TimeSpan.FromSeconds(_delayStopCameraFollow))
+				.Subscribe(_ =>
+				{
+					_virtualCamera.LookAt = null;
+					_virtualCamera.Follow = null;
+				})
+				.AddTo(_disposable);
 	}
 }

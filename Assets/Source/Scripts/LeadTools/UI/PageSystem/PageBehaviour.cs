@@ -21,14 +21,10 @@ namespace CubeProject.LeadTools.UI.PageSystem
 		private void Inject(IStateChangeable<GameStateMachine> stateChangeable)
 		{
 			_stateChangeable = stateChangeable;
-			Debug.Log("Inject");
 		}
 
 		private void OnEnable()
 		{
-			
-			Debug.Log("Enable");
-			
 			_pages[_currentPageIndex].Show();
 
 			_stateChangeable?.SubscribeTo<MenuState<SelectLevelWindowState>>(OnStateChanged);
@@ -41,8 +37,6 @@ namespace CubeProject.LeadTools.UI.PageSystem
 		{
 			if (_pages.Count != 0)
 				return;
-			
-			Debug.Log("Init");
 
 			Page currentPage = InitPage();
 
@@ -106,8 +100,6 @@ namespace CubeProject.LeadTools.UI.PageSystem
 		{
 			if (isEntered)
 				return;
-			
-			Debug.Log(_pages != null);
 			
 			_pages[_currentPageIndex].Hide();
 		}

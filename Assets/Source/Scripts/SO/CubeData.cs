@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Source.Scripts.Game.Level.Shield;
 using UnityEngine;
 
 namespace CubeProject.SO
@@ -19,7 +20,11 @@ namespace CubeProject.SO
 		private float _hideShowDuration = 0.2f;
 		
 		public float RollSpeed => _rollSpeed;
-		public (Vector2, Vector2, Vector2, float, float) GetShieldData => 
-			(_distanceRange, _fresnelPowerRange, _displacementAmountRange, _displacementAmountHide, _hideShowDuration);
+		public ShieldData GetShieldData => new ShieldData(
+			_distanceRange,
+			_fresnelPowerRange,
+			_displacementAmountRange,
+			_displacementAmountHide,
+			_hideShowDuration);
 	}
 }

@@ -1,8 +1,9 @@
 using CubeProject.PlayableCube;
 using CubeProject.PlayableCube.Movement;
 using DG.Tweening;
-using Reflex.Attributes;
 using Sirenix.OdinInspector;
+using Source.Scripts.Game.Messages;
+using UniRx;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Animations
@@ -20,15 +21,11 @@ namespace Source.Scripts.Game.Level.Animations
 		[ShowIf(nameof(IsShowAnimateObject))]
 		private Transform _animateObject;
 
-		private CubeMoveService _moveService;
+		private CompositeDisposable _disposable;
 		private Tweener _animationTweener;
 		private float _enteredPositionY;
 
 		private bool IsShowAnimateObject => _isThisAnimate == false;
-
-		[Inject]
-		private void Inject(Cube cube) =>
-			_moveService = cube.Component.MoveService;
 
 		private void Awake()
 		{
@@ -42,7 +39,13 @@ namespace Source.Scripts.Game.Level.Animations
 		{
 			if (other.TryGetComponent(out Cube _))
 			{
-				_moveService.StepEnded += OnEnterStepEnded;
+				_disposable = new CompositeDisposable();
+
+				MessageBroker.Default
+					.Receive<Message<CubeMoveService>>()
+					.Where(message => message.Id == MessageId.StepEnded)
+					.Subscribe(_ => OnStepEnded())
+					.AddTo(_disposable);
 
 				if (_animationTweener == null)
 				{
@@ -60,6 +63,8 @@ namespace Source.Scripts.Game.Level.Animations
 
 		private void OnDisable()
 		{
+			_disposable?.Dispose();
+			
 			if (_animationTweener != null)
 			{
 				_animationTweener.Kill();
@@ -67,16 +72,21 @@ namespace Source.Scripts.Game.Level.Animations
 			}
 		}
 
-		private void OnEnterStepEnded()
+		private void OnStepEnded()
 		{
-			_moveService.StepEnded -= OnEnterStepEnded;
-			_moveService.StepStarted += OnExitStepStarted;
+			_disposable?.Dispose();
+			_disposable = new CompositeDisposable();
+
+			MessageBroker.Default
+				.Receive<Message<CubeMoveService>>()
+				.Where(message => message.Id == MessageId.StepStarted)
+				.Subscribe(_ => OnExitStepStarted())
+				.AddTo(_disposable);
 		}
 
 		private void OnExitStepStarted()
 		{
-			_moveService.StepStarted -= OnExitStepStarted;
-
+			_disposable?.Dispose();
 			_animationTweener.PlayBackwards();
 		}
 	}
