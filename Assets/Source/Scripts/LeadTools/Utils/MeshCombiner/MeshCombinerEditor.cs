@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Linq;
 using System.Text.RegularExpressions;
 using LeadTools.Utils;
@@ -175,3 +176,4 @@ namespace Source.Scripts.LeadTools.Utils
 		}
 	}
 }
+#endif
