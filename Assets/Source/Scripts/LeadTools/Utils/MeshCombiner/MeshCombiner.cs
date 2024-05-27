@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Source.Scripts.LeadTools.Utils;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -14,13 +12,68 @@ namespace LeadTools.Utils
 	{
 		private const int Mesh16BitBufferVertexLimit = 65535;
 
-		[SerializeField] private MeshCombinerData _data;
-		[Tooltip("MeshFilters with Meshes which we don't want to combine into one Mesh.")]
-		[SerializeField] private MeshFilter[] _meshFiltersToSkip = Array.Empty<MeshFilter>();
+		[SerializeField]
+		private bool createMultiMaterialMesh = false,
+			combineInactiveChildren = false,
+			deactivateCombinedChildren = true,
+			deactivateCombinedChildrenMeshRenderers = false,
+			generateUVMap = false,
+			destroyCombinedChildren = false;
 
-		public void Init(MeshCombinerData data)
+		[SerializeField]
+		private string folderPath = "Source/Art/Prefabs/CombinedMeshes/";
+		[SerializeField]
+		[Tooltip("MeshFilters with Meshes which we don't want to combine into one Mesh.")]
+		private MeshFilter[] meshFiltersToSkip = new MeshFilter[0];
+
+		public bool CreateMultiMaterialMesh { get { return createMultiMaterialMesh; } set { createMultiMaterialMesh = value; } }
+		public bool CombineInactiveChildren { get { return combineInactiveChildren; } set { combineInactiveChildren = value; } }
+		public bool DeactivateCombinedChildren
 		{
-			_data = data;
+			get { return deactivateCombinedChildren; }
+			set
+			{
+				deactivateCombinedChildren = value;
+				CheckDeactivateCombinedChildren();
+			}
+		}
+		public bool DeactivateCombinedChildrenMeshRenderers
+		{
+			get { return deactivateCombinedChildrenMeshRenderers; }
+			set
+			{
+				deactivateCombinedChildrenMeshRenderers = value;
+				CheckDeactivateCombinedChildren();
+			}
+		}
+		public bool GenerateUVMap { get { return generateUVMap; } set { generateUVMap = value; } }
+		public bool DestroyCombinedChildren
+		{
+			get { return destroyCombinedChildren; }
+			set
+			{
+				destroyCombinedChildren = value;
+				CheckDestroyCombinedChildren();
+			}
+		}
+		public string FolderPath { get { return folderPath; } set { folderPath = value; } }
+
+
+		private void CheckDeactivateCombinedChildren()
+		{
+			if (deactivateCombinedChildren || deactivateCombinedChildrenMeshRenderers)
+			{
+				destroyCombinedChildren = false;
+			}
+		}
+
+		private void CheckDestroyCombinedChildren()
+		{
+			if (destroyCombinedChildren)
+			{
+				deactivateCombinedChildren = false;
+				deactivateCombinedChildrenMeshRenderers = false;
+			}
 		}
 
 		/// <summary>
@@ -50,13 +103,13 @@ namespace LeadTools.Utils
 
 			#region Combine Meshes into one Mesh:
 
-			if (!_data.CreateMultiMaterialMesh)
+			if (!createMultiMaterialMesh)
 			{
 				CombineMeshesWithSingleMaterial(showCreatedMeshInfo);
 			}
 			else
 			{
-				CombineMeshesWithMultiMaterial(showCreatedMeshInfo);
+				CombineMeshesWithMutliMaterial(showCreatedMeshInfo);
 			}
 
 			#endregion Combine Meshes into one Mesh.
@@ -81,21 +134,19 @@ namespace LeadTools.Utils
 		private MeshFilter[] GetMeshFiltersToCombine()
 		{
 			// Get all MeshFilters belongs to this GameObject and its children:
-			MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>(_data.CombineInactiveChildren);
+			MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>(combineInactiveChildren);
 
 			// Delete first MeshFilter belongs to this GameObject in meshFiltersToSkip array:
-			_meshFiltersToSkip = _meshFiltersToSkip.Where((meshFilter) => meshFilter != meshFilters[0]).ToArray();
+			meshFiltersToSkip = meshFiltersToSkip.Where((meshFilter) => meshFilter != meshFilters[0]).ToArray();
 
 			// Delete null values in meshFiltersToSkip array:
-			_meshFiltersToSkip = _meshFiltersToSkip.Where((meshFilter) => meshFilter != null).ToArray();
+			meshFiltersToSkip = meshFiltersToSkip.Where((meshFilter) => meshFilter != null).ToArray();
 
-			for (int i = 0; i < _meshFiltersToSkip.Length; i++)
+			for (int i = 0; i < meshFiltersToSkip.Length; i++)
 			{
-				meshFilters = meshFilters.Where((meshFilter) => meshFilter != _meshFiltersToSkip[i]).ToArray();
+				meshFilters = meshFilters.Where((meshFilter) => meshFilter != meshFiltersToSkip[i]).ToArray();
 			}
 
-			meshFilters = meshFilters.Where((meshFilter) => meshFilter.TryGetComponent(out MeshCombinerIgnore _) == false).ToArray();
-			
 			return meshFilters;
 		}
 
@@ -119,7 +170,7 @@ namespace LeadTools.Utils
 			}
 
 			// Set Material from child:
-			MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(_data.CombineInactiveChildren);
+			MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(combineInactiveChildren);
 
 			if (meshRenderers.Length >= 2)
 			{
@@ -135,6 +186,7 @@ namespace LeadTools.Utils
 			Mesh combinedMesh = new Mesh();
 			combinedMesh.name = name;
 
+		#if UNITY_2017_3_OR_NEWER
 			if (verticesLength > Mesh16BitBufferVertexLimit)
 			{
 				combinedMesh.indexFormat = IndexFormat.UInt32; // Only works on Unity 2017.3 or higher.
@@ -158,9 +210,29 @@ namespace LeadTools.Utils
 						+ " vertices. Some old devices, like Android with Mali-400 GPU, do not support over 65535 vertices.</b></color>");
 				}
 			}
+		#else
+		if(verticesLength <= Mesh16BitBufferVertexLimit)
+		{
+			combinedMesh.CombineMeshes(combineInstances);
+			GenerateUV(combinedMesh);
+			meshFilters[0].sharedMesh = combinedMesh;
+			DeactivateCombinedGameObjects(meshFilters);
+
+			if(showCreatedMeshInfo)
+			{
+				Debug.Log("<color=#00cc00><b>Mesh \""+name+"\" was created from "+combineInstances.Length+" children meshes and has "+verticesLength
+					+" vertices.</b></color>");
+			}
+		}
+		else if(showCreatedMeshInfo)
+		{
+			Debug.Log("<color=red><b>The mesh vertex limit is 65535! The created mesh had "+verticesLength+" vertices. Upgrade Unity version to"
+				+" 2017.3 or higher to avoid this limit (some old devices, like Android with Mali-400 GPU, do not support over 65535 vertices).</b></color>");
+		}
+		#endif
 		}
 
-		private void CombineMeshesWithMultiMaterial(bool showCreatedMeshInfo)
+		private void CombineMeshesWithMutliMaterial(bool showCreatedMeshInfo)
 		{
 			#region Get MeshFilters, MeshRenderers and unique Materials from all children:
 
@@ -228,12 +300,21 @@ namespace LeadTools.Utils
 				// Create new Mesh (submesh) from Meshes with the same Material:
 				Mesh submesh = new Mesh();
 
+			#if UNITY_2017_3_OR_NEWER
 				if (verticesLength > Mesh16BitBufferVertexLimit)
 				{
 					submesh.indexFormat = IndexFormat.UInt32; // Only works on Unity 2017.3 or higher.
 				}
 
 				submesh.CombineMeshes(submeshCombineInstancesList.ToArray(), true);
+			#else
+			// Below Unity 2017.3 if vertices count is above the limit then an error appears in the console when we use the below method.
+			// Anyway we don't stop the algorithm here beacuse we want to count the entire number of vertices in the children meshes:
+			if(verticesLength <= Mesh16BitBufferVertexLimit)
+			{
+				submesh.CombineMeshes(submeshCombineInstancesList.ToArray(), true);
+			}
+			#endif
 
 				CombineInstance finalCombineInstance = new CombineInstance();
 				finalCombineInstance.subMeshIndex = 0;
@@ -251,6 +332,7 @@ namespace LeadTools.Utils
 			Mesh combinedMesh = new Mesh();
 			combinedMesh.name = name;
 
+		#if UNITY_2017_3_OR_NEWER
 			if (verticesLength > Mesh16BitBufferVertexLimit)
 			{
 				combinedMesh.indexFormat = IndexFormat.UInt32; // Only works on Unity 2017.3 or higher.
@@ -275,6 +357,26 @@ namespace LeadTools.Utils
 						+ " vertices. Some old devices, like Android with Mali-400 GPU, do not support over 65535 vertices.</b></color>");
 				}
 			}
+		#else
+		if(verticesLength <= Mesh16BitBufferVertexLimit)
+		{
+			combinedMesh.CombineMeshes(finalMeshCombineInstancesList.ToArray(), false);
+			GenerateUV(combinedMesh);
+			meshFilters[0].sharedMesh = combinedMesh;
+			DeactivateCombinedGameObjects(meshFilters);
+
+			if(showCreatedMeshInfo)
+			{
+				Debug.Log("<color=#00cc00><b>Mesh \""+name+"\" was created from "+(meshFilters.Length-1)+" children meshes and has "
+					+finalMeshCombineInstancesList.Count+" submeshes, and "+verticesLength+" vertices.</b></color>");
+			}
+		}
+		else if(showCreatedMeshInfo)
+		{
+			Debug.Log("<color=red><b>The mesh vertex limit is 65535! The created mesh had "+verticesLength+" vertices. Upgrade Unity version to"
+				+" 2017.3 or higher to avoid this limit (some old devices, like Android with Mali-400 GPU, do not support over 65535 vertices).</b></color>");
+		}
+		#endif
 
 			#endregion Set Materials array & combine submeshes into one multimaterial Mesh.
 		}
@@ -283,14 +385,14 @@ namespace LeadTools.Utils
 		{
 			for (int i = 0; i < meshFilters.Length - 1; i++) // Skip first MeshFilter belongs to this GameObject in this loop.
 			{
-				if (!_data.DestroyCombinedChildren)
+				if (!destroyCombinedChildren)
 				{
-					if (_data.DeactivateCombinedChildren)
+					if (deactivateCombinedChildren)
 					{
 						meshFilters[i + 1].gameObject.SetActive(false);
 					}
 
-					if (_data.DeactivateCombinedChildrenMeshRenderers)
+					if (deactivateCombinedChildrenMeshRenderers)
 					{
 						MeshRenderer meshRenderer = meshFilters[i + 1].gameObject.GetComponent<MeshRenderer>();
 
@@ -310,7 +412,7 @@ namespace LeadTools.Utils
 		private void GenerateUV(Mesh combinedMesh)
 		{
 		#if UNITY_EDITOR
-			if (_data.GenerateUVMap)
+			if (generateUVMap)
 			{
 				UnwrapParam unwrapParam = new UnwrapParam();
 				UnwrapParam.SetDefaults(out unwrapParam);
