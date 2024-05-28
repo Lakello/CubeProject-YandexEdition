@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2584019505602342880}
   - component: {fileID: 8678542149854928300}
   - component: {fileID: 8900870723242552060}
+  - component: {fileID: 3055474787083367887}
   m_Layer: 0
   m_Name: Floor Grey 7
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3055474787083367887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914289022060991283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4951994215186227609}
   - component: {fileID: 7182330752825262792}
   - component: {fileID: 1266101917392755070}
+  - component: {fileID: -1843483837861698537}
   m_Layer: 0
   m_Name: Flloor Black 2x2
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-1843483837861698537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883815299329700965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using LeadTools.Extensions;
+using Source.Scripts.LeadTools.Utils;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,66 +15,63 @@ namespace LeadTools.Utils
 		private const int Mesh16BitBufferVertexLimit = 65535;
 
 		[SerializeField]
-		private bool createMultiMaterialMesh = false,
-			combineInactiveChildren = false,
-			deactivateCombinedChildren = true,
-			deactivateCombinedChildrenMeshRenderers = false,
-			generateUVMap = false,
-			destroyCombinedChildren = false;
+		private bool _isCreateMultiMaterialMesh,
+			_isCombineInactiveChildren,
+			_isDeactivateCombinedChildren = true,
+			_isDeactivateCombinedChildrenMeshRenderers,
+			_isGenerateUVMap,
+			_isDestroyCombinedChildren,
+			_isFindByTypeCombineMesh;
 
-		[SerializeField]
-		private string folderPath = "Source/Art/Prefabs/CombinedMeshes/";
 		[SerializeField]
 		[Tooltip("MeshFilters with Meshes which we don't want to combine into one Mesh.")]
-		private MeshFilter[] meshFiltersToSkip = new MeshFilter[0];
+		private MeshFilter[] _meshFiltersToSkip = new MeshFilter[0];
 
-		public bool CreateMultiMaterialMesh { get { return createMultiMaterialMesh; } set { createMultiMaterialMesh = value; } }
-		public bool CombineInactiveChildren { get { return combineInactiveChildren; } set { combineInactiveChildren = value; } }
+		public bool CreateMultiMaterialMesh { get => _isCreateMultiMaterialMesh; set => _isCreateMultiMaterialMesh = value; }
+		public bool CombineInactiveChildren { get => _isCombineInactiveChildren; set => _isCombineInactiveChildren = value; }
+		public bool IsGenerateUVMap { get => _isGenerateUVMap; set => _isGenerateUVMap = value; }
+		public bool IsFindByTypeCombineMesh { get => _isFindByTypeCombineMesh; set => _isFindByTypeCombineMesh = value; }
 		public bool DeactivateCombinedChildren
 		{
-			get { return deactivateCombinedChildren; }
+			get => _isDeactivateCombinedChildren;
 			set
 			{
-				deactivateCombinedChildren = value;
+				_isDeactivateCombinedChildren = value;
 				CheckDeactivateCombinedChildren();
 			}
 		}
-		public bool DeactivateCombinedChildrenMeshRenderers
+		public bool IsDeactivateCombinedChildrenMeshRenderers
 		{
-			get { return deactivateCombinedChildrenMeshRenderers; }
+			get => _isDeactivateCombinedChildrenMeshRenderers;
 			set
 			{
-				deactivateCombinedChildrenMeshRenderers = value;
+				_isDeactivateCombinedChildrenMeshRenderers = value;
 				CheckDeactivateCombinedChildren();
 			}
 		}
-		public bool GenerateUVMap { get { return generateUVMap; } set { generateUVMap = value; } }
-		public bool DestroyCombinedChildren
+		public bool IsDestroyCombinedChildren
 		{
-			get { return destroyCombinedChildren; }
+			get => _isDestroyCombinedChildren;
 			set
 			{
-				destroyCombinedChildren = value;
+				_isDestroyCombinedChildren = value;
 				CheckDestroyCombinedChildren();
 			}
 		}
-		public string FolderPath { get { return folderPath; } set { folderPath = value; } }
 
 
 		private void CheckDeactivateCombinedChildren()
 		{
-			if (deactivateCombinedChildren || deactivateCombinedChildrenMeshRenderers)
-			{
-				destroyCombinedChildren = false;
-			}
+			if (_isDeactivateCombinedChildren || _isDeactivateCombinedChildrenMeshRenderers)
+				_isDestroyCombinedChildren = false;
 		}
 
 		private void CheckDestroyCombinedChildren()
 		{
-			if (destroyCombinedChildren)
+			if (_isDestroyCombinedChildren)
 			{
-				deactivateCombinedChildren = false;
-				deactivateCombinedChildrenMeshRenderers = false;
+				_isDeactivateCombinedChildren = false;
+				_isDeactivateCombinedChildrenMeshRenderers = false;
 			}
 		}
 
@@ -103,14 +102,10 @@ namespace LeadTools.Utils
 
 			#region Combine Meshes into one Mesh:
 
-			if (!createMultiMaterialMesh)
-			{
+			if (!_isCreateMultiMaterialMesh)
 				CombineMeshesWithSingleMaterial(showCreatedMeshInfo);
-			}
 			else
-			{
 				CombineMeshesWithMutliMaterial(showCreatedMeshInfo);
-			}
 
 			#endregion Combine Meshes into one Mesh.
 
@@ -134,18 +129,23 @@ namespace LeadTools.Utils
 		private MeshFilter[] GetMeshFiltersToCombine()
 		{
 			// Get all MeshFilters belongs to this GameObject and its children:
-			MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>(combineInactiveChildren);
+
+			MeshFilter[] meshFilters;
+
+			if (_isFindByTypeCombineMesh)
+				meshFilters = GetComponentsInChildren<CombineMesh>(_isCombineInactiveChildren)
+					.Select(combine => combine.gameObject.GetComponentElseThrow<MeshFilter>()).ToArray();
+			else
+				meshFilters = GetComponentsInChildren<MeshFilter>(_isCombineInactiveChildren);
 
 			// Delete first MeshFilter belongs to this GameObject in meshFiltersToSkip array:
-			meshFiltersToSkip = meshFiltersToSkip.Where((meshFilter) => meshFilter != meshFilters[0]).ToArray();
+			_meshFiltersToSkip = _meshFiltersToSkip.Where((meshFilter) => meshFilter != meshFilters[0]).ToArray();
 
 			// Delete null values in meshFiltersToSkip array:
-			meshFiltersToSkip = meshFiltersToSkip.Where((meshFilter) => meshFilter != null).ToArray();
+			_meshFiltersToSkip = _meshFiltersToSkip.Where((meshFilter) => meshFilter != null).ToArray();
 
-			for (int i = 0; i < meshFiltersToSkip.Length; i++)
-			{
-				meshFilters = meshFilters.Where((meshFilter) => meshFilter != meshFiltersToSkip[i]).ToArray();
-			}
+			for (int i = 0; i < _meshFiltersToSkip.Length; i++)
+				meshFilters = meshFilters.Where((meshFilter) => meshFilter != _meshFiltersToSkip[i]).ToArray();
 
 			return meshFilters;
 		}
@@ -170,7 +170,7 @@ namespace LeadTools.Utils
 			}
 
 			// Set Material from child:
-			MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(combineInactiveChildren);
+			MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(_isCombineInactiveChildren);
 
 			if (meshRenderers.Length >= 2)
 			{
@@ -385,14 +385,14 @@ namespace LeadTools.Utils
 		{
 			for (int i = 0; i < meshFilters.Length - 1; i++) // Skip first MeshFilter belongs to this GameObject in this loop.
 			{
-				if (!destroyCombinedChildren)
+				if (!_isDestroyCombinedChildren)
 				{
-					if (deactivateCombinedChildren)
+					if (_isDeactivateCombinedChildren)
 					{
 						meshFilters[i + 1].gameObject.SetActive(false);
 					}
 
-					if (deactivateCombinedChildrenMeshRenderers)
+					if (_isDeactivateCombinedChildrenMeshRenderers)
 					{
 						MeshRenderer meshRenderer = meshFilters[i + 1].gameObject.GetComponent<MeshRenderer>();
 
@@ -412,7 +412,7 @@ namespace LeadTools.Utils
 		private void GenerateUV(Mesh combinedMesh)
 		{
 		#if UNITY_EDITOR
-			if (generateUVMap)
+			if (_isGenerateUVMap)
 			{
 				UnwrapParam unwrapParam = new UnwrapParam();
 				UnwrapParam.SetDefaults(out unwrapParam);

@@ -11,6 +11,8 @@ namespace Source.Scripts.LeadTools.Utils
 	[CustomEditor(typeof(MeshCombiner))]
 	public class MeshCombinerEditor : Editor
 	{
+		private const string FolderPath = "Source/Art/Prefabs/CombinedMeshes/";
+		
 		public override void OnInspectorGUI()
 		{
 			MeshCombiner meshCombiner = (MeshCombiner)target;
@@ -26,7 +28,7 @@ namespace Source.Scripts.LeadTools.Utils
 
 			#region MeshFiltersToSkip array:
 
-			SerializedProperty meshFiltersToSkip = serializedObject.FindProperty("meshFiltersToSkip");
+			SerializedProperty meshFiltersToSkip = serializedObject.FindProperty("_meshFiltersToSkip");
 			EditorGUI.BeginChangeCheck();
 			EditorGUILayout.PropertyField(meshFiltersToSkip, true);
 
@@ -51,24 +53,27 @@ namespace Source.Scripts.LeadTools.Utils
 
 			meshCombiner.DeactivateCombinedChildren = GUILayout.Toggle(meshCombiner.DeactivateCombinedChildren, "Deactivate Combined Children");
 
-			meshCombiner.DeactivateCombinedChildrenMeshRenderers = GUILayout.Toggle(meshCombiner.DeactivateCombinedChildrenMeshRenderers,
+			meshCombiner.IsDeactivateCombinedChildrenMeshRenderers = GUILayout.Toggle(meshCombiner.IsDeactivateCombinedChildrenMeshRenderers,
 				"Deactivate Combined Children's MeshRenderers");
 
-			meshCombiner.GenerateUVMap = GUILayout.Toggle(meshCombiner.GenerateUVMap, new GUIContent("Generate UV Map", "It is a slow operation that " +
+			meshCombiner.IsGenerateUVMap = GUILayout.Toggle(meshCombiner.IsGenerateUVMap, new GUIContent("Generate UV Map", "It is a slow operation that " +
 				"generates a UV map (required for the lightmap).\n\nCan be used only in the Editor."));
 
 			// The last (6) "Destroy Combined Children" Toggle:
 			GUIStyle style = new GUIStyle(EditorStyles.toggle);
 
-			if (meshCombiner.DestroyCombinedChildren)
+			if (meshCombiner.IsDestroyCombinedChildren)
 			{
 				style.onNormal.textColor = new Color(1, 0.15f, 0);
 			}
 
-			meshCombiner.DestroyCombinedChildren = GUILayout.Toggle(meshCombiner.DestroyCombinedChildren,
+			meshCombiner.IsDestroyCombinedChildren = GUILayout.Toggle(meshCombiner.IsDestroyCombinedChildren,
 				new GUIContent("Destroy Combined Children", "In the editor this operation can NOT be undone!\n\n" +
 					"If you want to bring back destroyed GameObjects, you have to load again the scene without saving."), style);
 
+			meshCombiner.IsFindByTypeCombineMesh = GUILayout.Toggle(meshCombiner.IsFindByTypeCombineMesh,
+				new GUIContent("IsFindByTypeCombineMesh"));
+			
 			#endregion Button which combine Meshes into one Mesh & Toggles with combine options.
 
 			#region Path to the folder where combined Meshes will be saved:
@@ -80,7 +85,7 @@ namespace Source.Scripts.LeadTools.Utils
 			// Create style wherein text color will be red if folder path is not valid:
 			style = new GUIStyle(EditorStyles.textField);
 
-			var folderPath = $"{meshCombiner.FolderPath}/{SceneManager.GetActiveScene().name}";
+			var folderPath = $"{FolderPath}/{SceneManager.GetActiveScene().name}/{meshCombiner.gameObject.name}";
 			
 			bool isValidPath = IsValidPath(folderPath);
 

@@ -15,9 +15,9 @@ namespace CubeProject.LeadTools.Utils
 			combiner.CreateMultiMaterialMesh = _data.CreateMultiMaterialMesh;
 			combiner.CombineInactiveChildren = _data.CombineInactiveChildren;
 			combiner.DeactivateCombinedChildren = _data.DeactivateCombinedChildren;
-			combiner.DeactivateCombinedChildrenMeshRenderers = _data.DeactivateCombinedChildrenMeshRenderers;
-			combiner.GenerateUVMap = _data.GenerateUVMap;
-			combiner.DestroyCombinedChildren = _data.DestroyCombinedChildren;
+			combiner.IsDeactivateCombinedChildrenMeshRenderers = _data.DeactivateCombinedChildrenMeshRenderers;
+			combiner.IsGenerateUVMap = _data.GenerateUVMap;
+			combiner.IsDestroyCombinedChildren = _data.DestroyCombinedChildren;
 			
 			combiner.CombineMeshes(_showCreatedMeshInfo);
 		}
