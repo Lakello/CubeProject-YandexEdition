@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5161972486186845741}
   - component: {fileID: 5593354276767441427}
   - component: {fileID: 9032980222058623722}
-  - component: {fileID: 3223118940712237335}
+  - component: {fileID: 4707246470311806765}
   m_Layer: 0
   m_Name: Plane Black
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3223118940712237335
+--- !u!114 &4707246470311806765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +116,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3416705896654526564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 5593354276767441427}
+  _filter: {fileID: 5161972486186845741}
+  _mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}

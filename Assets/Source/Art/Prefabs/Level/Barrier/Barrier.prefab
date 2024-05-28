@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3192140717385135076}
   - component: {fileID: 3099906590710812656}
   - component: {fileID: 3836891873838255397}
-  - component: {fileID: 6960214382281633894}
+  - component: {fileID: 1425202941009676383}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -151,7 +151,7 @@ MonoBehaviour:
   _isPlayInStart: 0
   _isListenAudioSubject: 1
   _isThisAudioSubject: 1
---- !u!114 &6960214382281633894
+--- !u!114 &1425202941009676383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,9 +160,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 258681059356485551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3546461732968259130}
+  _filter: {fileID: 5364842439365772536}
+  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4952277757752314386
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,14 +445,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8079251334420953981}
+      addedObject: {fileID: 2752021949172960855}
   m_SourcePrefab: {fileID: 100100000, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+--- !u!23 &832816406601895844 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+  m_PrefabInstance: {fileID: 2039945613339857696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192959583940783729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
   m_PrefabInstance: {fileID: 2039945613339857696}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8079251334420953981
+--- !u!114 &2752021949172960855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,12 +466,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1192959583940783729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 832816406601895844}
+  _filter: {fileID: 3200429111848696686}
+  _mesh: {fileID: 8795237490789243078, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
 --- !u!4 &2001268149286106315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+  m_PrefabInstance: {fileID: 2039945613339857696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3200429111848696686 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5754084199372789682, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
   m_PrefabInstance: {fileID: 2039945613339857696}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7416777348431612211
@@ -524,8 +565,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4274431695494611458}
+      addedObject: {fileID: 4519304790482773572}
   m_SourcePrefab: {fileID: 100100000, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+--- !u!33 &6253473877219631485 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5754084199372789682, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+  m_PrefabInstance: {fileID: 7416777348431612211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7018603621014269656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
@@ -536,7 +582,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
   m_PrefabInstance: {fileID: 7416777348431612211}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4274431695494611458
+--- !u!114 &4519304790482773572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,6 +591,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7650707992201081954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 8154956874476459447}
+  _filter: {fileID: 6253473877219631485}
+  _mesh: {fileID: 8795237490789243078, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+--- !u!23 &8154956874476459447 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c4f04971bc3ccd84981faad0bac55e1a, type: 3}
+  m_PrefabInstance: {fileID: 7416777348431612211}
+  m_PrefabAsset: {fileID: 0}

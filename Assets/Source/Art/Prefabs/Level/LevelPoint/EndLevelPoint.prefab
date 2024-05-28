@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5891526897059980140
 Transform:
@@ -68,7 +68,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7322454604337701051
 Transform:
@@ -121,7 +121,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8555235705945358400
 Transform:
@@ -175,7 +175,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1144610718316868739
 Transform:
@@ -243,7 +243,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7971943483917051194
 Transform:
@@ -296,7 +296,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1343679779951631108
 Transform:
@@ -348,7 +348,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &192185902523530289
 Transform:
@@ -387,7 +387,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2191789911874926799
 Transform:
@@ -440,7 +440,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3995169981896826876
 Transform:
@@ -494,6 +494,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -8961359253771211100, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8758912196568927911, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -542,6 +546,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbfb2853e10cf9d429120ee4e897f22b, type: 2}
+    - target: {fileID: -6848112479460707737, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -5083280910966649308, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -554,10 +562,38 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbfb2853e10cf9d429120ee4e897f22b, type: 2}
+    - target: {fileID: -3690676483951470995, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3572083470046705954, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2943028842056852974, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2384658835620542840, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -1281700104397665434, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -1063203228461421988, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -929654680602498317, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbfb2853e10cf9d429120ee4e897f22b, type: 2}
+    - target: {fileID: -824832095484323658, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -521320154150234421, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -570,10 +606,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lift (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1412913400290865713, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbfb2853e10cf9d429120ee4e897f22b, type: 2}
+    - target: {fileID: 1565341015857088566, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1774799538285460244, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -590,10 +634,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vint
       objectReference: {fileID: 0}
+    - target: {fileID: 5511774174995466309, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577938150511905068, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219161318787881635, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510112150598826555, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810718778614912672, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874717877171951767, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964157543444745748, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8012127091042276642, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbfb2853e10cf9d429120ee4e897f22b, type: 2}
+    - target: {fileID: 8208229975827745842, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9093315653944822247, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -604,34 +680,34 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -3690676483951470995, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6929588242029465969}
+      addedObject: {fileID: 6363728318588458591}
     - targetCorrespondingSourceObject: {fileID: -2384658835620542840, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 31629278587819936}
+      addedObject: {fileID: 7615888392400916126}
     - targetCorrespondingSourceObject: {fileID: 7964157543444745748, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8978081688362656513}
+      addedObject: {fileID: 4185702697538113182}
     - targetCorrespondingSourceObject: {fileID: 6510112150598826555, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4993428034701078729}
+      addedObject: {fileID: 6333849209203661072}
     - targetCorrespondingSourceObject: {fileID: 5511774174995466309, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7140478462729512861}
+      addedObject: {fileID: 2392022046313665126}
     - targetCorrespondingSourceObject: {fileID: 7874717877171951767, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6736230968389949182}
+      addedObject: {fileID: 5241285882889824291}
     - targetCorrespondingSourceObject: {fileID: -1281700104397665434, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 648345046531445231}
+      addedObject: {fileID: 2284380084230861031}
     - targetCorrespondingSourceObject: {fileID: -824832095484323658, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8948283735126470776}
+      addedObject: {fileID: 8273512643399134819}
     - targetCorrespondingSourceObject: {fileID: 6219161318787881635, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6197510383036818077}
+      addedObject: {fileID: 634857675144820679}
     - targetCorrespondingSourceObject: {fileID: 5577938150511905068, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 78321197567049052}
+      addedObject: {fileID: 6347900826416220797}
     - targetCorrespondingSourceObject: {fileID: -8961359253771211100, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4300148179980962384}
@@ -649,35 +725,46 @@ PrefabInstance:
       addedObject: {fileID: 6440579940252209967}
     - targetCorrespondingSourceObject: {fileID: -8961359253771211100, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1032188866449652115}
+      addedObject: {fileID: 3527179758410176347}
     - targetCorrespondingSourceObject: {fileID: 4767400413853537203, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7630820747011866014}
+    - targetCorrespondingSourceObject: {fileID: 4767400413853537203, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8194316208537210834}
+    - targetCorrespondingSourceObject: {fileID: 4767400413853537203, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4260436497347308452}
     - targetCorrespondingSourceObject: {fileID: -1063203228461421988, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1655317427866007280}
+      addedObject: {fileID: 8381108407871565863}
     - targetCorrespondingSourceObject: {fileID: -2943028842056852974, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8885897547182781297}
+      addedObject: {fileID: 5065240236411035089}
     - targetCorrespondingSourceObject: {fileID: 7810718778614912672, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8570099358096634604}
+      addedObject: {fileID: 9020254810473402897}
     - targetCorrespondingSourceObject: {fileID: -6848112479460707737, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5395582360227447815}
+      addedObject: {fileID: 7915084145580092007}
     - targetCorrespondingSourceObject: {fileID: -3572083470046705954, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6847192679851684904}
+      addedObject: {fileID: 4507896860188086165}
     - targetCorrespondingSourceObject: {fileID: 1565341015857088566, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1312762056289216735}
+      addedObject: {fileID: 6219795687812844550}
   m_SourcePrefab: {fileID: 100100000, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!33 &121542713758275579 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 1683364268519628334, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &237135839428674019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1565341015857088566, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1312762056289216735
+--- !u!114 &6219795687812844550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -686,12 +773,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 237135839428674019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 389809677150600164}
+  _filter: {fileID: 1465456117890786563}
+  _mesh: {fileID: -3779470537144863991, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &389809677150600164 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1412913400290865713, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &493814548303597864 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8058860437327472387, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &550303909057050060 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 1247601461197634585, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &609842021029753909 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7023974396876390944, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1031911800580600513 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1774799538285460244, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1189332201301866636 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8758912196568927911, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1259307960972521022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &1465456117890786563 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -9032791464590545706, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1536175706665740145 stripped
@@ -795,7 +933,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.008175952, y: 0.008175952, z: 1.7480348e-15}
   m_Center: {x: -0.0072, y: 0, z: 0}
---- !u!114 &1032188866449652115
+--- !u!114 &3527179758410176347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -804,15 +942,86 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536175706665740145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3483690492767758434}
+  _filter: {fileID: 4477882032545208570}
+  _mesh: {fileID: -7196802604745430461, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!33 &1597435265358301725 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 60928884504708040, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1685820044843255142 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -9108969019104932685, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &1912416894496218875 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 898760175262684974, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &2047820454323763938 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 763392349456102199, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &2374221253957499746 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5331803252566887753, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2865303333930276554 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5678803122155954401, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3086115579749284624 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4334531378057769669, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3245127176340042119 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -4901520103849510830, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3424919792537356273 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5083280910966649308, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3483690492767758434 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2786534777698132407, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3837459435256351756 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6651208000477936167, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3892747723140037554 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6848112479460707737, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5395582360227447815
+--- !u!114 &7915084145580092007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -821,15 +1030,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 3892747723140037554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 7343822227919561510}
+  _filter: {fileID: 121542713758275579}
+  _mesh: {fileID: -3779470537144863991, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!33 &4477882032545208570 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6280290099886436049, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &4634109641770414215 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 6250124081331173714, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4665072610983826294 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6219161318787881635, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6197510383036818077
+--- !u!114 &634857675144820679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,15 +1073,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4665072610983826294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3424919792537356273}
+  _filter: {fileID: 8650632239570917364}
+  _mesh: {fileID: 1430590514721885144, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &4745402343545312199 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2943028842056852974, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8885897547182781297
+--- !u!114 &5065240236411035089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -855,15 +1106,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4745402343545312199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 1189332201301866636}
+  _filter: {fileID: 9201421878203310127}
+  _mesh: {fileID: 7320337711353344170, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &5193971957740900189 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2384658835620542840, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &31629278587819936
+--- !u!114 &7615888392400916126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -872,15 +1139,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 5193971957740900189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 8774005713844313335}
+  _filter: {fileID: 3837459435256351756}
+  _mesh: {fileID: 6483373102336730412, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &5524751347067286510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6510112150598826555, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4993428034701078729
+--- !u!114 &6333849209203661072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -889,9 +1172,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5524751347067286510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 7940033620921835294}
+  _filter: {fileID: 8433989335173442849}
+  _mesh: {fileID: 1430590514721885144, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!33 &6061894756180550851 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -4408072134247961322, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6114333569694407270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4767400413853537203, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
@@ -912,12 +1216,65 @@ MonoBehaviour:
   _speed: 20
   _axis:
     _value: {x: 0, y: 0, z: 1}
+--- !u!114 &8194316208537210834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114333569694407270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 609842021029753909}
+  _filter: {fileID: 3245127176340042119}
+  _mesh: {fileID: 6894428203817054813, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!114 &4260436497347308452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114333569694407270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackingTarget>k__BackingField: 0
+  <DisableWhenIdle>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 5
+  <WakeUpWhenCollision>k__BackingField: 1
+  <TrackingDestroy>k__BackingField: 1
+  _source: {fileID: 8194316208537210834}
+  _isDynamicObject: 1
+  _rigidbody: {fileID: 0}
+--- !u!23 &6216510951453636629 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4560396753889398336, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6385582639679115019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3572083470046705954, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6847192679851684904
+--- !u!114 &4507896860188086165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,15 +1283,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6385582639679115019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 1031911800580600513}
+  _filter: {fileID: 6061894756180550851}
+  _mesh: {fileID: -3779470537144863991, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &6501889292141633464 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3690676483951470995, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6929588242029465969
+--- !u!114 &6363728318588458591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -943,15 +1316,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6501889292141633464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 6216510951453636629}
+  _filter: {fileID: 1912416894496218875}
+  _mesh: {fileID: 7722797094005017668, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &6525309035203068304 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5511774174995466309, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7140478462729512861
+--- !u!114 &2392022046313665126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -960,15 +1349,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6525309035203068304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 7548805926875725874}
+  _filter: {fileID: 1597435265358301725}
+  _mesh: {fileID: 3635512377249483938, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &6601043022555070713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5577938150511905068, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &78321197567049052
+--- !u!114 &6347900826416220797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -977,15 +1382,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 6601043022555070713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 6889535173412441476}
+  _filter: {fileID: 7779326064095784425}
+  _mesh: {fileID: 1430590514721885144, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &6889535173412441476 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3931704964238998447, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7097346467168981347 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -824832095484323658, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8948283735126470776
+--- !u!114 &8273512643399134819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -994,15 +1420,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7097346467168981347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 1685820044843255142}
+  _filter: {fileID: 2374221253957499746}
+  _mesh: {fileID: -2274429698735732484, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &7343822227919561510 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -929654680602498317, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7479901589712003977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1063203228461421988, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1655317427866007280
+--- !u!114 &8381108407871565863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1011,15 +1458,71 @@ MonoBehaviour:
   m_GameObject: {fileID: 7479901589712003977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 7662585693462507413}
+  _filter: {fileID: 2047820454323763938}
+  _mesh: {fileID: -8302102485596996044, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &7548805926875725874 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9093315653944822247, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7662585693462507413 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -241587437493983680, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &7750182024754310221 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -180880747539536488, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &7779326064095784425 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -214207676459637700, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7940033620921835294 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -521320154150234421, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8110284580397307765 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -1837811362940379488, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8433989335173442849 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 7203718757864826100, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8650632239570917364 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -1225413791345189343, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8679865303249602497 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7964157543444745748, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8978081688362656513
+--- !u!114 &4185702697538113182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1028,15 +1531,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8679865303249602497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 493814548303597864}
+  _filter: {fileID: 8110284580397307765}
+  _mesh: {fileID: -2005475787124032521, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &8702414759747650227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1281700104397665434, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &648345046531445231
+--- !u!114 &2284380084230861031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1045,15 +1564,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 8702414759747650227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3086115579749284624}
+  _filter: {fileID: 7750182024754310221}
+  _mesh: {fileID: -3578723373924186483, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &8774005713844313335 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8012127091042276642, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8833375051995373429 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7810718778614912672, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8570099358096634604
+--- !u!114 &9020254810473402897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1062,15 +1602,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8833375051995373429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 2865303333930276554}
+  _filter: {fileID: 550303909057050060}
+  _mesh: {fileID: 7004783832934855251, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
 --- !u!1 &8915951581693432130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7874717877171951767, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
   m_PrefabInstance: {fileID: 1653749696950946261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6736230968389949182
+--- !u!114 &5241285882889824291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1079,9 +1635,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8915951581693432130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 9016696064017436783}
+  _filter: {fileID: 4634109641770414215}
+  _mesh: {fileID: -6138787480799432094, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+--- !u!23 &9016696064017436783 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1453833809651312198, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &9201421878203310127 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 7584423391776156154, guid: 4d8c32b7b21e95a4cb66d2cb53fc2bc5, type: 3}
+  m_PrefabInstance: {fileID: 1653749696950946261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4195030705772054260
 PrefabInstance:
   m_ObjectHideFlags: 0

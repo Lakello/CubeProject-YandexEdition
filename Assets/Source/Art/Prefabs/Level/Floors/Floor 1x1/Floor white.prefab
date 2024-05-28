@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6504774522547922205}
   - component: {fileID: 2784708483046417318}
   - component: {fileID: 3834839401534656949}
-  - component: {fileID: 1504360700636762346}
   m_Layer: 7
   m_Name: Floor white
   m_TagString: Untagged
@@ -68,14 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852211f299924c068c36774a5b828f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!33 &1504360700636762346
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4470447151770887959}
-  m_Mesh: {fileID: 0}
 --- !u!1 &9078606903052849093
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +79,7 @@ GameObject:
   - component: {fileID: 7379777920212039172}
   - component: {fileID: 4821234072046706142}
   - component: {fileID: 351406365323695860}
-  - component: {fileID: 72004939349796364}
+  - component: {fileID: 3965776662455290141}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -183,7 +174,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &72004939349796364
+--- !u!114 &3965776662455290141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,6 +183,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 9078606903052849093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 4821234072046706142}
+  _filter: {fileID: 7379777920212039172}
+  _mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}

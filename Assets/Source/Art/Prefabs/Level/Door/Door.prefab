@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 5041584122810204208}
   - component: {fileID: 4688237898090167411}
   - component: {fileID: 5849428256356763253}
+  - component: {fileID: 9107008628728748186}
+  - component: {fileID: 2215631869241750454}
   m_Layer: 9
   m_Name: lp_door_right_001
   m_TagString: Untagged
@@ -247,6 +249,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1465992, y: 2.0412729, z: 0.10628157}
   m_Center: {x: -0.5732992, y: 1.0593961, z: -0.0000018402939}
+--- !u!114 &9107008628728748186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620357212753245565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 5041584122810204208}
+  _filter: {fileID: 8829252192351077742}
+  _mesh: {fileID: -6652089540358105859, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
+--- !u!114 &2215631869241750454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620357212753245565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackingTarget>k__BackingField: 0
+  <DisableWhenIdle>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 5
+  <WakeUpWhenCollision>k__BackingField: 1
+  <TrackingDestroy>k__BackingField: 1
+  _source: {fileID: 9107008628728748186}
+  _isDynamicObject: 1
+  _rigidbody: {fileID: 0}
 --- !u!1 &1849078859433742530
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +344,8 @@ GameObject:
   - component: {fileID: 4111129564477162786}
   - component: {fileID: 5623334822813754358}
   - component: {fileID: 7850451432652765322}
+  - component: {fileID: 2371642185320118543}
+  - component: {fileID: 8601968920344684500}
   m_Layer: 9
   m_Name: lp_door_left_001
   m_TagString: Untagged
@@ -408,6 +459,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1465992, y: 2.0412729, z: 0.1062814}
   m_Center: {x: 0.57329947, y: 1.0593961, z: 0.0000017546122}
+--- !u!114 &2371642185320118543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984007893310658854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 4111129564477162786}
+  _filter: {fileID: 1963417712616420308}
+  _mesh: {fileID: 5918104900062866586, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
+--- !u!114 &8601968920344684500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984007893310658854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackingTarget>k__BackingField: 0
+  <DisableWhenIdle>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 5
+  <WakeUpWhenCollision>k__BackingField: 1
+  <TrackingDestroy>k__BackingField: 1
+  _source: {fileID: 2371642185320118543}
+  _isDynamicObject: 1
+  _rigidbody: {fileID: 0}
 --- !u!1 &2225962599922835447
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +519,7 @@ GameObject:
   - component: {fileID: 3055715612362275676}
   - component: {fileID: 6043641866858485538}
   - component: {fileID: 2490697368257341916}
-  - component: {fileID: 4605801708503024966}
+  - component: {fileID: 100198150980562387}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -536,7 +634,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7677657, y: 2.5, z: 0.17249423}
   m_Center: {x: 1.1144402, y: 1.25, z: 1.6262965e-15}
---- !u!114 &4605801708503024966
+--- !u!114 &100198150980562387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,9 +643,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2225962599922835447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3055715612362275676}
+  _filter: {fileID: 6876460907412301699}
+  _mesh: {fileID: -5495902117074765545, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
 --- !u!1 &2481283281530561572
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +740,8 @@ GameObject:
   - component: {fileID: 6317054691828897877}
   - component: {fileID: 7044369715578528862}
   - component: {fileID: 7878046002356608371}
+  - component: {fileID: 6205953103465121732}
+  - component: {fileID: 435510106524962879}
   m_Layer: 0
   m_Name: lp_center_mini_right_001
   m_TagString: Untagged
@@ -698,6 +814,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6205953103465121732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464875230642120675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 7878046002356608371}
+  _filter: {fileID: 7044369715578528862}
+  _mesh: {fileID: -8502518873217233432, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
+--- !u!114 &435510106524962879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464875230642120675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackingTarget>k__BackingField: 0
+  <DisableWhenIdle>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 5
+  <WakeUpWhenCollision>k__BackingField: 1
+  <TrackingDestroy>k__BackingField: 1
+  _source: {fileID: 6205953103465121732}
+  _isDynamicObject: 1
+  _rigidbody: {fileID: 0}
 --- !u!1 &4946579841585998349
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +872,7 @@ GameObject:
   - component: {fileID: 7543642830855728899}
   - component: {fileID: 2852195160904223046}
   - component: {fileID: 1150157883180510494}
-  - component: {fileID: 5250054596553825102}
+  - component: {fileID: 7201628558467706697}
   m_Layer: 0
   m_Name: lp_circle_mid_001
   m_TagString: Untagged
@@ -782,7 +945,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5250054596553825102
+--- !u!114 &7201628558467706697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -791,9 +954,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4946579841585998349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d11205004040c9921fe77fec600b8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6e230b19e30394ea5f776b8d7f86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 1
+  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
+    in import settings
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 1150157883180510494}
+  _filter: {fileID: 2852195160904223046}
+  _mesh: {fileID: 5783231408780639647, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
 --- !u!1 &6166079963985685801
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +1042,8 @@ GameObject:
   - component: {fileID: 6317735143439605578}
   - component: {fileID: 1520163328656553026}
   - component: {fileID: 3521008151091353389}
+  - component: {fileID: 6932962414349620464}
+  - component: {fileID: 7536106968417961689}
   m_Layer: 0
   m_Name: lp_center_mini_left_001
   m_TagString: Untagged
@@ -935,6 +1116,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6932962414349620464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455502080135993646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CombineStatus>k__BackingField: 0
+  <ControllerIndex>k__BackingField: 0
+  <CombineAtStart>k__BackingField: 1
+  <CombineErrorStrategy>k__BackingField: 0
+  <AfterCombineAction>k__BackingField: 0
+  <IsIncompatible>k__BackingField: 0
+  <IncompatibilityReason>k__BackingField: 
+  <HasCombineErrors>k__BackingField: 0
+  <CombineErrors>k__BackingField: 
+  onCombineFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 3521008151091353389}
+  _filter: {fileID: 1520163328656553026}
+  _mesh: {fileID: 2877197271300345252, guid: e75a3000b4957fd4d982832d017c7a4a, type: 3}
+--- !u!114 &7536106968417961689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455502080135993646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackingTarget>k__BackingField: 0
+  <DisableWhenIdle>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 5
+  <WakeUpWhenCollision>k__BackingField: 1
+  <TrackingDestroy>k__BackingField: 1
+  _source: {fileID: 6932962414349620464}
+  _isDynamicObject: 1
+  _rigidbody: {fileID: 0}
 --- !u!1 &8504790802372365921
 GameObject:
   m_ObjectHideFlags: 0
