@@ -12,22 +12,15 @@ namespace LeadTools.Other
 		[SerializeField] [Range(-10f, 10f)] private float _intensityDischargedColor = 1;
 		[SerializeField] private Color _chargedColor;
 		[SerializeField] private Color _dischargedColor;
-		[SerializeField] private MeshRenderer[] _bloomMeshRenderers;
+		[SerializeField] private MeshRenderer[] _meshRenderers;
 
 		private Func<bool> _isChanged;
 
-		public float IntensityChargedColor => _intensityChargedColor;
+		public void Init(MeshRenderer[] renderers) =>
+			_meshRenderers = renderers;
 
-		public float IntensityDischargedColor => _intensityDischargedColor;
-
-		public Color ChargedColor => _chargedColor;
-
-		public Color DischargedColor => _dischargedColor;
-
-		public void Init(ShaderProperty propertyName)
-		{
+		public void Init(ShaderProperty propertyName) =>
 			_propertyName = propertyName;
-		}
 
 		public void Init(Func<bool> isCharged) =>
 			_isChanged = isCharged;
@@ -52,10 +45,8 @@ namespace LeadTools.Other
 
 		private void SetColor(Color targetColor)
 		{
-			foreach (var meshRenderer in _bloomMeshRenderers)
-			{
+			foreach (var meshRenderer in _meshRenderers)
 				meshRenderer.material.SetColor(_propertyName.GetCurrentName(), targetColor);
-			}
 		}
 	}
 }

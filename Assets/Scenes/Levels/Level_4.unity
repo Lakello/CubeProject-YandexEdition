@@ -16001,8 +16001,8 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 1550534249}
+    _meshRenderers:
+    - {fileID: 1531572022}
 --- !u!114 &1531572020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16411,11 +16411,6 @@ PrefabInstance:
 --- !u!4 &1550534247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
-  m_PrefabInstance: {fileID: 1550534246}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1550534249 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5944376803153783574, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
   m_PrefabInstance: {fileID: 1550534246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1550898703
@@ -23143,7 +23138,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 2091118732}
 --- !u!114 &2091118730
 MonoBehaviour:

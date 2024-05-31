@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.015990026, g: 0.018989522, b: 0.022011, a: 1}
+  m_IndirectSpecularColor: {r: 0.0159084, g: 0.018896267, b: 0.021908788, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17100,7 +17100,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 815580014}
 --- !u!114 &815580017
 MonoBehaviour:
@@ -17531,7 +17531,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 822927931}
 --- !u!114 &822927929
 MonoBehaviour:

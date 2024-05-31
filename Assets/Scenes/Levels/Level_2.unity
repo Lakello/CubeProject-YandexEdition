@@ -2715,7 +2715,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 241896126}
 --- !u!114 &241896124
 MonoBehaviour:
@@ -12756,7 +12756,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 1193482625}
 --- !u!114 &1193482623
 MonoBehaviour:

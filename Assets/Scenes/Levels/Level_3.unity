@@ -2903,8 +2903,8 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 436735898}
+    _meshRenderers:
+    - {fileID: 173300626}
 --- !u!114 &173300624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7137,11 +7137,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 251090601231362276, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
   m_PrefabInstance: {fileID: 436735896}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &436735898 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5944376803153783574, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
-  m_PrefabInstance: {fileID: 436735896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &438807653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10831,11 +10826,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
   m_PrefabInstance: {fileID: 694958092}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &694958094 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6424697464441908748, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
-  m_PrefabInstance: {fileID: 694958092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &696055852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12413,8 +12403,8 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 694958094}
+    _meshRenderers:
+    - {fileID: 791450911}
 --- !u!114 &791450909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15295,7 +15285,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 946838597}
 --- !u!114 &946838595
 MonoBehaviour:
