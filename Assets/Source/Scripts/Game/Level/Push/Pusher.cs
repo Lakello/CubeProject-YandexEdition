@@ -14,7 +14,7 @@ namespace CubeProject.Tips
 	public class Pusher : MonoBehaviour
 	{
 		[SerializeField] private bool _isAnyDirection;
-		[SerializeField] [ShowIf(nameof(IsConcreteDirection))] private DirectionType _direction;
+		[SerializeField] [HideIf(nameof(_isAnyDirection))] private DirectionType _direction;
 
 		private PushStateHandler _stateHandler;
 		private IPushHandler _pushHandler;
@@ -24,8 +24,6 @@ namespace CubeProject.Tips
 		private Vector3 _currentDirection;
 
 		public event Action Pushed;
-
-		private bool IsConcreteDirection => _isAnyDirection is false;
 
 		[Inject]
 		private void Inject(CubeComponent cubeComponent, PushStateHandler stateHandler, MaskHolder holder)

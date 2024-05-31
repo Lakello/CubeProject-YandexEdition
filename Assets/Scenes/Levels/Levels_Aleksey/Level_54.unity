@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0159084, g: 0.018896267, b: 0.021908788, a: 1}
+  m_IndirectSpecularColor: {r: 0.015990026, g: 0.018989522, b: 0.022011, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -431,7 +435,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1919,6 +1925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -1927,7 +1937,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 883594380}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1997,7 +2009,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2625,7 +2643,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3059,6 +3083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -3067,7 +3095,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 1219148771}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5898,6 +5928,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4247386288011538356, guid: e8731caade4e3c64ab9724c47c6b4f8d, type: 3}
   m_PrefabInstance: {fileID: 429107731}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &431714466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 431714468}
+  - component: {fileID: 431714467}
+  m_Layer: 0
+  m_Name: RuntimeMeshFusion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &431714467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431714466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5758013cb593c45ba2ba6f765aa4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _drawGizmo: 0
+  _cellSize: 80
+  _maxVerticesPerObject: 65535
+  _meshType: 0
+  _moveMethod: 1
+--- !u!4 &431714468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431714466}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &447317760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7682,6 +7762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -7730,7 +7814,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8048,7 +8134,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9818,7 +9910,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10818,7 +10916,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13249,6 +13353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -13257,7 +13365,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 883594380}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13338,6 +13448,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003733383}
+  - component: {fileID: 1003733385}
+  - component: {fileID: 1003733384}
+  - component: {fileID: 1003733388}
+  - component: {fileID: 1003733387}
+  - component: {fileID: 1003733386}
   m_Layer: 0
   m_Name: Barrier_2
   m_TagString: Untagged
@@ -13367,6 +13482,112 @@ Transform:
   - {fileID: 1388878413}
   m_Father: {fileID: 1653056657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1003733384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003733382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
+    _meshRenderers:
+    - {fileID: 1003733387}
+--- !u!114 &1003733385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003733382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe469c064774f608969cc8cbc295c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAlwaysCharged: 0
+  _needAllCharge: 0
+  _gameObjectsOnChargeable:
+  - {fileID: 905095951}
+--- !u!114 &1003733386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003733382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f148df9084610449a23506580ec083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isCreateMultiMaterialMesh: 0
+  _isCombineInactiveChildren: 0
+  _isDeactivateCombinedChildren: 1
+  _isDeactivateCombinedChildrenMeshRenderers: 0
+  _isGenerateUVMap: 0
+  _isDestroyCombinedChildren: 0
+  _isFindByTypeCombineMesh: 0
+  _meshFiltersToSkip: []
+--- !u!23 &1003733387
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003733382}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 389e56e7b8182494bbd6e674253f31be, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1003733388
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003733382}
+  m_Mesh: {fileID: 4300000, guid: 632da8f60eee60d40894924f69ab9dc2, type: 2}
 --- !u!1001 &1004000142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14000,6 +14221,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1071380901}
+  - component: {fileID: 1071380903}
+  - component: {fileID: 1071380902}
+  - component: {fileID: 1071380906}
+  - component: {fileID: 1071380905}
+  - component: {fileID: 1071380904}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -14029,6 +14255,112 @@ Transform:
   - {fileID: 629539340}
   m_Father: {fileID: 1653056657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1071380902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071380900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
+    _meshRenderers:
+    - {fileID: 1071380905}
+--- !u!114 &1071380903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071380900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe469c064774f608969cc8cbc295c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAlwaysCharged: 0
+  _needAllCharge: 0
+  _gameObjectsOnChargeable:
+  - {fileID: 1219148771}
+--- !u!114 &1071380904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071380900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f148df9084610449a23506580ec083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isCreateMultiMaterialMesh: 0
+  _isCombineInactiveChildren: 0
+  _isDeactivateCombinedChildren: 1
+  _isDeactivateCombinedChildrenMeshRenderers: 0
+  _isGenerateUVMap: 0
+  _isDestroyCombinedChildren: 0
+  _isFindByTypeCombineMesh: 0
+  _meshFiltersToSkip: []
+--- !u!23 &1071380905
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071380900}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 389e56e7b8182494bbd6e674253f31be, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1071380906
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071380900}
+  m_Mesh: {fileID: 4300000, guid: 595b2948a88fc9846a2e4fe453a05753, type: 2}
 --- !u!1001 &1080647897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14337,7 +14669,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15205,6 +15543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -15213,7 +15555,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 905095951}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16112,6 +16456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -16160,7 +16508,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16354,7 +16704,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16375,6 +16731,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
@@ -16424,7 +16784,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16924,6 +17286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -16932,7 +17298,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 883594380}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17568,6 +17936,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -17576,7 +17948,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 905095951}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18080,7 +18454,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18336,7 +18716,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18479,6 +18865,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1403484128}
+  - component: {fileID: 1403484133}
+  - component: {fileID: 1403484132}
+  - component: {fileID: 1403484131}
+  - component: {fileID: 1403484130}
+  - component: {fileID: 1403484129}
   m_Layer: 0
   m_Name: Barrier_1
   m_TagString: Untagged
@@ -18508,6 +18899,112 @@ Transform:
   - {fileID: 1693127374}
   m_Father: {fileID: 1653056657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1403484129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403484127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f148df9084610449a23506580ec083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isCreateMultiMaterialMesh: 0
+  _isCombineInactiveChildren: 0
+  _isDeactivateCombinedChildren: 1
+  _isDeactivateCombinedChildrenMeshRenderers: 0
+  _isGenerateUVMap: 0
+  _isDestroyCombinedChildren: 0
+  _isFindByTypeCombineMesh: 0
+  _meshFiltersToSkip: []
+--- !u!23 &1403484130
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403484127}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 389e56e7b8182494bbd6e674253f31be, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1403484131
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403484127}
+  m_Mesh: {fileID: 4300000, guid: 447f898ac9fd38f408cd33ae3dcf2fbe, type: 2}
+--- !u!114 &1403484132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403484127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
+    _meshRenderers:
+    - {fileID: 1403484130}
+--- !u!114 &1403484133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403484127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe469c064774f608969cc8cbc295c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAlwaysCharged: 0
+  _needAllCharge: 0
+  _gameObjectsOnChargeable:
+  - {fileID: 1685213497}
 --- !u!1001 &1407279397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18746,6 +19243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -18754,7 +19255,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 1685213497}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19692,7 +20195,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19948,7 +20457,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19969,6 +20484,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H --
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
@@ -20018,7 +20537,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20288,6 +20809,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -20336,7 +20861,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20417,6 +20944,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540971891}
+  - component: {fileID: 1540971893}
+  - component: {fileID: 1540971892}
+  - component: {fileID: 1540971896}
+  - component: {fileID: 1540971895}
+  - component: {fileID: 1540971894}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
@@ -20454,6 +20986,112 @@ Transform:
   - {fileID: 1534365088}
   m_Father: {fileID: 1653056657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1540971892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540971890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changers:
+  - _propertyName: 1
+    _intensityChargedColor: 4
+    _intensityDischargedColor: 1
+    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
+    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
+    _meshRenderers:
+    - {fileID: 1540971895}
+--- !u!114 &1540971893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540971890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe469c064774f608969cc8cbc295c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAlwaysCharged: 0
+  _needAllCharge: 0
+  _gameObjectsOnChargeable:
+  - {fileID: 883594380}
+--- !u!114 &1540971894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540971890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f148df9084610449a23506580ec083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isCreateMultiMaterialMesh: 0
+  _isCombineInactiveChildren: 0
+  _isDeactivateCombinedChildren: 1
+  _isDeactivateCombinedChildrenMeshRenderers: 0
+  _isGenerateUVMap: 0
+  _isDestroyCombinedChildren: 0
+  _isFindByTypeCombineMesh: 0
+  _meshFiltersToSkip: []
+--- !u!23 &1540971895
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540971890}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 389e56e7b8182494bbd6e674253f31be, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1540971896
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540971890}
+  m_Mesh: {fileID: 4300000, guid: db430d5c9a2516f4095011e25f90df39, type: 2}
 --- !u!1001 &1556499016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20576,7 +21214,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20948,6 +21592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -20956,7 +21604,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 1219148771}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21274,7 +21924,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21406,7 +22062,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23283,7 +23945,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23605,7 +24273,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23799,7 +24473,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24357,6 +25037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -24365,7 +25049,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 1685213497}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26127,6 +26813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -26175,7 +26865,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27251,6 +27943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -27299,7 +27995,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4339891797002729612, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+    - {fileID: -3421773609809536297, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28799,7 +29497,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4216199807210328513, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+    - {fileID: 5364902955096730923, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28861,6 +29565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: _gameObjectsOnChargeable.Array.size
       value: 1
@@ -28869,7 +29577,9 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 883594380}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8674834727944895276, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+    - {fileID: 4891566701256205372, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29293,3 +30003,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 954013410}
   - {fileID: 1653056655}
+  - {fileID: 431714468}

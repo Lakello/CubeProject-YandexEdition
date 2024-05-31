@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 2100000, guid: 8834d0e7e36f7434297bcfc128762458, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHABLEND_ON
   - _EMISSION
   - _METALLICGLOSSMAP
   - _NORMALMAP
@@ -21,8 +20,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:

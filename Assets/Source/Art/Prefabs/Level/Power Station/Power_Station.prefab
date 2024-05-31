@@ -342,7 +342,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 5746893764314186878}
     - {fileID: 115520782672248439}
 --- !u!114 &4451635043677225209

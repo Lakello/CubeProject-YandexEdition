@@ -189,7 +189,7 @@ MonoBehaviour:
     _intensityDischargedColor: 1
     _chargedColor: {r: 1, g: 1, b: 0, a: 1}
     _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
+    _meshRenderers:
     - {fileID: 6902073969515545891}
   _enterDelay: 0.1
   _exitDelay: 0.5
