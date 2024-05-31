@@ -31,7 +31,6 @@ namespace CubeProject.Game
 
 		private void OnDisable() =>
 			_chargeConsumer.ChargeChanged -= OnChargeChanged;
-
 		private void OnChargeChanged()
 		{
 			if (_chargeConsumer.IsCharged)
