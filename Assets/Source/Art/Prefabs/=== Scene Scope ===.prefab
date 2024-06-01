@@ -173,6 +173,22 @@ PrefabInstance:
       propertyPath: m_audioListener
       value: 
       objectReference: {fileID: 4305245320728398530}
+    - target: {fileID: 7484569842285585223, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
+      propertyPath: m_fpsModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484569842285585223, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
+      propertyPath: m_audioModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484569842285585223, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
+      propertyPath: m_advancedModuleState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484569842295864773, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7484143774018813305, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
@@ -257,6 +273,10 @@ PrefabInstance:
     - target: {fileID: 4152578906471200286, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
       propertyPath: m_Name
       value: === System ===
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158120142914031657, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
+      propertyPath: field of view
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6282254753534103207, guid: bbdf1b25da620bf4f94420c018756b9e, type: 3}
       propertyPath: antialiasingMode
