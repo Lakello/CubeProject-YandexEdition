@@ -10,5 +10,6 @@ namespace LeadTools.Other
 		_EnergyColor,
 		_BaseColor,
 		_Clip,
+		_DissolveAmount,
 	}
 }

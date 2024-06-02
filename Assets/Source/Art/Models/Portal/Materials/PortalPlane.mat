@@ -96,7 +96,7 @@ Material:
     - _CellDensity: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: 3
+    - _DissolveAmount: 50
     - _DstBlend: 10
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -117,6 +117,7 @@ Material:
     m_Colors:
     - _Color: {r: 118.03541, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Intensity: {r: 9.082409, g: 9.082409, b: 9.082409, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1595637077153804968
 MonoBehaviour:

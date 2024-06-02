@@ -52,7 +52,7 @@ namespace CubeProject
 			InitTargetCameraHolder();
 			InitInput();
 
-			_portalColorData.ResetColorIndex();
+			_portalColorData.ResetColors();
 			containerBuilder.AddSingleton(_portalColorData);
 
 			containerBuilder.AddSingleton(playerInitializer.SpawnPoint);

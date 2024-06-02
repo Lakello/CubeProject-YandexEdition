@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45abe31f01d7423c9c5c09c939dbb8ec, type: 3}
   m_Name: MainPortalColorData
   m_EditorClassIdentifier: 
-  _activeAlpha: 0.7
-  _inactiveAlpha: 0
+  _dissolveAmountShow: 3
+  _intensity: 5.7
+  _durationAnimation: 0.2
   _colors:
-  - {r: 1, g: 0.2971698, b: 0.2971698, a: 0}
-  - {r: 0.99445754, g: 1, b: 0.33490568, a: 0}
-  - {r: 0.44219944, g: 1, b: 0.3443396, a: 0}
-  - {r: 0.3254717, g: 1, b: 0.87464523, a: 0}
-  - {r: 0.2971698, g: 0.481088, b: 1, a: 0}
+  - {r: 0.2169323, g: 1, b: 0, a: 0}
+  - {r: 0.9145024, g: 1, b: 0, a: 0}
+  - {r: 1, g: 0.63963157, b: 0, a: 0}
+  - {r: 1, g: 0.098774225, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0.5609474, a: 0}
+  - {r: 0.78283024, g: 0, b: 1, a: 0}
