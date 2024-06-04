@@ -14,14 +14,17 @@ namespace CubeProject.PlayableCube.Movement
 {
 	public class CubeMoveService : IDisposable
 	{
-		private RollMover _roll;
-		private BoxCollider _cubeCollider;
-		private IStateMachine<CubeStateMachine> _cubeStateMachine;
+		private readonly RollMover _roll;
+		private readonly PushedHandler _pushedHandler;
+		private readonly BoxCollider _cubeCollider;
+		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
+		private readonly IInputService _inputService;
+		private readonly LayerMask _wallMask;
+		private readonly MonoBehaviour _mono;
+		private readonly CompositeDisposable _disposable;
+
 		private Coroutine _moveCoroutine;
-		private IInputService _inputService;
-		private LayerMask _wallMask;
-		private MonoBehaviour _mono;
-		private CompositeDisposable _disposable;
+		private bool _isMoving;
 
 		public CubeMoveService(
 			IStateMachine<CubeStateMachine> stateMachine,
@@ -38,11 +41,13 @@ namespace CubeProject.PlayableCube.Movement
 			_cubeCollider = cubeCollider;
 			_mono = mono;
 			_roll = new RollMover(rollSpeed, cubeTransform);
+			_pushedHandler = new PushedHandler(_cubeStateMachine);
 
+			_inputService.Moving += _pushedHandler.OnMoving;
 			_inputService.Moving += OnMoving;
 
 			_disposable = new CompositeDisposable();
-			
+
 			MessageBroker.Default
 				.Receive<DoAfterStepMessage>()
 				.Subscribe(message => DoAfterStep(message.Action))
@@ -58,6 +63,7 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			_disposable?.Dispose();
 			_inputService.Moving -= OnMoving;
+			_inputService.Moving -= _pushedHandler.OnMoving;
 		}
 
 		private void Push(Vector3 direction)
@@ -95,14 +101,10 @@ namespace CubeProject.PlayableCube.Movement
 		private void TryMove(Vector3 direction)
 		{
 			if (direction == Vector3.zero || (direction.x != 0 && direction.z != 0))
-			{
 				return;
-			}
-			
+
 			if (_moveCoroutine != null || CanMove(direction) is false)
-			{
 				return;
-			}
 
 			_moveCoroutine = _mono.StartCoroutine(Move(direction));
 		}
@@ -111,15 +113,18 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			MessageBroker.Default
 				.Publish(new Message<Vector3, CubeMoveService>(MessageId.DirectionChanged, direction));
-			
+
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepStarted));
 
+			_isMoving = true;
+			
 			yield return _mono.StartCoroutine(_roll.Move(
 				direction,
 				() => MessageBroker.Default
 					.Publish(new Message<CubeMoveService>(MessageId.StepEnded))));
 
+			_isMoving = false;
 			_moveCoroutine = null;
 		}
 

@@ -21,10 +21,10 @@ namespace CubeProject.Tips
 					"Forward", Vector3.right
 				},
 				{
-					"Right", Vector3.forward
+					"Right", Vector3.back
 				},
 				{
-					"Left", Vector3.back
+					"Left", Vector3.forward
 				},
 			};
 	}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dissolveAmountShow: 3
   _intensity: 5.7
-  _durationAnimation: 0.2
+  _durationAnimation: 0.5
   _colors:
   - {r: 0.2169323, g: 1, b: 0, a: 0}
   - {r: 0.9145024, g: 1, b: 0, a: 0}

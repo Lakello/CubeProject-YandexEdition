@@ -120,7 +120,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _Noise_Scale: 10000
+    - _Noise_Scale: 12
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PowerValue: 0
@@ -130,13 +130,13 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tiling_Scale: 1.01
+    - _Tiling_Scale: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 0, g: 12.10702, b: 142.10106, a: 1}
+    - _EdgeColor: {r: 0, g: 0.77382207, b: 9.082412, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tiling: {r: 6, g: 2, b: 0, a: 0}
     - _Time_Scale: {r: 0, g: 0.2, b: 0, a: 0}
