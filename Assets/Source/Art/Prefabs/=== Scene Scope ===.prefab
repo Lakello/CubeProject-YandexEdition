@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7595105805790962738}
   - component: {fileID: 7682878966037621185}
   - component: {fileID: 1597196459091692468}
-  - component: {fileID: 6832144939663051869}
   m_Layer: 0
   m_Name: === Scene Scope ===
   m_TagString: Untagged
@@ -63,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDebug: 1
+  _endPoint: {fileID: 0}
 --- !u!114 &7682878966037621185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d18fcb7b5a43ec9d09599248939006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cubeData: {fileID: 11400000, guid: f586926a8d81c564592ecc5aa546f330, type: 2}
   _maskHolder:
     _groundMask:
       serializedVersion: 2
@@ -99,20 +100,6 @@ MonoBehaviour:
       m_Bits: 512
   _virtualCamera: {fileID: 4205594948549121798}
   _portalColorData: {fileID: 11400000, guid: 192630a8537cf3743af7b543462fa419, type: 2}
---- !u!114 &6832144939663051869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6231096041998203697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5c9322cbd740a3bb68b60913838099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 4113640902855593495, guid: a1369558805586b4d8a9bf20cae0f40f, type: 3}
-  _data: {fileID: 11400000, guid: f586926a8d81c564592ecc5aa546f330, type: 2}
 --- !u!1001 &2974227043879324701
 PrefabInstance:
   m_ObjectHideFlags: 0

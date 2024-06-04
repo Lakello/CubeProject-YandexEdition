@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df8edddac934ad48c2df82e5a12df21, type: 3}
   m_Name: MainCubeData
   m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 4113640902855593495, guid: a1369558805586b4d8a9bf20cae0f40f, type: 3}
   _rollSpeed: 6
   _distanceRange: {x: 0.02, y: 2.9833055}
   _fresnelPowerRange: {x: 0, y: 0.5}

@@ -15,9 +15,10 @@ namespace Source.Scripts.Game.Level
 
 		private int _currentSceneIndex = 0;
 		private GameStateMachine _gameStateMachine;
+		private LoaderMode _currentMode;
 
 		public int LevelsCount => _levels.Length;
-
+		
 		public void Init(GameStateMachine gameStateMachine)
 		{
 			if (_gameStateMachine != null)
@@ -28,8 +29,38 @@ namespace Source.Scripts.Game.Level
 			_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
 		}
 
-		public void LoadNextLevel() =>
-			LoadLevelAtIndex(++_currentSceneIndex);
+		public void SetMode(LoaderMode mode) =>
+			_currentMode = mode;
+		
+		public void LoadNextLevel()
+		{
+			switch (_currentMode)
+			{
+				case LoaderMode.Random:
+					Random();
+					break;
+				default:
+					ByOrder();
+					break;
+			}
+			
+			return;
+			
+			void ByOrder() =>
+				LoadLevelAtIndex(++_currentSceneIndex);
+
+			void Random(int currentIteration = 0)
+			{
+				const int maxIteration = 10;
+				
+				var randomIndex = UnityEngine.Random.Range(0, LevelsCount);
+
+				if (currentIteration < maxIteration && randomIndex == _currentSceneIndex)
+					Random(++currentIteration);
+				else
+					LoadLevelAtIndex(randomIndex);
+			}
+		}
 
 		public void LoadCurrentLevel() =>
 			LoadLevelAtIndex(_currentSceneIndex);
@@ -37,7 +68,7 @@ namespace Source.Scripts.Game.Level
 		public void LoadLevelAtIndex(int index)
 		{
 			if (index < 0)
-				return;
+				index = 0;
 
 			if (index > _levels.Length - 1)
 				index = 0;

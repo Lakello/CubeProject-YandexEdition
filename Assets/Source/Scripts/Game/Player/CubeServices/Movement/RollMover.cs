@@ -8,6 +8,7 @@ namespace CubeProject.PlayableCube.Movement
 	{
 		private readonly float _rollSpeed;
 		private readonly Transform _targetTransform;
+		private readonly WaitForFixedUpdate _wait;
 		
 		private float _currentAngle;
 
@@ -15,12 +16,13 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			_rollSpeed = rollSpeed;
 			_targetTransform = targetTransform;
+			_wait = new WaitForFixedUpdate();
 		}
 
-		public IEnumerator Move(Vector3 direction, Action endCallback = null)
+		public IEnumerator Move(Vector3 direction)
 		{
 			const float rollAngle = 90f;
-
+			
 			if (_currentAngle >= rollAngle)
 			{
 				_currentAngle = 0f;
@@ -44,15 +46,13 @@ namespace CubeProject.PlayableCube.Movement
 
 				_targetTransform.RotateAround(anchor, axis, angle);
 
-				yield return new WaitForFixedUpdate();
+				yield return _wait;
 			}
 
 			if (_currentAngle is < rollAngle or > rollAngle)
 			{
 				_targetTransform.RotateAround(anchor, axis, rollAngle - _currentAngle);
 			}
-
-			endCallback?.Invoke();
 		}
 
 		private (Vector3, Vector3) GetRotateData(Transform origin, Vector3 direction)

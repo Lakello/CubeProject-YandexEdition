@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using CubeProject.InputSystem;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
@@ -15,16 +16,14 @@ namespace CubeProject.PlayableCube.Movement
 	public class CubeMoveService : IDisposable
 	{
 		private readonly RollMover _roll;
-		private readonly PushedHandler _pushedHandler;
 		private readonly BoxCollider _cubeCollider;
 		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private readonly IInputService _inputService;
 		private readonly LayerMask _wallMask;
-		private readonly MonoBehaviour _mono;
-		private readonly CompositeDisposable _disposable;
+		private readonly CompositeDisposable _messageDisposable;
 
-		private Coroutine _moveCoroutine;
-		private bool _isMoving;
+		private Action _endMoveAction;
+		private CompositeDisposable _moveDisposable;
 
 		public CubeMoveService(
 			IStateMachine<CubeStateMachine> stateMachine,
@@ -32,38 +31,34 @@ namespace CubeProject.PlayableCube.Movement
 			IInputService inputService,
 			MaskHolder maskHolder,
 			float rollSpeed,
-			BoxCollider cubeCollider,
-			MonoBehaviour mono)
+			BoxCollider cubeCollider)
 		{
 			_wallMask = maskHolder.WallMask;
 			_cubeStateMachine = stateMachine;
 			_inputService = inputService;
 			_cubeCollider = cubeCollider;
-			_mono = mono;
 			_roll = new RollMover(rollSpeed, cubeTransform);
-			_pushedHandler = new PushedHandler(_cubeStateMachine);
 
-			_inputService.Moving += _pushedHandler.OnMoving;
 			_inputService.Moving += OnMoving;
 
-			_disposable = new CompositeDisposable();
+			_messageDisposable = new CompositeDisposable();
 
 			MessageBroker.Default
 				.Receive<DoAfterStepMessage>()
 				.Subscribe(message => DoAfterStep(message.Action))
-				.AddTo(_disposable);
+				.AddTo(_messageDisposable);
 
 			MessageBroker.Default
 				.Receive<PushAfterStepMessage>()
 				.Subscribe(message => DoAfterStep(() => Push(message.GetDirection())))
-				.AddTo(_disposable);
+				.AddTo(_messageDisposable);
 		}
 
 		public void Dispose()
 		{
-			_disposable?.Dispose();
+			_moveDisposable?.Dispose();
+			_messageDisposable?.Dispose();
 			_inputService.Moving -= OnMoving;
-			_inputService.Moving -= _pushedHandler.OnMoving;
 		}
 
 		private void Push(Vector3 direction)
@@ -78,9 +73,9 @@ namespace CubeProject.PlayableCube.Movement
 
 		private void DoAfterStep(Action endCallback)
 		{
-			if (_moveCoroutine != null)
+			if (_moveDisposable != null)
 			{
-				_mono.WaitRoutine(_moveCoroutine, endCallback);
+				_endMoveAction = endCallback;
 			}
 			else
 			{
@@ -103,29 +98,39 @@ namespace CubeProject.PlayableCube.Movement
 			if (direction == Vector3.zero || (direction.x != 0 && direction.z != 0))
 				return;
 
-			if (_moveCoroutine != null || CanMove(direction) is false)
+			if (_moveDisposable != null || CanMove(direction) is false)
 				return;
 
-			_moveCoroutine = _mono.StartCoroutine(Move(direction));
+			Move(direction);
 		}
 
-		private IEnumerator Move(Vector3 direction)
+		private void Move(Vector3 direction)
 		{
+			_moveDisposable = new CompositeDisposable();
+
 			MessageBroker.Default
 				.Publish(new Message<Vector3, CubeMoveService>(MessageId.DirectionChanged, direction));
 
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepStarted));
 
-			_isMoving = true;
-			
-			yield return _mono.StartCoroutine(_roll.Move(
-				direction,
-				() => MessageBroker.Default
-					.Publish(new Message<CubeMoveService>(MessageId.StepEnded))));
+			Observable.FromCoroutine(
+				() => _roll.Move(
+					direction))
+				.Subscribe(_ => OnEndMove())
+				.AddTo(_moveDisposable);
+		}
 
-			_isMoving = false;
-			_moveCoroutine = null;
+		private void OnEndMove()
+		{
+			MessageBroker.Default
+				.Publish(new Message<CubeMoveService>(MessageId.StepEnded));
+			
+			_endMoveAction?.Invoke();
+			_endMoveAction = null;
+			
+			_moveDisposable.Dispose();
+			_moveDisposable = null;
 		}
 
 		private bool CanMove(Vector3 direction)

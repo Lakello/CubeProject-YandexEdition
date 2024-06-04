@@ -73,6 +73,8 @@ namespace CubeProject
 				
 				var levelLoader = gameObject.GetComponentElseThrow<LevelLoader>();
 
+				levelLoader.SetMode(LoaderMode.ByOrder);
+				
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
 
 				projectInitializer.Init(

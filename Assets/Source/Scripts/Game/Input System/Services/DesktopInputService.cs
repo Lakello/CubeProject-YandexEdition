@@ -1,26 +1,24 @@
 using System;
 using System.Collections;
-using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
+using UniRx;
 using UnityEngine;
 
 namespace CubeProject.InputSystem
 {
-	public class DesktopInputService : MonoBehaviour, IInputService
+	public class DesktopInputService : IInputService
 	{
-		private PlayerInput _playerInput;
-		private Coroutine _updateInputCoroutine;
-		private IStateChangeable<CubeStateMachine> _cubeStateMachine;
+		private readonly PlayerInput _playerInput;
+		private readonly IStateChangeable<CubeStateMachine> _cubeStateMachine;
+
+		private bool _isUpdateInput;
 
 		public event Action<Vector3> Moving;
 		public event Action MenuKeyChanged;
 
-		private void OnDisable() =>
-			_cubeStateMachine?.UnSubscribeTo<ControlState>(OnControlStateChanged);
-
-		public void Init(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)
+		public DesktopInputService(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)
 		{
 			_playerInput = playerInput;
 
@@ -33,12 +31,23 @@ namespace CubeProject.InputSystem
 			OnControlStateChanged(_cubeStateMachine.CurrentState == typeof(ControlState));
 		}
 
+		public void Dispose()
+		{
+			_playerInput?.Dispose();
+			_cubeStateMachine?.UnSubscribeTo<ControlState>(OnControlStateChanged);
+		}
+
 		private void OnControlStateChanged(bool isEntered)
 		{
 			if (isEntered)
-				_updateInputCoroutine = StartCoroutine(UpdateInput());
+			{
+				_isUpdateInput = true;
+				MainThreadDispatcher.StartFixedUpdateMicroCoroutine(UpdateInput());
+			}
 			else
-				this.StopRoutine(_updateInputCoroutine);
+			{
+				_isUpdateInput = false;
+			}
 		}
 
 		private void OnMenuPerformed() =>
@@ -46,19 +55,17 @@ namespace CubeProject.InputSystem
 
 		private IEnumerator UpdateInput()
 		{
-			var wait = new WaitForFixedUpdate();
-
 			float horizontal;
 			float vertical;
 
-			while (enabled)
+			while (_isUpdateInput)
 			{
 				horizontal = _playerInput.Desktop.Horizontal.ReadValue<float>();
 				vertical = _playerInput.Desktop.Vertical.ReadValue<float>();
 
 				Moving?.Invoke(new Vector3(horizontal, 0, vertical));
 
-				yield return wait;
+				yield return null;
 			}
 		}
 	}

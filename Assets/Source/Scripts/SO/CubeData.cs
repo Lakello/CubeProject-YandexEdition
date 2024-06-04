@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Source.Scripts.Game;
 using Source.Scripts.Game.Level.Shield;
 using UnityEngine;
 
@@ -7,7 +8,11 @@ namespace CubeProject.SO
 	[CreateAssetMenu(menuName = "Cube/Data")]
 	public class CubeData : ScriptableObject
 	{
-		[SerializeField] private float _rollSpeed = 6;
+		[SerializeField] [BoxGroup("Base")]
+		private Player _playerPrefab;
+		[SerializeField] [BoxGroup("Base")]
+		private float _rollSpeed = 6;
+		
 		[SerializeField] [MinMaxSlider(0, 10f)] [BoxGroup("Shield")]
 		private Vector2 _distanceRange = new Vector2(0.02f, 0.3f);
 		[SerializeField] [MinMaxSlider(0, 1f)] [BoxGroup("Shield")]
@@ -18,7 +23,8 @@ namespace CubeProject.SO
 		private float _displacementAmountHide = 1;
 		[SerializeField] [Range(0, 2)] [BoxGroup("Shield")]
 		private float _hideShowDuration = 0.2f;
-		
+
+		public Player PlayerPrefab => _playerPrefab;
 		public float RollSpeed => _rollSpeed;
 		public ShieldData GetShieldData => new ShieldData(
 			_distanceRange,

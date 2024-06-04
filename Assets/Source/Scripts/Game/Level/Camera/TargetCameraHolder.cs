@@ -17,7 +17,7 @@ namespace Source.Scripts.Game.Level.Camera
 		private Transform _lookAtPoint;
 		private Transform _followPoint;
 
-		public TargetCameraHolder(CinemachineVirtualCamera virtualCamera)
+		public TargetCameraHolder(CinemachineVirtualCamera virtualCamera, Transform lookAtPoint, Transform followPoint)
 		{
 			_virtualCamera = virtualCamera;
 			_disposable = new CompositeDisposable();
@@ -32,10 +32,7 @@ namespace Source.Scripts.Game.Level.Camera
 				.Receive<SetTargetCameraMessage>()
 				.Subscribe(_ => SetTarget())
 				.AddTo(_disposable);
-		}
-
-		public void Init(Transform lookAtPoint, Transform followPoint)
-		{
+			
 			_lookAtPoint = lookAtPoint;
 			_followPoint = followPoint;
 			

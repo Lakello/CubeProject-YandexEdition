@@ -4,7 +4,6 @@ using Source.Scripts.Game.Messages;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
 using UniRx;
-using UnityEngine;
 
 namespace CubeProject.Tips
 {

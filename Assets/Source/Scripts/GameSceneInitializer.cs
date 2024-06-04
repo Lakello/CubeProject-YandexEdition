@@ -1,12 +1,14 @@
 using CubeProject.Game;
 using CubeProject.InputSystem;
 using CubeProject.Save.Data;
+using DG.DemiLib;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
 using Source.Scripts.Game.Level;
+using UnityEditor;
 using UnityEngine;
 
 namespace CubeProject
@@ -17,13 +19,20 @@ namespace CubeProject
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
 		[SerializeField] private bool _isDebug;
+		[SerializeField] private EndPoint _endPoint;
 
-		private EndPoint _endPoint;
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
 		private GameStateMachine _gameStateMachine;
 
-		private EndPoint EndPoint => _endPoint ??= gameObject.FindObjectOfTypeElseThrow(out _endPoint);
+		private void OnValidate()
+		{
+			if (_endPoint == null)
+			{
+				_endPoint = FindObjectOfType<EndPoint>();
+				EditorUtility.SetDirty(this);
+			}
+		}
 
 		private void OnDisable()
 		{
@@ -40,11 +49,11 @@ namespace CubeProject
 			_levelLoader = levelLoader;
 
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
-			windowInitializer.WindowsInit(machine.Window);
-			machine.EnterIn<TState>();
-
-			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
-				.InitTransition<EndLevelState>(EndPoint);
+			windowInitializer.WindowsInit(_gameStateMachine.Window);
+			_gameStateMachine.EnterIn<TState>();
+			
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(_gameStateMachine)
+				.InitTransition<EndLevelState>(_endPoint);
 
 			if (_isDebug)
 			{
@@ -68,17 +77,9 @@ namespace CubeProject
 				return;
 
 			if (GameDataSaver.Instance.Get<CurrentLevel>().Value + 1 >= _levelLoader.LevelsCount)
-			{
-				GameDataSaver.Instance.Set(new CurrentLevel(0));
+				_levelLoader.SetMode(LoaderMode.Random);
 
-				MenuScene.Load<MenuState<SelectLevelWindowState>, LevelLoader>(
-					_gameStateMachine,
-					_levelLoader);
-			}
-			else
-			{
-				_levelLoader.LoadNextLevel();
-			}
+			_levelLoader.LoadNextLevel();
 		}
 	}
 }
