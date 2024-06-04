@@ -1,27 +1,22 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Source.Scripts.Game.Level.Shield
 {
+	[Serializable]
 	public class ShieldData
 	{
-		public readonly Vector2 DistanceRange;
-		public readonly Vector2 FresnelPowerRange;
-		public readonly Vector2 DisplacementAmountRange;
-		public readonly float DisplacementAmountHide;
-		public readonly float HideShowDuration;
+		[SerializeField] [MinMaxSlider(0, 10f)] private Vector2 _distanceRange;
+		[SerializeField] [MinMaxSlider(0, 1f)] private Vector2 _fresnelPowerRange;
+		[SerializeField] [MinMaxSlider(0.001f, 0.01f)] private Vector2 _displacementAmountRange;
+		[SerializeField] [Range(-50, 50)] private float _fresnelPowerHide;
+		[SerializeField] [Range(0, 2)] private float _hideShowDuration;
 
-		public ShieldData(
-			Vector2 distanceRange,
-			Vector2 fresnelPowerRange,
-			Vector2 displacementAmountRange,
-			float displacementAmountHide,
-			float hideShowDuration)
-		{
-			DistanceRange = distanceRange;
-			FresnelPowerRange = fresnelPowerRange;
-			DisplacementAmountRange = displacementAmountRange;
-			DisplacementAmountHide = displacementAmountHide;
-			HideShowDuration = hideShowDuration;
-		}
+		public Vector2 DistanceRange => _distanceRange;
+		public Vector2 FresnelPowerRange => _fresnelPowerRange;
+		public Vector2 DisplacementAmountRange => _displacementAmountRange;
+		public float FresnelPowerHide => _fresnelPowerHide;
+		public float HideShowDuration => _hideShowDuration;
 	}
 }

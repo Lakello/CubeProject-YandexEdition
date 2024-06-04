@@ -4,10 +4,8 @@ using CubeProject.Game;
 using CubeProject.PlayableCube;
 using LeadTools.StateMachine;
 using Source.Scripts.Game.Level.Shield.States;
-using Source.Scripts.Game.Messages.ShieldServiceMessage;
 using Source.Scripts.Game.tateMachine;
 using Source.Scripts.Game.tateMachine.States;
-using UniRx;
 
 namespace Source.Scripts.Game.Level.Shield
 {
@@ -32,7 +30,7 @@ namespace Source.Scripts.Game.Level.Shield
 			_shieldStateMachine = shieldStateMachine;
 
 			_shieldStateMachine.EnterIn<StopState>();
-			
+
 			_chargeHolder.ChargeChanged += OnChargeChanged;
 			OnChargeChanged();
 		}

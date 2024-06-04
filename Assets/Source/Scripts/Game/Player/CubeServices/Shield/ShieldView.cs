@@ -12,8 +12,8 @@ namespace Source.Scripts.Game.Level.Shield
 {
 	public class ShieldView : MonoBehaviour
 	{
-		private const ShaderProperty FresnelPowerProperty = ShaderProperty._Fresnel_Power;
-		private const ShaderProperty DisplacementAmountProperty = ShaderProperty._Displacement_Amount;
+		private readonly string _fresnelPowerProperty = ShaderProperty._Fresnel_Power.GetCurrentName();
+		private readonly string _displacementAmountProperty = ShaderProperty._Displacement_Amount.GetCurrentName();
 
 		[SerializeField] private MeshRenderer _renderer;
 
@@ -27,7 +27,7 @@ namespace Source.Scripts.Game.Level.Shield
 		[Inject]
 		private void Inject(CubeComponent cubeComponent, IStateChangeable<ShieldStateMachine> shieldStateChangeable)
 		{
-			_shieldData = cubeComponent.Data.GetShieldData;
+			_shieldData = cubeComponent.Data.ShieldData;
 
 			_cubeTransform = cubeComponent.transform;
 			_triggerDetector = cubeComponent.TriggerDetector;
@@ -95,8 +95,9 @@ namespace Source.Scripts.Game.Level.Shield
 
 		private IEnumerator ChangeShieldVisible(bool isShow, float normalDistance)
 		{
-			var targetValue = GetPropertyValueOnDistance(_shieldData.DisplacementAmountRange, normalDistance);
-			UpdateProperty(DisplacementAmountProperty.GetCurrentName(), _shieldData.DisplacementAmountHide);
+			var targetValue = GetPropertyValueOnDistance(_shieldData.FresnelPowerRange,
+				normalDistance);
+			UpdateProperty(_fresnelPowerProperty, _shieldData.FresnelPowerHide);
 
 			if (isShow)
 				_renderer.enabled = true;
@@ -107,8 +108,8 @@ namespace Source.Scripts.Game.Level.Shield
 					if (isShow)
 						normalTime = 1 - normalTime;
 
-					var value = Mathf.Lerp(targetValue, _shieldData.DisplacementAmountHide, normalTime);
-					UpdateProperty(DisplacementAmountProperty.GetCurrentName(), value);
+					var value = Mathf.Lerp(targetValue, _shieldData.FresnelPowerHide, normalTime);
+					UpdateProperty(_fresnelPowerProperty, value);
 				},
 				_shieldData.HideShowDuration);
 
@@ -119,11 +120,13 @@ namespace Source.Scripts.Game.Level.Shield
 		private void UpdateShieldProperties(float normalDistance)
 		{
 			UpdateProperty(
-				FresnelPowerProperty.GetCurrentName(),
-				GetPropertyValueOnDistance(_shieldData.FresnelPowerRange, 1 - normalDistance));
+				_fresnelPowerProperty,
+				GetPropertyValueOnDistance(
+					new Vector2(_shieldData.FresnelPowerRange.y, _shieldData.FresnelPowerRange.x),
+					1 - normalDistance));
 
 			UpdateProperty(
-				DisplacementAmountProperty.GetCurrentName(),
+				_displacementAmountProperty,
 				GetPropertyValueOnDistance(_shieldData.DisplacementAmountRange, normalDistance));
 		}
 

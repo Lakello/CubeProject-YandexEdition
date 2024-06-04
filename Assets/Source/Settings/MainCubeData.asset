@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 4113640902855593495, guid: a1369558805586b4d8a9bf20cae0f40f, type: 3}
   _rollSpeed: 6
-  _distanceRange: {x: 0.02, y: 2.9833055}
-  _fresnelPowerRange: {x: 0, y: 0.5}
-  _displacementAmountRange: {x: 0.001, y: 0.005}
-  _displacementAmountHide: 1
-  _hideShowDuration: 0.68
+  _shieldData:
+    _distanceRange: {x: 0, y: 3.5338345}
+    _fresnelPowerRange: {x: 0, y: 0.78446114}
+    _displacementAmountRange: {x: 0.001, y: 0.01}
+    _fresnelPowerHide: 5
+    _hideShowDuration: 0.4
