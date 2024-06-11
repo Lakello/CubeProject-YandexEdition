@@ -1,13 +1,12 @@
-using CubeProject.Game;
+using CubeProject.Game.Level;
+using CubeProject.Game.Player;
 using CubeProject.InputSystem;
 using CubeProject.Save.Data;
-using DG.DemiLib;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
-using Source.Scripts.Game.Level;
 using UnityEditor;
 using UnityEngine;
 
@@ -51,7 +50,7 @@ namespace CubeProject
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
 			windowInitializer.WindowsInit(_gameStateMachine.Window);
 			_gameStateMachine.EnterIn<TState>();
-			
+
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(_gameStateMachine)
 				.InitTransition<EndLevelState>(_endPoint);
 

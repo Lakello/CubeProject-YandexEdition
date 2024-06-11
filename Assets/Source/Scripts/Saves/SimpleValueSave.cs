@@ -16,7 +16,7 @@ namespace CubeProject.Save
 
 		protected override void UpdateValue(TData data) =>
 			_value = data.Value;
-		
+
 		protected override bool Equals(TData data) =>
 			data.Value.Equals(_value);
 	}

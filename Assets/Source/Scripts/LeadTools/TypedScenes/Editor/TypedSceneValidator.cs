@@ -6,60 +6,66 @@ using UnityEditor;
 
 namespace LeadTools.TypedScenes.Editor
 {
-    public static class TypedSceneValidator
-    {
-        public static bool DetectSceneImport(string assetPath, out string validScenePath)
-        {
-            validScenePath = null;
-            
-            if (Path.GetExtension(assetPath) != TypedSceneSettings.SceneExtension)
-                return false;
+	public static class TypedSceneValidator
+	{
+		public static bool DetectSceneImport(string assetPath, out string validScenePath)
+		{
+			validScenePath = null;
 
-            using (var analyzableScene  = AnalyzableScene.Create(assetPath))
-            {
-                var validName = GetValidName(analyzableScene.Name);
+			if (Path.GetExtension(assetPath) != TypedSceneSettings.SceneExtension)
+				return false;
 
-                if (analyzableScene.Name != validName)
-                {
-                    var validPath = Path.GetDirectoryName(assetPath) + Path.DirectorySeparatorChar + validName + TypedSceneSettings.SceneExtension;
-                    File.Move(assetPath, validPath);
-                    File.Delete(assetPath + TypedSceneSettings.MetaExtension);
-                    AssetDatabase.ImportAsset(validPath, ImportAssetOptions.ForceUpdate);
-                    return false;
-                }
+			using (var analyzableScene = AnalyzableScene.Create(assetPath))
+			{
+				var validName = GetValidName(analyzableScene.Name);
 
-                if (SceneAnalyzer.TryAddTypedProcessor(analyzableScene))
-                    return false;
-            
-                validScenePath = analyzableScene.AssetPath;
-                return true;
-            }
-        }
+				if (analyzableScene.Name != validName)
+				{
+					var validPath = Path.GetDirectoryName(assetPath) + Path.DirectorySeparatorChar + validName + TypedSceneSettings.SceneExtension;
+					File.Move(assetPath, validPath);
+					File.Delete(assetPath + TypedSceneSettings.MetaExtension);
+					AssetDatabase.ImportAsset(validPath, ImportAssetOptions.ForceUpdate);
 
-        public static bool DetectSceneDeletion(string sceneName)
-        {
-            var assets = AssetDatabase.FindAssets(sceneName);
+					return false;
+				}
 
-            return (assets.Select(AssetDatabase.GUIDToAssetPath)
-                .Select(path => new {path, name = Path.GetFileNameWithoutExtension(path)})
-                .Where(@t => @t.name == sceneName)
-                .Select(@t => @t.path)).Any(path => Path.GetExtension(path) == TypedSceneSettings.SceneExtension);
-        }
+				if (SceneAnalyzer.TryAddTypedProcessor(analyzableScene))
+					return false;
 
-        private static string GetValidName(string sceneName)
-        {
-            var stringBuilder = new StringBuilder();
+				validScenePath = analyzableScene.AssetPath;
 
-            if (!char.IsLetter(sceneName[0]) && sceneName[0] != '_')
-                stringBuilder.Append('_');
+				return true;
+			}
+		}
 
-            foreach (var symbol in sceneName)
-            {
-                stringBuilder.Append((char.IsLetterOrDigit(symbol) || symbol == '_') ? symbol : '_');
-            }
+		public static bool DetectSceneDeletion(string sceneName)
+		{
+			var assets = AssetDatabase.FindAssets(sceneName);
 
-            return stringBuilder.ToString();
-        }
-    }
+			return (assets.Select(AssetDatabase.GUIDToAssetPath)
+				.Select(path => new
+				{
+					path,
+					name = Path.GetFileNameWithoutExtension(path)
+				})
+				.Where(@t => @t.name == sceneName)
+				.Select(@t => @t.path)).Any(path => Path.GetExtension(path) == TypedSceneSettings.SceneExtension);
+		}
+
+		private static string GetValidName(string sceneName)
+		{
+			var stringBuilder = new StringBuilder();
+
+			if (!char.IsLetter(sceneName[0]) && sceneName[0] != '_')
+				stringBuilder.Append('_');
+
+			foreach (var symbol in sceneName)
+			{
+				stringBuilder.Append((char.IsLetterOrDigit(symbol) || symbol == '_') ? symbol : '_');
+			}
+
+			return stringBuilder.ToString();
+		}
+	}
 }
 #endif

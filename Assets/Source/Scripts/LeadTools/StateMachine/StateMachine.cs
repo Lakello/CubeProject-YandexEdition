@@ -28,7 +28,7 @@ namespace LeadTools.StateMachine
 				_currentState?.Exit();
 				_currentState = state;
 				_currentState.Enter();
-				
+
 				StateChanged?.Invoke();
 			});
 		}

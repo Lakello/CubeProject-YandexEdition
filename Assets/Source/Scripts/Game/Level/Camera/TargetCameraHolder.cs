@@ -1,12 +1,12 @@
 using System;
 using Cinemachine;
-using CubeProject.PlayableCube;
-using Source.Scripts.Game.Messages;
-using Source.Scripts.Game.Messages.Camera;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Messages.Camera;
+using CubeProject.Game.Player;
 using UniRx;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level.Camera
+namespace CubeProject.Game.Level.Camera
 {
 	public class TargetCameraHolder : IDisposable
 	{
@@ -32,10 +32,10 @@ namespace Source.Scripts.Game.Level.Camera
 				.Receive<SetTargetCameraMessage>()
 				.Subscribe(_ => SetTarget())
 				.AddTo(_disposable);
-			
+
 			_lookAtPoint = lookAtPoint;
 			_followPoint = followPoint;
-			
+
 			SetTarget();
 		}
 

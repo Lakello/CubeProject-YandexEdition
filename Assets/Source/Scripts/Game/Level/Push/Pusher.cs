@@ -1,11 +1,10 @@
 using System;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
+using CubeProject.Game.Player.Movement;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Messages;
+using CubeProject.Game.Player;
+using CubeProject.Game.Messages;
 using UniRx;
 using UnityEngine;
 
@@ -62,7 +61,7 @@ namespace CubeProject.Tips
 		private void Push()
 		{
 			_disposable = new CompositeDisposable();
-			
+
 			MessageBroker.Default
 				.Publish(new PushAfterStepMessage(() =>
 				{

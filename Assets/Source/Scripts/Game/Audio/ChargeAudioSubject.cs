@@ -1,16 +1,15 @@
 using System;
-using CubeProject.Game;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace Source.Scripts.Game
+namespace CubeProject.Game.Player
 {
 	public class ChargeAudioSubject : SerializedMonoBehaviour, IAudioSubject
 	{
 		[SerializeField] private bool _targetCharged;
 		[OdinSerialize] private IChargeable _chargeable;
-		
+
 		public event Action AudioPlaying;
 
 		private void OnEnable() =>

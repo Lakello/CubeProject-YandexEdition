@@ -1,20 +1,17 @@
 using System;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
+using CubeProject.Game.Messages;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.Tips;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Messages;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UniRx;
 using UnityEditor;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public sealed class PortalBehaviour : MonoBehaviour, IPushHandler
@@ -70,7 +67,7 @@ namespace CubeProject.Game
 		private void Awake()
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
-			
+
 			OnChargeChanged();
 		}
 
@@ -91,7 +88,7 @@ namespace CubeProject.Game
 			if (_linkedPortal is null)
 				return;
 
-			if (other.TryGetComponent(out Cube _) is false)
+			if (other.TryGetComponent(out CubeEntity _) is false)
 				return;
 
 			if (_isActive is false || _linkedPortal._isActive is false)
@@ -105,8 +102,9 @@ namespace CubeProject.Game
 				.Publish(new DoAfterStepMessage(() =>
 				{
 					_disposable?.Dispose();
-					
+
 					_disposable = new CompositeDisposable();
+
 					Observable.FromCoroutine(_teleporter.Absorb)
 						.SelectMany(_linkedPortal._teleporter.Return)
 						.Subscribe(_ => OnTeleportEnded())
@@ -116,7 +114,7 @@ namespace CubeProject.Game
 
 		private void OnTriggerExit(Collider other)
 		{
-			if (other.TryGetComponent(out Cube _))
+			if (other.TryGetComponent(out CubeEntity _))
 				_isBlocked = false;
 		}
 

@@ -7,7 +7,7 @@ namespace CubeProject.LeadTools.Utils
 	{
 		[SerializeField] private MeshCombinerData _data;
 		[SerializeField] private bool _showCreatedMeshInfo;
-		
+
 		private void Start()
 		{
 			MeshCombiner combiner = gameObject.AddComponent<MeshCombiner>();
@@ -18,7 +18,7 @@ namespace CubeProject.LeadTools.Utils
 			combiner.IsDeactivateCombinedChildrenMeshRenderers = _data.DeactivateCombinedChildrenMeshRenderers;
 			combiner.IsGenerateUVMap = _data.GenerateUVMap;
 			combiner.IsDestroyCombinedChildren = _data.DestroyCombinedChildren;
-			
+
 			combiner.CombineMeshes(_showCreatedMeshInfo);
 		}
 	}

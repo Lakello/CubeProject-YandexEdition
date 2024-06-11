@@ -1,13 +1,11 @@
 using System;
 using System.Linq;
-using CubeProject.Game;
-using CubeProject.PlayableCube;
+using CubeProject.Game.Player.Shield.States;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using LeadTools.StateMachine;
-using Source.Scripts.Game.Level.Shield.States;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 
-namespace Source.Scripts.Game.Level.Shield
+namespace CubeProject.Game.Player.Shield
 {
 	public class CubeShieldService : IDisposable
 	{
@@ -22,10 +20,10 @@ namespace Source.Scripts.Game.Level.Shield
 		private bool _isAcceptableState;
 		private bool _isListenStates;
 
-		public CubeShieldService(Cube cube, IStateMachine<ShieldStateMachine> shieldStateMachine)
+		public CubeShieldService(CubeEntity cubeEntity, IStateMachine<ShieldStateMachine> shieldStateMachine)
 		{
-			_chargeHolder = cube.Component.ChargeHolder;
-			_cubeStateMachine = cube.Component.StateMachine;
+			_chargeHolder = cubeEntity.Component.ChargeHolder;
+			_cubeStateMachine = cubeEntity.Component.StateMachine;
 
 			_shieldStateMachine = shieldStateMachine;
 

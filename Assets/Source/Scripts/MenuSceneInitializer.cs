@@ -8,7 +8,7 @@ using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Source.Scripts.Game.Level;
+using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -32,7 +32,7 @@ namespace CubeProject
 			where TState : State<GameStateMachine>
 		{
 			_pageBehaviour.Init(LevelButtonFactory.Create(_levelButtonPrefab, levelLoader));
-			
+
 			gameObject.GetComponentElseThrow(out WindowInitializer _)
 				.WindowsInit(machine.Window);
 

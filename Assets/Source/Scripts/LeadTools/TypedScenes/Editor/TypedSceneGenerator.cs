@@ -2,12 +2,8 @@
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using LeadTools.StateMachine;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace LeadTools.TypedScenes.Editor
 {
@@ -25,7 +21,7 @@ namespace LeadTools.TypedScenes.Editor
 
 			targetClass.BaseTypes.Add(
 				new CodeTypeReference(
-					GeneratorSettings.BaseTypeName, 
+					GeneratorSettings.BaseTypeName,
 					new CodeTypeReference(GeneratorSettings.GameStateMachine)));
 
 			targetClass.TypeAttributes = TypeAttributes.Class | TypeAttributes.Public;
@@ -33,7 +29,7 @@ namespace LeadTools.TypedScenes.Editor
 			AddConstantValue(targetClass, typeof(string), GeneratorSettings.SceneNameField, sceneName);
 
 			var methodFactory = new TypedSceneMethodFactory();
-			
+
 			methodFactory.AddLoadingMethod(targetClass, false, false, true);
 			methodFactory.AddLoadingMethod(targetClass, true, false, true);
 			methodFactory.AddLoadingMethod(targetClass, false, true, true);

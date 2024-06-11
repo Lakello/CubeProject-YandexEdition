@@ -3,7 +3,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	public sealed class ChargeConsumer : MonoBehaviour, IChargeable
 	{
@@ -65,7 +65,7 @@ namespace CubeProject.Game
 			if (_isAlwaysCharged is false)
 				Unsubscribe();
 		}
-		
+
 		private bool CheckAnyCharge() =>
 			_chargeables.Any(holder => holder.IsCharged);
 
@@ -75,17 +75,17 @@ namespace CubeProject.Game
 		private void OnChargeChanged()
 		{
 			bool isCharged;
-			
+
 			if (_needAllCharge)
 				isCharged = CheckAllCharge();
 			else
 				isCharged = CheckAnyCharge();
-			
+
 			if (isCharged == _isCharged)
 				return;
 
 			_isCharged = isCharged;
-			
+
 			ChargeChanged?.Invoke();
 		}
 

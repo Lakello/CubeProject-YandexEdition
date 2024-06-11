@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level
+namespace CubeProject.Game.Level
 {
 	public class SpawnPoint : MonoBehaviour
 	{

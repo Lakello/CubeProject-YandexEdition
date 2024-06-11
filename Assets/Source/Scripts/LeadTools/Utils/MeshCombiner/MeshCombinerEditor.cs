@@ -12,7 +12,7 @@ namespace Source.Scripts.LeadTools.Utils
 	public class MeshCombinerEditor : Editor
 	{
 		private const string FolderPath = "Source/Art/Prefabs/CombinedMeshes/";
-		
+
 		public override void OnInspectorGUI()
 		{
 			MeshCombiner meshCombiner = (MeshCombiner)target;
@@ -73,7 +73,7 @@ namespace Source.Scripts.LeadTools.Utils
 
 			meshCombiner.IsFindByTypeCombineMesh = GUILayout.Toggle(meshCombiner.IsFindByTypeCombineMesh,
 				new GUIContent("IsFindByTypeCombineMesh"));
-			
+
 			#endregion Button which combine Meshes into one Mesh & Toggles with combine options.
 
 			#region Path to the folder where combined Meshes will be saved:
@@ -86,7 +86,7 @@ namespace Source.Scripts.LeadTools.Utils
 			style = new GUIStyle(EditorStyles.textField);
 
 			var folderPath = $"{FolderPath}/{SceneManager.GetActiveScene().name}/{meshCombiner.gameObject.name}";
-			
+
 			bool isValidPath = IsValidPath(folderPath);
 
 			if (!isValidPath)
@@ -94,7 +94,7 @@ namespace Source.Scripts.LeadTools.Utils
 				style.normal.textColor = Color.red;
 				style.focused.textColor = Color.red;
 			}
-			
+
 			EditorGUILayout.TextField(folderPath, style);
 
 			#endregion Path to the folder where combined Meshes will be saved.
@@ -106,7 +106,7 @@ namespace Source.Scripts.LeadTools.Utils
 			string saveMeshButtonText = (meshIsSaved) ? "Show Saved Combined Mesh" : "Save Combined Mesh";
 
 			if (GUILayout.Button(saveMeshButtonText))
-			{ 
+			{
 				SaveCombinedMesh(mesh, folderPath);
 			}
 

@@ -1,6 +1,6 @@
 using CubeProject.UI;
 
-namespace Source.Scripts.Game.UI.Buttons
+namespace CubeProject.Game.Player.UI.Buttons
 {
 	public class SelectLevelButton : EventTriggerButton
 	{

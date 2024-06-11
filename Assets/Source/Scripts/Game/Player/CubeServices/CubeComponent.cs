@@ -1,14 +1,11 @@
-using CubeProject.Game;
-using CubeProject.PlayableCube.Movement;
+using CubeProject.Game.Level.Trigger;
+using CubeProject.Game.PlayerStateMachine;
 using CubeProject.SO;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
-using Source.Scripts.Game.Level.Shield;
-using Source.Scripts.Game.Level.Trigger;
-using Source.Scripts.Game.tateMachine;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(CubeDiedView))]
 	[RequireComponent(typeof(ChargeHolder))]

@@ -1,8 +1,8 @@
-using CubeProject.PlayableCube;
+using CubeProject.Game.Player;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(ChargeHolder))]
 	public class PowerUnit : MonoBehaviour
@@ -17,22 +17,22 @@ namespace CubeProject.Game
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube cube))
+			if (other.TryGetComponent(out CubeEntity cube))
 				OnTryUsing(cube);
 		}
 
-		private void OnTryUsing(Cube cube)
+		private void OnTryUsing(CubeEntity cubeEntity)
 		{
-			var cubeIsCharged = cube.Component.ChargeHolder.IsCharged;
+			var cubeIsCharged = cubeEntity.Component.ChargeHolder.IsCharged;
 			var selfIsCharged = _selfChargeHolder.IsCharged;
 
 			if (selfIsCharged && cubeIsCharged)
 				return;
 
 			if (selfIsCharged && _canGiveCharge)
-				_selfChargeHolder.GivePowerTo(cube.Component.ChargeHolder);
+				_selfChargeHolder.GivePowerTo(cubeEntity.Component.ChargeHolder);
 			else if (cubeIsCharged && _canGetCharge)
-				cube.Component.ChargeHolder.GivePowerTo(_selfChargeHolder);
+				cubeEntity.Component.ChargeHolder.GivePowerTo(_selfChargeHolder);
 		}
 	}
 }

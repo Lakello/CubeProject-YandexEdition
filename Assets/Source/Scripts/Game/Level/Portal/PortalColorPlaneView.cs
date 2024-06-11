@@ -1,4 +1,3 @@
-using System;
 using CubeProject.SO;
 using DG.Tweening;
 using LeadTools.Extensions;
@@ -6,7 +5,7 @@ using LeadTools.Other;
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	public class PortalColorPlaneView : MonoBehaviour
 	{
@@ -20,7 +19,7 @@ namespace CubeProject.Game
 		{
 			gameObject.GetComponentInParentElseThrow(out _chargeConsumer);
 			gameObject.GetComponentElseThrow(out _selfMeshRenderer);
-			
+
 			Init(data);
 		}
 
@@ -44,7 +43,7 @@ namespace CubeProject.Game
 
 			linkedColorPlane.enabled = false;
 			DestroyImmediate(linkedColorPlane);
-			
+
 			if (_isInitialized)
 				return;
 

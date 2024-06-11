@@ -10,7 +10,7 @@ namespace LeadTools.TypedScenes.Editor
 	{
 		private CodeMemberMethod _loadMethod;
 		private List<string> _statementArguments;
-		
+
 		public void AddLoadingMethod(
 			CodeTypeDeclaration targetClass,
 			bool isAsyncLoad,
@@ -28,14 +28,14 @@ namespace LeadTools.TypedScenes.Editor
 			var loadingStatement = GetLoadingStatement(isAsyncLoad, _statementArguments, statementTypeParameters);
 
 			var loadingModeParameter = new CodeParameterDeclarationExpression(
-				nameof(LoadSceneMode), 
+				nameof(LoadSceneMode),
 				MethodFactorySettings.LoadSceneModeParameter);
-			
+
 			_loadMethod.Parameters.Add(loadingModeParameter);
 			_loadMethod.Statements.Add(new CodeSnippetExpression(loadingStatement));
 			targetClass.Members.Add(_loadMethod);
 		}
-		
+
 		private List<string> InitMethod(bool isAsyncLoad)
 		{
 			_loadMethod = new CodeMemberMethod
@@ -88,7 +88,7 @@ namespace LeadTools.TypedScenes.Editor
 				_loadMethod.TypeParameters.Add(targetTypeParameter);
 			}
 		}
-		
+
 		private void AddParameter(string type, string argumentName)
 		{
 			var parameter = new CodeParameterDeclarationExpression(type, argumentName);
@@ -114,7 +114,7 @@ namespace LeadTools.TypedScenes.Editor
 
 				typeParameters += type;
 			}
-			
+
 			foreach (var argument in statementArguments)
 			{
 				arguments += $", {argument}";

@@ -1,9 +1,9 @@
 using System;
-using CubeProject.PlayableCube;
+using CubeProject.Game.Player;
 using LeadTools.StateMachine;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(Collider))]
 	public class EndPoint : MonoBehaviour, ITransitSubject
@@ -12,7 +12,7 @@ namespace CubeProject.Game
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube _))
+			if (other.TryGetComponent(out CubeEntity _))
 				StateTransiting?.Invoke();
 		}
 	}

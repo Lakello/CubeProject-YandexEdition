@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Source.Scripts.Game
+namespace CubeProject.Game.Player
 {
 	[Serializable]
 	public struct MaskHolder

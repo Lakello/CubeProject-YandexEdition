@@ -6,7 +6,7 @@ namespace CubeProject.LeadTools.UI
 	public class AnchorGroupAnimator
 	{
 		private readonly AnchorAnimationGroup _group;
-		
+
 		private Sequence _sequence;
 
 		public AnchorGroupAnimator(AnchorAnimationGroup group) =>
@@ -19,9 +19,10 @@ namespace CubeProject.LeadTools.UI
 			if (_group == null)
 			{
 				completeCallback?.Invoke();
+
 				return;
 			}
-			
+
 			if (_sequence != null)
 				_sequence.onKill = null;
 
@@ -32,11 +33,12 @@ namespace CubeProject.LeadTools.UI
 			if (sequences == null || sequences.Length < 1)
 			{
 				completeCallback?.Invoke();
+
 				return;
 			}
-			
+
 			_sequence.Append(sequences[0]);
-			
+
 			if (sequences.Length > 1)
 			{
 				for (int i = 1; i < sequences.Length; i++)

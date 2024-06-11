@@ -1,6 +1,6 @@
 using System;
 
-namespace Source.Scripts.Game.Messages
+namespace CubeProject.Game.Messages
 {
 	public class DoAfterStepMessage
 	{

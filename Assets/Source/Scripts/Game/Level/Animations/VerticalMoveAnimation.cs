@@ -1,12 +1,12 @@
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Player;
+using CubeProject.Game.Player.Movement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using Source.Scripts.Game.Messages;
 using UniRx;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level.Animations
+namespace CubeProject.Game.Level.Animations
 {
 	public class VerticalMoveAnimation : MonoBehaviour
 	{
@@ -37,7 +37,7 @@ namespace Source.Scripts.Game.Level.Animations
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube _))
+			if (other.TryGetComponent(out CubeEntity _))
 			{
 				_disposable = new CompositeDisposable();
 
@@ -64,7 +64,7 @@ namespace Source.Scripts.Game.Level.Animations
 		private void OnDisable()
 		{
 			_disposable?.Dispose();
-			
+
 			if (_animationTweener != null)
 			{
 				_animationTweener.Kill();

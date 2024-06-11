@@ -1,9 +1,10 @@
 using System;
+using DG.Tweening;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	public class CubeDiedView : MonoBehaviour
 	{
@@ -15,19 +16,11 @@ namespace CubeProject.PlayableCube
 
 		public void Play(bool isVisible, Action endCallback)
 		{
-			var (current, target) = isVisible
-				? (UnVisible, Visible)
-				: (Visible, UnVisible);
+			var target = isVisible ? Visible : UnVisible;
 
-			this.PlaySmoothChangeValue(
-				(currentTime) =>
-				{
-					var clipDissolve = Mathf.Lerp(current, target, currentTime);
-
-					_dissolveMeshRenderer.material.SetFloat(ShaderProperty._Clip.GetCurrentName(), clipDissolve);
-				},
-				_animationTime,
-				endCallback);
+			_dissolveMeshRenderer.material
+				.DOFloat(target, ShaderProperty._Clip.GetCurrentName(), _animationTime)
+				.OnKill(() => endCallback?.Invoke());
 		}
 	}
 }

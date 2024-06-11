@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	[Serializable]
 	public class Directions
@@ -22,13 +22,9 @@ namespace CubeProject.Game
 		public void SetValue(Vector3 direction, bool value)
 		{
 			if (_directions.ContainsKey(direction))
-			{
 				_directions[direction] = value;
-			}
 			else
-			{
 				throw new ArgumentException();
-			}
 		}
 	}
 }

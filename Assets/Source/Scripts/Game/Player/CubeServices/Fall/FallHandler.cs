@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
+using CubeProject.Game.Messages;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using LeadTools.StateMachine;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Messages;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	public class FallHandler : IDisposable
 	{
@@ -18,24 +17,24 @@ namespace CubeProject.PlayableCube
 
 		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private readonly GroundChecker _groundChecker;
-		private readonly Cube _cube;
+		private readonly CubeEntity _cubeEntity;
 		private readonly BecameVisibleBehaviour _became;
 		private readonly CompositeDisposable _disposable;
 
-		public FallHandler(Cube cube, GroundChecker groundChecker)
+		public FallHandler(CubeEntity cubeEntity, GroundChecker groundChecker)
 		{
 			_disposable = new CompositeDisposable();
 
-			_cube = cube;
-			_became = _cube.Component.BecameVisibleBehaviour;
-			_cubeStateMachine = _cube.Component.StateMachine;
+			_cubeEntity = cubeEntity;
+			_became = _cubeEntity.Component.BecameVisibleBehaviour;
+			_cubeStateMachine = _cubeEntity.Component.StateMachine;
 			_groundChecker = groundChecker;
 		}
 
 		private Vector3 Position
 		{
-			get => _cube.transform.position - _offset;
-			set => _cube.transform.position = _offset + value;
+			get => _cubeEntity.transform.position - _offset;
+			set => _cubeEntity.transform.position = _offset + value;
 		}
 
 		public void Dispose() =>
@@ -68,8 +67,10 @@ namespace CubeProject.PlayableCube
 				.AddTo(_disposable);
 		}
 
-		private bool CanFallToGround(out float groundPositionY) =>
-			_groundChecker.IsGrounded(_cube.transform.position, Mathf.Infinity, out groundPositionY);
+		private bool CanFallToGround(out float groundPositionY)
+		{
+			return _groundChecker.IsGrounded(_cubeEntity.transform.position, Mathf.Infinity, out groundPositionY);
+		}
 
 		private IEnumerator Fall(Func<float, Vector3> calculatePosition, Func<bool> whileCondition)
 		{
@@ -112,6 +113,6 @@ namespace CubeProject.PlayableCube
 				return position;
 			},
 			() => _became.IsVisible,
-			_cube.Kill);
+			_cubeEntity.Kill);
 	}
 }

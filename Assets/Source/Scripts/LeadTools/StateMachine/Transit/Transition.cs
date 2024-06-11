@@ -13,7 +13,7 @@
 
 		public void Transit()
 		{
-			if (_machine.CurrentState.GetType() != typeof(TTargetState))
+			if (_machine.CurrentState?.GetType() != typeof(TTargetState))
 			{
 				_machine.EnterIn<TTargetState>();
 			}

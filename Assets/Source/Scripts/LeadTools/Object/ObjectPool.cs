@@ -7,7 +7,8 @@ namespace LeadTools.Object
 	public class ObjectPool<TInstance, TInit>
 		where TInstance : MonoBehaviour
 	{
-		private readonly Dictionary<Type, Queue<IPoolingObject<TInstance, TInit>>> _objects = new Dictionary<Type, Queue<IPoolingObject<TInstance, TInit>>>();
+		private readonly Dictionary<Type, Queue<IPoolingObject<TInstance, TInit>>> _objects =
+			new Dictionary<Type, Queue<IPoolingObject<TInstance, TInit>>>();
 
 		public void Return(IPoolingObject<TInstance, TInit> poolingObject)
 		{
@@ -38,13 +39,9 @@ namespace LeadTools.Object
 			poolingObject.Instance.gameObject.SetActive(false);
 
 			if (_objects.TryGetValue(poolingObject.SelfType, out Queue<IPoolingObject<TInstance, TInit>> playersData))
-			{
 				AddObject();
-			}
 			else
-			{
 				AddType();
-			}
 
 			return;
 

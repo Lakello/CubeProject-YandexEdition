@@ -1,6 +1,5 @@
 ﻿using System;
 using CubeProject.LeadTools.UI;
-using LeadTools.Extensions;
 using UnityEngine;
 
 namespace LeadTools.StateMachine
@@ -16,9 +15,10 @@ namespace LeadTools.StateMachine
 		{
 			var animators = GetComponentsInChildren<AnchorAnimator>();
 
-			if (animators is {Length: 0})
+			if (animators is { Length: 0 })
 			{
 				_animations = null;
+
 				return null;
 			}
 

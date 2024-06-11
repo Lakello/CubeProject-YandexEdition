@@ -1,15 +1,14 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube.Movement
+namespace CubeProject.Game.Player.Movement
 {
 	public class RollMover
 	{
 		private readonly float _rollSpeed;
 		private readonly Transform _targetTransform;
 		private readonly WaitForFixedUpdate _wait;
-		
+
 		private float _currentAngle;
 
 		public RollMover(float rollSpeed, Transform targetTransform)
@@ -22,11 +21,9 @@ namespace CubeProject.PlayableCube.Movement
 		public IEnumerator Move(Vector3 direction)
 		{
 			const float rollAngle = 90f;
-			
+
 			if (_currentAngle >= rollAngle)
-			{
 				_currentAngle = 0f;
-			}
 
 			var (anchor, axis) = GetRotateData(_targetTransform, direction);
 
@@ -50,9 +47,7 @@ namespace CubeProject.PlayableCube.Movement
 			}
 
 			if (_currentAngle is < rollAngle or > rollAngle)
-			{
 				_targetTransform.RotateAround(anchor, axis, rollAngle - _currentAngle);
-			}
 		}
 
 		private (Vector3, Vector3) GetRotateData(Transform origin, Vector3 direction)

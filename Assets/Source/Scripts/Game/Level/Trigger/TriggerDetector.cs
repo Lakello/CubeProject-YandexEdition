@@ -3,7 +3,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level.Trigger
+namespace CubeProject.Game.Level.Trigger
 {
 	public class TriggerDetector : MonoBehaviour
 	{

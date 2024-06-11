@@ -1,8 +1,8 @@
 using System;
-using CubeProject.PlayableCube;
+using CubeProject.Game.Player;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	public class BarrierField : MonoBehaviour, IAudioSubject
 	{
@@ -12,7 +12,7 @@ namespace CubeProject.Game
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube cube)
+			if (other.TryGetComponent(out CubeEntity cube)
 				&& _chargeConsumer.IsCharged
 				&& cube.Component.ChargeHolder.IsCharged is false)
 			{

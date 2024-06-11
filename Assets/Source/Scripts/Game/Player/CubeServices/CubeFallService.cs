@@ -1,11 +1,10 @@
 using System;
-using CubeProject.PlayableCube.Movement;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Messages;
+using CubeProject.Game.Player;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Player.Movement;
 using UniRx;
-using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	public class CubeFallService : IDisposable
 	{
@@ -15,11 +14,11 @@ namespace CubeProject.PlayableCube
 		private CompositeDisposable _disposable;
 
 		public CubeFallService(
-			Cube cube,
+			CubeEntity cubeEntity,
 			MaskHolder maskHolder)
 		{
-			_groundChecker = new GroundChecker(maskHolder.GroundMask, cube.transform);
-			_fallHandler = new FallHandler(cube, _groundChecker);
+			_groundChecker = new GroundChecker(maskHolder.GroundMask, cubeEntity.transform);
+			_fallHandler = new FallHandler(cubeEntity, _groundChecker);
 
 			_disposable = new CompositeDisposable();
 

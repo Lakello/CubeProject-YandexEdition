@@ -1,14 +1,14 @@
 using System.Collections;
-using CubeProject.PlayableCube;
+using CubeProject.Game.Level.Trigger;
+using CubeProject.Game.Player;
+using CubeProject.Game.Player.Shield.States;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
-using Source.Scripts.Game.Level.Shield.States;
-using Source.Scripts.Game.Level.Trigger;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level.Shield
+namespace CubeProject.Game.Player.Shield
 {
 	public class ShieldView : MonoBehaviour
 	{
@@ -97,6 +97,7 @@ namespace Source.Scripts.Game.Level.Shield
 		{
 			var targetValue = GetPropertyValueOnDistance(_shieldData.FresnelPowerRange,
 				normalDistance);
+
 			UpdateProperty(_fresnelPowerProperty, _shieldData.FresnelPowerHide);
 
 			if (isShow)

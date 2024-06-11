@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Attributes;
-using Source.Scripts.Game.Level;
+using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject.LeadTools.UI.PageSystem
@@ -100,7 +100,7 @@ namespace CubeProject.LeadTools.UI.PageSystem
 		{
 			if (isEntered)
 				return;
-			
+
 			_pages[_currentPageIndex].Hide();
 		}
 	}

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace CubeProject.LeadTools.Utils
@@ -12,11 +11,8 @@ namespace CubeProject.LeadTools.Utils
 		[SerializeField] private GameObject _pointPrefab;
 
 		public string ParentName => _parentName;
-		
 		public GameObject ObjectPrefab => _objectPrefab;
-
 		public Vector3 ObjectRotation => _objectRotation;
-
 		public GameObject PointPrefab => _pointPrefab;
 	}
 }

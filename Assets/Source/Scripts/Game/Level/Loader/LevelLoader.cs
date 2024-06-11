@@ -7,18 +7,18 @@ using LeadTools.TypedScenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Source.Scripts.Game.Level
+namespace CubeProject.Game.Level
 {
 	public class LevelLoader : MonoBehaviour
 	{
 		[SerializeField] [Scene] private string[] _levels;
 
-		private int _currentSceneIndex = 0;
+		private int _currentSceneIndex;
 		private GameStateMachine _gameStateMachine;
 		private LoaderMode _currentMode;
 
 		public int LevelsCount => _levels.Length;
-		
+
 		public void Init(GameStateMachine gameStateMachine)
 		{
 			if (_gameStateMachine != null)
@@ -31,28 +31,30 @@ namespace Source.Scripts.Game.Level
 
 		public void SetMode(LoaderMode mode) =>
 			_currentMode = mode;
-		
+
 		public void LoadNextLevel()
 		{
 			switch (_currentMode)
 			{
 				case LoaderMode.Random:
 					Random();
+
 					break;
 				default:
 					ByOrder();
+
 					break;
 			}
-			
+
 			return;
-			
+
 			void ByOrder() =>
 				LoadLevelAtIndex(++_currentSceneIndex);
 
 			void Random(int currentIteration = 0)
 			{
 				const int maxIteration = 10;
-				
+
 				var randomIndex = UnityEngine.Random.Range(0, LevelsCount);
 
 				if (currentIteration < maxIteration && randomIndex == _currentSceneIndex)

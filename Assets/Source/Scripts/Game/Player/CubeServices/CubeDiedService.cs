@@ -1,37 +1,36 @@
 using System;
+using CubeProject.Game.Level;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Messages.Camera;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using LeadTools.StateMachine;
-using Source.Scripts.Game.Level;
-using Source.Scripts.Game.Level.Camera;
-using Source.Scripts.Game.Messages;
-using Source.Scripts.Game.Messages.Camera;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	public class CubeDiedService : IDisposable
 	{
 		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
-		private readonly Cube _cube;
+		private readonly CubeEntity _cubeEntity;
 		private readonly CubeDiedView _cubeDiedView;
 		private readonly SpawnPoint _spawnPoint;
 
-		public CubeDiedService(Cube cube, SpawnPoint spawnPoint)
+		public CubeDiedService(CubeEntity cubeEntity, SpawnPoint spawnPoint)
 		{
-			_cube = cube;
-			_cubeDiedView = _cube.Component.DiedView;
+			_cubeEntity = cubeEntity;
+			_cubeDiedView = _cubeEntity.Component.DiedView;
 			_spawnPoint = spawnPoint;
 
-			_cube.Died += OnDied;
+			_cubeEntity.Died += OnDied;
 		}
 
-		private IStateMachine<CubeStateMachine> CubeStateMachine => _cube.Component.StateMachine;
+		private IStateMachine<CubeStateMachine> CubeStateMachine => _cubeEntity.Component.StateMachine;
 
 		public void Dispose()
 		{
-			_cube.Died -= OnDied;
+			_cubeEntity.Died -= OnDied;
 		}
 
 		private void OnDied()
@@ -47,7 +46,7 @@ namespace CubeProject.PlayableCube
 
 		private void DissolveVisible()
 		{
-			_cube.transform.position = _spawnPoint.transform.position + _offset;
+			_cubeEntity.transform.position = _spawnPoint.transform.position + _offset;
 
 			MessageBroker.Default
 				.Publish(new SetTargetCameraMessage());

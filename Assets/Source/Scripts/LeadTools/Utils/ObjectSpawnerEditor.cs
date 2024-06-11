@@ -12,9 +12,9 @@ namespace CubeProject.LeadTools.Utils
 	public class ObjectSpawnerEditor : MonoBehaviour
 	{
 		private const string PointName = "Point_";
-        
+
 		private readonly List<Transform> _pointsPool = new List<Transform>();
-		
+
 		[SerializeField] [OnValueChanged(nameof(OnPresetChanged))] [ValueDropdown(nameof(GetPresets))] private ObjectSpawnerPreset _preset;
 		[SerializeField] [OnValueChanged(nameof(OnPointsChanged))] private Transform[] _points;
 		[SerializeField] private int _height = 1;
@@ -26,7 +26,7 @@ namespace CubeProject.LeadTools.Utils
 
 		private bool CanShowApplyButton => _isSpawned;
 
-		private bool CanShowSpawnButton => _preset.ObjectPrefab != null && _points is {Length: >= 2} && _isSpawned == false;
+		private bool CanShowSpawnButton => _preset.ObjectPrefab != null && _points is { Length: >= 2 } && _isSpawned == false;
 
 		private void OnPresetChanged() =>
 			_parent = GameObject.Find(_preset.ParentName);
@@ -39,9 +39,9 @@ namespace CubeProject.LeadTools.Utils
 		private ValueDropdownList<ObjectSpawnerPreset> GetPresets()
 		{
 			FindPresets();
-			
+
 			var list = new ValueDropdownList<ObjectSpawnerPreset>();
-			
+
 			foreach (var preset in _presets)
 			{
 				list.Add(preset.name, preset);
@@ -49,7 +49,7 @@ namespace CubeProject.LeadTools.Utils
 
 			return list;
 		}
-		
+
 		private void OnPointsChanged()
 		{
 			for (int i = 0; i < _points.Length; i++)
@@ -60,15 +60,15 @@ namespace CubeProject.LeadTools.Utils
 
 					newPoint.name = PointName + i;
 					newPoint.transform.position = Vector3.zero;
-					
+
 					_points[i] = newPoint.transform;
-					
+
 					_pointsPool.Add(newPoint.transform);
 				}
 			}
 
 			var points = _pointsPool.Except(_points).ToArray();
-			
+
 			if (points.Length < 1)
 				return;
 
@@ -85,7 +85,7 @@ namespace CubeProject.LeadTools.Utils
 			_isSpawned = false;
 			_spawnedObjects = null;
 		}
-		
+
 		[Button] [ShowIf(nameof(CanShowSpawnButton))]
 		private void Spawn()
 		{
@@ -110,22 +110,21 @@ namespace CubeProject.LeadTools.Utils
 
 					startPoint.y += heightIncrement;
 					endPoint.y += heightIncrement;
-					
+
 					Vector3 currentPosition = startPoint;
 					Vector3 direction = endPoint - startPoint;
 
 					while (currentPosition != endPoint)
 					{
-					
 						TryInstantiateObject(currentPosition);
 
 						currentPosition += direction.normalized;
 					}
-			
+
 					TryInstantiateObject(currentPosition);
 				}
 			}
-			
+
 			void TryInstantiateObject(Vector3 currentPosition)
 			{
 				if (currentPosition == previousPosition)
@@ -134,7 +133,7 @@ namespace CubeProject.LeadTools.Utils
 				}
 
 				previousPosition = currentPosition;
-				
+
 				var spawnerObject = (GameObject)PrefabUtility.InstantiatePrefab(_preset.ObjectPrefab, SceneManager.GetActiveScene());
 
 				spawnerObject.transform.position = currentPosition;
@@ -144,7 +143,7 @@ namespace CubeProject.LeadTools.Utils
 				{
 					spawnerObject.transform.SetParent(_parent.transform);
 				}
-				
+
 				_spawnedObjects.Add(spawnerObject);
 			}
 		}

@@ -1,4 +1,6 @@
-namespace Source.Scripts.Game.Messages
+using CubeProject.Game.Player;
+
+namespace CubeProject.Game.Messages
 {
 	public class Message<TSender>
 	{

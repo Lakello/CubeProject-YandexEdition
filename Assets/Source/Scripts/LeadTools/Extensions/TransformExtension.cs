@@ -1,5 +1,5 @@
 using System;
-using CubeProject.Game;
+using CubeProject.Game.Player;
 using UnityEngine;
 
 namespace LeadTools.Extensions
@@ -29,7 +29,7 @@ namespace LeadTools.Extensions
 				if (Physics.Raycast(origin, Vector3.down, Mathf.Infinity, layerMask))
 				{
 					successCallback?.Invoke();
-					
+
 					return true;
 				}
 				else
@@ -37,7 +37,7 @@ namespace LeadTools.Extensions
 					directions.SetValue(direction, false);
 
 					direction = directions.GetAnyDirection();
-					
+
 					if (direction == Vector3.zero)
 					{
 						return false;
@@ -47,7 +47,7 @@ namespace LeadTools.Extensions
 				}
 			}
 		}
-		
+
 		public static void RotateToTarget(this Transform origin, Transform target)
 		{
 			var offset = target.transform.position - origin.position;

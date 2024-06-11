@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using CubeProject.PlayableCube;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	public class TeleportView
 	{

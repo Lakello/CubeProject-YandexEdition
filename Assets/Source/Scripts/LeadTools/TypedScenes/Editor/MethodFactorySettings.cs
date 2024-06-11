@@ -10,7 +10,7 @@ namespace LeadTools.TypedScenes.Editor
 		public const string StateType = "State";
 
 		public const string StatementName = "LoadScene";
-		
+
 		private const string LoadAsync = nameof(LoadAsync);
 		private const string Load = nameof(Load);
 

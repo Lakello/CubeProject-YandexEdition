@@ -31,7 +31,7 @@ namespace LeadTools.StateMachine
 		{
 			if (_window == null)
 				return;
-			
+
 			_window.gameObject.SetActive(true);
 
 			_animator.PlayAnimations(AnchorAnimatorState.Target);
@@ -41,7 +41,7 @@ namespace LeadTools.StateMachine
 		{
 			if (_window == null)
 				return;
-			
+
 			_animator.PlayAnimations(
 				AnchorAnimatorState.Initial,
 				() => _window.gameObject.SetActive(false));

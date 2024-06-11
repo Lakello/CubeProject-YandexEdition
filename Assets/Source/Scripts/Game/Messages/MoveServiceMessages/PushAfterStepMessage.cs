@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Messages
+namespace CubeProject.Game.Messages
 {
 	public class PushAfterStepMessage
 	{

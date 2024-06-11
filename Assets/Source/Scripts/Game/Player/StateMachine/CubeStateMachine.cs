@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using LeadTools.StateMachine;
 
-namespace Source.Scripts.Game.tateMachine
+namespace CubeProject.Game.PlayerStateMachine
 {
 	public class CubeStateMachine : StateMachine<CubeStateMachine>
 	{

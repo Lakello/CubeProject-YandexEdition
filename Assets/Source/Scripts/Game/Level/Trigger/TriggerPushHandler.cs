@@ -1,5 +1,5 @@
 using System;
-using CubeProject.PlayableCube;
+using CubeProject.Game.Player;
 using UnityEngine;
 
 namespace CubeProject.Tips
@@ -10,7 +10,7 @@ namespace CubeProject.Tips
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Cube _))
+			if (other.TryGetComponent(out CubeEntity _))
 				Pushing?.Invoke();
 		}
 	}

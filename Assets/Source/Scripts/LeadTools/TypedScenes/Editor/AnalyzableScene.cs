@@ -7,51 +7,51 @@ using UnityEngine.SceneManagement;
 
 namespace LeadTools.TypedScenes.Editor
 {
-    public class AnalyzableScene : IDisposable
-    {
-        private bool _closeOnDispose;
-        
-        public Scene Scene { get; private set; }
-        
-        public string Name { get; private set; }
-        
-        public string GUID { get; private set; }
-        
-        public string AssetPath { get; private set; }
+	public class AnalyzableScene : IDisposable
+	{
+		private bool _closeOnDispose;
 
-        private AnalyzableScene()
-        {
-        }
+		public Scene Scene { get; private set; }
 
-        public static AnalyzableScene Create(string scenePath)
-        {
-            var scene = SceneManager.GetActiveScene();
-            var sceneIsActive = scene.path == scenePath;
+		public string Name { get; private set; }
 
-            if (!sceneIsActive)
-            {
-                scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
-                EditorSceneManager.SetActiveScene(scene);
-            }
-            
-            var guid = AssetDatabase.AssetPathToGUID(scene.path);
-            var name = Path.GetFileNameWithoutExtension(scenePath);
+		public string GUID { get; private set; }
 
-            return new AnalyzableScene
-            {
-                _closeOnDispose = !sceneIsActive,
-                Name = name,
-                Scene = scene,
-                GUID = guid,
-                AssetPath = scene.path
-            };
-        }
+		public string AssetPath { get; private set; }
 
-        public void Dispose()
-        {
-            if (!_closeOnDispose) return;
-            EditorSceneManager.CloseScene(Scene, true);
-        }
-    }
+		private AnalyzableScene()
+		{
+		}
+
+		public static AnalyzableScene Create(string scenePath)
+		{
+			var scene = SceneManager.GetActiveScene();
+			var sceneIsActive = scene.path == scenePath;
+
+			if (!sceneIsActive)
+			{
+				scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+				EditorSceneManager.SetActiveScene(scene);
+			}
+
+			var guid = AssetDatabase.AssetPathToGUID(scene.path);
+			var name = Path.GetFileNameWithoutExtension(scenePath);
+
+			return new AnalyzableScene
+			{
+				_closeOnDispose = !sceneIsActive,
+				Name = name,
+				Scene = scene,
+				GUID = guid,
+				AssetPath = scene.path
+			};
+		}
+
+		public void Dispose()
+		{
+			if (!_closeOnDispose) return;
+			EditorSceneManager.CloseScene(Scene, true);
+		}
+	}
 }
 #endif

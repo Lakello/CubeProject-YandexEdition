@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	public class GroundChecker
 	{
@@ -34,9 +34,7 @@ namespace CubeProject.PlayableCube
 				_groundMask);
 
 			if (count > 0)
-			{
 				groundPositionY = _results[0].transform.position.y;
-			}
 
 			return count > 0;
 		}

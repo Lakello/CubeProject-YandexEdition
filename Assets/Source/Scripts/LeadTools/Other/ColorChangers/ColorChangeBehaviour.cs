@@ -22,7 +22,7 @@ namespace Source.Scripts.LeadTools.Other
 			{
 				meshRenderer
 			}));
-			
+
 			EditorUtility.SetDirty(this);
 		}
 		#endif

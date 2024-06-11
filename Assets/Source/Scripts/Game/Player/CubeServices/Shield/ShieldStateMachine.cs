@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using LeadTools.StateMachine;
 
-namespace Source.Scripts.Game.Level.Shield
+namespace CubeProject.Game.Player.Shield
 {
 	public class ShieldStateMachine : StateMachine<ShieldStateMachine>
 	{

@@ -5,8 +5,8 @@ using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Level;
+using CubeProject.Game.Player;
+using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -70,11 +70,11 @@ namespace CubeProject
 			{
 				QualitySettings.vSyncCount = 0;
 				Application.targetFrameRate = _targetFrameRate;
-				
+
 				var levelLoader = gameObject.GetComponentElseThrow<LevelLoader>();
 
 				levelLoader.SetMode(LoaderMode.ByOrder);
-				
+
 				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
 
 				projectInitializer.Init(

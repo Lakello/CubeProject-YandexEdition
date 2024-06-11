@@ -1,7 +1,7 @@
-using CubeProject.Game;
+using CubeProject.Game.Player;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level.Trigger
+namespace CubeProject.Game.Level.Trigger
 {
 	public abstract class TriggerTarget : MonoBehaviour
 	{

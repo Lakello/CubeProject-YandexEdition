@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Source.Scripts.Game.Level
+namespace CubeProject.Game.Level
 {
 	public class LevelButton : MonoBehaviour
 	{

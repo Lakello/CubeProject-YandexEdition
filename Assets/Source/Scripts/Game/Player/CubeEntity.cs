@@ -1,12 +1,12 @@
 using System;
 using LeadTools.Extensions;
-using Source.Scripts.Game.tateMachine.States;
+using CubeProject.Game.PlayerStateMachine.States;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(CubeComponent))]
-	public class Cube : MonoBehaviour
+	public class CubeEntity : MonoBehaviour
 	{
 		private CubeComponent _component;
 

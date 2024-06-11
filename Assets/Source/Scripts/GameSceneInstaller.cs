@@ -3,14 +3,13 @@ using Cinemachine;
 using CubeProject.InputSystem;
 using CubeProject.SO;
 using CubeProject.Tips;
-using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Core;
 using Sirenix.Utilities;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Level;
-using Source.Scripts.Game.Level.Camera;
-using Source.Scripts.Game.Level.Shield;
+using CubeProject.Game.Player;
+using CubeProject.Game.Level;
+using CubeProject.Game.Level.Camera;
+using CubeProject.Game.Player.Shield;
 using UnityEngine;
 
 namespace CubeProject
@@ -37,25 +36,26 @@ namespace CubeProject
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
 			var cubeFactory = new CubeFactory(_cubeData, FindObjectOfType<SpawnPoint>());
-			
+
 			InputService = InitInputService();
 			containerBuilder.AddSingleton(InputService, typeof(IInputService));
 
 			cubeFactory.Create(InputService, _maskHolder);
-			
+
 			_disposables = new IDisposable[]
 			{
 				InputService, cubeFactory
 			};
-			
+
 			containerBuilder.AddSingleton(
-				cubeFactory.ShieldStateMachine, 
+				cubeFactory.ShieldStateMachine,
 				typeof(IStateChangeable<ShieldStateMachine>));
-			containerBuilder.AddSingleton(cubeFactory.Cube.Component);
+
+			containerBuilder.AddSingleton(cubeFactory.CubeEntity.Component);
 
 			_portalColorData.ResetColors();
 			containerBuilder.AddSingleton(_portalColorData);
-			
+
 			containerBuilder.AddSingleton(_virtualCamera);
 
 			containerBuilder.AddSingleton(typeof(PushStateHandler));
@@ -65,12 +65,12 @@ namespace CubeProject
 			containerBuilder.AddSingleton(InitTargetCameraHolder());
 
 			return;
-			
+
 			TargetCameraHolder InitTargetCameraHolder() =>
 				new TargetCameraHolder(
 					_virtualCamera,
-					cubeFactory.PlayerInstance.Cube.transform,
-					cubeFactory.PlayerInstance.Follower);
+					cubeFactory.PlayerEntityInstance.CubeEntity.transform,
+					cubeFactory.PlayerEntityInstance.Follower);
 
 			IInputService InitInputService()
 			{
@@ -78,7 +78,7 @@ namespace CubeProject
 
 				_playerInput.Enable();
 				_disable += () => _playerInput.Disable();
-				
+
 				return new DesktopInputService(
 					_playerInput,
 					cubeFactory.CubeStateMachine);

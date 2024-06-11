@@ -1,6 +1,6 @@
 using System;
-using CubeProject.PlayableCube;
-using LeadTools.Extensions;
+using CubeProject.Game.Player;
+using UniRx;
 using UnityEngine;
 
 namespace Source.Scripts.LeadTools.Other.ColorChangers
@@ -21,13 +21,13 @@ namespace Source.Scripts.LeadTools.Other.ColorChangers
 
 		private void HandleTrigger(Collider other, bool isChanged)
 		{
-			if (other.TryGetComponent(out Cube _))
+			if (other.TryGetComponent(out CubeEntity _))
 			{
 				var delay = isChanged ? _enterDelay : _exitDelay;
 
-				this.WaitTime(
-					delay,
-					() => Do(changer => changer.ChangeColor(isChanged)));
+				Observable.Timer(TimeSpan.FromSeconds(delay))
+					.Subscribe(_ => Do(changer => changer.ChangeColor(isChanged)))
+					.AddTo(this);
 			}
 		}
 	}

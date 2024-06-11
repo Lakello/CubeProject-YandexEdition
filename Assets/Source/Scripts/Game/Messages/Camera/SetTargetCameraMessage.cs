@@ -1,7 +1,6 @@
-namespace Source.Scripts.Game.Messages.Camera
+namespace CubeProject.Game.Messages.Camera
 {
 	public class SetTargetCameraMessage
 	{
-		
 	}
 }

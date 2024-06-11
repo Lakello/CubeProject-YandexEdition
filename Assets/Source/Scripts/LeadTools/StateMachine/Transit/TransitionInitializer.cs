@@ -24,7 +24,7 @@ namespace LeadTools.StateMachine
 
 			return this;
 		}
-		
+
 		public TransitionInitializer<TMachine> InitTransition<TTargetState>(
 			IEnumerable<ITransitSubject> transitSubjects,
 			Action observer = null)

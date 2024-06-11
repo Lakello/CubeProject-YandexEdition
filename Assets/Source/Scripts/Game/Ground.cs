@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(BoxCollider))]
 	public class Ground : MonoBehaviour

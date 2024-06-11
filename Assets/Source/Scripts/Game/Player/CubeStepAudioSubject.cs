@@ -1,12 +1,10 @@
 using System;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
-using Reflex.Attributes;
-using Source.Scripts.Game.Messages;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Player.Movement;
 using UniRx;
 using UnityEngine;
 
-namespace Source.Scripts.Game
+namespace CubeProject.Game.Player
 {
 	public class CubeStepAudioSubject : MonoBehaviour, IAudioSubject
 	{

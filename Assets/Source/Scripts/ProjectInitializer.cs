@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using Agava.YandexGames;
 using LeadTools.StateMachine;
-using LeadTools.StateMachine.States;
-using LeadTools.TypedScenes;
-using Source.Scripts.Game.Level;
+using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject

@@ -1,6 +1,6 @@
 using LeadTools.StateMachine;
 
-namespace Source.Scripts.Game.tateMachine.States
+namespace CubeProject.Game.PlayerStateMachine.States
 {
 	public class FallingToGroundState : State<CubeStateMachine>
 	{

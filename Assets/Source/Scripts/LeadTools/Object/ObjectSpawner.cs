@@ -24,7 +24,7 @@ namespace LeadTools.Object
 		{
 			if (poolingObject == null)
 				poolingObject = _defaultPoolingObject;
-			
+
 			IPoolingObject<TInstance, TInit> spawningObject = GetObject(poolingObject);
 
 			if (getSpawnPosition != null)

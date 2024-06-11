@@ -3,7 +3,7 @@ using Ami.BroAudio;
 using UniRx;
 using UnityEngine;
 
-namespace Source.Scripts.Game
+namespace CubeProject.Game.Player
 {
 	public class BackgroundAudioSource : MonoBehaviour
 	{
@@ -11,17 +11,17 @@ namespace Source.Scripts.Game
 		[SerializeField] private float _durationClip;
 
 		private int _current;
-		
+
 		private void Awake()
 		{
 			BroAudio.Play(_soundIds[_current]);
-			
+
 			Observable.Timer(TimeSpan.FromSeconds(_durationClip))
 				.Repeat()
 				.Subscribe(_ => BroAudio.Play(GetNextSound()))
 				.AddTo(this);
 		}
-		
+
 		private SoundID GetNextSound()
 		{
 			_current++;

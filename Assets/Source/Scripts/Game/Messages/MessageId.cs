@@ -1,4 +1,4 @@
-namespace Source.Scripts.Game
+namespace CubeProject.Game.Player
 {
 	public enum MessageId
 	{

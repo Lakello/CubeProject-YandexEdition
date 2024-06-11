@@ -1,17 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using CubeProject.Game.Messages;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.InputSystem;
-using LeadTools.Extensions;
 using LeadTools.StateMachine;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Messages;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.PlayableCube.Movement
+namespace CubeProject.Game.Player.Movement
 {
 	public class CubeMoveService : IDisposable
 	{
@@ -115,8 +111,8 @@ namespace CubeProject.PlayableCube.Movement
 				.Publish(new Message<CubeMoveService>(MessageId.StepStarted));
 
 			Observable.FromCoroutine(
-				() => _roll.Move(
-					direction))
+					() => _roll.Move(
+						direction))
 				.Subscribe(_ => OnEndMove())
 				.AddTo(_moveDisposable);
 		}
@@ -125,10 +121,10 @@ namespace CubeProject.PlayableCube.Movement
 		{
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepEnded));
-			
+
 			_endMoveAction?.Invoke();
 			_endMoveAction = null;
-			
+
 			_moveDisposable.Dispose();
 			_moveDisposable = null;
 		}

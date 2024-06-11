@@ -1,21 +1,20 @@
 using System;
 using System.Collections.Generic;
+using CubeProject.Game.Level;
+using CubeProject.Game.Player.Shield;
+using CubeProject.Game.Player.Shield.States;
+using CubeProject.Game.Player.Movement;
+using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.InputSystem;
-using CubeProject.PlayableCube;
-using CubeProject.PlayableCube.Movement;
 using CubeProject.SO;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Sirenix.Utilities;
-using Source.Scripts.Game;
-using Source.Scripts.Game.Level;
-using Source.Scripts.Game.Level.Shield;
-using Source.Scripts.Game.Level.Shield.States;
-using Source.Scripts.Game.tateMachine;
-using Source.Scripts.Game.tateMachine.States;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace CubeProject
+namespace CubeProject.Game.Player
 {
 	public class CubeFactory : IDisposable
 	{
@@ -25,8 +24,8 @@ namespace CubeProject
 		private IDisposable[] _disposables;
 
 		public ShieldStateMachine ShieldStateMachine { get; private set; }
-		public Player PlayerInstance { get; private set; }
-		public Cube Cube { get; private set; }
+		public PlayerEntity PlayerEntityInstance { get; private set; }
+		public CubeEntity CubeEntity { get; private set; }
 		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
 
 		public CubeFactory(CubeData data, SpawnPoint spawnPoint)
@@ -36,7 +35,7 @@ namespace CubeProject
 
 			InitStateMachine();
 			InitShieldStateMachine();
-			
+
 			CubeStateMachine.EnterIn<ControlState>();
 		}
 
@@ -47,35 +46,35 @@ namespace CubeProject
 			InitCubeComponent();
 			InitServices(inputService, maskHolder);
 		}
-		
+
 		public void Dispose() =>
 			_disposables?.ForEach(disposable => disposable.Dispose());
 
 		private void InitPlayerInstance() =>
-			PlayerInstance = UnityEngine.Object.Instantiate(
-				_data.PlayerPrefab,
+			PlayerEntityInstance = Object.Instantiate(
+				_data.PlayerEntityPrefab,
 				_spawnPoint.transform.position,
 				Quaternion.identity);
 
 		private void InitCube() =>
-			Cube = PlayerInstance.Cube;
+			CubeEntity = PlayerEntityInstance.CubeEntity;
 
 		private void InitCubeComponent() =>
-			Cube.Component.Init(CubeStateMachine, _data);
+			CubeEntity.Component.Init(CubeStateMachine, _data);
 
 		private void InitServices(IInputService inputService, MaskHolder maskHolder)
 		{
 			var moveService = new CubeMoveService(
-				Cube.Component.StateMachine,
-				Cube.transform,
+				CubeEntity.Component.StateMachine,
+				CubeEntity.transform,
 				inputService,
 				maskHolder,
-				Cube.Component.Data.RollSpeed,
-				Cube.gameObject.GetComponentElseThrow<BoxCollider>());
+				CubeEntity.Component.Data.RollSpeed,
+				CubeEntity.gameObject.GetComponentElseThrow<BoxCollider>());
 
-			var fallService = new CubeFallService(Cube, maskHolder);
-			var shieldService = new CubeShieldService(Cube, ShieldStateMachine);
-			var diedService = new CubeDiedService(Cube, _spawnPoint);
+			var fallService = new CubeFallService(CubeEntity, maskHolder);
+			var shieldService = new CubeShieldService(CubeEntity, ShieldStateMachine);
+			var diedService = new CubeDiedService(CubeEntity, _spawnPoint);
 
 			_disposables = new IDisposable[]
 			{

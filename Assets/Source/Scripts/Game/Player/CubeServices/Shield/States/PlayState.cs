@@ -1,6 +1,6 @@
 using LeadTools.StateMachine;
 
-namespace Source.Scripts.Game.Level.Shield.States
+namespace CubeProject.Game.Player.Shield.States
 {
 	public class PlayState : State<ShieldStateMachine>
 	{

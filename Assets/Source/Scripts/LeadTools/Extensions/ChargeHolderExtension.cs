@@ -1,4 +1,4 @@
-using CubeProject.Game;
+using CubeProject.Game.Player;
 
 namespace LeadTools.Extensions
 {
@@ -6,7 +6,8 @@ namespace LeadTools.Extensions
 	{
 		public static void GivePowerTo(this ChargeHolder originHolder, ChargeHolder targetHolder)
 		{
-			if ((originHolder.IsCharged && targetHolder.IsCharged) || (originHolder.IsCharged is false && targetHolder.IsCharged is false))
+			if ((originHolder.IsCharged && targetHolder.IsCharged)
+				|| (originHolder.IsCharged is false && targetHolder.IsCharged is false))
 			{
 				return;
 			}

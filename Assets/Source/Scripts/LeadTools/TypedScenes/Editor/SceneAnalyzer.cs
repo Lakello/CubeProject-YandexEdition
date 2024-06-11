@@ -9,48 +9,49 @@ using UnityEngine.SceneManagement;
 
 namespace LeadTools.TypedScenes.Editor
 {
-    public static class SceneAnalyzer
-    {
-        public static bool TryAddTypedProcessor(AnalyzableScene analyzableScene)
-        {
-            var scene = analyzableScene.Scene;
-            var componentTypes = GetAllTypes(scene);
-            
-            if (componentTypes.Contains(typeof(TypedProcessor))) return false;
+	public static class SceneAnalyzer
+	{
+		public static bool TryAddTypedProcessor(AnalyzableScene analyzableScene)
+		{
+			var scene = analyzableScene.Scene;
+			var componentTypes = GetAllTypes(scene);
 
-            var gameObject = new GameObject(nameof(TypedProcessor));
-            gameObject.AddComponent<TypedProcessor>();
-            scene.GetRootGameObjects().Append(gameObject);
-            Undo.RegisterCreatedObjectUndo(gameObject, "Typed processor added");
-            EditorSceneManager.SaveScene(scene);
-            return true;
-        }
+			if (componentTypes.Contains(typeof(TypedProcessor))) return false;
 
-        private static IEnumerable<Component> GetAllComponents(Scene activeScene)
-        {
-            var rootObjects = activeScene.GetRootGameObjects();
-            var components = new List<Component>();
+			var gameObject = new GameObject(nameof(TypedProcessor));
+			gameObject.AddComponent<TypedProcessor>();
+			scene.GetRootGameObjects().Append(gameObject);
+			Undo.RegisterCreatedObjectUndo(gameObject, "Typed processor added");
+			EditorSceneManager.SaveScene(scene);
 
-            foreach (var gameObject in rootObjects)
-            {
-                components.AddRange(gameObject.GetComponentsInChildren<Component>());
-            }
+			return true;
+		}
 
-            return components;
-        }
+		private static IEnumerable<Component> GetAllComponents(Scene activeScene)
+		{
+			var rootObjects = activeScene.GetRootGameObjects();
+			var components = new List<Component>();
 
-        private static IEnumerable<Type> GetAllTypes(Scene activeScene)
-        {
-            var components = GetAllComponents(activeScene);
-            var types = new HashSet<Type>();
+			foreach (var gameObject in rootObjects)
+			{
+				components.AddRange(gameObject.GetComponentsInChildren<Component>());
+			}
 
-            foreach (var component in components)
-            {
-                types.Add(component.GetType());
-            }
+			return components;
+		}
 
-            return types;
-        }
-    }
+		private static IEnumerable<Type> GetAllTypes(Scene activeScene)
+		{
+			var components = GetAllComponents(activeScene);
+			var types = new HashSet<Type>();
+
+			foreach (var component in components)
+			{
+				types.Add(component.GetType());
+			}
+
+			return types;
+		}
+	}
 }
 #endif

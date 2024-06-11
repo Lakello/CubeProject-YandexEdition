@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CubeProject.Game
+namespace CubeProject.Game.Player
 {
 	public class Door : MonoBehaviour
 	{
