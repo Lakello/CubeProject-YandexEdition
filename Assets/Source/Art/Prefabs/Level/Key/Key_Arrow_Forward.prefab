@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 6157741796147687143}
   - component: {fileID: 6249945007190712821}
   - component: {fileID: 2584005087884802597}
-  - component: {fileID: 674326899215593546}
-  - component: {fileID: 1426532950647507554}
   m_Layer: 0
   m_Name: Key_Arrow_button
   m_TagString: Untagged
@@ -147,54 +145,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 0.045982685, z: 0}
---- !u!114 &674326899215593546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7327846379203717898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e0bb0775ea5d04fb769986816a4609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CombineStatus>k__BackingField: 0
-  <ControllerIndex>k__BackingField: 0
-  <CombineAtStart>k__BackingField: 1
-  <CombineErrorStrategy>k__BackingField: 0
-  <AfterCombineAction>k__BackingField: 0
-  <IsIncompatible>k__BackingField: 1
-  <IncompatibilityReason>k__BackingField: Mesh is not readable. Enable Read/Write
-    in import settings
-  <HasCombineErrors>k__BackingField: 0
-  <CombineErrors>k__BackingField: 
-  onCombineFinishedUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _renderer: {fileID: 0}
-  _filter: {fileID: 0}
-  _mesh: {fileID: -8189116147597046905, guid: 88b528c772e90464c8707ec7da6701b0, type: 3}
---- !u!114 &1426532950647507554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7327846379203717898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6750248cc87b03044bf11febb19b43b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <TrackingTarget>k__BackingField: 0
-  <DisableWhenIdle>k__BackingField: 1
-  <MaxIdleTime>k__BackingField: 5
-  <WakeUpWhenCollision>k__BackingField: 1
-  <TrackingDestroy>k__BackingField: 1
-  _source: {fileID: 674326899215593546}
-  _isDynamicObject: 1
-  _rigidbody: {fileID: 0}
 --- !u!1 &8183488091056662658
 GameObject:
   m_ObjectHideFlags: 0

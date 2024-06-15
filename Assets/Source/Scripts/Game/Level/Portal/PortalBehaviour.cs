@@ -124,7 +124,7 @@ namespace CubeProject.Game.Player
 				.Publish(new CheckGroundMessage(isFall =>
 				{
 					if (isFall == false)
-						Pushing?.Invoke();
+						_linkedPortal.Pushing?.Invoke();
 				}));
 		}
 

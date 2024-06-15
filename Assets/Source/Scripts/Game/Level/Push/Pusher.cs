@@ -1,10 +1,10 @@
 using System;
+using CubeProject.Game.Messages;
+using CubeProject.Game.Player;
 using CubeProject.Game.Player.Movement;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
-using CubeProject.Game.Player;
-using CubeProject.Game.Messages;
 using UniRx;
 using UnityEngine;
 

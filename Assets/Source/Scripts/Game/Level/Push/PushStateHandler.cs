@@ -1,5 +1,5 @@
-using CubeProject.Game.Player;
 using CubeProject.Game.Messages;
+using CubeProject.Game.Player;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using LeadTools.StateMachine;

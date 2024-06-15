@@ -96,7 +96,7 @@ namespace CubeProject.Game.Player.Movement
 
 			if (_moveDisposable != null || CanMove(direction) is false)
 				return;
-
+			
 			Move(direction);
 		}
 
@@ -122,11 +122,11 @@ namespace CubeProject.Game.Player.Movement
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepEnded));
 
-			_endMoveAction?.Invoke();
-			_endMoveAction = null;
-
 			_moveDisposable.Dispose();
 			_moveDisposable = null;
+
+			_endMoveAction?.Invoke();
+			_endMoveAction = null;
 		}
 
 		private bool CanMove(Vector3 direction)
