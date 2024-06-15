@@ -46,17 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 2d01090000005f007300750062006a006500630074007300
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: _subjects
-      Entry: 6
-      Data: 
+    SerializationNodes: []
   _soundID:
     ID: 1073741829
     _sourceAsset: {fileID: 11400000, guid: e2408660ff8d08742ad5639e1162d667, type: 2}
@@ -346,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63df03e7cfa74ac08d6d4dafd8f67a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cube: {fileID: 2855505055584217692}
+  _cubeEntity: {fileID: 2855505055584217692}
   _follower: {fileID: 2559993266569072274}
 --- !u!1 &7142489375379462335
 GameObject:

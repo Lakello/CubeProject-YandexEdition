@@ -1,10 +1,9 @@
-using System;
-
 namespace LeadTools.StateMachine.States
 {
-	public class EndLevelState : GameState
+	public class EndLevelState<TWindowState> : GameState<TWindowState>
+		where TWindowState : WindowState
 	{
-		public EndLevelState(Action enterInWindowState) : base(enterInWindowState)
+		public EndLevelState(WindowStateMachine windowStateMachine) : base(windowStateMachine)
 		{
 		}
 	}

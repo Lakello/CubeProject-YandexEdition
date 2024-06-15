@@ -39,29 +39,18 @@ namespace CubeProject
 
 			void InitStateMachine()
 			{
-				var windowStateMachine = new WindowStateMachine(
-					() => new Dictionary<Type, State<WindowStateMachine>>
-					{
-						[typeof(MenuWindowState)] = new MenuWindowState(),
-						[typeof(PlayLevelWindowState)] = new PlayLevelWindowState(),
-						[typeof(EndLevelWindowState)] = new EndLevelWindowState(),
-						[typeof(SelectLevelWindowState)] = new SelectLevelWindowState(),
-						[typeof(LeaderboardWindowState)] = new LeaderboardWindowState(),
-					});
+				var windowStateMachine = new WindowStateMachine()
+					.AddState<MenuWindowState>()
+					.AddState<PlayLevelWindowState>()
+					.AddState<EndLevelWindowState>()
+					.AddState<SelectLevelWindowState>();
 
-				gameStateMachine = new GameStateMachine(
-					windowStateMachine,
-					() => new Dictionary<Type, State<GameStateMachine>>
-					{
-						[typeof(MenuState<SelectLevelWindowState>)] = new MenuState<SelectLevelWindowState>(
-							() => windowStateMachine.EnterIn<SelectLevelWindowState>()),
-						[typeof(MenuState<LeaderboardWindowState>)] = new MenuState<LeaderboardWindowState>(
-							() => windowStateMachine.EnterIn<LeaderboardWindowState>()),
-						[typeof(MenuState<MenuWindowState>)] = new MenuState<MenuWindowState>(
-							() => windowStateMachine.EnterIn<MenuWindowState>()),
-						[typeof(PlayLevelState)] = new PlayLevelState(() => windowStateMachine.EnterIn<PlayLevelWindowState>()),
-						[typeof(EndLevelState)] = new EndLevelState(() => windowStateMachine.EnterIn<EndLevelWindowState>()),
-					});
+				gameStateMachine = new GameStateMachine(windowStateMachine)
+					.SetStateInstanceParameters(windowStateMachine)
+					.AddState<MenuState<SelectLevelWindowState>>()
+					.AddState<MenuState<MenuWindowState>>()
+					.AddState<PlayLevelState<PlayLevelWindowState>>()
+					.AddState<EndLevelState<EndLevelWindowState>>();
 
 				containerBuilder.AddSingleton(gameStateMachine, typeof(IStateChangeable<GameStateMachine>));
 			}

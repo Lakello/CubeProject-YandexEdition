@@ -1,4 +1,3 @@
-using CubeProject.Game.Player;
 using UnityEngine;
 
 namespace CubeProject.Game.Player

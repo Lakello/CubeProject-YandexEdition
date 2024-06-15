@@ -41,7 +41,6 @@ namespace CubeProject
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
 				.InitTransition(_startButton, levelLoader.LoadCurrentLevel)
 				.InitTransition<MenuState<SelectLevelWindowState>>(_buttons[MenuWindowButton.SelectLevel])
-				.InitTransition<MenuState<LeaderboardWindowState>>(_buttons[MenuWindowButton.Leaderboard])
 				.InitTransition<MenuState<MenuWindowState>>(_buttons[MenuWindowButton.Menu])
 				.Subscribe();
 		}

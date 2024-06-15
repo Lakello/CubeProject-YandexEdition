@@ -1,18 +1,18 @@
-﻿using System;
-
-namespace LeadTools.StateMachine
+﻿namespace LeadTools.StateMachine
 {
-	public abstract class GameState : State<GameStateMachine>
+	public abstract class GameState<TWindowState> : State<GameStateMachine>
+		where TWindowState : WindowState
 	{
-		private readonly Action _enterInWindowState;
+		private readonly WindowStateMachine _windowStateMachine;
 
-		protected GameState(Action enterInWindowState) =>
-			_enterInWindowState = enterInWindowState;
+		protected GameState(WindowStateMachine windowStateMachine) =>
+			_windowStateMachine = windowStateMachine;
 
 		public override void Enter()
 		{
 			base.Enter();
-			_enterInWindowState();
+
+			_windowStateMachine.EnterIn<TWindowState>();
 		}
 	}
 }

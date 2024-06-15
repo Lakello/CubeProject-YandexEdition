@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using LeadTools.Extensions;
@@ -55,6 +56,9 @@ namespace CubeProject.LeadTools.UI
 			Init();
 		}
 
+		private void OnDisable() =>
+			_sequence?.Kill();
+
 		public void Init()
 		{
 			if (_isJumpStateInInit)
@@ -76,14 +80,14 @@ namespace CubeProject.LeadTools.UI
 		{
 			var data = _animatorsData[state];
 
-			var sequence = DOTween
+			_sequence = DOTween
 				.Sequence()
 				.AppendInterval(data.PlayDelay)
 				.Append(Rect.DOAnchorMin(data.AnchorMin, data.Duration).SetEase(data.Ease))
 				.Join(Rect.DOAnchorMax(data.AnchorMax, data.Duration).SetEase(data.Ease));
 
 			if (data.IsAnimateOffset)
-				sequence.Join(DOTween
+				_sequence.Join(DOTween
 					.To(
 						_ =>
 						{
@@ -95,7 +99,7 @@ namespace CubeProject.LeadTools.UI
 						data.Duration)
 					.SetEase(data.Ease));
 
-			return sequence.Pause();
+			return _sequence.Pause();
 		}
 
 		[Button]

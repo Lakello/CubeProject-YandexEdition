@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LeadTools.StateMachine
+﻿namespace LeadTools.StateMachine
 {
 	public class GameStateMachine : StateMachine<GameStateMachine>
 	{
-		public GameStateMachine(WindowStateMachine windowStateMachine, Func<Dictionary<Type, State<GameStateMachine>>> getStates)
-			: base(getStates) =>
+		public GameStateMachine(WindowStateMachine windowStateMachine) =>
 			Window = windowStateMachine;
 
 		public WindowStateMachine Window { get; }

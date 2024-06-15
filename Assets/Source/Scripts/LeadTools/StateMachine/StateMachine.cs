@@ -1,22 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace LeadTools.StateMachine
 {
 	public abstract class StateMachine<TMachine> : IDisposable, IStateMachine<TMachine>
 		where TMachine : StateMachine<TMachine>
 	{
-		private readonly Dictionary<Type, State<TMachine>> _states;
+		private const BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+		
+		private readonly Dictionary<Type, State<TMachine>> _states = new Dictionary<Type, State<TMachine>>();
 
 		private State<TMachine> _currentState;
-
-		protected StateMachine(Func<Dictionary<Type, State<TMachine>>> getStates) =>
-			_states = getStates();
+		private object[] _stateInstanceParameters;
 
 		public event Action StateChanged;
 
 		public Type CurrentState => _currentState.GetType();
 
+		public TMachine SetStateInstanceParameters(params object[] stateInstanceParameters)
+		{
+			_stateInstanceParameters = stateInstanceParameters;
+
+			return (TMachine)this;
+		}
+		
+		public TMachine AddState<TState>()
+			where TState : State<TMachine>
+		{
+			if (_states.ContainsKey(typeof(TState)) == false)
+			{
+				var state = (TState)Activator.CreateInstance(typeof(TState), Flags, null, _stateInstanceParameters, null);
+				
+				_states.Add(typeof(TState), state);
+			}
+			
+			return (TMachine)this;
+		}
+		
 		public void Dispose() =>
 			_currentState?.Exit();
 

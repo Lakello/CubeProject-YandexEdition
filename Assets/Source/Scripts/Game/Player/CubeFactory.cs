@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 using CubeProject.Game.Level;
+using CubeProject.Game.Player.Movement;
 using CubeProject.Game.Player.Shield;
 using CubeProject.Game.Player.Shield.States;
-using CubeProject.Game.Player.Movement;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.InputSystem;
@@ -83,23 +82,17 @@ namespace CubeProject.Game.Player
 		}
 
 		private void InitStateMachine() =>
-			CubeStateMachine = new CubeStateMachine(
-				() => new Dictionary<Type, State<CubeStateMachine>>
-				{
-					[typeof(ControlState)] = new ControlState(),
-					[typeof(DieState)] = new DieState(),
-					[typeof(FallingToAbyssState)] = new FallingToAbyssState(),
-					[typeof(FallingToGroundState)] = new FallingToGroundState(),
-					[typeof(PushState)] = new PushState(),
-					[typeof(TeleportState)] = new TeleportState(),
-				});
+			CubeStateMachine = new CubeStateMachine()
+				.AddState<ControlState>()
+				.AddState<DieState>()
+				.AddState<FallingToAbyssState>()
+				.AddState<FallingToGroundState>()
+				.AddState<PushState>()
+				.AddState<TeleportState>();
 
 		private void InitShieldStateMachine() =>
-			ShieldStateMachine = new ShieldStateMachine(
-				() => new Dictionary<Type, State<ShieldStateMachine>>
-				{
-					[typeof(PlayState)] = new PlayState(),
-					[typeof(StopState)] = new StopState(),
-				});
+			ShieldStateMachine = new ShieldStateMachine()
+				.AddState<PlayState>()
+				.AddState<StopState>();
 	}
 }

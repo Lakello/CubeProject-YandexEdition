@@ -11,6 +11,7 @@ public class ScaleOfButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	private Color _defaultVertexColor;
 	private TMP_Text _text;
+	private Tweener _tweener;
 
 	private void Start()
 	{
@@ -18,6 +19,9 @@ public class ScaleOfButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		_defaultVertexColor = _text.color;
 		SetDefaultScale();
 	}
+
+	private void OnDisable() =>
+		_tweener?.Kill();
 
 	public void OnPointerEnter(PointerEventData _) =>
 		SetHoverScale();
@@ -27,13 +31,19 @@ public class ScaleOfButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	private void SetDefaultScale()
 	{
-		transform.DOScale(Vector3.one, _speedScale);
+		Play(Vector3.one, _speedScale);
 		_text.color = _defaultVertexColor;
 	}
 
 	private void SetHoverScale()
 	{
-		transform.DOScale(_scalePointerEnter, _speedScale);
+		Play(_scalePointerEnter, _speedScale);
 		_text.color = Color.red;
+	}
+
+	private void Play(Vector3 endValue, float duration)
+	{
+		_tweener?.Kill();
+		_tweener = transform.DOScale(endValue, duration);
 	}
 }

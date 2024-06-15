@@ -36,14 +36,14 @@ namespace CubeProject
 		private void OnDisable()
 		{
 			_transitionInitializer?.Unsubscribe();
-			_gameStateMachine?.UnSubscribeTo<EndLevelState>(OnLevelEnded);
+			_gameStateMachine?.UnSubscribeTo<EndLevelState<EndLevelWindowState>>(OnLevelEnded);
 		}
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
 			_gameStateMachine = machine;
-			_gameStateMachine.SubscribeTo<EndLevelState>(OnLevelEnded);
+			_gameStateMachine.SubscribeTo<EndLevelState<EndLevelWindowState>>(OnLevelEnded);
 
 			_levelLoader = levelLoader;
 
@@ -52,7 +52,7 @@ namespace CubeProject
 			_gameStateMachine.EnterIn<TState>();
 
 			_transitionInitializer = new TransitionInitializer<GameStateMachine>(_gameStateMachine)
-				.InitTransition<EndLevelState>(_endPoint);
+				.InitTransition<EndLevelState<EndLevelWindowState>>(_endPoint);
 
 			if (_isDebug)
 			{

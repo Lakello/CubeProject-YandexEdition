@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Agava.YandexGames;
 using LeadTools.StateMachine;
 using CubeProject.Game.Level;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace CubeProject
 	{
 		private Action _callBack;
 		private LevelLoader _levelLoader;
+
 		private GameStateMachine _gameStateMachine;
 
 		private IEnumerator Start()
