@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
+using CubeProject.Game.Level;
+using CubeProject.Game.Player;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
-using CubeProject.Game.Player;
-using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
@@ -15,7 +13,6 @@ namespace CubeProject
 	{
 		[SerializeField] private BackgroundAudioSource _backgroundAudioSourcePrefab;
 		[SerializeField] private int _targetFrameRate = 60;
-		[SerializeField] private bool _isDebug;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{

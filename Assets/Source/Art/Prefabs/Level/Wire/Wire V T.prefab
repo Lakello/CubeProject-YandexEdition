@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 7811262079452466235}
   - component: {fileID: 4680040806392403157}
   - component: {fileID: 1298151195174190157}
-  - component: {fileID: 251452741184263913}
-  - component: {fileID: -2659668521351765478}
   m_Layer: 0
   m_Name: Wire V T
   m_TagString: Untagged
@@ -85,38 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &251452741184263913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4748636746335712097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fe469c064774f608969cc8cbc295c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAlwaysCharged: 0
-  _needAllCharge: 0
-  _gameObjectsOnChargeable: []
---- !u!114 &-2659668521351765478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4748636746335712097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42283b46c25a4362a645c6ae20c52d02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _changers:
-  - _propertyName: 1
-    _intensityChargedColor: 4
-    _intensityDischargedColor: 1
-    _chargedColor: {r: 1, g: 1, b: 0, a: 1}
-    _dischargedColor: {r: 0.27735847, g: 1, b: 0.9461561, a: 1}
-    _bloomMeshRenderers:
-    - {fileID: 1298151195174190157}

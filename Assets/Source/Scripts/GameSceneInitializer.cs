@@ -24,6 +24,7 @@ namespace CubeProject
 		private LevelLoader _levelLoader;
 		private GameStateMachine _gameStateMachine;
 
+		#if UNITY_EDITOR
 		private void OnValidate()
 		{
 			if (_endPoint == null)
@@ -32,6 +33,7 @@ namespace CubeProject
 				EditorUtility.SetDirty(this);
 			}
 		}
+		#endif
 
 		private void OnDisable()
 		{

@@ -92,5 +92,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Levels_Dima/Level_101_1.unity
     guid: 076c26555a5510a41b71a6a05822dab4
+  - enabled: 1
+    path: Assets/Scenes/Levels/Levels_Slava/Level_S4.unity
+    guid: 6bf56f1effe9d7f4ab4ff4d6b755ae4b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2caa60e61f044dc498353a3469fa881c, type: 2}
