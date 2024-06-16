@@ -1,18 +1,13 @@
 using System;
 using System.Collections;
 using Agava.YandexGames;
-using LeadTools.StateMachine;
-using CubeProject.Game.Level;
 using UnityEngine;
 
 namespace CubeProject
 {
-	public class ProjectInitializer : MonoBehaviour
+	public class SDKInitializeObserver : MonoBehaviour
 	{
 		private Action _callBack;
-		private LevelLoader _levelLoader;
-
-		private GameStateMachine _gameStateMachine;
 
 		private IEnumerator Start()
 		{
@@ -24,20 +19,10 @@ namespace CubeProject
 #else
 			_callBack?.Invoke();
 #endif
-
-			_levelLoader.LoadCurrentLevel();
-
 			yield return null;
 		}
 
-		public void Init(
-			GameStateMachine gameStateMachine,
-			LevelLoader levelLoader,
-			Action sdkInitSuccessCallBack = null)
-		{
-			_gameStateMachine = gameStateMachine;
-			_levelLoader = levelLoader;
+		public void Init(Action sdkInitSuccessCallBack = null) =>
 			_callBack = sdkInitSuccessCallBack;
-		}
 	}
 }

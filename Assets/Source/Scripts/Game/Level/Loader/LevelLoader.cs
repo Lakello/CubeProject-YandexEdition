@@ -78,7 +78,7 @@ namespace CubeProject.Game.Level
 			_currentSceneIndex = index;
 
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
-
+			
 			TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
 				_levels[index],
 				LoadSceneMode.Single,

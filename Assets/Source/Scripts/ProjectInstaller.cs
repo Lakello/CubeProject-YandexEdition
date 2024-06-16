@@ -61,16 +61,16 @@ namespace CubeProject
 
 				levelLoader.SetMode(LoaderMode.ByOrder);
 
-				var projectInitializer = new GameObject(nameof(ProjectInitializer)).AddComponent<ProjectInitializer>();
+				var sdkInitializeObserver = new GameObject(nameof(SDKInitializeObserver)).AddComponent<SDKInitializeObserver>();
 
-				projectInitializer.Init(
-					gameStateMachine,
-					levelLoader,
-					() =>
+				sdkInitializeObserver.Init(() =>
 					{
 						var saver = new GameDataSaver();
-						saver.Init();
-						levelLoader.Init(gameStateMachine);
+						saver.Init(() =>
+						{
+							levelLoader.Init(gameStateMachine);
+							levelLoader.LoadCurrentLevel();
+						});
 					});
 			}
 

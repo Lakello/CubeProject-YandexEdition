@@ -1,4 +1,5 @@
 ﻿using System;
+using CubeProject.Save.Data;
 using LeadTools.SaveSystem.Services;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ namespace LeadTools.SaveSystem
 			where TData : SaveData<TData>, new() =>
 			_gameSaves.Get<TData>().ValueUpdated -= observer;
 
-		public void Init()
+		public void Init(Action successCallback)
 		{
 #if !UNITY_EDITOR
 			_saveService = new YandexSaveService();
@@ -46,13 +47,13 @@ namespace LeadTools.SaveSystem
 			{
 				var saves = JsonUtility.FromJson<GameSaves>(data);
 				_gameSaves = saves;
+				successCallback?.Invoke();
 			}
 		}
 
 		private void Save()
 		{
 			string gameSaves = JsonUtility.ToJson(_gameSaves);
-
 			_saveService.SetData(gameSaves);
 		}
 	}
