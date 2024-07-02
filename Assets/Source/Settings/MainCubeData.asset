@@ -20,3 +20,4 @@ MonoBehaviour:
     _displacementAmountRange: {x: 0.001, y: 0.01}
     _fresnelPowerHide: 5
     _hideShowDuration: 0.4
+  _lightPrefab: {fileID: 7312441530773941155, guid: 2d3eeab9488ed074cbe5a97b8839c278, type: 3}

@@ -46,14 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 2d01090000005f007300750062006a006500630074007300
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _subjects
+      Entry: 6
+      Data: 
   _soundID:
     ID: 1073741829
     _sourceAsset: {fileID: 11400000, guid: e2408660ff8d08742ad5639e1162d667, type: 2}
