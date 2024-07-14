@@ -3,6 +3,7 @@ using CubeProject.Game.Messages;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.Tips;
+using Cysharp.Threading.Tasks;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
@@ -105,10 +106,7 @@ namespace CubeProject.Game.Player
 
 					_disposable = new CompositeDisposable();
 
-					Observable.FromCoroutine(_teleporter.Absorb)
-						.SelectMany(_linkedPortal._teleporter.Return)
-						.Subscribe(_ => OnTeleportEnded())
-						.AddTo(_disposable);
+					ExecuteTeleport();
 				}));
 		}
 
@@ -116,6 +114,16 @@ namespace CubeProject.Game.Player
 		{
 			if (other.TryGetComponent(out CubeEntity _))
 				_isBlocked = false;
+		}
+
+		private async UniTaskVoid ExecuteTeleport()
+		{
+			var token = this.GetCancellationTokenOnDestroy();
+			
+			await _teleporter.Absorb(token);
+			await _linkedPortal._teleporter.Return(token);
+			
+			OnTeleportEnded();
 		}
 
 		private void OnTeleportEnded()

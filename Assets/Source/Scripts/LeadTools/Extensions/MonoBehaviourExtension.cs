@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace LeadTools.Extensions
@@ -15,22 +17,11 @@ namespace LeadTools.Extensions
 				context.StopCoroutine(routine);
 		}
 
-		public static Coroutine PlaySmoothChangeValue(
-			this MonoBehaviour context,
+		public static async UniTask SmoothChangeValue(
 			Action<float> lerp,
 			float totalTime,
-			Action endCallback = null,
-			Action startCallback = null) =>
-			context.StartCoroutine(SmoothChangeValue(lerp, totalTime, endCallback, startCallback));
-
-		public static IEnumerator SmoothChangeValue(
-			Action<float> lerp,
-			float totalTime,
-			Action endCallback = null,
-			Action startCallback = null)
+			CancellationToken cancellationTokenSource)
 		{
-			startCallback?.Invoke();
-
 			var currentTime = 0f;
 
 			while (currentTime <= totalTime)
@@ -41,10 +32,8 @@ namespace LeadTools.Extensions
 
 				currentTime += Time.fixedDeltaTime;
 
-				yield return new WaitForFixedUpdate();
+				await UniTask.WaitForFixedUpdate(cancellationTokenSource);
 			}
-
-			endCallback?.Invoke();
 		}
 	}
 }

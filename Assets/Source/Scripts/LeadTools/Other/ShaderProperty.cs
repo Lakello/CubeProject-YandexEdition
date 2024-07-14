@@ -11,5 +11,6 @@ namespace LeadTools.Other
 		_BaseColor,
 		_Clip,
 		_DissolveAmount,
+		_Tiling,
 	}
 }

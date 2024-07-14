@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Threading;
 using CubeProject.Game.Level.Trigger;
 using CubeProject.Game.Player;
 using CubeProject.Game.Player.Shield.States;
+using Cysharp.Threading.Tasks;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using LeadTools.StateMachine;
@@ -23,6 +25,7 @@ namespace CubeProject.Game.Player.Shield
 		private Transform _cubeTransform;
 		private TriggerDetector _triggerDetector;
 		private IStateChangeable<ShieldStateMachine> _shieldStateChangeable;
+		private CancellationTokenSource _cancellationTokenSource;
 
 		[Inject]
 		private void Inject(CubeComponent cubeComponent, IStateChangeable<ShieldStateMachine> shieldStateChangeable)
@@ -47,54 +50,58 @@ namespace CubeProject.Game.Player.Shield
 			_shieldStateChangeable.UnSubscribeTo<StopState>(OnStop);
 		}
 
-		private void OnPlay(bool isEntered)
+		private async void OnPlay(bool isEntered)
 		{
 			if (isEntered == false)
 				return;
 
-			this.StopRoutine(_changeShieldVisible);
+			_cancellationTokenSource?.Dispose();
+			_cancellationTokenSource = new CancellationTokenSource();
 
-			_viewCoroutine = StartCoroutine(UpdateView());
+			await UniTask.Create(UpdateView, _cancellationTokenSource.Token);
 		}
 
-		private void OnStop(bool isEntered)
+		private async void OnStop(bool isEntered)
 		{
 			if (isEntered == false)
 				return;
 
-			this.StopRoutine(_viewCoroutine);
-			this.StopRoutine(_changeShieldVisible);
-
-			_changeShieldVisible = StartCoroutine(ChangeShieldVisible(false, _shieldData.DistanceRange.y));
+			_cancellationTokenSource?.Dispose();
+			_cancellationTokenSource = new CancellationTokenSource();
+			
+			await UniTask.Create(
+				token => ChangeShieldVisible(token), 
+				_cancellationTokenSource.Token);
 		}
 
-		private IEnumerator UpdateView()
+		private async UniTask UpdateView(CancellationToken cancellationToken)
 		{
-			var waitUpdate = new WaitForFixedUpdate();
-
-			while (enabled)
+			while (_shieldStateChangeable.CurrentState == typeof(PlayState))
 			{
 				if (_triggerDetector.TryGetTargetTransform(out var targetTransform))
 				{
 					var normalDistance = CalculateNormalDistance(targetTransform);
 
 					if (_renderer.enabled == false)
-						yield return ChangeShieldVisible(true, normalDistance);
+						await ChangeShieldVisible(cancellationToken, true, normalDistance);
 
 					UpdateShieldProperties(normalDistance);
 				}
 				else
 				{
 					if (_renderer.enabled)
-						yield return ChangeShieldVisible(false, _shieldData.DistanceRange.y);
+						await ChangeShieldVisible(cancellationToken);
 				}
 
-				yield return waitUpdate;
+				await UniTask.WaitForFixedUpdate(cancellationToken);
 			}
 		}
-
-		private IEnumerator ChangeShieldVisible(bool isShow, float normalDistance)
+		
+		private async UniTask ChangeShieldVisible(CancellationToken cancellationToken, bool isShow = false, float normalDistance = 0)
 		{
+			if (normalDistance == 0)
+				normalDistance = _shieldData.DistanceRange.y;
+			
 			var targetValue = GetPropertyValueOnDistance(_shieldData.FresnelPowerRange,
 				normalDistance);
 
@@ -103,7 +110,7 @@ namespace CubeProject.Game.Player.Shield
 			if (isShow)
 				_renderer.enabled = true;
 
-			yield return this.PlaySmoothChangeValue(
+			await MonoBehaviourExtension.SmoothChangeValue(
 				(normalTime) =>
 				{
 					if (isShow)
@@ -112,7 +119,8 @@ namespace CubeProject.Game.Player.Shield
 					var value = Mathf.Lerp(targetValue, _shieldData.FresnelPowerHide, normalTime);
 					UpdateProperty(_fresnelPowerProperty, value);
 				},
-				_shieldData.HideShowDuration);
+				_shieldData.HideShowDuration,
+				cancellationToken);
 
 			if (isShow == false)
 				_renderer.enabled = false;

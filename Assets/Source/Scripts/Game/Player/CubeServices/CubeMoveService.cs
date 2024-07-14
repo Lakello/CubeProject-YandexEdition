@@ -1,8 +1,10 @@
 using System;
+using System.Threading;
 using CubeProject.Game.Messages;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.InputSystem;
+using Cysharp.Threading.Tasks;
 using LeadTools.StateMachine;
 using UniRx;
 using UnityEngine;
@@ -19,7 +21,7 @@ namespace CubeProject.Game.Player.Movement
 		private readonly CompositeDisposable _messageDisposable;
 
 		private Action _endMoveAction;
-		private CompositeDisposable _moveDisposable;
+		private CancellationTokenSource _moveCancellationToken;
 
 		public CubeMoveService(
 			IStateMachine<CubeStateMachine> stateMachine,
@@ -52,7 +54,7 @@ namespace CubeProject.Game.Player.Movement
 
 		public void Dispose()
 		{
-			_moveDisposable?.Dispose();
+			_moveCancellationToken?.Dispose();
 			_messageDisposable?.Dispose();
 			_inputService.Moving -= OnMoving;
 		}
@@ -69,7 +71,7 @@ namespace CubeProject.Game.Player.Movement
 
 		private void DoAfterStep(Action endCallback)
 		{
-			if (_moveDisposable != null)
+			if (_moveCancellationToken != null)
 			{
 				_endMoveAction = endCallback;
 			}
@@ -94,15 +96,15 @@ namespace CubeProject.Game.Player.Movement
 			if (direction == Vector3.zero || (direction.x != 0 && direction.z != 0))
 				return;
 
-			if (_moveDisposable != null || CanMove(direction) is false)
+			if (_moveCancellationToken != null || CanMove(direction) is false)
 				return;
 			
 			Move(direction);
 		}
 
-		private void Move(Vector3 direction)
+		private async void Move(Vector3 direction)
 		{
-			_moveDisposable = new CompositeDisposable();
+			_moveCancellationToken = new CancellationTokenSource();
 
 			MessageBroker.Default
 				.Publish(new Message<Vector3, CubeMoveService>(MessageId.DirectionChanged, direction));
@@ -110,11 +112,9 @@ namespace CubeProject.Game.Player.Movement
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepStarted));
 
-			Observable.FromCoroutine(
-					() => _roll.Move(
-						direction))
-				.Subscribe(_ => OnEndMove())
-				.AddTo(_moveDisposable);
+			await UniTask.Create(token => _roll.Move(direction, token), _moveCancellationToken.Token);
+
+			OnEndMove();
 		}
 
 		private void OnEndMove()
@@ -122,8 +122,8 @@ namespace CubeProject.Game.Player.Movement
 			MessageBroker.Default
 				.Publish(new Message<CubeMoveService>(MessageId.StepEnded));
 
-			_moveDisposable.Dispose();
-			_moveDisposable = null;
+			_moveCancellationToken?.Dispose();
+			_moveCancellationToken = null;
 
 			_endMoveAction?.Invoke();
 			_endMoveAction = null;

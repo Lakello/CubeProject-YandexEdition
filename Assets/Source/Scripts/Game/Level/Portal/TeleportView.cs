@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using LeadTools.Extensions;
 using UnityEngine;
 
@@ -27,9 +29,9 @@ namespace CubeProject.Game.Player
 		private Vector3 OriginPosition => _origin.position;
 		private Vector3 TargetPosition => _targetPoint.position;
 
-		public IEnumerator AnimationPlay(Func<float, float> getScaleValue, Func<float, float> getHeightValue)
+		public async UniTask AnimationPlay(Func<float, float> getScaleValue, Func<float, float> getHeightValue, CancellationToken cancellationToken)
 		{
-			return MonoBehaviourExtension.SmoothChangeValue(
+			await MonoBehaviourExtension.SmoothChangeValue(
 				(currentTime) =>
 				{
 					var scaleValue = getScaleValue(currentTime);
@@ -39,7 +41,8 @@ namespace CubeProject.Game.Player
 					var position = Vector3.Lerp(OriginPosition, TargetPosition, heightValue);
 					_cubeTransform.transform.position = position;
 				},
-				_animationTime);
+				_animationTime,
+				cancellationToken);
 		}
 	}
 }

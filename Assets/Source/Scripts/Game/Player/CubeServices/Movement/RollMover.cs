@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CubeProject.Game.Player.Movement
@@ -7,7 +9,6 @@ namespace CubeProject.Game.Player.Movement
 	{
 		private readonly float _rollSpeed;
 		private readonly Transform _targetTransform;
-		private readonly WaitForFixedUpdate _wait;
 
 		private float _currentAngle;
 
@@ -15,10 +16,9 @@ namespace CubeProject.Game.Player.Movement
 		{
 			_rollSpeed = rollSpeed;
 			_targetTransform = targetTransform;
-			_wait = new WaitForFixedUpdate();
 		}
 
-		public IEnumerator Move(Vector3 direction)
+		public async UniTask Move(Vector3 direction, CancellationToken cancellationToken)
 		{
 			const float rollAngle = 90f;
 
@@ -43,7 +43,7 @@ namespace CubeProject.Game.Player.Movement
 
 				_targetTransform.RotateAround(anchor, axis, angle);
 
-				yield return _wait;
+				await UniTask.WaitForFixedUpdate(cancellationToken);
 			}
 
 			if (_currentAngle is < rollAngle or > rollAngle)

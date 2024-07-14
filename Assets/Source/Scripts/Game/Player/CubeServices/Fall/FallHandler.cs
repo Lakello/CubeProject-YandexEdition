@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Threading;
 using CubeProject.Game.Messages;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
+using Cysharp.Threading.Tasks;
 using LeadTools.StateMachine;
 using UniRx;
 using UnityEngine;
@@ -19,12 +21,11 @@ namespace CubeProject.Game.Player
 		private readonly GroundChecker _groundChecker;
 		private readonly CubeEntity _cubeEntity;
 		private readonly BecameVisibleBehaviour _became;
-		private readonly CompositeDisposable _disposable;
+		
+		private CancellationTokenSource _cancellationTokenSource;
 
 		public FallHandler(CubeEntity cubeEntity, GroundChecker groundChecker)
 		{
-			_disposable = new CompositeDisposable();
-
 			_cubeEntity = cubeEntity;
 			_became = _cubeEntity.Component.BecameVisibleBehaviour;
 			_cubeStateMachine = _cubeEntity.Component.StateMachine;
@@ -38,9 +39,9 @@ namespace CubeProject.Game.Player
 		}
 
 		public void Dispose() =>
-			_disposable?.Dispose();
+			_cancellationTokenSource?.Dispose();
 
-		public void Play()
+		public async void Play()
 		{
 			Func<float, Vector3> calculatePosition;
 			Func<bool> whileCondition;
@@ -62,9 +63,12 @@ namespace CubeProject.Game.Player
 				(calculatePosition, whileCondition, endCallback) = GetFallIntoAbyssData();
 			}
 
-			Observable.FromCoroutine(() => Fall(calculatePosition, whileCondition))
-				.Subscribe(_ => endCallback?.Invoke())
-				.AddTo(_disposable);
+			_cancellationTokenSource?.Dispose();
+			_cancellationTokenSource = new CancellationTokenSource();
+			
+			await UniTask.Create(token => Fall(calculatePosition, whileCondition, token), _cancellationTokenSource.Token);
+				
+			endCallback?.Invoke();
 		}
 
 		private bool CanFallToGround(out float groundPositionY)
@@ -72,9 +76,8 @@ namespace CubeProject.Game.Player
 			return _groundChecker.IsGrounded(_cubeEntity.transform.position, Mathf.Infinity, out groundPositionY);
 		}
 
-		private IEnumerator Fall(Func<float, Vector3> calculatePosition, Func<bool> whileCondition)
+		private async UniTask Fall(Func<float, Vector3> calculatePosition, Func<bool> whileCondition, CancellationToken cancellationToken)
 		{
-			var wait = new WaitForFixedUpdate();
 			var speed = _speedFall;
 
 			while (whileCondition())
@@ -83,7 +86,7 @@ namespace CubeProject.Game.Player
 
 				Position = calculatePosition(delta);
 
-				yield return wait;
+				await UniTask.WaitForFixedUpdate(cancellationToken);
 			}
 		}
 

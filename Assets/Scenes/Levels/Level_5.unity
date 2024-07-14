@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0159084, g: 0.018896267, b: 0.021908788, a: 1}
+  m_IndirectSpecularColor: {r: 0.015990026, g: 0.018989522, b: 0.022011, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19305,82 +19305,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4247386288011538356, guid: e8731caade4e3c64ab9724c47c6b4f8d, type: 3}
   m_PrefabInstance: {fileID: 1242351212}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1250795779
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2119930479}
-    m_Modifications:
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: _gameObjectsOnChargeable.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: _gameObjectsOnChargeable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1338680488}
-    - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_Name
-      value: Wire V --
-      objectReference: {fileID: 0}
-    - target: {fileID: 7791495889424048157, guid: 6051722d87906724fa984020502f02c8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2679103114663943385, guid: 6051722d87906724fa984020502f02c8, type: 3}
-    - {fileID: 1064833565047782434, guid: 6051722d87906724fa984020502f02c8, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6051722d87906724fa984020502f02c8, type: 3}
---- !u!4 &1250795780 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1489760380311083388, guid: 6051722d87906724fa984020502f02c8, type: 3}
-  m_PrefabInstance: {fileID: 1250795779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1254298335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34167,7 +34091,6 @@ Transform:
   - {fileID: 1741192013}
   - {fileID: 513254200}
   - {fileID: 1590021717}
-  - {fileID: 1250795780}
   - {fileID: 2114800173}
   - {fileID: 59429846}
   - {fileID: 1643337228}

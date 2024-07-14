@@ -1,4 +1,5 @@
 using CubeProject.Save.Data;
+using Cysharp.Threading.Tasks;
 using LeadTools.NaughtyAttributes;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
@@ -67,7 +68,7 @@ namespace CubeProject.Game.Level
 		public void LoadCurrentLevel() =>
 			LoadLevelAtIndex(_currentSceneIndex);
 
-		public void LoadLevelAtIndex(int index)
+		public async void LoadLevelAtIndex(int index)
 		{
 			if (index < 0)
 				index = 0;
@@ -78,12 +79,16 @@ namespace CubeProject.Game.Level
 			_currentSceneIndex = index;
 
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
-			
-			TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
+
+			await TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
 				_levels[index],
 				LoadSceneMode.Single,
 				_gameStateMachine,
 				this);
+
+#if !UNITY_EDITOR
+			Agava.YandexGames.YandexGamesSdk.GameReady();
+#endif
 		}
 	}
 }

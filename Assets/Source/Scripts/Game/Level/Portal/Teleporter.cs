@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CubeProject.Game.Player
@@ -21,18 +23,20 @@ namespace CubeProject.Game.Player
 			_heightCurve = data.HeightCurve;
 		}
 
-		public IEnumerator Absorb()
+		public async UniTask Absorb(CancellationToken cancellationToken)
 		{
-			return _view.AnimationPlay(
+			await _view.AnimationPlay(
 				(time) => _scaleCurve.Evaluate(time),
-				(time) => _heightCurve.Evaluate(time));
+				(time) => _heightCurve.Evaluate(time),
+				cancellationToken);
 		}
 
-		public IEnumerator Return()
+		public async UniTask Return(CancellationToken cancellationToken)
 		{
-			return _view.AnimationPlay(
+			await _view.AnimationPlay(
 				(time) => 1 - _scaleCurve.Evaluate(time),
-				(time) => 1 - _heightCurve.Evaluate(time));
+				(time) => 1 - _heightCurve.Evaluate(time),
+				cancellationToken);
 		}
 	}
 }
