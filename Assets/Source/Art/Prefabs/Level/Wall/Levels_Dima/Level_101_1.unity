@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -3523,6 +3527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14
@@ -3997,6 +4005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -
       objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4137,6 +4149,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4307,6 +4323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4456,6 +4476,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H --
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5811,6 +5835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14
@@ -6056,7 +6084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6438,7 +6466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7933,6 +7961,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10745,6 +10777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H --
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -11027,6 +11063,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13171,6 +13211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13192,6 +13236,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13257,7 +13305,7 @@ PrefabInstance:
       objectReference: {fileID: 1692700465572526031, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 2481283281530561572, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: m_Name
-      value: Door
+      value: Door 2
       objectReference: {fileID: 0}
     - target: {fileID: 4902297892917651969, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: serializationData.Prefab
@@ -13267,6 +13315,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7257612512308339829, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+    - target: {fileID: 7315306688539681630, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315306688539681630, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
     - target: {fileID: 7363120535293983133, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -13828,6 +13884,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14431,6 +14491,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16006,7 +16070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.01
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16540,6 +16604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16992,10 +17060,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1653056661}
     m_Modifications:
+    - target: {fileID: 1692700465572526031, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1692700465572526031, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 2481283281530561572, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: m_Name
-      value: Door (2)
+      value: Door 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4902297892917651969, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4902297892917651969, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+    - target: {fileID: 7257612512308339829, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7257612512308339829, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 7315306688539681630, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: _needAllCharge
       value: 1
@@ -17012,6 +17092,10 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[1]
       value: 
       objectReference: {fileID: 1685213497}
+    - target: {fileID: 7363120535293983133, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7363120535293983133, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 9220763707567754764, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -17322,6 +17406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15
@@ -17629,6 +17717,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18009,6 +18101,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H -
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18947,6 +19043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -19482,6 +19582,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21659,7 +21763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.01
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22387,10 +22491,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1653056661}
     m_Modifications:
+    - target: {fileID: 1692700465572526031, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1692700465572526031, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 2481283281530561572, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: m_Name
-      value: Door (1)
+      value: Door 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4902297892917651969, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4902297892917651969, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+    - target: {fileID: 7257612512308339829, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7257612512308339829, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 7315306688539681630, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: _needAllCharge
       value: 1
@@ -22407,6 +22523,10 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[1]
       value: 
       objectReference: {fileID: 1174110851}
+    - target: {fileID: 7363120535293983133, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7363120535293983133, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
     - target: {fileID: 9220763707567754764, guid: 6c959d2d37b5a0946950bd5b3439fc05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -22719,7 +22839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.01
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23242,6 +23362,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H - (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24728,6 +24852,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174110851}
+    - target: {fileID: 5464287937965410249, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 2f892c32f8049dc4f94646700a85d92b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -25444,7 +25580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25937,6 +26073,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27617,6 +27757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H -- (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -27805,7 +27949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28150,6 +28294,10 @@ PrefabInstance:
     - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_Name
       value: Wire H 7 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32078,7 +32226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33248,6 +33396,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34672,7 +34824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.01
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34901,6 +35053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wire H - (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34925,7 +35081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.01
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -35086,6 +35242,10 @@ PrefabInstance:
     - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
       propertyPath: m_Name
       value: Wire H -
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022303927609264487, guid: 32496f26487ee1b449c649586571b6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35403,6 +35563,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37428,10 +37592,10 @@ PrefabInstance:
       addedObject: {fileID: 1053669868}
     - targetCorrespondingSourceObject: {fileID: 3846572047348319679, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 836172244}
+      addedObject: {fileID: 687262375}
     - targetCorrespondingSourceObject: {fileID: 3846572047348319679, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 687262375}
+      addedObject: {fileID: 836172244}
     - targetCorrespondingSourceObject: {fileID: 4625060235777930648, guid: 5335a0d4ca358e14abe08b6803769f42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 997344353}
@@ -37815,6 +37979,10 @@ PrefabInstance:
     - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_Name
       value: Wire H 7 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39174,6 +39342,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40536,7 +40708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43436,6 +43608,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1685213497}
+    - target: {fileID: 5464287937965410249, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: a7803892f020e8f408bff1b989f7587d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -43680,6 +43864,10 @@ PrefabInstance:
     - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_Name
       value: Wire H -- (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074495307897474298, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101112033138251193, guid: 7c94c628d9b04e5499e8d248185b52f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44536,6 +44724,10 @@ PrefabInstance:
     - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
       propertyPath: m_Name
       value: Wire H 7 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272392182686501976, guid: dbc276454f033dd4b9bcd6a805bb87d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45781,7 +45973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.01
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 55370780148729874, guid: be2df8094a1b2c74e8cf3227c44185c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46511,6 +46703,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787128543838806343, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: _gameObjectsOnChargeable.Array.data[0]
+      value: 
+      objectReference: {fileID: 486271127}
+    - target: {fileID: 5464287937965410249, guid: 202b7e7dd2c2df74e938597249e34ba2, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: b2f3f38f09b82e240a2e82e5e7a49a84, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
