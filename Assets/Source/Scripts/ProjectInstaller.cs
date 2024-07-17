@@ -5,6 +5,8 @@ using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
+using Source.Scripts.Game;
+using Source.Scripts.Yandex;
 using UnityEngine;
 
 namespace CubeProject
@@ -13,9 +15,13 @@ namespace CubeProject
 	{
 		[SerializeField] private BackgroundAudioSource _backgroundAudioSourcePrefab;
 		[SerializeField] private int _targetFrameRate = 60;
+		[SerializeField] private AdService _adService;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
+			GlobalDisposableHolder globalDisposableHolder;
+			InitDisposableHolder();
+				
 			InitBackgroundAudio();
 
 			GameStateMachine gameStateMachine;
@@ -70,10 +76,25 @@ namespace CubeProject
 						{
 							levelLoader.Init(gameStateMachine);
 							levelLoader.LoadCurrentLevel();
+							
+							InitAd();
 						});
 					});
 			}
 
+			void InitDisposableHolder()
+			{
+				var holderObject = new GameObject(nameof(GlobalDisposableHolder));
+				globalDisposableHolder = holderObject.AddComponent<GlobalDisposableHolder>();
+				
+				DontDestroyOnLoad(holderObject);
+			}
+			
+			void InitAd()
+			{
+				globalDisposableHolder.Add(_adService);
+			}
+			
 			#endregion
 		}
 	}

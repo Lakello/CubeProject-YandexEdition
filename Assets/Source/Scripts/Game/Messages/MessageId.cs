@@ -6,5 +6,8 @@ namespace CubeProject.Game.Player
 		StepEnded,
 		DirectionChanged,
 		FallingIntoAbyss,
+		SuspendLevelLoading,
+		ResumeLevelLoading,
+		PreLevelLoading,
 	}
 }

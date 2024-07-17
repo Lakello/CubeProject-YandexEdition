@@ -1,6 +1,7 @@
 using CubeProject.Game.Level;
 using CubeProject.Game.Player;
 using CubeProject.InputSystem;
+using CubeProject.LeadTools.Utils;
 using CubeProject.Save.Data;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
@@ -17,6 +18,7 @@ namespace CubeProject
 		MonoBehaviour,
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
+		[SerializeField] private SceneNameView _sceneNameView;
 		[SerializeField] private bool _isDebug;
 		[SerializeField] private EndPoint _endPoint;
 
@@ -62,6 +64,12 @@ namespace CubeProject
 					gameObject.GetComponentElseThrow<GameSceneInstaller>().InputService);
 
 				_transitionInitializer.InitTransition(backToMenuHandler, LoadMenu);
+				
+				_sceneNameView.Show();
+			}
+			else
+			{
+				_sceneNameView.Hide();
 			}
 
 			_transitionInitializer.Subscribe();

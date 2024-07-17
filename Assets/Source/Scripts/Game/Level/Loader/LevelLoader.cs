@@ -1,3 +1,5 @@
+using CubeProject.Game.Messages;
+using CubeProject.Game.Player;
 using CubeProject.Save.Data;
 using Cysharp.Threading.Tasks;
 using LeadTools.NaughtyAttributes;
@@ -5,6 +7,8 @@ using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
+using Source.Scripts.Yandex;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +21,9 @@ namespace CubeProject.Game.Level
 		private int _currentSceneIndex;
 		private GameStateMachine _gameStateMachine;
 		private LoaderMode _currentMode;
+		private AdService _adService;
+		private CompositeDisposable _compositeDisposable;
+		private bool _canLoadLevel;
 
 		public int LevelsCount => _levels.Length;
 
@@ -28,6 +35,22 @@ namespace CubeProject.Game.Level
 			_gameStateMachine = gameStateMachine;
 
 			_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
+			
+			_compositeDisposable = new CompositeDisposable();
+
+			MessageBroker.Default
+				.Receive<Message<AdService>>()
+				.Where(message => message.Id == MessageId.ResumeLevelLoading)
+				.Subscribe(_ => OnResumeLevelLoading())
+				.AddTo(_compositeDisposable);
+			
+			MessageBroker.Default
+				.Receive<Message<AdService>>()
+				.Where(message => message.Id == MessageId.SuspendLevelLoading)
+				.Subscribe(_ => OnSuspendLevelLoading())
+				.AddTo(_compositeDisposable);
+			
+			_canLoadLevel = true;
 		}
 
 		public void SetMode(LoaderMode mode) =>
@@ -79,7 +102,11 @@ namespace CubeProject.Game.Level
 			_currentSceneIndex = index;
 
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
-
+			
+			MessageBroker.Default
+				.Publish(new Message<LevelLoader>(MessageId.PreLevelLoading));
+			
+			await UniTask.WaitUntil(() => _canLoadLevel, cancellationToken: this.GetCancellationTokenOnDestroy());
 			await TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
 				_levels[index],
 				LoadSceneMode.Single,
@@ -90,5 +117,11 @@ namespace CubeProject.Game.Level
 			Agava.YandexGames.YandexGamesSdk.GameReady();
 #endif
 		}
+
+		private void OnResumeLevelLoading() =>
+			_canLoadLevel = true;
+
+		private void OnSuspendLevelLoading() =>
+			_canLoadLevel = false;
 	}
 }

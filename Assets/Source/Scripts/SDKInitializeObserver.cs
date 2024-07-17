@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Agava.YandexGames;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -10,13 +8,13 @@ namespace CubeProject
 	{
 		private Action _callBack;
 
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR 
 		private async void Start()
 		{
-            await YandexGamesSdk.Initialize(() => _callBack?.Invoke());
+            await Agava.YandexGames.YandexGamesSdk.Initialize(() => _callBack?.Invoke());
 
-            if (PlayerAccount.IsAuthorized == false)
-                PlayerAccount.StartAuthorizationPolling(1500);
+            if (Agava.YandexGames.PlayerAccount.IsAuthorized == false)
+	            Agava.YandexGames.PlayerAccount.StartAuthorizationPolling(1500);
 		}
 #else
 		private void Start()
