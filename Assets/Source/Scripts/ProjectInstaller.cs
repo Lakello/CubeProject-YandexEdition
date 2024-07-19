@@ -15,7 +15,6 @@ namespace CubeProject
 	{
 		[SerializeField] private BackgroundAudioSource _backgroundAudioSourcePrefab;
 		[SerializeField] private int _targetFrameRate = 60;
-		[SerializeField] private AdService _adService;
 
 		public void InstallBindings(ContainerBuilder containerBuilder)
 		{
@@ -92,7 +91,7 @@ namespace CubeProject
 			
 			void InitAd()
 			{
-				globalDisposableHolder.Add(_adService);
+				globalDisposableHolder.Add(new AdService());
 			}
 			
 			#endregion

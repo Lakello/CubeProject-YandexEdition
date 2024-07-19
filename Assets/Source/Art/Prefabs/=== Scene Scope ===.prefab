@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneNameView: {fileID: 4884360487804637635}
-  _isDebug: 1
+  _isDebug: 0
   _endPoint: {fileID: 0}
 --- !u!114 &7682878966037621185
 MonoBehaviour:

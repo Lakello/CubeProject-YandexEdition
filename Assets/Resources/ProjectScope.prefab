@@ -60,9 +60,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _backgroundAudioSourcePrefab: {fileID: 2455003016160134708, guid: c141ffc0323af454ebdad45361f19583, type: 3}
   _targetFrameRate: 60
-  _adService:
-    _showCooldownInSeconds: 60
-    _adDelayInEditor: 10
 --- !u!114 &-5875644122897357117
 MonoBehaviour:
   m_ObjectHideFlags: 0

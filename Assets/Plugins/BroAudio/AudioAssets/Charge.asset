@@ -18,7 +18,7 @@ MonoBehaviour:
     MulticlipsPlayMode: 0
     Clips:
     - AudioClip: {fileID: 8300000, guid: 7c30b069b06aeb64ab9d67954ff443ea, type: 3}
-      Volume: 0.35
+      Volume: 0.25
       Delay: 0
       StartPosition: 0
       EndPosition: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
     MulticlipsPlayMode: 0
     Clips:
     - AudioClip: {fileID: 8300000, guid: d660201590f2afc4b81d3618dbd76499, type: 3}
-      Volume: 1
+      Volume: 0.25
       Delay: 0
       StartPosition: 0
       EndPosition: 0

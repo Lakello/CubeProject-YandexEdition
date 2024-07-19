@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -7,8 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerWindow : EditorWindow
 {
-	private string _lastScene;
+	private List<string> _openedScenes = new List<string>();
+	
 	private Vector2 _scrollPosition;
+	private bool _isPlayWithZeroScene;
 
 	[MenuItem("Window/General/Scene Manager")]
 	public static void ShowWindow() =>
@@ -16,6 +19,44 @@ public class SceneManagerWindow : EditorWindow
 
 	private void OnEnable() =>
 		EditorApplication.playModeStateChanged += OnPlayModeChange;
+
+	private void OnDisable() =>
+		EditorApplication.playModeStateChanged -= OnPlayModeChange;
+
+	private void OnPlayModeChange(PlayModeStateChange state)
+	{
+		if (state == PlayModeStateChange.ExitingEditMode)
+		{
+			_openedScenes.Clear();
+			
+			for (int i = 0; i < EditorSceneManager.sceneCount; i++)
+			{
+				_openedScenes.Add(EditorSceneManager.GetSceneAt(i).path);
+			}
+			
+			var zeroScene = SceneUtility.GetScenePathByBuildIndex(0);
+			EditorSceneManager.SaveOpenScenes();
+
+			if (_isPlayWithZeroScene)
+				EditorSceneManager.OpenScene(zeroScene);
+		}
+
+		if (state == PlayModeStateChange.EnteredEditMode)
+		{
+			if (_openedScenes.Count < 1)
+				return;
+			
+			EditorSceneManager.OpenScene(_openedScenes[0]);
+
+			if (_openedScenes.Count > 1)
+			{
+				for (int i = 1; i < _openedScenes.Count; i++)
+				{
+					EditorSceneManager.OpenScene(_openedScenes[i], OpenSceneMode.Additive);
+				}
+			}
+		}
+	}
 
 	private void OnGUI()
 	{
@@ -31,19 +72,20 @@ public class SceneManagerWindow : EditorWindow
 			EditorGUILayout.HelpBox("Not scenes in build settings", MessageType.Warning);
 		}
 
-		ShowSceneList();
+		_isPlayWithZeroScene = EditorGUILayout.Toggle("Play with zero scene", _isPlayWithZeroScene);
+
+		RenderListScenes();
 	}
 
-	private void ShowSceneList()
+	private void RenderListScenes()
 	{
 		_scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, false, false);
 
-		var colors = new []
+		var colors = new[]
 		{
-			Texture2D.grayTexture, 
-			Texture2D.blackTexture, 
+			Texture2D.grayTexture, Texture2D.blackTexture,
 		};
-		
+
 		for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
 		{
 			string path = SceneUtility.GetScenePathByBuildIndex(i);
@@ -55,25 +97,25 @@ public class SceneManagerWindow : EditorWindow
 
 			bool isOpenScene = EditorSceneManager.GetSceneByName(sceneName).name != null;
 			var style = new GUIStyle(GUI.skin.button);
-			
+
 			EditorGUILayout.LabelField(sceneName, GUILayout.MaxWidth(120));
 
 			RenderSingleLoadButton(isOpenScene, sceneName, style, path);
 
-			RenderAdditiveLoadButton(isOpenScene, style, i, path);
+			RenderAdditiveLoadButton(isOpenScene, sceneName, style, path);
 
 			EditorGUILayout.EndHorizontal();
 
 			GUI.backgroundColor = Color.white;
 		}
-		
+
 		EditorGUILayout.EndScrollView();
 	}
 
-	private static void RenderAdditiveLoadButton(bool isOpenScene, GUIStyle style, int i, string path)
+	private static void RenderAdditiveLoadButton(bool isOpenScene, string sceneName, GUIStyle style, string path)
 	{
 		var buttonText = string.Empty;
-		
+
 		if (isOpenScene)
 		{
 			if (EditorSceneManager.sceneCount == 1)
@@ -98,7 +140,7 @@ public class SceneManagerWindow : EditorWindow
 			if (isOpenScene && EditorSceneManager.sceneCount != 1)
 			{
 				EditorSceneManager.SaveOpenScenes();
-				EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByBuildIndex(i), true);
+				EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByName(sceneName), true);
 			}
 			else
 			{
@@ -110,7 +152,7 @@ public class SceneManagerWindow : EditorWindow
 	private static void RenderSingleLoadButton(bool isOpenScene, string sceneName, GUIStyle style, string path)
 	{
 		var buttonText = string.Empty;
-		
+
 		if (isOpenScene && EditorSceneManager.sceneCount == 1)
 		{
 			SetNoInteractionColor(style);
@@ -132,28 +174,6 @@ public class SceneManagerWindow : EditorWindow
 		}
 	}
 
-	private void OnPlayModeChange(PlayModeStateChange state)
-	{
-		if (state == PlayModeStateChange.ExitingEditMode)
-		{
-			_lastScene = EditorSceneManager.GetActiveScene().path;
-			var zeroScene = SceneUtility.GetScenePathByBuildIndex(0);
-			EditorSceneManager.SaveOpenScenes();
-			EditorSceneManager.OpenScene(zeroScene);
-		}
-
-		if (state == PlayModeStateChange.EnteredEditMode)
-		{
-			EditorSceneManager.OpenScene(_lastScene);
-			_lastScene = null;
-		}
-	}
-
-	private void OnDisable()
-	{
-		EditorApplication.playModeStateChanged -= OnPlayModeChange;
-	}
-
 	private static void SetNoInteractionColor(GUIStyle style)
 	{
 		style.normal.textColor = Color.white;
@@ -165,21 +185,11 @@ public class SceneManagerWindow : EditorWindow
 		style.normal.textColor = Color.white;
 		GUI.backgroundColor = Color.green;
 	}
-	
+
 	private static void SetCanCloseColor(GUIStyle style)
 	{
 		style.normal.textColor = Color.white;
 		GUI.backgroundColor = Color.yellow;
-	}
-
-	private static void SetWhiteBackground()
-	{
-		
-	}
-	
-	private static void SetGrayBackground()
-	{
-		
 	}
 }
 
