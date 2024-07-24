@@ -68,19 +68,26 @@ namespace CubeProject
 
 				var sdkInitializeObserver = new GameObject(nameof(SDKInitializeObserver)).AddComponent<SDKInitializeObserver>();
 
-				sdkInitializeObserver.Init(() =>
-					{
-						var saver = new GameDataSaver();
-						saver.Init(() =>
-						{
-							levelLoader.Init(gameStateMachine);
-							levelLoader.LoadCurrentLevel();
-							
-							InitAd();
-						});
-					});
-			}
+				sdkInitializeObserver.Init(OnSdkInitialized);
+				
+				return;
+				
+				void OnSdkInitialized()
+				{
+					var saver = new GameDataSaver();
+					saver.Init(OnSaverInitialized);
+				}
 
+				void OnSaverInitialized()
+				{
+					levelLoader.Init(gameStateMachine);
+					levelLoader.LoadCurrentLevel();
+							
+					InitAd();
+					InitFocusObserver();
+				}
+			}
+			
 			void InitDisposableHolder()
 			{
 				var holderObject = new GameObject(nameof(GlobalDisposableHolder));
@@ -92,6 +99,11 @@ namespace CubeProject
 			void InitAd()
 			{
 				globalDisposableHolder.Add(new AdService());
+			}
+
+			void InitFocusObserver()
+			{
+				globalDisposableHolder.Add(new FocusObserver());
 			}
 			
 			#endregion
