@@ -1,196 +1,202 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
+#if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class SceneManagerWindow : EditorWindow
-{
-	private List<string> _openedScenes = new List<string>();
-	
-	private Vector2 _scrollPosition;
-	private bool _isPlayWithZeroScene;
+    {
+        private string _lastScene;
 
-	[MenuItem("Window/General/Scene Manager")]
-	public static void ShowWindow() =>
-		GetWindow<SceneManagerWindow>("Scene Manager");
+        private VisualElement _root;
 
-	private void OnEnable() =>
-		EditorApplication.playModeStateChanged += OnPlayModeChange;
+        private bool _playOnFirstScene;
+        
+        [MenuItem("Window/General/Scene Manager")]
+        public static void ShowWindow()
+        {
+            GetWindow<SceneManagerWindow>("Scene Manager");
+            
+        }
 
-	private void OnDisable() =>
-		EditorApplication.playModeStateChanged -= OnPlayModeChange;
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeChange;
+            EditorApplication.playModeStateChanged += OnEditorApplicationOnplayModeStateChanged;
+        }
 
-	private void OnPlayModeChange(PlayModeStateChange state)
-	{
-		if (state == PlayModeStateChange.ExitingEditMode)
-		{
-			_openedScenes.Clear();
-			
-			for (int i = 0; i < EditorSceneManager.sceneCount; i++)
-			{
-				_openedScenes.Add(EditorSceneManager.GetSceneAt(i).path);
-			}
-			
-			var zeroScene = SceneUtility.GetScenePathByBuildIndex(0);
-			EditorSceneManager.SaveOpenScenes();
+        private void CreateGUI()
+        {
+            var root = rootVisualElement;
 
-			if (_isPlayWithZeroScene)
-				EditorSceneManager.OpenScene(zeroScene);
-		}
+            var scroll = new ScrollView(ScrollViewMode.Vertical);
+            scroll.style.flexGrow = 1;
+            scroll.style.backgroundColor = new StyleColor(new Color(0.2f, 0.2f, 0.2f));
+            scroll.elasticity = 5;
+            root.Add(scroll);
+            _root = scroll;
 
-		if (state == PlayModeStateChange.EnteredEditMode)
-		{
-			if (_openedScenes.Count < 1)
-				return;
-			
-			EditorSceneManager.OpenScene(_openedScenes[0]);
+            if (EditorApplication.isPlaying)
+            {
+                _root.Clear();
 
-			if (_openedScenes.Count > 1)
-			{
-				for (int i = 1; i < _openedScenes.Count; i++)
-				{
-					EditorSceneManager.OpenScene(_openedScenes[i], OpenSceneMode.Additive);
-				}
-			}
-		}
-	}
+                var info = new HelpBox { text = "In PlayMode" };
+                _root.Add(info);
+                
+                return;
+            }
+            _root.Clear();
+            BuildRoot(_root);
+        }
+        
+        
+        void OnEditorApplicationOnplayModeStateChanged(PlayModeStateChange change)
+        {
+            if (_root == null)
+            {
+                return;
+            }
+            if (change is PlayModeStateChange.EnteredEditMode)
+            {
+                _root.Clear();
+                BuildRoot(_root);
+            }
+        }
 
-	private void OnGUI()
-	{
-		if (EditorApplication.isPlaying)
-		{
-			EditorGUILayout.HelpBox("In PlayMode", MessageType.Info);
+        private void BuildRoot(VisualElement root)
+        {
+            var defaultColor = root.style.backgroundColor;
+            
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                string path = SceneUtility.GetScenePathByBuildIndex(i);
+                string sceneName = Path.GetFileNameWithoutExtension(path);
+                bool isOpenScene = EditorSceneManager.GetSceneByName(sceneName).name != null;
 
-			return;
-		}
+                var isActiveScene = EditorSceneManager.GetActiveScene().name == sceneName &&
+                                    EditorSceneManager.sceneCount == 1;
 
-		if (EditorSceneManager.sceneCountInBuildSettings == 0)
-		{
-			EditorGUILayout.HelpBox("Not scenes in build settings", MessageType.Warning);
-		}
+                var horizontalScope = new VisualElement();
+                horizontalScope.style.flexDirection = new StyleEnum<FlexDirection>(FlexDirection.Row);
+                horizontalScope.style.justifyContent = new StyleEnum<Justify>(Justify.SpaceAround);
+                horizontalScope.style.flexShrink = 1;
 
-		_isPlayWithZeroScene = EditorGUILayout.Toggle("Play with zero scene", _isPlayWithZeroScene);
+                var sceneNameLabel = new Label();
+                sceneNameLabel.text = sceneName;
+                sceneNameLabel.style.fontSize = 14;
+                sceneNameLabel.style.minWidth = 120;
 
-		RenderListScenes();
-	}
+                var openSceneButton = new Button();
+                openSceneButton.text = isActiveScene ? "Opened" : "Open";
+                openSceneButton.style.minWidth = 120;
+                openSceneButton.style.backgroundColor = isActiveScene ? Color.grey : defaultColor;
+                openSceneButton.style.borderBottomColor = new StyleColor(Color.black);
+                SetOutline(openSceneButton);
 
-	private void RenderListScenes()
-	{
-		_scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, false, false);
+                var openAdditiveSceneButton = new Button();
+                openAdditiveSceneButton.text = isOpenScene ? "Close Additive" : "Open Additive";
+                openAdditiveSceneButton.style.minWidth = 120;
+                SetOutline(openAdditiveSceneButton);
+                openAdditiveSceneButton.style.color = isActiveScene ? Color.grey : Color.white;
+                openAdditiveSceneButton.style.backgroundColor = isOpenScene || isActiveScene ? Color.grey : defaultColor;
 
-		var colors = new[]
-		{
-			Texture2D.grayTexture, Texture2D.blackTexture,
-		};
+                openSceneButton.clicked += () =>
+                {
+                    if (SceneManager.GetActiveScene().name == sceneName && SceneManager.sceneCount <= 1) return;
+                    if (SceneManager.GetActiveScene().name == "Untitled")
+                    {
+                        return;
+                    }
+                    EditorSceneManager.SaveOpenScenes();
+                    EditorSceneManager.OpenScene(path);
+                    
+                    root.Clear();
+                    BuildRoot(root);
+                };
 
-		for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-		{
-			string path = SceneUtility.GetScenePathByBuildIndex(i);
-			string sceneName = Path.GetFileNameWithoutExtension(path);
+                var sceneNumber = i;
+                openAdditiveSceneButton.clicked += () =>
+                {
+                    if (isActiveScene)
+                    {
+                        return;
+                    }
+                    
+                    if (isOpenScene && EditorSceneManager.sceneCount != 1)
+                    {
+                        EditorSceneManager.SaveOpenScenes();
+                        EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByBuildIndex(sceneNumber), true);
+                    }
+                    else
+                    {
+                        EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+                    }
+                    
+                    root.Clear();
+                    BuildRoot(root);
+                };
 
-			var layoutStyle = new GUIStyle();
-			layoutStyle.normal.background = colors[i % 2];
-			EditorGUILayout.BeginHorizontal(layoutStyle);
+                
+                
+                horizontalScope.Add(sceneNameLabel);
+                horizontalScope.Add(openSceneButton);
+                horizontalScope.Add(openAdditiveSceneButton);
+                
+                root.Add(horizontalScope);
+            }
 
-			bool isOpenScene = EditorSceneManager.GetSceneByName(sceneName).name != null;
-			var style = new GUIStyle(GUI.skin.button);
+            var playButton = new Toggle();
+            playButton.text = "Play on first scene";
+            playButton.value = _playOnFirstScene;
+            playButton.RegisterValueChangedCallback(valueChange => _playOnFirstScene = valueChange.newValue);
+            root.Add(playButton);
+        }
 
-			EditorGUILayout.LabelField(sceneName, GUILayout.MaxWidth(120));
+        private void OnPlayModeChange(PlayModeStateChange state)
+        {
+            if (!_playOnFirstScene)
+            {
+                return;
+            }
 
-			RenderSingleLoadButton(isOpenScene, sceneName, style, path);
+            if (state == PlayModeStateChange.ExitingEditMode)
+            {
+                _lastScene = EditorSceneManager.GetActiveScene().path;
+                var zeroScene = SceneUtility.GetScenePathByBuildIndex(0);
+                EditorSceneManager.SaveOpenScenes();
+                EditorSceneManager.OpenScene(zeroScene);
+                EditorApplication.EnterPlaymode();
+            }
 
-			RenderAdditiveLoadButton(isOpenScene, sceneName, style, path);
+            if (state == PlayModeStateChange.EnteredEditMode)
+            {
+                EditorSceneManager.OpenScene(_lastScene);
+                _lastScene = null;
+            }
+        }
 
-			EditorGUILayout.EndHorizontal();
+        private void SetOutline(VisualElement element)
+        {
+            element.style.borderBottomColor = new StyleColor(Color.black);
+            element.style.borderTopColor = new StyleColor(Color.black);
+            element.style.borderLeftColor = new StyleColor(Color.black);
+            element.style.borderRightColor = new StyleColor(Color.black);
 
-			GUI.backgroundColor = Color.white;
-		}
+            var outlineWidth = 2;
+            
+            element.style.borderBottomWidth = outlineWidth;
+            element.style.borderTopWidth = outlineWidth;
+            element.style.borderLeftWidth = outlineWidth;
+            element.style.borderRightWidth = outlineWidth;
+        }
 
-		EditorGUILayout.EndScrollView();
-	}
-
-	private static void RenderAdditiveLoadButton(bool isOpenScene, string sceneName, GUIStyle style, string path)
-	{
-		var buttonText = string.Empty;
-
-		if (isOpenScene)
-		{
-			if (EditorSceneManager.sceneCount == 1)
-			{
-				SetNoInteractionColor(style);
-				buttonText = "Opened";
-			}
-			else
-			{
-				SetCanCloseColor(style);
-				buttonText = "Close ADDITIVE";
-			}
-		}
-		else
-		{
-			SetCanOpenColor(style);
-			buttonText = "Open ADDITIVE";
-		}
-
-		if (GUILayout.Button(buttonText, style, GUILayout.MaxWidth(120)))
-		{
-			if (isOpenScene && EditorSceneManager.sceneCount != 1)
-			{
-				EditorSceneManager.SaveOpenScenes();
-				EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByName(sceneName), true);
-			}
-			else
-			{
-				EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
-			}
-		}
-	}
-
-	private static void RenderSingleLoadButton(bool isOpenScene, string sceneName, GUIStyle style, string path)
-	{
-		var buttonText = string.Empty;
-
-		if (isOpenScene && EditorSceneManager.sceneCount == 1)
-		{
-			SetNoInteractionColor(style);
-			buttonText = "Opened";
-		}
-		else
-		{
-			SetCanOpenColor(style);
-			buttonText = "Open SINGLE";
-		}
-
-		if (GUILayout.Button(buttonText, style, GUILayout.MaxWidth(120)))
-		{
-			if (EditorSceneManager.GetActiveScene().name != sceneName || EditorSceneManager.sceneCount > 1)
-			{
-				EditorSceneManager.SaveOpenScenes();
-				EditorSceneManager.OpenScene(path);
-			}
-		}
-	}
-
-	private static void SetNoInteractionColor(GUIStyle style)
-	{
-		style.normal.textColor = Color.white;
-		GUI.backgroundColor = Color.gray;
-	}
-
-	private static void SetCanOpenColor(GUIStyle style)
-	{
-		style.normal.textColor = Color.white;
-		GUI.backgroundColor = Color.green;
-	}
-
-	private static void SetCanCloseColor(GUIStyle style)
-	{
-		style.normal.textColor = Color.white;
-		GUI.backgroundColor = Color.yellow;
-	}
-}
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeChange;
+            EditorApplication.playModeStateChanged -= OnEditorApplicationOnplayModeStateChanged;
+        }
+    }
 
 #endif

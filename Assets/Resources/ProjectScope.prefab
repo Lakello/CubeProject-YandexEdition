@@ -75,17 +75,16 @@ MonoBehaviour:
   _levels:
   - Level_1
   - Level_2
-  - Level_3
   - Level_4
+  - Level_3
   - Level_5
-  - Level_56
   - Level_57
-  - Level_59
   - Level_52
-  - Level_54
+  - Level_59
   - Level_58
-  - Level_51
+  - Level_54
   - Level_53
+  - Level_51
   - Level_100
   - Level_55
   - Level_101
@@ -93,6 +92,7 @@ MonoBehaviour:
   - Level_S1
   - Level_S2
   - Level_S3
+  - Level_56
   - Level_101_1
   - Level_S4
   - Level_100_1

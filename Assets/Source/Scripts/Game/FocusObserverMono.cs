@@ -1,4 +1,3 @@
-using System;
 using Agava.WebUtility;
 using UnityEngine;
 
@@ -8,23 +7,28 @@ namespace Source.Scripts.Game
 	{
 		private void OnEnable()
 		{
-			WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeEvent;
+			Application.focusChanged += OnInBackgroundChangeApp;
+			WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
 		}
 
 		private void OnDisable()
 		{
-			WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeEvent;
+			WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeWeb;
 		}
 
-		private void OnApplicationFocus(bool hasFocus)
+		private void OnInBackgroundChangeApp(bool inApp)
 		{
-			OnInBackgroundChangeEvent(hasFocus);
+			ChangeVolume(!inApp);
 		}
 
-		private void OnInBackgroundChangeEvent(bool isBackground)
+		private void OnInBackgroundChangeWeb(bool isBackground)
 		{
-			Debug.LogError($"Focus = {isBackground}");
-			AudioListener.volume = isBackground ? 0 : 1;
+			ChangeVolume(isBackground);
+		}
+
+		private void ChangeVolume(bool value)
+		{
+			AudioListener.volume = value ? 0 : 1;
 		}
 	}
 }
