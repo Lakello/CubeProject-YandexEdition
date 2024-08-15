@@ -1,5 +1,5 @@
 using System;
-using CubeProject.Game.Player;
+using Game.Player;
 using UniRx;
 using UnityEngine;
 

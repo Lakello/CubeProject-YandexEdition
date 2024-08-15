@@ -12,11 +12,13 @@ using UniRx;
 using UnityEditor;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public sealed class PortalBehaviour : MonoBehaviour, IPushHandler
 	{
+		private readonly M_CheckGround _checkGroundMessage = new M_CheckGround();
+		
 		[ShowInInspector] private bool _isActive;
 
 		[SerializeField] private Transform _targetPoint;
@@ -129,7 +131,7 @@ namespace CubeProject.Game.Player
 		private void OnTeleportEnded()
 		{
 			MessageBroker.Default
-				.Publish(new CheckGroundMessage(isFall =>
+				.Publish(_checkGroundMessage.SetData(isFall =>
 				{
 					if (isFall == false)
 						_linkedPortal.Pushing?.Invoke();

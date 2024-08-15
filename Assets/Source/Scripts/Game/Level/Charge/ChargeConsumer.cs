@@ -3,7 +3,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public sealed class ChargeConsumer : MonoBehaviour, IChargeable
 	{

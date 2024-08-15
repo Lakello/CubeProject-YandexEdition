@@ -1,8 +1,8 @@
-using CubeProject.Game.Player;
+using Game.Player;
 using LeadTools.Extensions;
 using Source.Scripts.LeadTools.Other;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class ChargeableColorChangeBehaviour : ColorChangeBehaviour
 	{

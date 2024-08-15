@@ -1,7 +1,8 @@
 using System;
 using CubeProject.Game.Messages;
-using CubeProject.Game.Player;
-using CubeProject.Game.Player.Movement;
+using Game.Player;
+using Game.Player.Messages;
+using Game.Player.Movement;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
@@ -37,8 +38,7 @@ namespace CubeProject.Tips
 			gameObject.GetComponentElseThrow(out _pushHandler);
 
 			MessageBroker.Default
-				.Receive<Message<Vector3, CubeMoveService>>()
-				.Where(message => message.Id == MessageId.DirectionChanged)
+				.Receive<M_MoveDirectionChanged>()
 				.Subscribe(message => _currentDirection = message.Data)
 				.AddTo(this);
 		}
@@ -66,8 +66,7 @@ namespace CubeProject.Tips
 				.Publish(new PushAfterStepMessage(() =>
 				{
 					MessageBroker.Default
-						.Receive<Message<CubeMoveService>>()
-						.Where(message => message.Id == MessageId.StepEnded)
+						.Receive<M_StepEnded>()
 						.Subscribe(_ => OnStepEnded())
 						.AddTo(_disposable);
 

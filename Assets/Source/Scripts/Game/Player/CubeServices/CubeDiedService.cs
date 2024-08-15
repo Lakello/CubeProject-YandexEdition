@@ -8,7 +8,7 @@ using LeadTools.StateMachine;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class CubeDiedService : IDisposable
 	{
@@ -16,13 +16,15 @@ namespace CubeProject.Game.Player
 		private readonly CubeEntity _cubeEntity;
 		private readonly CubeDiedView _cubeDiedView;
 		private readonly SpawnPoint _spawnPoint;
+		private readonly M_SetTargetCamera _setTargetCameraMessage = new M_SetTargetCamera();
+		private readonly M_CheckGround _checkGroundMessage = new M_CheckGround();
 
 		public CubeDiedService(CubeEntity cubeEntity, SpawnPoint spawnPoint)
 		{
 			_cubeEntity = cubeEntity;
 			_cubeDiedView = _cubeEntity.Component.DiedView;
 			_spawnPoint = spawnPoint;
-
+			
 			_cubeEntity.Died += OnDied;
 		}
 
@@ -47,14 +49,14 @@ namespace CubeProject.Game.Player
 		private void DissolveVisible()
 		{
 			_cubeEntity.transform.position = _spawnPoint.transform.position + _offset;
-
+			
 			MessageBroker.Default
-				.Publish(new SetTargetCameraMessage());
+				.Publish(_setTargetCameraMessage);
 
 			_cubeDiedView.Play(true, () =>
 			{
 				MessageBroker.Default
-					.Publish(new CheckGroundMessage(isGrounded =>
+					.Publish(_checkGroundMessage.SetData(isGrounded =>
 					{
 						if (isGrounded is false)
 							CubeStateMachine.EnterIn<ControlState>();

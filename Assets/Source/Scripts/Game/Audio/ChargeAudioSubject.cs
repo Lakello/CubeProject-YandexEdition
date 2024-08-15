@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class ChargeAudioSubject : SerializedMonoBehaviour, IAudioSubject
 	{

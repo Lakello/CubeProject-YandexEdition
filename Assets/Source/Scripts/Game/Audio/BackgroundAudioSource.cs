@@ -3,7 +3,7 @@ using Ami.BroAudio;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class BackgroundAudioSource : MonoBehaviour
 	{

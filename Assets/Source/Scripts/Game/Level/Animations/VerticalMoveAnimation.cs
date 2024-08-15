@@ -1,7 +1,8 @@
 using CubeProject.Game.Messages;
-using CubeProject.Game.Player;
-using CubeProject.Game.Player.Movement;
+using Game.Player;
+using Game.Player.Movement;
 using DG.Tweening;
+using Game.Player.Messages;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
@@ -42,8 +43,7 @@ namespace CubeProject.Game.Level.Animations
 				_disposable = new CompositeDisposable();
 
 				MessageBroker.Default
-					.Receive<Message<CubeMoveService>>()
-					.Where(message => message.Id == MessageId.StepEnded)
+					.Receive<M_StepEnded>()
 					.Subscribe(_ => OnStepEnded())
 					.AddTo(_disposable);
 
@@ -78,8 +78,7 @@ namespace CubeProject.Game.Level.Animations
 			_disposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Receive<Message<CubeMoveService>>()
-				.Where(message => message.Id == MessageId.StepStarted)
+				.Receive<M_StepStarted>()
 				.Subscribe(_ => OnExitStepStarted())
 				.AddTo(_disposable);
 		}

@@ -2,7 +2,7 @@ using System;
 using Cinemachine;
 using CubeProject.Game.Messages;
 using CubeProject.Game.Messages.Camera;
-using CubeProject.Game.Player;
+using Game.Player;
 using UniRx;
 using UnityEngine;
 
@@ -23,13 +23,12 @@ namespace CubeProject.Game.Level.Camera
 			_disposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Receive<Message<CubeFallService>>()
-				.Where(message => message.Id == MessageId.FallingIntoAbyss)
+				.Receive<M_FallingIntoAbyss>()
 				.Subscribe(_ => ResetTarget())
 				.AddTo(_disposable);
 
 			MessageBroker.Default
-				.Receive<SetTargetCameraMessage>()
+				.Receive<M_SetTargetCamera>()
 				.Subscribe(_ => SetTarget())
 				.AddTo(_disposable);
 

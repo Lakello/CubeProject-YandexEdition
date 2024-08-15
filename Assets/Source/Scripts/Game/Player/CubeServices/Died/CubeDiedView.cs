@@ -4,7 +4,7 @@ using LeadTools.Extensions;
 using LeadTools.Other;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class CubeDiedView : MonoBehaviour
 	{

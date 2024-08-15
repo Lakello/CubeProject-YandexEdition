@@ -1,7 +1,7 @@
 using LeadTools.Extensions;
 using CubeProject.Game.Level.Trigger;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class Barrier : TriggerTarget
 	{

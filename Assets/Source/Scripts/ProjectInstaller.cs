@@ -1,12 +1,12 @@
 using CubeProject.Game.Level;
-using CubeProject.Game.Player;
+using Game.Player;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using Reflex.Core;
 using Source.Scripts.Game;
-using Source.Scripts.Yandex;
+using Yandex;
 using UnityEngine;
 
 namespace CubeProject

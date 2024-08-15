@@ -1,19 +1,19 @@
 using System;
 using CubeProject.Game.Level;
-using CubeProject.Game.Player.Movement;
-using CubeProject.Game.Player.Shield;
-using CubeProject.Game.Player.Shield.States;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using CubeProject.InputSystem;
 using CubeProject.SO;
+using Game.Player.Movement;
+using Game.Player.Shield;
+using Game.Player.Shield.States;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Sirenix.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class CubeFactory : IDisposable
 	{

@@ -8,11 +8,11 @@
       "hash": "558effef721399ade58d7bd3cc7f2c1541ea828d"
     },
     "com.agava.yandexgames": {
-      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#16.0.0",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#16.1.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "faf20595c0f18f4a471e6b27fbd5fbf5fd05d7a2"
+      "hash": "3bdb25b6765d133a66c5032258d772a5ac5d58b8"
     },
     "com.autodesk.fbx": {
       "version": "4.2.1",

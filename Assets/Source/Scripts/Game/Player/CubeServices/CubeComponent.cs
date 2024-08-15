@@ -5,7 +5,7 @@ using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(CubeDiedView))]
 	[RequireComponent(typeof(ChargeHolder))]

@@ -1,17 +1,17 @@
 using System;
-using CubeProject.Game.Level;
-using CubeProject.Game.Messages;
-using CubeProject.Game.Player;
-using Cysharp.Threading.Tasks;
+using Game.Level.Message;
+using Yandex.Messages;
 using UniRx;
-using UnityEngine;
 
-namespace Source.Scripts.Yandex
+namespace Yandex
 {
 	public class AdService : IDisposable
 	{
 		private const float ShowCooldownInSeconds = 60f;
 		private const float AdDelayInEditor = 3f;
+
+		private readonly M_ADCooldown _adCooldownMessage = new M_ADCooldown();
+		private readonly M_ADShow _adShowMessage = new M_ADShow();
 
 		private CompositeDisposable _disposable;
 		private CompositeDisposable _preLevelLoadingDisposable;
@@ -19,7 +19,7 @@ namespace Source.Scripts.Yandex
 		public AdService()
 		{
 			_disposable = new CompositeDisposable();
-			
+
 			StartAdCooldown();
 		}
 
@@ -32,8 +32,8 @@ namespace Source.Scripts.Yandex
 		private void StartAdCooldown()
 		{
 			MessageBroker.Default
-				.Publish(new Message<AdService>(MessageId.ResumeLevelLoading));
-			
+				.Publish(_adCooldownMessage);
+
 			Observable.Timer(TimeSpan.FromSeconds(ShowCooldownInSeconds))
 				.Subscribe(_ => WaitPossibleShowAd())
 				.AddTo(_disposable);
@@ -42,22 +42,21 @@ namespace Source.Scripts.Yandex
 		private void WaitPossibleShowAd()
 		{
 			_preLevelLoadingDisposable = new CompositeDisposable();
-			
+
 			MessageBroker.Default
-				.Receive<Message<LevelLoader>>()
-				.Where(message => message.Id == MessageId.PreLevelLoading)
+				.Receive<M_PreLevelLoading>()
 				.Subscribe(_ => ShowAd())
 				.AddTo(_preLevelLoadingDisposable);
 
 			MessageBroker.Default
-				.Publish(new Message<AdService>(MessageId.SuspendLevelLoading));
+				.Publish(_adShowMessage);
 		}
-		
+
 		private void ShowAd()
 		{
 			_preLevelLoadingDisposable?.Dispose();
 			_preLevelLoadingDisposable = null;
-			
+
 #if !UNITY_EDITOR
 			Agava.YandexGames.InterstitialAd.Show(onCloseCallback: _ => StartAdCooldown());
 #else

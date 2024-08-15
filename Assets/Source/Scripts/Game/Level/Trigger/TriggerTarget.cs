@@ -1,4 +1,4 @@
-using CubeProject.Game.Player;
+using Game.Player;
 using UnityEngine;
 
 namespace CubeProject.Game.Level.Trigger

@@ -1,5 +1,6 @@
+using Game.Level.Message;
 using CubeProject.Game.Messages;
-using CubeProject.Game.Player;
+using Game.Player;
 using CubeProject.Save.Data;
 using Cysharp.Threading.Tasks;
 using LeadTools.NaughtyAttributes;
@@ -7,7 +8,8 @@ using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
-using Source.Scripts.Yandex;
+using Yandex;
+using Yandex.Messages;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +18,8 @@ namespace CubeProject.Game.Level
 {
 	public class LevelLoader : MonoBehaviour
 	{
+		private readonly M_PreLevelLoading _preLoadingMessage = new M_PreLevelLoading();
+		
 		[SerializeField] [Scene] private string[] _levels;
 
 		private int _currentSceneIndex;
@@ -39,15 +43,13 @@ namespace CubeProject.Game.Level
 			_compositeDisposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Receive<Message<AdService>>()
-				.Where(message => message.Id == MessageId.ResumeLevelLoading)
-				.Subscribe(_ => OnResumeLevelLoading())
+				.Receive<M_ADCooldown>()
+				.Subscribe(_ => ResumeLevelLoading())
 				.AddTo(_compositeDisposable);
 			
 			MessageBroker.Default
-				.Receive<Message<AdService>>()
-				.Where(message => message.Id == MessageId.SuspendLevelLoading)
-				.Subscribe(_ => OnSuspendLevelLoading())
+				.Receive<M_ADShow>()
+				.Subscribe(_ => SuspendLevelLoading())
 				.AddTo(_compositeDisposable);
 			
 			_canLoadLevel = true;
@@ -104,7 +106,7 @@ namespace CubeProject.Game.Level
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
 			
 			MessageBroker.Default
-				.Publish(new Message<LevelLoader>(MessageId.PreLevelLoading));
+				.Publish(_preLoadingMessage);
 			
 			await UniTask.WaitUntil(() => _canLoadLevel, cancellationToken: this.GetCancellationTokenOnDestroy());
 			await TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
@@ -118,10 +120,10 @@ namespace CubeProject.Game.Level
 #endif
 		}
 
-		private void OnResumeLevelLoading() =>
+		private void ResumeLevelLoading() =>
 			_canLoadLevel = true;
 
-		private void OnSuspendLevelLoading() =>
+		private void SuspendLevelLoading() =>
 			_canLoadLevel = false;
 	}
 }

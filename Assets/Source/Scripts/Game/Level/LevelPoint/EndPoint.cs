@@ -1,9 +1,9 @@
 using System;
-using CubeProject.Game.Player;
+using Game.Player;
 using LeadTools.StateMachine;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(Collider))]
 	public class EndPoint : MonoBehaviour, ITransitSubject

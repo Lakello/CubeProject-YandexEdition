@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Threading;
 using CubeProject.Game.Level.Trigger;
-using CubeProject.Game.Player;
-using CubeProject.Game.Player.Shield.States;
+using Game.Player;
 using Cysharp.Threading.Tasks;
+using Game.Player.Shield.States;
 using LeadTools.Extensions;
 using LeadTools.Other;
 using LeadTools.StateMachine;
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace CubeProject.Game.Player.Shield
+namespace Game.Player.Shield
 {
 	public class ShieldView : MonoBehaviour
 	{

@@ -6,10 +6,10 @@ using CubeProject.Tips;
 using LeadTools.StateMachine;
 using Reflex.Core;
 using Sirenix.Utilities;
-using CubeProject.Game.Player;
+using Game.Player;
 using CubeProject.Game.Level;
 using CubeProject.Game.Level.Camera;
-using CubeProject.Game.Player.Shield;
+using Game.Player.Shield;
 using UnityEngine;
 
 namespace CubeProject

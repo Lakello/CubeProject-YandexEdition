@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using CubeProject.Game.Player.Shield.States;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
+using Game.Player.Shield.States;
 using LeadTools.StateMachine;
 
-namespace CubeProject.Game.Player.Shield
+namespace Game.Player.Shield
 {
 	public class CubeShieldService : IDisposable
 	{

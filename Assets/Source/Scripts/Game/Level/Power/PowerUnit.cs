@@ -1,7 +1,7 @@
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(ChargeHolder))]
 	public class PowerUnit : MonoBehaviour

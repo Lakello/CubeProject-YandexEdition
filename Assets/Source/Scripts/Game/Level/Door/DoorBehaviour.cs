@@ -3,7 +3,7 @@ using DG.Tweening;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class DoorBehaviour : MonoBehaviour

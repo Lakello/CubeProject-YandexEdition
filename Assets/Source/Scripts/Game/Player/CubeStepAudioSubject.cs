@@ -1,10 +1,9 @@
 using System;
-using CubeProject.Game.Messages;
-using CubeProject.Game.Player.Movement;
+using Game.Player.Messages;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class CubeStepAudioSubject : MonoBehaviour, IAudioSubject
 	{
@@ -13,8 +12,7 @@ namespace CubeProject.Game.Player
 		private void Awake()
 		{
 			MessageBroker.Default
-				.Receive<Message<CubeMoveService>>()
-				.Where(message => message.Id == MessageId.StepEnded)
+				.Receive<M_StepEnded>()
 				.Subscribe(_ => OnStepEnded())
 				.AddTo(this);
 		}

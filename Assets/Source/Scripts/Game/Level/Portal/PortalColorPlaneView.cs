@@ -5,7 +5,7 @@ using LeadTools.Other;
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class PortalColorPlaneView : MonoBehaviour
 	{

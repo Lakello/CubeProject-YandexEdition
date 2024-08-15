@@ -3,7 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace CubeProject.Game.Player.Movement
+namespace Game.Player.Movement
 {
 	public class RollMover
 	{

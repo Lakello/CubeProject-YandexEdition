@@ -1,10 +1,9 @@
 using System;
-using CubeProject.Game.Player;
 using CubeProject.Game.Messages;
-using CubeProject.Game.Player.Movement;
+using Game.Player.Messages;
 using UniRx;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class CubeFallService : IDisposable
 	{
@@ -23,14 +22,13 @@ namespace CubeProject.Game.Player
 			_disposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Receive<Message<CubeMoveService>>()
-				.Where(message => message.Id == MessageId.StepEnded)
+				.Receive<M_StepEnded>()
 				.Subscribe(_ => OnStepEnded())
 				.AddTo(_disposable);
 
 			MessageBroker.Default
-				.Receive<CheckGroundMessage>()
-				.Subscribe(message => message.Callback.Invoke(TryFall()))
+				.Receive<M_CheckGround>()
+				.Subscribe(message => message.Data.Invoke(TryFall()))
 				.AddTo(_disposable);
 
 			TryFall();
@@ -48,12 +46,10 @@ namespace CubeProject.Game.Player
 			{
 				return false;
 			}
-			else
-			{
-				_fallHandler.Play();
 
-				return true;
-			}
+			_fallHandler.Play();
+
+			return true;
 		}
 
 		private void OnStepEnded() =>

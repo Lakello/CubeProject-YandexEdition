@@ -1,5 +1,5 @@
 using CubeProject.Game.Messages;
-using CubeProject.Game.Player;
+using Game.Player;
 using CubeProject.Game.PlayerStateMachine;
 using CubeProject.Game.PlayerStateMachine.States;
 using LeadTools.StateMachine;
@@ -10,6 +10,7 @@ namespace CubeProject.Tips
 	public class PushStateHandler
 	{
 		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
+		private readonly M_CheckGround _checkGroundMessage = new M_CheckGround();
 
 		private Pusher _currentPusher;
 
@@ -33,7 +34,7 @@ namespace CubeProject.Tips
 			_currentPusher = null;
 
 			MessageBroker.Default
-				.Publish(new CheckGroundMessage(isGrounded =>
+				.Publish(_checkGroundMessage.SetData(isGrounded =>
 				{
 					if (isGrounded is false)
 						_cubeStateMachine.EnterIn<ControlState>();

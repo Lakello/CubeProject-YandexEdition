@@ -1,5 +1,5 @@
 using CubeProject.Game.Level;
-using CubeProject.Game.Player;
+using Game.Player;
 using CubeProject.InputSystem;
 using CubeProject.LeadTools.Utils;
 using CubeProject.Save.Data;

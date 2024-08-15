@@ -3,7 +3,7 @@ using LeadTools.Extensions;
 using CubeProject.Game.PlayerStateMachine.States;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	[RequireComponent(typeof(CubeComponent))]
 	public class CubeEntity : MonoBehaviour

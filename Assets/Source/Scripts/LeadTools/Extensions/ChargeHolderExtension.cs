@@ -1,4 +1,4 @@
-using CubeProject.Game.Player;
+using Game.Player;
 
 namespace LeadTools.Extensions
 {

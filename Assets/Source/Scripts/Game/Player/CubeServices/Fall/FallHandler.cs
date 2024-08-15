@@ -9,7 +9,7 @@ using LeadTools.StateMachine;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.Game.Player
+namespace Game.Player
 {
 	public class FallHandler : IDisposable
 	{
@@ -57,8 +57,10 @@ namespace CubeProject.Game.Player
 			{
 				_cubeStateMachine.EnterIn<FallingToAbyssState>();
 
-				MessageBroker.Default
-					.Publish(new Message<CubeFallService>(MessageId.FallingIntoAbyss));
+				// TODO
+				
+				// MessageBroker.Default
+				// 	.Publish(new Message<CubeFallService>(MessageId.FallingIntoAbyss));
 
 				(calculatePosition, whileCondition, endCallback) = GetFallIntoAbyssData();
 			}
