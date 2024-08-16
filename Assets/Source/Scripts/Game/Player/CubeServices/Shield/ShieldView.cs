@@ -46,37 +46,36 @@ namespace Game.Player.Shield
 
 		private void OnDisable()
 		{
+			_cancellationTokenSource?.Cancel();
 			_shieldStateChangeable.UnSubscribeTo<PlayState>(OnPlay);
 			_shieldStateChangeable.UnSubscribeTo<StopState>(OnStop);
 		}
 
-		private async void OnPlay(bool isEntered)
+		private void OnPlay(bool isEntered)
 		{
 			if (isEntered == false)
 				return;
 
-			_cancellationTokenSource?.Dispose();
+			_cancellationTokenSource?.Cancel();
 			_cancellationTokenSource = new CancellationTokenSource();
 
-			await UniTask.Create(UpdateView, _cancellationTokenSource.Token);
+			_ = UpdateView(_cancellationTokenSource.Token);
 		}
 
-		private async void OnStop(bool isEntered)
+		private void OnStop(bool isEntered)
 		{
 			if (isEntered == false)
 				return;
 
-			_cancellationTokenSource?.Dispose();
+			_cancellationTokenSource?.Cancel();
 			_cancellationTokenSource = new CancellationTokenSource();
-			
-			await UniTask.Create(
-				token => ChangeShieldVisible(token), 
-				_cancellationTokenSource.Token);
+
+			_ = ChangeShieldVisible(_cancellationTokenSource.Token);
 		}
 
-		private async UniTask UpdateView(CancellationToken cancellationToken)
+		private async UniTaskVoid UpdateView(CancellationToken cancellationToken)
 		{
-			while (_shieldStateChangeable.CurrentState == typeof(PlayState))
+			while (cancellationToken.IsCancellationRequested == false)
 			{
 				if (_triggerDetector.TryGetTargetTransform(out var targetTransform))
 				{
@@ -110,7 +109,7 @@ namespace Game.Player.Shield
 			if (isShow)
 				_renderer.enabled = true;
 
-			await MonoBehaviourExtension.SmoothChangeValue(
+			await Value.SmoothChange(
 				(normalTime) =>
 				{
 					if (isShow)

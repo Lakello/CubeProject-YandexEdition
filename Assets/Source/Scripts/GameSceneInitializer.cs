@@ -8,6 +8,7 @@ using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
 using LeadTools.StateMachine.States;
 using LeadTools.TypedScenes;
+using Source.Scripts.Game.UI.Buttons;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,13 +19,13 @@ namespace CubeProject
 		MonoBehaviour,
 		ISceneLoadHandlerOnStateAndArgument<GameStateMachine, LevelLoader>
 	{
+		[SerializeField] private NextLevelButton _nextLevelButton;
 		[SerializeField] private SceneNameView _sceneNameView;
 		[SerializeField] private bool _isDebug;
 		[SerializeField] private EndPoint _endPoint;
 
 		private TransitionInitializer<GameStateMachine> _transitionInitializer;
 		private LevelLoader _levelLoader;
-		private GameStateMachine _gameStateMachine;
 
 		#if UNITY_EDITOR
 		private void OnValidate()
@@ -40,22 +41,21 @@ namespace CubeProject
 		private void OnDisable()
 		{
 			_transitionInitializer?.Unsubscribe();
-			_gameStateMachine?.UnSubscribeTo<EndLevelState<EndLevelWindowState>>(OnLevelEnded);
+			_nextLevelButton.StateTransiting -= OnLevelEnded;
 		}
 
 		public void OnSceneLoaded<TState>(GameStateMachine machine, LevelLoader levelLoader)
 			where TState : State<GameStateMachine>
 		{
-			_gameStateMachine = machine;
-			_gameStateMachine.SubscribeTo<EndLevelState<EndLevelWindowState>>(OnLevelEnded);
-
 			_levelLoader = levelLoader;
 
+			_nextLevelButton.StateTransiting += OnLevelEnded;
+			
 			gameObject.GetComponentElseThrow(out WindowInitializer windowInitializer);
-			windowInitializer.WindowsInit(_gameStateMachine.Window);
-			_gameStateMachine.EnterIn<TState>();
+			windowInitializer.WindowsInit(machine.Window);
+			machine.EnterIn<TState>();
 
-			_transitionInitializer = new TransitionInitializer<GameStateMachine>(_gameStateMachine)
+			_transitionInitializer = new TransitionInitializer<GameStateMachine>(machine)
 				.InitTransition<EndLevelState<EndLevelWindowState>>(_endPoint);
 
 			if (_isDebug)
@@ -77,14 +77,11 @@ namespace CubeProject
 			return;
 
 			void LoadMenu() =>
-				MenuScene.Load<MenuState<MenuWindowState>, LevelLoader>(_gameStateMachine, _levelLoader);
+				MenuScene.Load<MenuState<MenuWindowState>, LevelLoader>(machine, _levelLoader);
 		}
 
-		private void OnLevelEnded(bool isEntered)
+		private void OnLevelEnded()
 		{
-			if (isEntered == false)
-				return;
-
 			if (GameDataSaver.Instance.Get<CurrentLevel>().Value + 1 >= _levelLoader.LevelsCount)
 				_levelLoader.SetMode(LoaderMode.Random);
 

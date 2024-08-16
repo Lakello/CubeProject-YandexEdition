@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c914c055cd4486681cc2e0c2c050482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nextLevelButton: {fileID: 3524933955166950600}
   _sceneNameView: {fileID: 4884360487804637635}
   _isDebug: 0
   _endPoint: {fileID: 0}
@@ -220,6 +221,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61b184bf268d4d5a993dd2ea3793f923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3524933955166950600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850283994499373269, guid: 96cd69ec8039b2a46befc982ea6998c0, type: 3}
+  m_PrefabInstance: {fileID: 2974227043879324701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bf1598dd134a2c9388e57f987882d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4884360487804637635 stripped

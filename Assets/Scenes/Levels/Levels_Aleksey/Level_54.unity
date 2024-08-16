@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.015990026, g: 0.018989522, b: 0.022011, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4845,6 +4845,10 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 1685213497}
+    - target: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
     - target: {fileID: 4913067590482772543, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.8
@@ -6228,6 +6232,10 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[1]
       value: 
       objectReference: {fileID: 883594380}
+    - target: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
     - target: {fileID: 4913067590482772543, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.8
@@ -12822,6 +12830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: === Scene Scope ===
       objectReference: {fileID: 0}
+    - target: {fileID: 7595105805790962738, guid: dca129ce42762224db65cb9e6d0b6630, type: 3}
+      propertyPath: _endPoint
+      value: 
+      objectReference: {fileID: 1132234946}
     - target: {fileID: 7597172262730282996, guid: dca129ce42762224db65cb9e6d0b6630, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14995,6 +15007,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1144610718316868739, guid: 26dd34233a9e90e4e85a21a27fbe438f, type: 3}
   m_PrefabInstance: {fileID: 1132234944}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1132234946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400643692964706913, guid: 26dd34233a9e90e4e85a21a27fbe438f, type: 3}
+  m_PrefabInstance: {fileID: 1132234944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73648e0995944de0ba54e73b3e0f03f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1132920399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29653,6 +29676,10 @@ PrefabInstance:
       propertyPath: _gameObjectsOnChargeable.Array.data[0]
       value: 
       objectReference: {fileID: 905095951}
+    - target: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3836891873838255397, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
     - target: {fileID: 4913067590482772543, guid: 4f93a9e1eda0a61478a87ca28c5664dc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.8

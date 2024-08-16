@@ -6,25 +6,16 @@ using UnityEngine;
 
 namespace LeadTools.Extensions
 {
-	public static class MonoBehaviourExtension
+	public static class Value
 	{
-		public static void StopRoutine(this MonoBehaviour context, Coroutine routine)
-		{
-			if (context == null)
-				return;
-
-			if (routine != null)
-				context.StopCoroutine(routine);
-		}
-
-		public static async UniTask SmoothChangeValue(
+		public static async UniTask SmoothChange(
 			Action<float> lerp,
 			float totalTime,
 			CancellationToken cancellationTokenSource)
 		{
 			var currentTime = 0f;
 
-			while (currentTime <= totalTime)
+			while (cancellationTokenSource.IsCancellationRequested == false && currentTime <= totalTime)
 			{
 				var normalTime = currentTime / totalTime;
 

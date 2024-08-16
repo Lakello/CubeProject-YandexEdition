@@ -58,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed988abd1f041d48056ee5f56c16afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transitionPrefab: {fileID: 5276914992623515723, guid: 616d511151a6c554caddf1c754e4f91d, type: 3}
+  _transitionSettings: {fileID: 11400000, guid: 5d42ad7319df4a8439d74d82f30a60cc, type: 2}
   _backgroundAudioSourcePrefab: {fileID: 2455003016160134708, guid: c141ffc0323af454ebdad45361f19583, type: 3}
   _targetFrameRate: 60
 --- !u!114 &-5875644122897357117

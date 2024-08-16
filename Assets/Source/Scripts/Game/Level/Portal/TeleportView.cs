@@ -31,7 +31,7 @@ namespace Game.Player
 
 		public async UniTask AnimationPlay(Func<float, float> getScaleValue, Func<float, float> getHeightValue, CancellationToken cancellationToken)
 		{
-			await MonoBehaviourExtension.SmoothChangeValue(
+			await Value.SmoothChange(
 				(currentTime) =>
 				{
 					var scaleValue = getScaleValue(currentTime);

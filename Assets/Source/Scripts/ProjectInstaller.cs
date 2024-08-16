@@ -1,4 +1,5 @@
 using CubeProject.Game.Level;
+using EasyTransition;
 using Game.Player;
 using LeadTools.Extensions;
 using LeadTools.SaveSystem;
@@ -13,6 +14,8 @@ namespace CubeProject
 {
 	public class ProjectInstaller : MonoBehaviour, IInstaller
 	{
+		[SerializeField] private Transition _transitionPrefab;
+		[SerializeField] private TransitionSettings _transitionSettings;
 		[SerializeField] private BackgroundAudioSource _backgroundAudioSourcePrefab;
 		[SerializeField] private int _targetFrameRate = 60;
 
@@ -80,11 +83,14 @@ namespace CubeProject
 
 				void OnSaverInitialized()
 				{
-					levelLoader.Init(gameStateMachine);
+					var transition = Instantiate(_transitionPrefab);
+					transition.transitionSettings = _transitionSettings;
+					DontDestroyOnLoad(transition.gameObject);
+					
+					levelLoader.Init(gameStateMachine, transition);
 					levelLoader.LoadCurrentLevel();
 							
 					InitAd();
-					InitFocusObserver();
 				}
 			}
 			
@@ -99,11 +105,7 @@ namespace CubeProject
 			void InitAd()
 			{
 				globalDisposableHolder.Add(new AdService());
-			}
-
-			void InitFocusObserver()
-			{
-				globalDisposableHolder.Add(new FocusObserver());
+				globalDisposableHolder.Add(new AdObserver());
 			}
 			
 			#endregion

@@ -11,6 +11,7 @@ namespace Yandex
 		private const float AdDelayInEditor = 3f;
 
 		private readonly M_ADCooldown _adCooldownMessage = new M_ADCooldown();
+		private readonly M_ADReady _adReadyMessage = new M_ADReady();
 		private readonly M_ADShow _adShowMessage = new M_ADShow();
 
 		private CompositeDisposable _disposable;
@@ -49,7 +50,7 @@ namespace Yandex
 				.AddTo(_preLevelLoadingDisposable);
 
 			MessageBroker.Default
-				.Publish(_adShowMessage);
+				.Publish(_adReadyMessage);
 		}
 
 		private void ShowAd()
@@ -57,6 +58,9 @@ namespace Yandex
 			_preLevelLoadingDisposable?.Dispose();
 			_preLevelLoadingDisposable = null;
 
+			MessageBroker.Default
+				.Publish(_adShowMessage);
+			
 #if !UNITY_EDITOR
 			Agava.YandexGames.InterstitialAd.Show(onCloseCallback: _ => StartAdCooldown());
 #else

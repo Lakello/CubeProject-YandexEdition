@@ -3,6 +3,7 @@ using CubeProject.Game.Messages;
 using Game.Player;
 using CubeProject.Save.Data;
 using Cysharp.Threading.Tasks;
+using EasyTransition;
 using LeadTools.NaughtyAttributes;
 using LeadTools.SaveSystem;
 using LeadTools.StateMachine;
@@ -27,16 +28,19 @@ namespace CubeProject.Game.Level
 		private LoaderMode _currentMode;
 		private AdService _adService;
 		private CompositeDisposable _compositeDisposable;
+		private Transition _sceneTransitionAnimation;
 		private bool _canLoadLevel;
 
 		public int LevelsCount => _levels.Length;
 
-		public void Init(GameStateMachine gameStateMachine)
+		public void Init(GameStateMachine gameStateMachine, Transition transition)
 		{
 			if (_gameStateMachine != null)
 				return;
 
 			_gameStateMachine = gameStateMachine;
+
+			_sceneTransitionAnimation = transition;
 
 			_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
 			
@@ -48,7 +52,7 @@ namespace CubeProject.Game.Level
 				.AddTo(_compositeDisposable);
 			
 			MessageBroker.Default
-				.Receive<M_ADShow>()
+				.Receive<M_ADReady>()
 				.Subscribe(_ => SuspendLevelLoading())
 				.AddTo(_compositeDisposable);
 			
@@ -109,12 +113,21 @@ namespace CubeProject.Game.Level
 				.Publish(_preLoadingMessage);
 			
 			await UniTask.WaitUntil(() => _canLoadLevel, cancellationToken: this.GetCancellationTokenOnDestroy());
+			
+			_sceneTransitionAnimation.InPlay();
+
+			await UniTask.WaitForSeconds(_sceneTransitionAnimation.transitionSettings.transitionTime);
+			
 			await TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
 				_levels[index],
 				LoadSceneMode.Single,
 				_gameStateMachine,
 				this);
+			
+			_sceneTransitionAnimation.OutPlay();
 
+			await UniTask.WaitForSeconds(_sceneTransitionAnimation.transitionSettings.destroyTime);
+			
 #if !UNITY_EDITOR
 			Agava.YandexGames.YandexGamesSdk.GameReady();
 #endif
