@@ -30,8 +30,13 @@ namespace CubeProject
 
 			InitStateMachine();
 
+			AdObserver adObserver = new AdObserver();
+			globalDisposableHolder.Add(adObserver);
+			
 			ProjectInit();
 
+			containerBuilder.AddSingleton(adObserver);
+			
 			return;
 
 			#region InitMethods
@@ -105,7 +110,6 @@ namespace CubeProject
 			void InitAd()
 			{
 				globalDisposableHolder.Add(new AdService());
-				globalDisposableHolder.Add(new AdObserver());
 			}
 			
 			#endregion

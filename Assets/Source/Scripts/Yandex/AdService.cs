@@ -2,6 +2,7 @@ using System;
 using Game.Level.Message;
 using Yandex.Messages;
 using UniRx;
+using UnityEngine;
 
 namespace Yandex
 {
@@ -13,14 +14,12 @@ namespace Yandex
 		private readonly M_ADCooldown _adCooldownMessage = new M_ADCooldown();
 		private readonly M_ADReady _adReadyMessage = new M_ADReady();
 		private readonly M_ADShow _adShowMessage = new M_ADShow();
+		private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
-		private CompositeDisposable _disposable;
 		private CompositeDisposable _preLevelLoadingDisposable;
 
 		public AdService()
 		{
-			_disposable = new CompositeDisposable();
-
 			StartAdCooldown();
 		}
 
@@ -64,6 +63,8 @@ namespace Yandex
 #if !UNITY_EDITOR
 			Agava.YandexGames.InterstitialAd.Show(onCloseCallback: _ => StartAdCooldown());
 #else
+			Debug.Log("SHOW AD");
+			
 			Observable.Timer(TimeSpan.FromSeconds(AdDelayInEditor))
 				.Subscribe(_ => StartAdCooldown())
 				.AddTo(_disposable);

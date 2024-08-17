@@ -10,6 +10,8 @@ using Game.Player.Shield.States;
 using LeadTools.Extensions;
 using LeadTools.StateMachine;
 using Sirenix.Utilities;
+using Source.Scripts.Game.Level.LevelPoint.Messages;
+using UniRx;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -20,6 +22,7 @@ namespace Game.Player
 		private readonly CubeData _data;
 		private readonly SpawnPoint _spawnPoint;
 
+		private CompositeDisposable _disposable;
 		private IDisposable[] _disposables;
 
 		public ShieldStateMachine ShieldStateMachine { get; private set; }
@@ -44,10 +47,24 @@ namespace Game.Player
 			InitCube();
 			InitCubeComponent();
 			InitServices(inputService, maskHolder);
+
+			_disposable = new CompositeDisposable();
+
+			MessageBroker.Default
+				.Receive<M_EndLevel>()
+				.Subscribe(_ =>
+				{
+					CubeStateMachine.EnterIn<BlockControlState>();
+				})
+				.AddTo(_disposable);
 		}
 
-		public void Dispose() =>
+		public void Dispose()
+		{
+			Debug.Log("DIspose");
+			_disposable?.Dispose();
 			_disposables?.ForEach(disposable => disposable.Dispose());
+		}
 
 		private void InitPlayerInstance() =>
 			PlayerEntityInstance = Object.Instantiate(
@@ -84,6 +101,7 @@ namespace Game.Player
 		private void InitStateMachine() =>
 			CubeStateMachine = new CubeStateMachine()
 				.AddState<ControlState>()
+				.AddState<BlockControlState>()
 				.AddState<DieState>()
 				.AddState<FallingToAbyssState>()
 				.AddState<FallingToGroundState>()

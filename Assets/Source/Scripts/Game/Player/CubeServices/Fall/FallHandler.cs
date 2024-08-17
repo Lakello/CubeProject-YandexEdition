@@ -17,6 +17,7 @@ namespace Game.Player
 		private readonly float _speedFallMultiplier = 1.1f;
 		private readonly Vector3 _offset = new Vector3(0, 0.5f, 0);
 
+		private readonly M_FallingIntoAbyss _fallingIntoAbyssMessage = new M_FallingIntoAbyss();
 		private readonly IStateMachine<CubeStateMachine> _cubeStateMachine;
 		private readonly GroundChecker _groundChecker;
 		private readonly CubeEntity _cubeEntity;
@@ -57,10 +58,8 @@ namespace Game.Player
 			{
 				_cubeStateMachine.EnterIn<FallingToAbyssState>();
 
-				// TODO
-				
-				// MessageBroker.Default
-				// 	.Publish(new Message<CubeFallService>(MessageId.FallingIntoAbyss));
+				MessageBroker.Default
+					.Publish(_fallingIntoAbyssMessage);
 
 				(calculatePosition, whileCondition, endCallback) = GetFallIntoAbyssData();
 			}
@@ -69,7 +68,10 @@ namespace Game.Player
 			_cancellationTokenSource = new CancellationTokenSource();
 			
 			await UniTask.Create(token => Fall(calculatePosition, whileCondition, token), _cancellationTokenSource.Token);
-				
+			
+			if (_cubeStateMachine.CurrentState == typeof(BlockControlState))
+				return;
+			
 			endCallback?.Invoke();
 		}
 

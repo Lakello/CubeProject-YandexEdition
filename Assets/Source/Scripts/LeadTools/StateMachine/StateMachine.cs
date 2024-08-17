@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+#if UNITY_EDITOR
+using LeadTools.StateMachine.Editor;
+#endif
 
 namespace LeadTools.StateMachine
 {
-	public abstract class StateMachine<TMachine> : IDisposable, IStateMachine<TMachine>
+	public abstract class StateMachine<TMachine> : 
+		IDisposable,
+		IStateMachine<TMachine>
+#if UNITY_EDITOR
+		, IDebugStateMachine
+#endif
 		where TMachine : StateMachine<TMachine>
 	{
 		private const BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
@@ -13,18 +21,31 @@ namespace LeadTools.StateMachine
 
 		private State<TMachine> _currentState;
 		private object[] _stateInstanceParameters;
-
+		
+#if UNITY_EDITOR
+		protected StateMachine()
+		{
+			StateMachineInstancesContainer.Machines.Add(this);
+		}
+#endif
+		
 		public event Action StateChanged;
 
 		public Type CurrentState => _currentState.GetType();
 
+#if UNITY_EDITOR
+		public string MachineName => GetType().Name;
+		public string StateName => _currentState == null ? string.Empty : CurrentState.Name;
+#endif
+		
 		public TMachine SetStateInstanceParameters(params object[] stateInstanceParameters)
 		{
 			_stateInstanceParameters = stateInstanceParameters;
 
 			return (TMachine)this;
 		}
-		
+
+
 		public TMachine AddState<TState>()
 			where TState : State<TMachine>
 		{
@@ -37,7 +58,7 @@ namespace LeadTools.StateMachine
 			
 			return (TMachine)this;
 		}
-		
+
 		public void Dispose() =>
 			_currentState?.Exit();
 
