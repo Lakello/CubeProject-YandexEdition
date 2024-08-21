@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CubeProject.Game.Level
+namespace CubeProject.Game.Level.Loader
 {
 	public static class LevelButtonFactory
 	{

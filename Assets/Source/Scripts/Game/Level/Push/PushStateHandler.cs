@@ -1,11 +1,11 @@
-using CubeProject.Game.Messages;
-using Game.Player;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using LeadTools.StateMachine;
+using CubeProject.Game.Player.CubeService;
+using CubeProject.Game.Player.CubeService.Messages;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
+using LeadTools.FSM;
 using UniRx;
 
-namespace CubeProject.Tips
+namespace CubeProject.Game.Level.Push
 {
 	public class PushStateHandler
 	{

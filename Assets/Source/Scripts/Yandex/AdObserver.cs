@@ -1,21 +1,21 @@
 using System;
+using CubeProject.Yandex.Messages;
 using UniRx;
 using UnityEngine;
-using Yandex.Messages;
 
-namespace Yandex
+namespace CubeProject.Yandex
 {
 	public class AdObserver : IDisposable
 	{
 		private readonly CompositeDisposable _disposable = new CompositeDisposable();
-		
+
 		public AdObserver()
 		{
 			MessageBroker.Default
 				.Receive<M_ADShow>()
-				.Subscribe(_ =>ChangeVolume(true))
+				.Subscribe(_ => ChangeVolume(true))
 				.AddTo(_disposable);
-			
+
 			MessageBroker.Default
 				.Receive<M_ADCooldown>()
 				.Subscribe(_ => ChangeVolume(false))

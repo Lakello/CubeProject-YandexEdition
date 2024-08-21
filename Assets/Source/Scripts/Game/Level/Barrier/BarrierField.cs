@@ -1,9 +1,12 @@
 using System;
+using CubeProject.Game.AudioSystem;
+using CubeProject.Game.Level.Charge;
+using CubeProject.Game.Player;
+using LeadTools.Common;
 using LeadTools.Extensions;
-using LeadTools.Other;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Barrier
 {
 	public class BarrierField : MonoBehaviour, IAudioSubject
 	{

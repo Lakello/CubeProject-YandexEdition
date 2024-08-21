@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Game.Player.Shield
+namespace CubeProject.Game.Player.CubeService.Shield
 {
 	[Serializable]
 	public class ShieldData

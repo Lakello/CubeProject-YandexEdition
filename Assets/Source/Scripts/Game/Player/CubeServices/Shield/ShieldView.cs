@@ -1,16 +1,14 @@
-using System.Collections;
 using System.Threading;
 using CubeProject.Game.Level.Trigger;
-using Game.Player;
+using CubeProject.Game.Player.CubeService.Shield.States;
 using Cysharp.Threading.Tasks;
-using Game.Player.Shield.States;
+using LeadTools.Common;
 using LeadTools.Extensions;
-using LeadTools.Other;
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace Game.Player.Shield
+namespace CubeProject.Game.Player.CubeService.Shield
 {
 	public class ShieldView : MonoBehaviour
 	{
@@ -95,13 +93,14 @@ namespace Game.Player.Shield
 				await UniTask.WaitForFixedUpdate(cancellationToken);
 			}
 		}
-		
+
 		private async UniTask ChangeShieldVisible(CancellationToken cancellationToken, bool isShow = false, float normalDistance = 0)
 		{
 			if (normalDistance == 0)
 				normalDistance = _shieldData.DistanceRange.y;
-			
-			var targetValue = GetPropertyValueOnDistance(_shieldData.FresnelPowerRange,
+
+			var targetValue = GetPropertyValueOnDistance(
+				_shieldData.FresnelPowerRange,
 				normalDistance);
 
 			UpdateProperty(_fresnelPowerProperty, _shieldData.FresnelPowerHide);

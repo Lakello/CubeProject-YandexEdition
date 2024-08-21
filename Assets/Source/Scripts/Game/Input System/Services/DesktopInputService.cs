@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using LeadTools.StateMachine;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
+using CubeProject.InputSystem;
+using LeadTools.FSM;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.InputSystem
+namespace CubeProject.Game.InputSystem
 {
 	public class DesktopInputService : IInputService
 	{
@@ -14,9 +15,6 @@ namespace CubeProject.InputSystem
 		private readonly IStateChangeable<CubeStateMachine> _cubeStateMachine;
 
 		private bool _isUpdateInput;
-
-		public event Action<Vector3> Moving;
-		public event Action MenuKeyChanged;
 
 		public DesktopInputService(PlayerInput playerInput, IStateChangeable<CubeStateMachine> cubeStateMachine)
 		{
@@ -30,6 +28,10 @@ namespace CubeProject.InputSystem
 
 			OnControlStateChanged(_cubeStateMachine.CurrentState == typeof(ControlState));
 		}
+
+		public event Action<Vector3> Moving;
+
+		public event Action MenuKeyChanged;
 
 		public void Dispose()
 		{

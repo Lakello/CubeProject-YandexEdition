@@ -1,4 +1,4 @@
-namespace CubeProject.UI
+namespace CubeProject.Game.UI.Buttons
 {
 	public class StartButton : EventTriggerButton
 	{

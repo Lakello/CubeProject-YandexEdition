@@ -1,13 +1,12 @@
 using System;
-using LeadTools.StateMachine;
+using CubeProject.Game.InputSystem;
+using LeadTools.FSM.Transit;
 
-namespace CubeProject.InputSystem
+namespace CubeProject.Game
 {
 	public class BackToMenuHandler : IDisposable, ITransitSubject
 	{
 		private readonly IInputService _inputService;
-
-		public event Action StateTransiting;
 
 		public BackToMenuHandler(IInputService inputService)
 		{
@@ -15,6 +14,8 @@ namespace CubeProject.InputSystem
 
 			_inputService.MenuKeyChanged += OnMenuKeyChanged;
 		}
+
+		public event Action StateTransiting;
 
 		public void Dispose() =>
 			_inputService.MenuKeyChanged -= OnMenuKeyChanged;

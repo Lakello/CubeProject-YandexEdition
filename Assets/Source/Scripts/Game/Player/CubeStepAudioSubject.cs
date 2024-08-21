@@ -1,9 +1,10 @@
 using System;
-using Game.Player.Messages;
+using CubeProject.Game.AudioSystem;
+using CubeProject.Game.Player.CubeService.Messages;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player
 {
 	public class CubeStepAudioSubject : MonoBehaviour, IAudioSubject
 	{

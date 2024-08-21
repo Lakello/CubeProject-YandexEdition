@@ -2,7 +2,7 @@ using System.Linq;
 using DG.Tweening;
 using Sirenix.Utilities;
 
-namespace CubeProject.LeadTools.UI
+namespace LeadTools.UI.Anchor
 {
 	public class AnchorAnimationGroup
 	{

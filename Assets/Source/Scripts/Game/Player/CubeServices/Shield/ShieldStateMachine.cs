@@ -1,6 +1,6 @@
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 
-namespace Game.Player.Shield
+namespace CubeProject.Game.Player.CubeService.Shield
 {
 	public class ShieldStateMachine : StateMachine<ShieldStateMachine>
 	{

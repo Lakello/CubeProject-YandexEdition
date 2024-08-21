@@ -1,10 +1,10 @@
 using System;
 using DG.Tweening;
+using LeadTools.Common;
 using LeadTools.Extensions;
-using LeadTools.Other;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player.CubeService.Died
 {
 	public class CubeDiedView : MonoBehaviour
 	{
@@ -18,8 +18,11 @@ namespace Game.Player
 		{
 			var target = isVisible ? Visible : UnVisible;
 
-			_dissolveMeshRenderer.material
-				.DOFloat(target, ShaderProperty._Clip.GetCurrentName(), _animationTime)
+			ShortcutExtensions.DOFloat(
+					_dissolveMeshRenderer.material,
+					target,
+					(string)ShaderProperty._Clip.GetCurrentName(),
+					_animationTime)
 				.OnKill(() => endCallback?.Invoke());
 		}
 	}

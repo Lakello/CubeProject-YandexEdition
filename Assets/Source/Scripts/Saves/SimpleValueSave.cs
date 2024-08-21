@@ -2,7 +2,7 @@ using System;
 using LeadTools.SaveSystem;
 using UnityEngine;
 
-namespace CubeProject.Save
+namespace CubeProject.Saves
 {
 	[Serializable]
 	public abstract class SimpleValueSave<TValue, TData> : SaveData<TData>

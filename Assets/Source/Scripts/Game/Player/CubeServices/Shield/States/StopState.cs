@@ -1,6 +1,6 @@
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 
-namespace Game.Player.Shield.States
+namespace CubeProject.Game.Player.CubeService.Shield.States
 {
 	public class StopState : State<ShieldStateMachine>
 	{

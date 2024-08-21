@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Core
 {
 	public class TypedProcessor : MonoBehaviour
 	{

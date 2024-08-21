@@ -1,26 +1,25 @@
-using Game.Level.Message;
-using CubeProject.Game.Messages;
-using Game.Player;
-using CubeProject.Save.Data;
+using CubeProject.Game.Level.Loader.Messages;
+using CubeProject.Saves.Data;
+using CubeProject.Yandex;
+using CubeProject.Yandex.Messages;
 using Cysharp.Threading.Tasks;
 using EasyTransition;
+using LeadTools.FSM.GameFSM;
+using LeadTools.FSM.GameFSM.States;
+using LeadTools.FSM.WindowFSM.States;
 using LeadTools.NaughtyAttributes;
 using LeadTools.SaveSystem;
-using LeadTools.StateMachine;
-using LeadTools.StateMachine.States;
-using LeadTools.TypedScenes;
-using Yandex;
-using Yandex.Messages;
+using LeadTools.TypedScenes.Core;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CubeProject.Game.Level
+namespace CubeProject.Game.Level.Loader
 {
 	public class LevelLoader : MonoBehaviour
 	{
 		private readonly M_PreLevelLoading _preLoadingMessage = new M_PreLevelLoading();
-		
+
 		[SerializeField] [Scene] private string[] _levels;
 
 		private int _currentSceneIndex;
@@ -43,19 +42,19 @@ namespace CubeProject.Game.Level
 			_sceneTransitionAnimation = transition;
 
 			_currentSceneIndex = GameDataSaver.Instance.Get<CurrentLevel>().Value;
-			
+
 			_compositeDisposable = new CompositeDisposable();
 
 			MessageBroker.Default
 				.Receive<M_ADCooldown>()
 				.Subscribe(_ => ResumeLevelLoading())
 				.AddTo(_compositeDisposable);
-			
+
 			MessageBroker.Default
 				.Receive<M_ADReady>()
 				.Subscribe(_ => SuspendLevelLoading())
 				.AddTo(_compositeDisposable);
-			
+
 			_canLoadLevel = true;
 		}
 
@@ -108,26 +107,26 @@ namespace CubeProject.Game.Level
 			_currentSceneIndex = index;
 
 			GameDataSaver.Instance.Set(new CurrentLevel(_currentSceneIndex));
-			
+
 			MessageBroker.Default
 				.Publish(_preLoadingMessage);
-			
+
 			await UniTask.WaitUntil(() => _canLoadLevel, cancellationToken: this.GetCancellationTokenOnDestroy());
-			
+
 			_sceneTransitionAnimation.InPlay();
 
 			await UniTask.WaitForSeconds(_sceneTransitionAnimation.transitionSettings.transitionTime);
-			
+
 			await TypedScene<GameStateMachine>.LoadScene<PlayLevelState<PlayLevelWindowState>, LevelLoader>(
 				_levels[index],
 				LoadSceneMode.Single,
 				_gameStateMachine,
 				this);
-			
+
 			_sceneTransitionAnimation.OutPlay();
 
 			await UniTask.WaitForSeconds(_sceneTransitionAnimation.transitionSettings.destroyTime);
-			
+
 #if !UNITY_EDITOR
 			Agava.YandexGames.YandexGamesSdk.GameReady();
 #endif

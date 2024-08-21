@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ArenaHero.UI
+namespace CubeProject.Game.UI
 {
 	[ExecuteAlways]
 	[RequireComponent(typeof(GridLayoutGroup))]

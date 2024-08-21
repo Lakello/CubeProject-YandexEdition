@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Charge
 {
 	public interface IChargeable
 	{

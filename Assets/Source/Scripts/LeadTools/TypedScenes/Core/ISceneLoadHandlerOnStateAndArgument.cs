@@ -1,6 +1,6 @@
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Core
 {
 	public interface ISceneLoadHandlerOnStateAndArgument<TMachine, in TArgument>
 		where TMachine : StateMachine<TMachine>

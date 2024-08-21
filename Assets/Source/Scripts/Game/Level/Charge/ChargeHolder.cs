@@ -2,7 +2,7 @@ using System;
 using LeadTools.NaughtyAttributes;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Charge
 {
 	public sealed class ChargeHolder : MonoBehaviour, IChargeable
 	{

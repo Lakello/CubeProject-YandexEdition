@@ -1,4 +1,4 @@
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Core
 {
 	public interface ISceneLoadHandler
 	{

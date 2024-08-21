@@ -17,7 +17,9 @@ namespace LeadTools.TypedScenes.Editor
 			var targetClass = new CodeTypeDeclaration(sceneName);
 			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.UnityEngineImport));
 			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.SceneManagementImport));
-			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.StateMachineImport));
+			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.FSMImport));
+			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.GameFSMImport));
+			targetNamespace.Imports.Add(new CodeNamespaceImport(GeneratorSettings.TypedScenesCoreImport));
 
 			targetClass.BaseTypes.Add(
 				new CodeTypeReference(

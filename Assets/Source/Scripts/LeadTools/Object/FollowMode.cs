@@ -1,4 +1,4 @@
-namespace Source.Scripts.LeadTools.Object
+namespace LeadTools.Object
 {
 	public enum FollowMode
 	{

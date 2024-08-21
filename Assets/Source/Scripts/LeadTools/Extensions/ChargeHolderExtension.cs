@@ -1,4 +1,4 @@
-using Game.Player;
+using CubeProject.Game.Level.Charge;
 
 namespace LeadTools.Extensions
 {

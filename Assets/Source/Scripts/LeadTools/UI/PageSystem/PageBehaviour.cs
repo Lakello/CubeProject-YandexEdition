@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
-using LeadTools.StateMachine;
-using LeadTools.StateMachine.States;
+using CubeProject.Game.Level.Loader;
+using LeadTools.FSM;
+using LeadTools.FSM.GameFSM;
+using LeadTools.FSM.GameFSM.States;
+using LeadTools.FSM.WindowFSM.States;
 using Reflex.Attributes;
-using CubeProject.Game.Level;
 using UnityEngine;
 
-namespace CubeProject.LeadTools.UI.PageSystem
+namespace LeadTools.UI.PageSystem
 {
 	public class PageBehaviour : MonoBehaviour
 	{

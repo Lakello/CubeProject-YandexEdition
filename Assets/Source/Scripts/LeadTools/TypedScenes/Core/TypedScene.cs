@@ -1,8 +1,8 @@
-﻿using LeadTools.StateMachine;
+﻿using LeadTools.FSM;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Core
 {
 	public abstract class TypedScene<TMachine> where TMachine : StateMachine<TMachine>
 	{

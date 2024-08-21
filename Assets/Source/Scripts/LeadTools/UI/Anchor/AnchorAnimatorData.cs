@@ -3,7 +3,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CubeProject.LeadTools.UI
+namespace LeadTools.UI.Anchor
 {
 	[Serializable]
 	public class AnchorAnimatorData

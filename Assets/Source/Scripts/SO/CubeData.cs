@@ -1,6 +1,6 @@
+using CubeProject.Game.Player;
+using CubeProject.Game.Player.CubeService.Shield;
 using Sirenix.OdinInspector;
-using Game.Player;
-using Game.Player.Shield;
 using UnityEngine;
 
 namespace CubeProject.SO

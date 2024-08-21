@@ -1,9 +1,10 @@
 using System;
+using CubeProject.Game.Level.Charge;
 using DG.Tweening;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Barrier
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class BarrierView : MonoBehaviour
@@ -22,8 +23,7 @@ namespace Game.Player
 		{
 			gameObject.GetComponentElseThrow(out _chargeConsumer);
 
-			_animation = DOTween
-				.To(progress =>
+			_animation = DOTween.To(progress =>
 					{
 						LerpColor(_animationData.Gradient, progress);
 						LerpCurve(_animationData.ClipCurve, progress, SetClip);

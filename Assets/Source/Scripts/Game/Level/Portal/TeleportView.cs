@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Portal
 {
 	public class TeleportView
 	{

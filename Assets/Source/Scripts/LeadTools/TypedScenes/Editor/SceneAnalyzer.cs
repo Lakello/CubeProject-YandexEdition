@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LeadTools.TypedScenes.Core;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;

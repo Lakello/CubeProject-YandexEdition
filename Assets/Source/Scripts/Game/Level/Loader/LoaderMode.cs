@@ -1,4 +1,4 @@
-namespace CubeProject.Game.Level
+namespace CubeProject.Game.Level.Loader
 {
 	public enum LoaderMode
 	{

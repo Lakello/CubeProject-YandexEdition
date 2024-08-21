@@ -1,5 +1,5 @@
 using System;
-using LeadTools.Other;
+using LeadTools.Common;
 
 namespace LeadTools.Extensions
 {

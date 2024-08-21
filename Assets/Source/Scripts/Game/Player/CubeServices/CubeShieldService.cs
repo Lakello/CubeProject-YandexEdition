@@ -1,11 +1,13 @@
 using System;
 using System.Linq;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using Game.Player.Shield.States;
-using LeadTools.StateMachine;
+using CubeProject.Game.Level.Charge;
+using CubeProject.Game.Player.CubeService.Shield;
+using CubeProject.Game.Player.CubeService.Shield.States;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
+using LeadTools.FSM;
 
-namespace Game.Player.Shield
+namespace CubeProject.Game.Player.CubeService
 {
 	public class CubeShieldService : IDisposable
 	{

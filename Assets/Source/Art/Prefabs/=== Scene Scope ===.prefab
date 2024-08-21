@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextLevelButton: {fileID: 3524933955166950600}
   _sceneNameView: {fileID: 4884360487804637635}
-  _isDebug: 0
+  _isDebug: 1
   _endPoint: {fileID: 0}
 --- !u!114 &7682878966037621185
 MonoBehaviour:

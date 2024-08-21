@@ -8,11 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Scenes
 {
     using UnityEngine;
     using UnityEngine.SceneManagement;
-    using LeadTools.StateMachine;
+    using LeadTools.FSM;
+    using LeadTools.FSM.GameFSM;
+    using LeadTools.TypedScenes.Core;
     
     
     public class Level_100 : TypedScene<GameStateMachine>

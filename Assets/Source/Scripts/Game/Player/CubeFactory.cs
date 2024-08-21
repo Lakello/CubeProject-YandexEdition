@@ -1,21 +1,21 @@
 using System;
-using CubeProject.Game.Level;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using CubeProject.InputSystem;
+using CubeProject.Game.InputSystem;
+using CubeProject.Game.Level.LevelPoint;
+using CubeProject.Game.Level.LevelPoint.Messages;
+using CubeProject.Game.Player.CubeService;
+using CubeProject.Game.Player.CubeService.Shield;
+using CubeProject.Game.Player.CubeService.Shield.States;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
 using CubeProject.SO;
-using Game.Player.Movement;
-using Game.Player.Shield;
-using Game.Player.Shield.States;
 using LeadTools.Extensions;
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 using Sirenix.Utilities;
-using Source.Scripts.Game.Level.LevelPoint.Messages;
 using UniRx;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Game.Player
+namespace CubeProject.Game.Player
 {
 	public class CubeFactory : IDisposable
 	{
@@ -24,11 +24,6 @@ namespace Game.Player
 
 		private CompositeDisposable _disposable;
 		private IDisposable[] _disposables;
-
-		public ShieldStateMachine ShieldStateMachine { get; private set; }
-		public PlayerEntity PlayerEntityInstance { get; private set; }
-		public CubeEntity CubeEntity { get; private set; }
-		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
 
 		public CubeFactory(CubeData data, SpawnPoint spawnPoint)
 		{
@@ -40,6 +35,14 @@ namespace Game.Player
 
 			CubeStateMachine.EnterIn<ControlState>();
 		}
+
+		public ShieldStateMachine ShieldStateMachine { get; private set; }
+
+		public PlayerEntity PlayerEntityInstance { get; private set; }
+
+		public CubeEntity CubeEntity { get; private set; }
+
+		public IStateMachine<CubeStateMachine> CubeStateMachine { get; private set; }
 
 		public void Create(IInputService inputService, MaskHolder maskHolder)
 		{
@@ -94,7 +97,7 @@ namespace Game.Player
 
 			_disposables = new IDisposable[]
 			{
-				moveService, fallService, shieldService, diedService
+				moveService, fallService, shieldService, diedService,
 			};
 		}
 

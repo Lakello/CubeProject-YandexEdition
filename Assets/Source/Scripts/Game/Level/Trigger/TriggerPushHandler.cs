@@ -1,8 +1,9 @@
 using System;
-using Game.Player;
+using CubeProject.Game.Level.Push;
+using CubeProject.Game.Player;
 using UnityEngine;
 
-namespace CubeProject.Tips
+namespace CubeProject.Game.Level.Trigger
 {
 	public class TriggerPushHandler : MonoBehaviour, IPushHandler
 	{

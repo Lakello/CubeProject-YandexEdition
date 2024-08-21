@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using LeadTools.Extensions;
@@ -8,7 +7,7 @@ using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace CubeProject.LeadTools.UI
+namespace LeadTools.UI.Anchor
 {
 	[ExecuteInEditMode]
 	public class AnchorAnimator : SerializedMonoBehaviour

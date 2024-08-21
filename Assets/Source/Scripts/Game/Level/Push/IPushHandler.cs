@@ -1,6 +1,6 @@
 using System;
 
-namespace CubeProject.Tips
+namespace CubeProject.Game.Level.Push
 {
 	public interface IPushHandler
 	{

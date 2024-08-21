@@ -1,5 +1,5 @@
 using System;
-using Game.Player;
+using LeadTools.Common;
 using UnityEngine;
 
 namespace LeadTools.Extensions

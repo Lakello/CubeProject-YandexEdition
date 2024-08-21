@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CubeProject.Save.Data
+namespace CubeProject.Saves.Data
 {
 	[Serializable]
 	public sealed class CurrentLevel : SimpleValueSave<int, CurrentLevel>

@@ -1,9 +1,10 @@
 using System;
+using CubeProject.Game.Level.Charge;
 using DG.Tweening;
 using LeadTools.Extensions;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Door
 {
 	[RequireComponent(typeof(ChargeConsumer))]
 	public class DoorBehaviour : MonoBehaviour

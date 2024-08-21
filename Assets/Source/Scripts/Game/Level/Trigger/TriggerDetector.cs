@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 
 namespace CubeProject.Game.Level.Trigger
@@ -12,7 +11,7 @@ namespace CubeProject.Game.Level.Trigger
 		[SerializeField] private List<TriggerTarget> _targets;
 		[SerializeField] [ReadOnly] private Transform _targetTransforms;
 		[SerializeField] [ReadOnly] private bool _canGetTargetTransform;
-		
+
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out TriggerTarget target))
@@ -24,14 +23,14 @@ namespace CubeProject.Game.Level.Trigger
 			if (other.TryGetComponent(out TriggerTarget target))
 				_targets.Remove(target);
 		}
-		
+
 		public bool TryGetTargetTransform([CanBeNull] out Transform targetTransform)
 		{
 			targetTransform = null;
-			
+
 			if (_targets.Count == 0)
 				return false;
-			
+
 			if (_targets.Count == 1)
 			{
 				if (_targets[0].Chargeable.IsCharged)
@@ -43,7 +42,7 @@ namespace CubeProject.Game.Level.Trigger
 			}
 
 			var chargedTargets = _targets.Where(target => target.Chargeable.IsCharged).ToArray();
-			
+
 			return targetTransform = FindMinDistanceTransform(chargedTargets);
 		}
 
@@ -60,7 +59,7 @@ namespace CubeProject.Game.Level.Trigger
 
 			if (chargedTargets.Length == 1)
 				return chargedTargets[0].transform;
-			
+
 			Transform result = chargedTargets[0].transform;
 
 			for (int i = 0; i < chargedTargets.Length; i++)

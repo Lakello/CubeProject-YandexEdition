@@ -1,11 +1,14 @@
+using CubeProject.Game.Level.Charge;
 using CubeProject.Game.Level.Trigger;
-using CubeProject.Game.PlayerStateMachine;
+using CubeProject.Game.Player.CubeService.Died;
+using CubeProject.Game.Player.FSM;
 using CubeProject.SO;
+using LeadTools.Common;
 using LeadTools.Extensions;
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player.CubeService
 {
 	[RequireComponent(typeof(CubeDiedView))]
 	[RequireComponent(typeof(ChargeHolder))]

@@ -1,9 +1,10 @@
 using System;
+using CubeProject.Game.Player.CubeService;
+using CubeProject.Game.Player.FSM.States;
 using LeadTools.Extensions;
-using CubeProject.Game.PlayerStateMachine.States;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player
 {
 	[RequireComponent(typeof(CubeComponent))]
 	public class CubeEntity : MonoBehaviour

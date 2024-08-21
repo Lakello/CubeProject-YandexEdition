@@ -1,8 +1,7 @@
 using System;
 using Cinemachine;
-using CubeProject.Game.Messages;
-using CubeProject.Game.Messages.Camera;
-using Game.Player;
+using CubeProject.Game.Level.Camera.Messages;
+using CubeProject.Game.Player.CubeService.Messages;
 using UniRx;
 using UnityEngine;
 

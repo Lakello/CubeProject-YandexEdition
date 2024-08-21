@@ -1,15 +1,15 @@
 using System;
-using System.Collections;
 using System.Threading;
-using CubeProject.Game.Messages;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
+using CubeProject.Game.Player.CubeService.Messages;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
 using Cysharp.Threading.Tasks;
-using LeadTools.StateMachine;
+using LeadTools.Common;
+using LeadTools.FSM;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player.CubeService.Fall
 {
 	public class FallHandler : IDisposable
 	{
@@ -22,7 +22,7 @@ namespace Game.Player
 		private readonly GroundChecker _groundChecker;
 		private readonly CubeEntity _cubeEntity;
 		private readonly BecameVisibleBehaviour _became;
-		
+
 		private CancellationTokenSource _cancellationTokenSource;
 
 		public FallHandler(CubeEntity cubeEntity, GroundChecker groundChecker)
@@ -66,12 +66,12 @@ namespace Game.Player
 
 			_cancellationTokenSource?.Dispose();
 			_cancellationTokenSource = new CancellationTokenSource();
-			
+
 			await UniTask.Create(token => Fall(calculatePosition, whileCondition, token), _cancellationTokenSource.Token);
-			
+
 			if (_cubeStateMachine.CurrentState == typeof(BlockControlState))
 				return;
-			
+
 			endCallback?.Invoke();
 		}
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player
 {
 	public class PlayerEntity : MonoBehaviour
 	{

@@ -1,15 +1,14 @@
 using System;
-using CubeProject.Game.Messages;
-using Game.Player;
-using Game.Player.Messages;
-using Game.Player.Movement;
+using CubeProject.Game.Player.CubeService;
+using CubeProject.Game.Player.CubeService.Messages;
+using LeadTools.Common;
 using LeadTools.Extensions;
 using Reflex.Attributes;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
 
-namespace CubeProject.Tips
+namespace CubeProject.Game.Level.Push
 {
 	public class Pusher : MonoBehaviour
 	{
@@ -63,7 +62,7 @@ namespace CubeProject.Tips
 			_disposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Publish(new PushAfterStepMessage(() =>
+				.Publish(new M_PushAfterStep(() =>
 				{
 					MessageBroker.Default
 						.Receive<M_StepEnded>()

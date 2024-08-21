@@ -1,10 +1,10 @@
 using System;
-using Game.Level.Message;
-using Yandex.Messages;
+using CubeProject.Game.Level.Loader.Messages;
+using CubeProject.Yandex.Messages;
 using UniRx;
 using UnityEngine;
 
-namespace Yandex
+namespace CubeProject.Yandex
 {
 	public class AdService : IDisposable
 	{
@@ -59,12 +59,12 @@ namespace Yandex
 
 			MessageBroker.Default
 				.Publish(_adShowMessage);
-			
+
 #if !UNITY_EDITOR
 			Agava.YandexGames.InterstitialAd.Show(onCloseCallback: _ => StartAdCooldown());
 #else
 			Debug.Log("SHOW AD");
-			
+
 			Observable.Timer(TimeSpan.FromSeconds(AdDelayInEditor))
 				.Subscribe(_ => StartAdCooldown())
 				.AddTo(_disposable);

@@ -1,8 +1,8 @@
 ﻿using System;
-using LeadTools.StateMachine;
+using LeadTools.FSM.Transit;
 using UnityEngine;
 
-namespace CubeProject.UI
+namespace CubeProject.Game.UI.Buttons
 {
 	public abstract class EventTriggerButton : MonoBehaviour, ITransitSubject
 	{

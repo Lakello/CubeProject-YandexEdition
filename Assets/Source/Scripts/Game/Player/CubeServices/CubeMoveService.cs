@@ -1,16 +1,16 @@
 using System;
 using System.Threading;
-using CubeProject.Game.Messages;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using CubeProject.InputSystem;
+using CubeProject.Game.InputSystem;
+using CubeProject.Game.Player.CubeService.Messages;
+using CubeProject.Game.Player.CubeService.Movement;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
 using Cysharp.Threading.Tasks;
-using Game.Player.Messages;
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Player.Movement
+namespace CubeProject.Game.Player.CubeService
 {
 	public class CubeMoveService : IDisposable
 	{
@@ -46,12 +46,12 @@ namespace Game.Player.Movement
 			_messageDisposable = new CompositeDisposable();
 
 			MessageBroker.Default
-				.Receive<DoAfterStepMessage>()
+				.Receive<M_DoAfterStep>()
 				.Subscribe(message => DoAfterStep(message.Action))
 				.AddTo(_messageDisposable);
 
 			MessageBroker.Default
-				.Receive<PushAfterStepMessage>()
+				.Receive<M_PushAfterStep>()
 				.Subscribe(message => DoAfterStep(() => Push(message.GetDirection())))
 				.AddTo(_messageDisposable);
 		}
@@ -102,7 +102,7 @@ namespace Game.Player.Movement
 
 			if (_moveCancellationToken != null || CanMove(direction) is false)
 				return;
-			
+
 			Move(direction);
 		}
 

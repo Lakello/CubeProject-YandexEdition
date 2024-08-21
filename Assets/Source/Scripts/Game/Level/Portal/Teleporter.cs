@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Portal
 {
 	public class Teleporter
 	{

@@ -1,14 +1,15 @@
 using System;
-using CubeProject.Game.Level;
-using CubeProject.Game.Messages;
-using CubeProject.Game.Messages.Camera;
-using CubeProject.Game.PlayerStateMachine;
-using CubeProject.Game.PlayerStateMachine.States;
-using LeadTools.StateMachine;
+using CubeProject.Game.Level.Camera.Messages;
+using CubeProject.Game.Level.LevelPoint;
+using CubeProject.Game.Player.CubeService.Died;
+using CubeProject.Game.Player.CubeService.Messages;
+using CubeProject.Game.Player.FSM;
+using CubeProject.Game.Player.FSM.States;
+using LeadTools.FSM;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Player.CubeService
 {
 	public class CubeDiedService : IDisposable
 	{
@@ -24,7 +25,7 @@ namespace Game.Player
 			_cubeEntity = cubeEntity;
 			_cubeDiedView = _cubeEntity.Component.DiedView;
 			_spawnPoint = spawnPoint;
-			
+
 			_cubeEntity.Died += OnDied;
 		}
 
@@ -49,7 +50,7 @@ namespace Game.Player
 		private void DissolveVisible()
 		{
 			_cubeEntity.transform.position = _spawnPoint.transform.position + _offset;
-			
+
 			MessageBroker.Default
 				.Publish(_setTargetCameraMessage);
 

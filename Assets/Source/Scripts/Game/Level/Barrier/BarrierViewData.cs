@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.Barrier
 {
 	[Serializable]
 	public struct BarrierViewData

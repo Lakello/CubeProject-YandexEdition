@@ -1,7 +1,7 @@
 using System;
 using DG.Tweening;
 
-namespace CubeProject.LeadTools.UI
+namespace LeadTools.UI.Anchor
 {
 	public class AnchorGroupAnimator
 	{

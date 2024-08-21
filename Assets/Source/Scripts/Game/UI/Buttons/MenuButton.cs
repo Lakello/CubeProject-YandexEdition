@@ -1,6 +1,4 @@
-using CubeProject.UI;
-
-namespace Source.Scripts.UI.Buttons
+namespace CubeProject.Game.UI.Buttons
 {
 	public class MenuButton : EventTriggerButton
 	{

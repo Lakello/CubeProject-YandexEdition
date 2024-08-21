@@ -1,4 +1,4 @@
-namespace ArenaHero.UI
+namespace CubeProject.Game.UI
 {
 	public enum AspectType
 	{

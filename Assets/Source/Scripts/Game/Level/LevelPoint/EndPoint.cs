@@ -1,10 +1,11 @@
 using System;
-using LeadTools.StateMachine;
-using Source.Scripts.Game.Level.LevelPoint.Messages;
+using CubeProject.Game.Level.LevelPoint.Messages;
+using CubeProject.Game.Player;
+using LeadTools.FSM.Transit;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Player
+namespace CubeProject.Game.Level.LevelPoint
 {
 	[RequireComponent(typeof(Collider))]
 	public class EndPoint : MonoBehaviour, ITransitSubject

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CubeProject.LeadTools.Utils
+namespace LeadTools.Utils
 {
 	public class SceneNameView : MonoBehaviour
 	{

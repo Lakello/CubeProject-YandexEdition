@@ -1,9 +1,10 @@
 using System;
-using CubeProject.Game.Messages;
-using Game.Player.Messages;
+using CubeProject.Game.Player.CubeService.Fall;
+using CubeProject.Game.Player.CubeService.Messages;
+using LeadTools.Common;
 using UniRx;
 
-namespace Game.Player
+namespace CubeProject.Game.Player.CubeService
 {
 	public class CubeFallService : IDisposable
 	{

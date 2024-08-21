@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CubeProject.InputSystem
+namespace CubeProject.Game.InputSystem
 {
 	public interface IInputService : IDisposable
 	{

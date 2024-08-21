@@ -1,10 +1,9 @@
 using Agava.WebUtility;
+using CubeProject.Yandex;
 using Reflex.Attributes;
-using UniRx;
 using UnityEngine;
-using Yandex;
 
-namespace Source.Scripts.Game
+namespace CubeProject.Game
 {
 	public class FocusObserver : MonoBehaviour
 	{

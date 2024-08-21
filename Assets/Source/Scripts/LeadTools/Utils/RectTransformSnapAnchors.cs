@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace MyNamespace
+namespace LeadTools.Utils
 {
 	public class RectTransformSnapAnchors
 	{

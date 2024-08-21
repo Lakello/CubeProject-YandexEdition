@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CubeProject.LeadTools.Utils
+namespace LeadTools.Utils
 {
 	[CreateAssetMenu(fileName = "preset", menuName = "Utility/new preset")]
 	public class ObjectSpawnerPreset : ScriptableObject

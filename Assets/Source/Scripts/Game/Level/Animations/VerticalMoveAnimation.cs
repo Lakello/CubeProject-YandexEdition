@@ -1,8 +1,6 @@
-using CubeProject.Game.Messages;
-using Game.Player;
-using Game.Player.Movement;
+using CubeProject.Game.Player;
+using CubeProject.Game.Player.CubeService.Messages;
 using DG.Tweening;
-using Game.Player.Messages;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;

@@ -1,6 +1,7 @@
+using LeadTools.Common;
 using UnityEngine;
 
-namespace Source.Scripts.LeadTools.Other
+namespace LeadTools.Object
 {
 	public class ObjectRotator : MonoBehaviour
 	{

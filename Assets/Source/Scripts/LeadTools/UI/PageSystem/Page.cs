@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using LeadTools.Extensions;
+using LeadTools.UI.Anchor;
 using UnityEngine;
 
-namespace CubeProject.LeadTools.UI.PageSystem
+namespace LeadTools.UI.PageSystem
 {
 	[RequireComponent(typeof(AnchorAnimator))]
 	public class Page : MonoBehaviour

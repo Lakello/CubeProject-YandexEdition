@@ -1,4 +1,4 @@
-namespace Game.Level.Message
+namespace CubeProject.Game.Level.Loader.Messages
 {
 	public struct M_PreLevelLoading
 	{

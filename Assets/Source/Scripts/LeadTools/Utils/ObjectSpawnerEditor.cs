@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CubeProject.LeadTools.Utils
+namespace LeadTools.Utils
 {
 	[ExecuteInEditMode]
 	public class ObjectSpawnerEditor : MonoBehaviour

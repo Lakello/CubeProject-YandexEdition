@@ -1,4 +1,4 @@
-namespace CubeProject.LeadTools.UI
+namespace LeadTools.UI.Anchor
 {
 	public enum AnchorAnimatorState
 	{

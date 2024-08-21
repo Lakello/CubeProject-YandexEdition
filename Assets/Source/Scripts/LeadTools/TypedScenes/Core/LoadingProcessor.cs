@@ -1,9 +1,9 @@
 ﻿using System;
-using LeadTools.StateMachine;
+using LeadTools.FSM;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace LeadTools.TypedScenes
+namespace LeadTools.TypedScenes.Core
 {
 	public class LoadingProcessor : MonoBehaviour
 	{
